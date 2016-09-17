@@ -1,0 +1,34 @@
+﻿Lorsque je note un serveur, tous commencent avec 10 points
+Un serveur qui ne respecte absolument pas l'extension des EULAs
+Perdra progressivement tous ses points jusqu'à tomber à 0
+(Ne sont évidemment comptés que les éléments contraire aux EULAs
+Ainsi, un serveur à kits COSMETIQUES aura la mention "pas de kit")
+
++1 point bonus si le serveur est légal et ne dispose d'aucun bonus donateur
+(Ce qui portera le total d'un serveur légal sans boutique à ... 11/10)
+
+
+
+Serveur ouvert aux versions piratées: -2 points
+(Pas interdit dans l'extension des EULAs, mais illégal quand même)
+-1 pour avoir désactivé l'authentification
+-1 si un ajout est achetable en cr@ck et PLUS CHER que Minecraft (20 euros ou plus)
+(En soi, ce deuxième point n'est "pas plus grave", mais il y a un problème moral!)
+
+Présence de cape: -1 point
+-1 pour usage du modèle 3D de Mojang
+(Les EULAs interdisent les capes sans expliquer de quoi il s'agit: 
+Tout accessoire appellé "cape" ou bien toute texture dans le dos?)
+
+Dés-information de la part des admins: -2 points
+(Note : en cas d'absence de boutique, ce point n'a pas à être calculé)
+-1 pour absence de citation de Mojang AB
+-1 pour "manque de sincérité" (exemple: "si vous l'avez en votant c'est légal")
+(Note: le fait de ne jamais parler des EULAs sans les respecter est compté comme "mentir")
+
+Contenu de la boutique: -5 points
+-1 pour vente d'items/kit : -1 point
+-1 pour section réservée aux donateurs (-0.5 si "serveur" sans déconnexion)
+-1 pour monnaie "d'échange" contre de l'argent réel
+-1 pour gain supplémentaire (booster)
+-1 pour récompense non conforme via des actions hors-jeu (vote)

@@ -1,0 +1,75 @@
+﻿Eléments qui ne doivent PAS respecter les EULAs :
+
+a) Avant même d'appliquer ces règles, le bonus doit être liée à une dépense d'argent (blog posts) / ne pas être liée à l'activité en jeu (Brandon Anderson) : 
+
+a1) -Les éléments gratuits pour le "non-donateur" (youtuber) ne sont pas pris en compte
+(La nouvelle règle de l'été 2016 remet en question la légitimité des grades YT, mais Brandon Anderson n'a pas encore officiellement donné son avis sur ce point)
+
+a2) -En revanche, une dépense non liée au serveur (exemple : un achat chez un partenaire)
+ENTRE dans les éléments régis par les EULAs, même si ce n'est pas le serveur qui reçoit l'argent!
+Depuis juin/juillet 2016, participer à la publicité d'un serveur revient à "payer avec du temps", les votes sont par conséquent soumis aux EULAs
+
+b) Un bonus affectant les donateurs comme les non-donateurs sans les différencier n'enfreint pas les EULAs 
+
+c) Des avantages de gameplay accordés contre de l'argent AVANT le 1er aout 2014 sont tolérés
+SI tout le monde peut obtenir gratuitement ces avantages depuis le 1er aout 2014
+(Même un "bonus aux vétérans" accordé le 31 juillet 2014 à 23:59)
+
+(Note: ma page web date de aout 2015 et à été mise à jour en aout 2016, si un serveur illégal s'est adapté en juillet 2014
+et respecte vraiment les EULAs depuis, vous ne devriez même pas remarquer de problèmes...)
+
+
+
+Cas "particuliers" où les EULAs s'appliquent quand même (si un admin dit le contraire = ignorant ou ARNAQUE):
+a) Un élément "payant et gratuit" (par exemple : farm ou boutique) DOIT respecter les EULAs!
+
+b) Simplement une "plus grosse quantité aux donateurs" n'est PAS un motif de non-application!
+Vendre un second plot aux donateurs n'est pas légal, même si tous les joueurs en ont un au départ!
+
+c)De plus, un élément rajouté par un mod (exemple: une épée) DOIT respecter les EULAs!
+
+d) De manière générale, l'application des EULAs "se propage" (désolé, je ne vois pas comment expliquer) :
+Si un élément doit respecter les EULAs, toute chose débloquée par cet élément devra les respecter aussi!
+Pouvoir acheter un grade implique que les éléments obtenus par ce grade respecte les EULAs...
+
+e) Bien qu'un serveur cr@ck transgresse les EULAs, cela n'autorise PAS à accumuler les infractions
+Etre cr@ck n'est PAS une excuse pour vendre des avantages de gameplay aux joueurs!
+
+
+
+Qu'est-ce qui est INTERDIT par l'extension des EULAs alors?
+
+0) Donner (ou vendre!) une cape sans être un membre de Mojang
+
+1) Se faire passer pour un élément afflié à Mojang AB
+
+2) Fournir des avantages de gameplay spécifiquement à un donateur
+
+3) Limiter l'accès à UNE PARTIE du serveur (un serveur = une ip du menu multijoueur)
+Il est en revanche permis de:
+- Créer un serveur dont la TOTALITE de l'accès est payant
+- Réaliser un accès INTEGRAL à durée limitée (mais pas de limitation de gameplay)
+- Donner une "priorité d'accès" aux donateurs (les non-payants ayant une chance d'y accéder)
+Brandon Anderson a déclaré la vente d'outils administrateurs non conformes aux EULAs, les unbans ne peuvent donc pas être venus
+
+4) Vendre de l'argent InGame contre une monnaie réelle
+(Depuis novembre 2015, TOUTES les monnaies comestiques ou non avec un taux de convertion en argent réel ne sont plus autorisées
+Une monnaie COSMETIQUE "sans taux" reste permise, exemple : à intervalles réguliers si on possède un grade payant)
+
+5) Le fait de faire gagner du temps, spécifiquement aux donateurs (xp doublé par exemple)
+
+
+
+Les serveurs peuvent vendre quoi alors?
+
+0) Il est tout à fait autorisé de gagner des revenus publicitaires via votre serveur
+
+1) Les objets/kits à but COSMETIQUE sont autorisés également
+
+2) En soi, un rang n'a rien d'illégal, ce sont ses permissions qui peuvent poser problème
+
+3) Un bonus fourni à l'intégralité des joueurs (durant une période limitée), c'est bon
+- Que cela soit via un "but de donation" à atteindre ou directement via un seul achat importe peu:
+Tout ce qui compte est que le donateur seul ne soit pas favorisé par l'attribution du bonus! ;)
+
+4) Les commandes à but COSMETIQUE sont également autorisées
