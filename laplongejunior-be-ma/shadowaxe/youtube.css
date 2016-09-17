@@ -1,0 +1,32 @@
+.YTcontrols button:hover:not([disabled]), .YTcontrols button:focus:not([disabled])
+{
+	text-decoration:underline;
+}
+
+.YTreset button:hover, .YTreset button:focus
+{
+	color:red;
+}
+
+.YTsoon button
+{
+	background-color:red;
+	font-weight:bold;
+	color:gray;
+}
+.YTsoon button:hover, .YTsoon button:focus
+{
+	background-color:initial;
+	color:black;
+}
+
+.YTlist button
+{
+	background-color:black;
+	color:gold;
+	text-decoration:underline;
+}
+.YTlist button:hover, .YTlist button:focus
+{
+	text-decoration:none;
+}

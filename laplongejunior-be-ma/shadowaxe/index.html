@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css">
+		<!--Police perso-->
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700">
+		<style>body {font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif}</style>
+		<title>laplongejunior</title>
+		<link rel="stylesheet" type="text/css" href="https://dl.dropbox.com/u/157633266/laplongejunior/shadowAxe/youtube.css"/>	
+		<script language="javascript" src="https://dl.dropbox.com/u/157633266/laplongejunior/shadowAxe/youtube.js"></script>
+	</head>
+
+	<body onload="initScript('YTviewer', 'YTtitle', 'YTdesign', 'YTcolor', 'YTloop')">
+		<div class="container">
+			<div class="page-header">
+				<div class="pull-right">
+					<a class="btn btn-danger" href="https://www.youtube.com/user/laplongejunior" target="_blank" role="button">Chaine YouTube</a>
+					<a class="btn btn-primary" href="http://laplongejunior.be.ma/index.html" role="button">RETOUR</a>
+				</div>
+				<h3 class="text-muted">laplongejunior</h3>
+			</div> <!-- /header -->
+
+			<div class="jumbotron" align="center">
+				<p class="alert alert-danger"><strong><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Important !</strong>
+				<br/>La barre de pub en haut de votre écran est totalement aléatoire, je ne peut ni prédire ni contrôler ce qui peut s'y afficher, donc ne cliquez surtout pas dessus, on ne sait jamais ! ^^
+				<br/>Elle est fournie par l'hébergeur, je ne sais pas la désactiver...</p>
+				
+				<h2>Ici, c'est la section dédiée au serveur ShadowAxe</h2>
+				<a href="http://www.shadowaxe.fr" target="_blank">
+				<img src="https://dl.dropbox.com/u/157633266/laplongejunior/shadowAxe/logo.png"></img>
+				</a><br/>
+				<br/><a href="https://dl.dropbox.com/u/157633266/laplongejunior/shadowAxe/LAPpackSA.zip">Lien du RP du mod adapté au RP officiel</a><br/>
+				<br/>ShadowAxe est un réseau de serveurs géré par au2001 et Eik0_.
+				<br/>Ce réseau est accessible à l'ip mc.shadowaxe.fr
+				<br/>Il est constitué de plusieurs serveurs différents, accessibles via les commandes /server prison et /server faction
+				<br/>
+				<br/>ATTENTION : La boutique du réseau ( http://shadowaxe.buycraft.net ) ne respecte pas les EULAs de Minecraft, mais c'est hélas le seul moyen pour parvenir à financer le serveur, tant que les joueurs diront aux admins "il faut que la boutique soit rentable pour les joueurs sinon on ne payera pas", il n'y aura hélas pas d'autre solution... :'(
+				<br/>
+				<br/>Pour plus d'informations, rendez-vous sur <a href="http://www.shadowaxe.fr">http://www.shadowaxe.fr</a>
+				<br/>(Note : le réseau sera bientôt accessible aux utilisateurs de logiciels cr@ckés, bien que ce n'était pas encore le cas au moment du début de la série...)
+				<br/>
+				<br/>Le mod utilisé pour tourner n'est ABSOLUMENT PAS lié à ShadowAxe, c'est un mod que je code personnellement depuis plusieurs années et disponible sur <a href="http://www.laplongemod.be.ma">http://www.laplongemod.be.ma</a>
+				<br/>
+				<br/><div class="panel panel-default">
+					<div class="panel-heading">Liste des blocs obtenables jusqu'à la mine X (classés par leur ID!)</div>
+					<div class="panel-body"><iframe frameborder="0" width="960px" height="540px" src="https://dl.dropbox.com/u/157633266/laplongejunior/shadowAxe/guide.txt"></iframe></div>
+				</div>
+				<h2>Oui mais laplonge, ton grade donne quoi?</h2>
+				Le grade Youtuber fournit trois avantages sur tout le réseau ShadowAxe:
+				<br/>- Un Prefixe [Youtuber] de couleur bleue* afin de pouvoir être identifié
+				<br/>- La commande /rec : permet de masquer le tchat DU YOUTUBER durant les records			
+				<br/>- La sécurité "anti-liens" ne s'applique pas aux youtubers
+				<br/>
+				<br/>Les autres youtubers ont également deux avantages de gameplay sur le serveur Prison
+				<br/>Cependant j'ai demandé à ce qu'on me les désactive, je n'aime pas être supérieur aux abonnés:
+				<br/>- La commande /fly qui permet de voler (inopérante dans les zones jump et pvp)
+				<br/>- La mine Youtuber et la commande /shop Youtube
+				<br/>
+				<br/>*Si les avantages de gameplay ne sont pas activés, le grade bleu devient gris, uniquement sur le prison
+				<br/>
+				<br/><h2>Lecteur de vidéos Youtube (liste des vidéos plus bas)</h2>
+				<iframe allowfullscreen width="560px" height="315px" id="YTviewer"></iframe>
+				<br/>
+				<div class="YTcontrols">		
+					<button onclick="setViewer(480, 270)">Petite taille</button>
+					<button onclick="setViewer()" class="YTreset" >Taille par défaut</button>
+					<button onclick="setViewer(980, 552)">Grande taille</button>
+					<span class="YTreset">
+						<button onclick="setViewer(0, 0)">Masquer lecteur</button>	
+						<button onclick="setVideo()" class="YTreset" >Annuler la vidéo</button>
+					</span><br/>
+					<input type="checkbox" id="YTtitle"> Afficher titre 
+					<input type="checkbox" id="YTdesign"> Ancien design 
+					<input type="checkbox" id="YTcolor"> Loading blanc 
+					<input type="checkbox" id="YTloop"> Lire en boucle 
+					<br/><font color="red">Les coches ne sont prises en compte que si vous changez de vidéo!</font>
+					<br/><h2>Regarder toute la série "ShadowAxe Break"! :D</h2>				
+					<div class="YTlist">
+					<button onclick="setPlaylist('PL8kH5oigXF9sHiDI04A0m3YPkXnNX37fm')">Démarrer la playlist</button>
+					</div>
+					<button onclick="setVideo('OVQGM_Z7c7E')">Episode 1</button>
+					<button onclick="setVideo('lEiRjosDtvo')">Episode 2</button>
+					<button onclick="setVideo('_eeI4wH-aPs')">Episode 3</button>
+					<button onclick="setVideo('mvheOySSDts')">Episode 4</button>
+					<button onclick="setVideo('F8f-Pa2SNyw')">Episode 5</button>
+					<br/>
+					<button onclick="setVideo('gO3p5XM_hZ8')">Episode 6</button>
+					<button onclick="setVideo('fN4P9YOfSB8')">Episode 7</button>
+					<button onclick="setVideo('-3bOBgxrVNY')">Episode 8</button>
+					<button onclick="setVideo('ucQ45dmwxzQ')">Episode 9</button>
+					<button onclick="setVideo('NrKJB9Os0Xw')">Episode 10</button>
+					<br/>
+					<button onclick="setVideo('NbtPzX84FIw')">Hors-série 1 (Début)</button>
+					<button onclick="setVideo('3mtFv2qikFk')">Hors-série 2 (Fin)</button>
+					<button onclick="setVideo('qdZoNMkJANk')">Episode 11</button>
+					<button onclick="setVideo('-CAtxPk0K7g')">Episode 12</button>
+					<br/>
+					<button onclick="setVideo('izlWxT1zRWk')">Episode 13</button>
+					<button onclick="setVideo('a7bjzG28rHA')">Hors-série 2</button>
+					<button onclick="setVideo('ylDnTTJablc')">Episode 14</button>
+					<button onclick="setVideo('tpIqdEzdf-g')">Episode 15</button>
+					<button onclick="setVideo('Yli8Szcshtc')">Episode 16</button>
+					<br/>
+					<button onclick="setVideo('OUNNRTQs-x0')">Episode 17</button>
+					<button onclick="setVideo('p9Ui4rV0GKk')">Episode 18</button>
+					<button onclick="setVideo('y1bYhCgu-Tk')">Episode 19</button>
+					<button onclick="setVideo('otjIANMn-Eg')">Episode 20</button>
+					<button onclick="setVideo('9ImT_Lxbn0A')">Episode 21</button>
+					<br/>
+					<button onclick="setVideo('Toj9PYRLqu0')">Episode 22</button>
+					<button onclick="setVideo('gpZLdYMung8')">Episode 23</button>
+					<button onclick="setVideo('p8OYJe3Q3KU')">Episode 24</button>
+					<button onclick="setVideo('2SuS5lpdGhU')">Episode 25</button>
+					<button onclick="setVideo('NCdaTNhbo-E')">Episode 26</button>
+					<br/>
+					<button onclick="setVideo('uuz0QjkR0BI')">Episode 27</button>
+					<button onclick="setVideo('fn28YReXW5U')">Episode 28</button>
+					<button onclick="setVideo('_0soDNlJp9Q')">Episode 29</button>
+					<button onclick="setVideo('JWPF2Z7oYVI')">Episode 30</button>					
+					<br/>
+					<button onclick="setVideo('gG20WspSUBw')">Episode 31</button>
+					<button onclick="setVideo('dXbUWN3mLjY')">Episode 32</button>
+					<button onclick="setVideo('Wxs0KgCa29o')">Episode 33</button>
+					<button onclick="setVideo('P7eRHK2nOJw')">Episode 34</button>
+					<button onclick="setVideo('uh9TY7s9WpQ')">Episode 35</button>
+					</span>
+					<h2>Ou bien "ShadowAxe Fight" (avec Shanatsu)</h2>				
+					<div class="YTlist">
+					<button onclick="setPlaylist('PL8kH5oigXF9vCbU6iySbvBtJUoopYpe04')">Démarrer la playlist</button>
+					</div>
+					<button onclick="setVideo('LwU_snG-pKI')">Episode 1</button>
+					<br/>
+					<button onclick="setVideo('sHdL2zFWYD8')">Episode 2 (Début)</button>
+					<button onclick="setVideo('3-CsgrLk11c')">Episode 2 (Fin)</button>
+					<br/>
+					<button onclick="setVideo('hvPUy5AoLQA')">Episode 3 (Début)</button>
+					<button onclick="setVideo('BLB7hNmWte8')">Episode 3 (Fin)</button>
+					<br/>
+					<button onclick="setVideo('_Xj8_hcoIqQ')">Episode 4</button>
+					<br/>
+					<h2>Oui, mais... et avant le reset du serveur?</h2>
+					<button onclick="setVideo('4zisT9VtBTY')">Présentation du serveur</button>
+					<br/>
+					<button onclick="setVideo('Qx-AafS5Xb4')">Tutoriel ChestShops</button>
+					<br/>
+					<button onclick="setVideo('npJqUSM9O6I')">Annonce du reset</button>
+				</div>
+				
+			</div> <!-- /jumbotron -->
+
+			<hr/>
+
+			<footer class="text-muted"><p>Design du site par remiber avec <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>.</p></footer>
+
+		</div> <!-- /container -->
+	</body>
+
+	<!-- Message pour les vieux navigateurs -->
+	<script> 
+		var $buoop = {c:2,reminder:0}; 
+		function $buo_f(){ 
+		 var e = document.createElement("script"); 
+		 e.src = "//browser-update.org/update.js"; 
+		 document.body.appendChild(e);
+		};
+		try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+		catch(e){window.attachEvent("onload", $buo_f)}
+	</script>
+</html>
