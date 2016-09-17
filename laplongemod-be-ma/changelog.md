@@ -82,7 +82,7 @@ Combiné à la division du démarrage, cela permet de démarrer plus vite
  - Minecraft 1.9 ne bloquera plus l'usage de l'IPv6
  - Lapmod 1.5.0.1 supportera les nouvelles adresses
  
-- Bugfixe : Le mod spammait "/money" si la valeur ne changeait pas
+- Bugfixe : Le mod spammait `/money` si la valeur ne changeait pas
  
 - Interne : Changement des IDs de tous les trophées
  - AUCUNE CONSEQUENCE POUR VOUS : le mod convertit automatiquement l'ID
@@ -106,7 +106,7 @@ Combiné à la division du démarrage, cela permet de démarrer plus vite
  - Permet une redirection du port par les admins (coucou ShadowAxe!)
  - Supprime un ancien bugfixe qui évitait un crash lié aux Ressource Packs
 
-- Le réglage "Santé des Amis" devient une config et la config "Notification Mails" devient un réglage
+- Le réglage `Santé des Amis` devient une config et la config `Notification Mails` devient un réglage
 
 - Bugfixes :
  - Les anniversaires liés à Optifine inversaient le jour et mois
@@ -114,8 +114,8 @@ Combiné à la division du démarrage, cela permet de démarrer plus vite
  - Les remotes affichaient leur "code d'activation" dans le chat
 
 - Hors-code : Modification des limites de la traduction des niveaux de potions :
- - Au-dela du niveau 128, les niveaux de potions sont calculés à part de -127
- - Ajout des traductions "potion.potency." supérieures et égales à -127
+ - Au-dela du niveau 128, les niveaux de potions sont calculés à part de `-127`
+ - Ajout des traductions `potion.potency.` supérieures et égales à `-127`
  - Les traductions de niveaux de potions supérieurs à 128 ont été supprimées
 
 - NOTE : en réalité, les chiffres romains n'existent pas sous forme négative
@@ -125,35 +125,35 @@ Combiné à la division du démarrage, cela permet de démarrer plus vite
 
 ### LaplongeMod 1.4.2 : Laplonge Update  (27.07.2015)
 - Changement du nom C0_Bl00dMod en LaplongeMod:
- - La touche par défaut du menu Avatar est le "L" et non plus le "C"
+ - La touche par défaut du menu Avatar est le `L` et non plus le `C`
  - Suppression des "formes alternatives" du ClientBind et du ChatCrypter
  - Renommage du dossier ".minecraft/coblood" en ".minecraft/laplonge"
- - Le package (dans le .jar) "fr.coblood" devient "be.laplonge"
+ - Le package (dans le .jar) `fr.coblood` devient `be.laplonge`
 
 - Ajout d'un Jukebox customisable:
  - Fonction ajoutée suite à la forte demande des abonnés
  - Permet de faire charger par le LaplongeJukebox vos propres musiques
  - Petit défaut : implique d'ajouter vos musiques via un Resource Pack
- - La sélection des musiques se fait via le fichier "records.txt"
- (Note : l'emplacement pour le jukebox est semblable au /playsound)
+ - La sélection des musiques se fait via le fichier `records.txt`
+ (Note : l'emplacement pour le jukebox est semblable au `/playsound`)
 
 - Introduction d'un système pour lancer deux musiques EN MEME TEMPS via le jukebox:
  - Permet par exemple d'écouter les disques 11 et 13 ensemble
  - Cet exemple est d'ailleurs intégré au jukebox standard
  (Si tous les morceaux sont du même auteur, son nom ne s'affiche qu'une seule fois)
  
-- Légers changements au niveau du masque du /login:
+- Légers changements au niveau du masque du `/login`:
  - Le caractère utilisé est une étoile (unicode) et non plus un astérisque
- - Le masque s'applique sans tenir compte de la casse de "login" (/LOgin, /Login, /logIN, ...)
+ - Le masque s'applique sans tenir compte de la casse de `login` (`/LOgin`, `/Login`, `/logIN`, ...)
  
 - Suppression de quelques traductions et d'un peu de code inutilisé
  
 - Les levels d'enchantements OPs se trouvent dans leur propre fichier:
- - Leurs "traductions" ont été migrées dans le fichier "en_XX.lang"
+ - Leurs "traductions" ont été migrées dans le fichier `en_XX.lang`
  - Evite de devoir modifier un énorme fichier à chaque changement de traduction
  
-- Hors-code : Ajout d'une traduction pour "enchantment.level.0":
- - Cette traduction peut être atteinte en vanilla via un /give mal paramétré
+- Hors-code : Ajout d'une traduction pour `enchantment.level.0`:
+ - Cette traduction peut être atteinte en vanilla via un `/give` mal paramétré
  - Le zéro n'existant pas en chiffres romains, le N (de nulli) est utilisé
  
 - Interne :
