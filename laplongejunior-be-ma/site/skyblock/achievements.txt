@@ -1,0 +1,51 @@
+Challenges:
+1) Build a Cobble Stone generator.
+2) Build a house.
+3) Expand the island.
+4) Make a melon farm.
+5) Make a pumpkin farm.
+6) Make a reed/sugarcane farm.
+7) Make a wheat farm.
+8) Make a giant red mushroom.
+9) Craft a bed.
+10) Make 64 stone brick's.
+11) Make 20 torches.
+12) Make an infinite water source.
+13) Craft a furnace.
+14) Make a small lake.
+15) Build a platform 24 blocks away from the island, for mobs to spawn.
+16) Make 10 cactus green dye.
+17) Make 10 mushroom stew.
+18) Craft 10 Jack 'o' lanterns.
+19) Craft 10 bookcases.
+20) Make 10 bread.
+21) Collect 10 Ender-pearls.
+22) Cook 10 fish.
+23) Craft 10 Black Wool.
+24) Craft 10 Gray Wool.
+25) Craft 10 Light Gray Wool.
+26) Craft 10 Lime Green Wool.
+27) Craft 10 Red Wool.
+28) Craft 10 Yellow Wool.
+29) Craft 10 Pink Wool.
+30) Craft 10 Green Wool.
+31) Craft 10 Orange Wool.
+32) Craft 10 Snow Golems.
+33) Craft 20 Paintings.
+34) Build and light a nether portal.
+35) Craft 5 Gold Ingots.
+36) Craft 16 Glass Panes.
+37) Collect 50 birch logs.
+38) Collect 64 arrows and craft a bow.
+39) Craft 10 stone buttons.
+40) Craft 30 stone slabs.
+41) Craft 10 signs.
+42) Craft 20 ladders.
+43) Craft 20 fences.
+44) Craft 20 fence gates.
+45) Craft 10 levers.
+46) Craft 10 trapdoors.
+47) Craft 10 stone pressure plates.
+48) Craft 10 wooden pressure plates.
+49) Collect 64 bonemeal.
+50) Craft 20 cobblestone stairs.
