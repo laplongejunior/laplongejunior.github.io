@@ -1,6 +1,6 @@
 # Changelog LaplongeMod
 ### LaplongeMod 1.5.2 : Blacklist Update (24.06.2016)
-- *Tous les ajouts de la mise à jour 1.5.1.2*
+- **Tous les ajouts de la mise à jour 1.5.1.2**
 - Suppression de l'implémentation de la blacklist de Mojang 
 
 - *Ajout d'une forme moddée de la librarie gérant la blacklist de mojang: 
