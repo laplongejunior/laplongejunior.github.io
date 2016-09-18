@@ -31,7 +31,7 @@
 - Recodage de la mise à jour précédente 
 (Perdue suite à un crash de disque dur) 
 
--Implémentation de la blacklist de mojang prévue pour MC 1.9.3: 
+- Implémentation de la blacklist de mojang prévue pour MC 1.9.3: 
 Le mod permettra TOUJOURS de vous connecter (même en 1.9.3!) 
 
 - Un partenaire du mod sur la BL sera *fortement* signalé dans le menu multi 
