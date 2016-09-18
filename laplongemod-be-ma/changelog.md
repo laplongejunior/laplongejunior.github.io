@@ -40,10 +40,10 @@ Le mod permettra TOUJOURS de vous connecter (même en 1.9.3!)
  -Tenter de se connecter à un serveur blacklisté ouvre une fenêtre de confirmation 
  -La fenêtre de confirmation contient un lien vers les EULAs 
 
-    Il est conseillé de ne pas donner d'argent à un serveur blacklisté: 
-    1) Ce dernier peut fermer très rapidement (et se prendre une action en justice) 
-    2) La blacklist ne s'applique qu'aux serveurs dits "Pay to Win" 
-    3) Un admin laissant son serveur se faire blacklister n'est pas digne de confiance 
+Il est conseillé de ne pas donner d'argent à un serveur blacklisté: 
+1) Ce dernier peut fermer très rapidement (et se prendre une action en justice) 
+2) La blacklist ne s'applique qu'aux serveurs dits "Pay to Win" 
+3) Un admin laissant son serveur se faire blacklister n'est pas digne de confiance 
 
 - Bugfixe: les messages d'erreurs n'étaient pas formattés correctement
 
