@@ -26,7 +26,7 @@
 
 ### Mise à jour annulée : LaplongeMod 1.5.1.2
 
-(Cette mise à jour était prévue pour intégrer la blacklist de Minecraft 1.9.3) 
+*Cette mise à jour était prévue pour intégrer la blacklist de Minecraft 1.9.3*
 
 - Recodage de la mise à jour précédente 
 (Perdue suite à un crash de disque dur) 
