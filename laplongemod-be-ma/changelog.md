@@ -1,4 +1,53 @@
 # Changelog LaplongeMod
+### LaplongeMod 1.5.2 : Blacklist Update (24.06.2016)
+- Tous les ajouts de la mise à jour 1.5.1.2 
+- Suppression de l'implémentation de la blacklist de Mojang 
+
+- *Ajout d'une forme moddée de la librarie gérant la blacklist de mojang: 
+ -Cela permet de laisser la blacklist tout en pouvant l'éviter si besoin 
+ -Les conséquences de la blacklist restent les mêmes qu'en 1.5.1.2 
+
+- Ajout de vérifications de sécurité: 
+ -Les modifications apportées à la blacklist peuvent être désactivées via le fichier settings.txt 
+ -Le bouton "se connecter" sera bloqué si la librarie Netty n'est pas compatible 
+(Astuce: si vous ne désirez pas corriger le problème de compatibilité, vous pouvez masquer les erreurs dans la console en bloquant les modifications via settings.txt!) 
+
+- Suppression de problèmes dans le code vanilla du jeu: 
+- `Session ID is...` est écrit dans les logs du jeu (information sensible, permet de pirater un compte) 
+(Cet suppression sera intégrée en vanilla sur MC 1.9.1) 
+- Un "attribut inconnu" ne spam plus le jeu de "java.lang.IllegalArgumentException" 
+(Le mod indiquera cependant une erreur plus claire dans la console) 
+
+- Bugfixes: Suppression de spam de la console par des erreurs de connexion 
+ -Le code de Mojang qui lit un "byte array" plantait les plugins channels 
+ -Le mod gérait mal du tchat reçu avant de spawner le joueur
+
+---
+
+### Mise à jour annulée : LaplongeMod 1.5.1.2
+
+(Cette mise à jour était prévue pour intégrer la blacklist de Minecraft 1.9.3) 
+
+- Recodage de la mise à jour précédente 
+(Perdue suite à un crash de disque dur) 
+
+-Implémentation de la blacklist de mojang prévue pour MC 1.9.3: 
+Le mod permettra TOUJOURS de vous connecter (même en 1.9.3!) 
+
+- Un partenaire du mod sur la BL sera *fortement* signalé dans le menu multi 
+
+- Ajout d'un menu réduisant l'impact de la BlackList de Mojang 
+ -Tenter de se connecter à un serveur blacklisté ouvre une fenêtre de confirmation 
+ -La fenêtre de confirmation contient un lien vers les EULAs 
+
+Il est conseillé de ne pas donner d'argent à un serveur blacklisté: 
+1) Ce dernier peut fermer très rapidement (et se prendre une action en justice) 
+2) La blacklist ne s'applique qu'aux serveurs dits "Pay to Win" 
+3) Un admin laissant son serveur se faire blacklister n'est pas digne de confiance 
+
+- Bugfixe: les messages d'erreurs n'étaient pas formattés correctement
+
+---
 
 ### LaplongeMod 1.5.1.1 : 1.9 Patch (14.03.2016)
 - Réactivation de certaines portions de code désactivées en 1.5.1:
