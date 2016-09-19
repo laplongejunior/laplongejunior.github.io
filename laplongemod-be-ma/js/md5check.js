@@ -7,6 +7,11 @@ function initMD5(boxId, divId)
 	boxDoc = document.getElementById(boxId);
 	divDoc = document.getElementById(divId);
 }
+function setMD5(MD5)
+{
+	laplongeInstallerMD5 = MD5;
+	return laplongeInstallerMD5;
+}
 
 function updateMD5()
 {
