@@ -1,5 +1,3 @@
-var laplongeInstallerMD5 = "f06bab837c300490573726dff6aa7d41";
-
 var boxDoc;
 var divDoc;
 function initMD5(boxId, divId)
@@ -7,23 +5,24 @@ function initMD5(boxId, divId)
 	boxDoc = document.getElementById(boxId);
 	divDoc = document.getElementById(divId);
 }
-function setMD5(spanId, MD5)
+
+var goodMD5;
+function setMD5(spanId, MD5hash)
 {
-	laplongeInstallerMD5 = MD5;
-	document.getElementById(spanId).innerHTML = laplongeInstallerMD5;
-	console.info(document.getElementById(spanId));
+	goodMD5 = MD5hash;
+	document.getElementById(spanId).innerHTML = goodMD5;
 }
 
 function updateMD5()
 {
-	var MD5 = boxDoc.value.trim();
-	if (MD5.length == 0)
+	var MD5input = boxDoc.value.trim();
+	if (MD5input.length == 0)
 	{
 		divDoc.innerHTML = "";
 		return;
 	}
 	
-	var compare = compareHexa(MD5, laplongeInstallerMD5);
+	var compare = compareHexa(MD5input, goodMD5);
 	
 	if (compare === null)
 		divDoc.innerHTML = "<font color='red'>Un MD5 contient 32 caractères</font>";
