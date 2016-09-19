@@ -22,9 +22,9 @@ function updateMD5()
 	if (compare === null)
 		divDoc.innerHTML = "<font color='red'>Un MD5 contient 32 caractères</font>";
 	else if (!compare)
-		divDoc.innerHTML = "<font color='red'>Ce MD5 n'est pas le bon</font>";
+		divDoc.innerHTML = "<font color='red'>Ce MD5 n'est pas le bon : retéléchargez votre fichier</font>";
 	else
-		divDoc.innerHTML = "<font color='green'>Les MD5 correspondent</font>";
+		divDoc.innerHTML = "<font color='green'>Les MD5 correspondent : votre fichier est à jour</font>";
 }
 
 function compareHexa(badMD5, goodMD5)
