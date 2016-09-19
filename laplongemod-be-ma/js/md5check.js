@@ -10,7 +10,6 @@ function initMD5(boxId, divId)
 
 function updateMD5()
 {
-	console.info("test");
 	var MD5 = boxDoc.value.trim();
 	if (MD5.length == 0)
 	{
