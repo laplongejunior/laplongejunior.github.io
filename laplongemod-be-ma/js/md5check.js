@@ -2,7 +2,7 @@ var laplongeInstallerMD5 = "f06bab837c300490573726dff6aa7d41";
 
 var boxDoc;
 var divDoc;
-function init(boxId, divId)
+function initMD5(boxId, divId)
 {
 	boxDoc = document.getElementById(boxId);
 	divDoc = document.getElementById(divId);
