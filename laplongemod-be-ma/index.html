@@ -25,6 +25,11 @@
 </head>
 
 <body onload="initMD5('MD5box', 'MD5div')">
+	
+	<!-- Attribut ' class="jsonly" ' => afficher si JS activé -->
+	<noscript>
+		<style> .jsonly { display: none } </style>
+	</noscript>
 
 	<!--<a class="infos" href="#" target="_blank">Barre d'info avec lien</a>-->
 	<!--<div class="infos">Information sans lien</div>-->
@@ -94,11 +99,18 @@
 
 			<p><a class="btn btn-success btn-lg" href="https://dl.dropbox.com/s/7ztx7r0i85tb1m2/LaplongeInstaller.jar" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller</span></a>
 			<br/><a href="http://md5file.com/calculator" target="_blank">Clef MD5</a> de LaplongeInstaller.jar (28.05.2016) :
-			<span id="MD5key"><noscript>f06bab837c300490573726dff6aa7d41</noscript></span>
-			<script>setMD5('MD5key', 'f06bab837c300490573726dff6aa7d41');</script>
-			<br/>
-				<input id="MD5box" type="text" size=36 maxlength=40 placeholder="Entrez le MD5 de votre fichier" onkeyup="updateMD5()"></input>
-				<div id="MD5div"></div>
+				<!-- Remplissage auto si JS désactivé -->
+				<span id="MD5key">
+					<noscript>f06bab837c300490573726dff6aa7d41</noscript>
+				</span>
+				<!-- Définition du MD5 à comparer si JS activé -->
+				<script>setMD5('MD5key', 'f06bab837c300490573726dff6aa7d41');</script>
+				<!-- Affichage de l'interface si JS activé -->
+				<span class="jsonly">
+					<br/>
+					<input id="MD5box" type="text" size=36 maxlength=40 placeholder="Entrez le MD5 de votre fichier" onkeyup="updateMD5()"></input>
+					<div id="MD5div"></div>
+				</span>
             		<br/><a class="btn btn-success btn-lg" href="https://dl.dropbox.com/s/azztyfrg18fwktp/LaplongePack.zip" role="button">Pack de textures du mod</span></a></p>
 			<div class="panel panel-primary">
 				<div class="panel-heading"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Instructions du LaplongeInstaller</div>
