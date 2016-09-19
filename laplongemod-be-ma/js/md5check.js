@@ -10,7 +10,7 @@ function initMD5(boxId, divId)
 function setMD5(spanId, MD5)
 {
 	laplongeInstallerMD5 = MD5;
-	document.getElementById(spanId).innerHtml = laplongeInstallerMD5;
+	document.getElementById(spanId).innerHTML = laplongeInstallerMD5;
 	console.info(document.getElementById(spanId));
 }
 
