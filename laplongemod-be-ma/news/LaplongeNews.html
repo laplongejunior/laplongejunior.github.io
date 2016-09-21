@@ -1,0 +1,1333 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><!--
+  Photo Minimal
+  A Tumblr theme by William Rainbird - http://william.rainbird.me
+
+  Tweaked for the Minecraft Launcher by Mojang
+--><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>LaplongeMod News</title>
+				<meta charset="utf-8" />
+<style type="text/css">
+body {
+	font-family: sans-serif;
+	background-color: #222222;
+	background-image: url('https://dl.dropbox.com/s/2hd1fuqcpxz98qc/bgnews.png');
+	color: #e0d0d0;
+
+}
+a {
+	color: #aaaaff;
+}
+hr {
+	border: 0;
+	color: #111111;
+	background-color: #111111;
+	height: 2px;
+}
+h3 {
+	color: #ffffff;
+	font-size: 16px;
+}
+img {
+	border:0;
+	margin:0;
+}
+.sidebar {
+	padding:10px;
+	vertical-align: top;
+}
+.alert {
+	background-color:#aa0000;
+	color:#ffffff;
+	font-weight:bold;
+	padding: 6px 10px;
+	width:500px;
+}
+</style>
+
+<script type="text/javascript" language="javascript" src="http://assets.tumblr.com/javascript/tumblelog.js?3a688ae593c44d77f77872fdc33a20ad"></script><meta http-equiv="x-dns-prefetch-control" content="off"/></head>
+	
+	<body class="">
+	
+<table width=100% height=100%><tr><td style="padding-left: 16px;padding-right: 16px;"  height=100%>
+<table width="100%"><tr><td><h1><font color="white"><a href="http://laplongemod.be.ma">LaplongeMod News</a></font></h1></td><td align=right><a href="http://db.tt/ts0ZR7nl"><font size=-2 color="#555555">Fourni par Dropbox</font></a></td></tr></table>
+	<div class="container">
+		<div id="posts">
+
+					<div class="post text">
+
+							<h3>
+							<font color="yellow">Version Minecraft Actuelle : 1.9</font>
+							<br/>
+							<font color="gold">Nom de notre <a href="http://dinnerbone.com/blog/2012/01/13/minecraft-plugin-channels-messaging/">plugin channel</a> : LaplongeChannel</font>
+							</h3>
+						
+					</div>
+					
+					
+
+					<div class="post text">
+
+							<h3><font color="green">LapMod 1.5.3 : 1.10 Update</font></h3>
+
+							<p>*Mise à jour en 1.10</font>
+							<br/>
+							<br/>*Pas d'autre ajout puisque la 1.10 n'a pas beaucoup rajouté de contenu</p>
+							
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">LapMod 1.5.2 : Blacklist Update</font></h3>
+
+							<p><font color="red">*Tous les ajouts de la mise à jour 1.5.1.2</font>
+							<br/>*Suppression de l'implémentation de la blacklist de Mojang
+							<br/>
+							<br/>*Ajout d'une forme moddée de la librarie gérant la blacklist de mojang:
+							<br/>-Cela permet de laisser la blacklist tout en pouvant l'éviter si besoin
+							<br/>-Les conséquences de la blacklist restent les mêmes qu'en 1.5.1.2
+							<br/>
+							<br/>*Ajout de vérifications de sécurité:
+							<br/>-Les modifications apportées à la blacklist peuvent être désactivées via le fichier settings.txt
+							<br/>-Le bouton "se connecter" sera bloqué si la librarie Netty n'est pas compatible
+							<br/>(Astuce: si vous ne désirez pas corriger le problème de compatibilité, vous pouvez masquer
+							<br/>les erreurs dans la console en bloquant les modifications via settings.txt!)
+							<br/>
+							<br/>*Suppression de problèmes dans le code vanilla du jeu:
+							<br/>-"Session ID is..." est écrit dans les logs du jeu (information sensible, permet de pirater un compte)
+							<br/>(Cet suppression sera intégrée en vanilla sur MC 1.9.1)
+							<br/>-Un "attribut inconnu" ne spam plus le jeu de "java.lang.IllegalArgumentException"
+							<br/>(Le mod indiquera cependant une erreur plus claire dans la console)
+							<br/>
+							<br/>*Bugfixes: Suppression de spam de la console par des erreurs de connexion
+							<br/>-Le code de Mojang qui lit un "byte array" plantait les plugins channels
+							<br/>-Le mod gérait mal du tchat reçu avant de spawner le joueur</p>
+							
+					</div>
+
+					<div class="post text"><h3><font color="red">Mise à jour annulée : LapMod 1.5.1.2</font></h3>
+
+							<p>(Cette mise à jour était prévue pour intégrer la blacklist de Minecraft 1.9.3)
+							<br/>
+							<br/>*Recodage de la mise à jour précédente
+							<br/>(Perdue suite à un crash de disque dur)
+							<br/>
+							<br/>*Implémentation de la blacklist de mojang prévue pour MC 1.9.3:
+							<br/><font color="red">-Le mod permettra TOUJOURS de vous connecter (même en 1.9.3!)</font>
+							<br/>
+							<br/>*Un partenaire du mod sur la BL sera *fortement* signalé dans le menu multi
+							<br/>
+							<br/>*Ajout d'un menu réduisant l'impact de la BlackList de Mojang
+							<br/>-Tenter de se connecter à un serveur blacklisté ouvre une fenêtre de confirmation
+							<br/>-La fenêtre de confirmation contient un lien vers les EULAs
+							<br/>
+							<br/>Il est conseillé de ne pas donner d'argent à un serveur blacklisté:
+							<br/>1) Ce dernier peut fermer très rapidement (et se prendre une action en justice)
+							<br/>2) La blacklist ne s'applique qu'aux serveurs dits "Pay to Win"
+							<br/>3) Un admin laissant son serveur se faire blacklister n'est pas digne de confiance
+							<br/>
+							<br/>*Bugfixe: les messages d'erreurs n'étaient pas formattés correctement</p>
+							
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">LapMod 1.5.1.1 : 1.9 Patch</font></h3>
+
+							<p>*Réactivation de certaines portions de code désactivées en 1.5.1:
+							<br/>-Menu Principal et Menu Pause
+                            <br/>-Affichage du disque du LaplongeJukebox
+                            <br/>-Inversion des entités, masquage du nameplate
+							<br/>
+							<br/>*Le slot "cape" du menu Avatar est remplacé par un slot "Elytra"
+							<br/>-Les messages concernant la cape restent affichés dans ce slot
+							<br/>-Ceux de l'élytra ne s'afficheront qu'en cas d'absence de cape
+							<br/>
+							<br/>*Hors-code:
+							<br/>-L'inventaire est de nouveau en HD
+							<br/>-Modifications des crédits pour correspondre à la 1.9
+							<br/>-Le modèle de la bannière a un rendu adéquat
+							<br/>
+							<br/>*Bugfixes:
+                            <br/>-Le menu avatar génère un rendu correct en gamemode Spectateur
+							<br/>-Le Steve Co. Supply Crate affiche de nouveau son bloc animé
+							<br/>-Le menu "réglages du mod" devenait fou via le menu principal du mod
+							<br/>-La barre de vie se comportait bizarrement à cause de la 1.9
+							<br/>
+							<br/>*Changements internes:
+							<br/>-Suppression du code du Menu Avatar concernant les partenaires
+							<br/>-Le chargement de l'hébergeur se fait AVANT de lancer le mod
+                            <br/>-Restructuration d'une partie du code (Entraîne des bugfixes?)
+                            <br/>
+                            <br/><font color="red">REUPLOAD: La version était injouable pour les nouveaux</font></p>
+							
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">LapMod 1.5.1 : 1.9 Update</font></h3>
+
+							<p>*Mise à jour vers Minecraft 1.9
+							<br/>(Optifine 1.9 n'étant pas encore disponible, pas de support élytra optifine)
+							<br/>(Si optifine modifie les élytras dans le futur, ce sera rajouté ^^)
+							<br/>
+							<br/>*Le mode solo est désormais traité par le mod comme "serveur en 0.0.0.0"
+							<br/>
+							<br/>*Support des Elytras:
+							<br/>-La cape secondaire remplacera l'élytra (cf. section hors-code)
+							<br/>-Le bloquage des capes Mojang bloquere le remplacement de l'Elytra
+							<br/>-Une élytra secondaire est disponible, comme les skins et capes
+							<br/>(La cape d'urgence étant traitée comme la véritable cape,
+							<br/>l'Elytra la supporte automatiquement)
+							<br/>
+							<br/>*Hors-code: Modification de certaines textures
+							<br/>-La cape secondaire possède la texture de l'élytra par défaut
+							<br/>-Modification de l'inventaire pour afficher le nouveau slot
+							<br/>
+							<br/>*Changements internes:
+							<br/>-Le code du mod est plus indépendent de celui du jeu
+							<br/>-Renommage de la dernière méthode avec "Coblood" dans son nom
+							<br/>
+							<br/>*Bugfixe: Le LaplongeCrypter bloquait parfois</p>
+							
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="purple">Pensez à mettre l'installateur à jour</font></h3>
+
+							<p>LaplongeInstaller a subi une refonte quasi-complète:
+							<br/>La nouvelle version copie la majorité des fichiers dans le jeu officiel.
+							<br/>Pensez à l'utiliser pour économiser de la connexion!
+							<br/>(De plus, ne pas dl le jeu entier est plus respectueux des EULAs)</p>
+							
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">LapMod 1.5.0.2 : Host Patch</font></h3>
+
+							<p>*Le démarrage du mod est désormais divisé en deux phases:
+							<br/>-La connexion à l'hébergeur, très tôt durant le démarrage du jeu
+							<br/>-Le chargement du mod avant la disparition du logo Mojang
+							<br/>
+							<br/>*La connexion à l'hébergeur est géré par un thread séparé
+							<br/>-Combiné à la division du démarrage, cela permet de démarrer plus vite
+							<br/>
+							<br/>*Simplification du code gérant l'affichage des accessoires
+							<br/>-L'accessoire Optifine par défaut n'est plus lié au joueur
+							<br/>-Probablement des bugs rares corrigés "automatiquement" par le nettoyage
+							<br/>
+							<br/>*Hors-code : Modifications des crédits du jeu pour y inclure ceux du mod
+							<br/>
+							<br/>*Bugfixe : Le fichier des trophées devenait fou si il rétrécissait
+							<br/>
+							<br/>*Interne : Changement des IDs de tous les trophées
+							<br/>-AUCUNE CONSEQUENCE POUR VOUS : le mod convertit automatiquement l'ID
+							<br/>-Tous les trophées tiennent dans un byte, ce qui réduit la taille du fichier</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">LapMod 1.5.0.1 : Money Patch</font></h3>
+
+							<p>*Le mod peut lire une IP de serveur au format IPv6:
+							<br/>-Aucun changement visible (retro-compatibilité)
+							<br/>-Minecraft 1.9 ne bloquera plus l'usage de l'IPv6
+							<br/>-Lapmod 1.5.0.1 supportera les nouvelles adresses
+							<br/>
+							<br/>*Bugfixes :
+							<br/>-Le mod spammait "/money" si la valeur ne changeait pas
+							<br/>-Certains fichiers texte modifiés avaient un souci d'encodage
+							<br/>
+							<br/>*Interne : Changement des IDs de tous les trophées
+							<br/>-AUCUNE CONSEQUENCE POUR VOUS : le mod convertit automatiquement l'ID
+							<br/>-Il s'agit de la seconde phase de la mise à jour du systèmes de trophées
+							<br/>-Cela permettra dans la PROCHAINE mise à jour de réduire la taille du fichier</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">LapMod 1.5 : Trophies File Update</font></h3>
+
+							<p>*Re-changement du design de l'inventaire:
+							<br/>-Ne contient plus qu'un nouveau slot d'équipement afin de respecter la snapshot 15w31a
+							<br/>-L'espace pour afficher le skin du joueur a de nouveau une largeur de 3 slots
+							<br/>-Souhaitons une fois de plus adieu à la flèche de craft...
+							<br/>
+							<br/>*Nouveau format de fichier pour stocker les trophées:
+							<br/>-Occupe 4x fois moins de place sur le disque
+							<br/>-N'utilise plus d'ancien code de stats de Minecraft (permet de déboguer en cas de besoin)
+							<br/>-Les anciens trophées sont automatiquement transférés sur le nouveau format
+							<br/>
+							<br/>*La connexion via les servers ne passent plus par les IPs mais par les ServerDatas:
+							<br/>-Permet une redirection du port par les admins (coucou ShadowAxe!)
+							<br/>-Supprime un ancien bugfixe qui évitait un crash lié aux Ressource Packs
+							<br/>
+							<br/>*Le réglage "Santé des Amis" devient une config et la config "Notification Mails" devient un réglage
+							<br/>
+							<br/>*Bugfixes :
+							<br/>-Les anniversaires liés à Optifine inversaient le jour et mois
+							<br/>-Les remotes ne s'activaient que lorsqu'elles étaient désactivées(!)
+							<br/>-Les remotes affichaient leur "code d'activation" dans le chat
+							<br/>
+							<br/>*Hors-code : Modification des limites de la traduction des niveaux de potions :
+							<br/>-Au-dela du niveau 128, les niveaux de potions sont calculés à partir de -127
+							<br/>-Ajout des traductions "potion.potency." supérieures et égales à -127
+							<br/>-Les traductions de niveaux de potions supérieurs à 128 ont été supprimées
+							<br/>
+							<br/>-NOTE : en réalité, les chiffres romains n'existent pas sous forme négative
+							<br/>-Le fichier de traductions rajoute un "moins" avant le chiffre correspondant</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">LapMod 1.4.2 : Laplonge Update</font></h3>
+
+							<p>*Changement du nom C0_Bl00dMod en LaplongeMod:
+							<br/>-La touche par défaut du menu Avatar est le "L" et non plus le "C"
+							<br/>-Suppression des "formes alternatives" du ClientBind et du ChatCrypter
+							<br/>-Renommage du dossier ".minecraft/coblood" en ".minecraft/laplonge"
+							<br/>-Le package (dans le .jar) "fr.coblood" devient "be.laplonge"
+							<br/>
+							<br/>*Ajout d'un Jukebox customisable:
+							<br/>-Fonction ajoutée suite à la forte demande des abonnés
+							<br/>-Permet de faire charger par le LaplongeJukebox vos propres musiques
+							<br/>-Petit défaut : implique d'ajouter vos musiques via un Resource Pack
+							<br/>-La sélection des musiques se fait via le fichier "records.txt"
+							<br/>(Note : l'emplacement pour le jukebox est semblable au /playsound)
+							<br/>
+							<br/>*Introduction d'un système pour lancer deux musiques EN MEME TEMPS via le jukebox:
+							<br/>-Permet par exemple d'écouter les disques 11 et 13 ensemble
+							<br/>-Cet exemple est d'ailleurs intégré au jukebox standard
+							<br/>(Si tous les morceaux sont du même auteur, son nom ne s'affiche qu'une seule fois)
+							<br/>
+							<br/>*Légers changements au niveau du masque du /login:
+							<br/>-Le caractère utilisé est une étoile (unicode) et non plus un astérisque
+							<br/>-Le masque s'applique sans tenir compte de la casse de "login" (/LOgin, /Login, /logIN, ...)
+							<br/>
+							<br/>*Suppression de quelques traductions et d'un peu de code inutilisé
+							<br/>
+							<br/>*Les levels d'enchantements OPs se trouvent dans leur propre fichier:
+							<br/>-Leurs "traductions" ont été migrées dans le fichier "en_XX.lang"
+							<br/>-Evite de devoir modifier un énorme fichier à chaque changement de traduction
+							<br/>
+							<br/>*Hors-code : Ajout d'une traduction pour "enchantment.level.0":
+							<br/>-Cette traduction peut être atteinte en vanilla via un /give mal paramétré
+							<br/>-Le zéro n'existant pas en chiffres romains, le N (de nulli) est utilisé
+							<br/>
+							<br/>*Interne :
+							<br/>-Simplifcation des demandes d'affichage de messages d'erreur
+							<br/>-Le port d'un serveur est directement intégré à son IP
+							<br/>-Suppression du support de l'ancien format de l'hébergeur
+							<br/>-Quelques autres optimisations dans le code</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.4.1 : Protocol Update (Part 2)</font></h3>
+
+							<p>*La commande "/login", lorsque tapée dans le chat, masque le reste du chat
+							<br/>-Exemple : "/login toto" devient "/login ****"
+							<br/>-Comme d'habitude, une option a été rajoutée pour désactiver cet ajout
+							<br/>-Aucun "masque" n'est appliqué dans les champs de texte en dehors du chat
+							<br/>
+							<br/>*Apport de modifications sur l'inventaire:
+							<br/>-Ajout des 3 nouveaux slots qui seront rajoutés par Minecraft 1.9
+							<br/>-Agrandissement des slots d'affichage (de quoi placer 1 ou 2 caractères en plus)
+							<br/>-La flèche de la zone de craft fait son grand come-back!
+							<br/>-L'affichage du pseudo est désormais centré
+							<br/>-Côté négatif : le joueur ne s'affiche plus que dans une zone de 2 slots de largeur
+							<br/>
+							<br/>*Les menus de réglages possèdent désormais plusieurs pages:
+							<br/>-Le menu de commande rajoute automatiquement un bouton "Page Suivante" si besoin
+							<br/>-Augmente (une fois de plus) le nombre de fonctions pouvant être intégrées aux menus
+							<br/>
+							<br/>*Le fichier de langue du mod devient "fr_XX.lang":
+							<br/>-L'ancien nom (fr_CB) signifiait "français du pays CB" qui n'existe pas dans <a href="http://fr.wikipedia.org/wiki/ISO_3166">ISO-3166</a>
+							<br/>-La référence "XX" est réservée dans ce standard, ce qui signifie qu'elle ne sera jamais utilisée par un pays existant
+							<br/>-Ce changement réduit les chances que Mojang n'ajoute un fichier de langue incompatible avec le mod
+							<br/>
+							<br/><font color="red">*Dernière minute:
+							<br/>-Ajout d'un système de redirection de l'hébergeur
+							<br/>-Implémenté suite aux rumeurs de dissolution de la team</font>
+							<br/>
+							<br/>*Bugfixes :
+							<br/>-"Re-ajout" de la modification apportée aux capes OF en 1.4.0
+							<br/>-Le 1er serveur partenaire ne s'affichait pas dans le menu Multi
+							<br/>-Il arrivait que les statuts ne s'affichaient pas à cause des codes couleurs
+							<br/>-La commande "getTrophy" fonctionnait mal
+							<br/><font color="red">Astuce de Ocytus : marquer 4x la première lettre permet de contourner le bug</font>
+							<br/>
+							<br/>*Interne :
+							<br/>-Recodage du stockage des boutons des différents menus de commandes
+							<br/>Permet de stocker plus de boutons que l'affichage du menu ne le permet
+							<br/>Nécessaire pour coder un système de "pages multiples" générées automatiquement
+							<br/>De plus, le code des menus de réglages a été simplifié
+							<br/>
+							<br/>-Recodage du menu du jukebox pour utiliser le nouveau système de pages
+							<br/>-Réorganisation des fichiers des différents menus de commandes
+							<br/>
+							<br/>-Légères optimisations du format du fichier de l'hébergeur (appliquées en 1.4.2)
+							<br/>-Légères optimisations de la lecture de ce fichier (suppression d'un groupe réservé)
+							<br/>
+							<br/>-Simplifcation du code de lecture des commandes bindées du mod ($$coblood)
+							<br/>
+							<br/>-Suppression de la confusion entre UUID officiel et ID de l'hébergeur:
+							<br/>Les dates d'anniversaires utilisent l'API de Mojang pour identifier le pseudo
+							<br/>C'est la lecture de l'hébergeur qui utilise la liste d'IDs, et non plus tout le mod
+							<br/>La liste d'IDs est stockée côté lecture, puis effacée au lancement du jeu
+							<br/>Pour le mod, les IDs n'existent plus (il utilise directement les pseudos)
+							<br/><font color="yellow">En résumé, ce système conserve tous les avantages pour la configuration en ligne,
+							<br/>tout en ramenant tous ceux pour le codage du mod</font></p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.4 : Protocol Update (Part 1)</font></h3>
+
+							<p>Cette mise à jour est très petite, pour une raison (à peu près simple):
+							<br/>Elle retire pas mal de fonctions du mod qui ne servaient jamais, ce qui cause pas mal de changements sur l'hébergeur
+							<br/>Il y a encore pas mal de modifs à réaliser (le code du menu de commandes notemment), mais on a décidé de diviser la MAJ en deux parties
+							<br/>Cette mise à jour corrige aussi quelques soucis rencontrés par la communauté, comme l'impossibilité de réaliser un 100% avec leurs trophées
+							<br/>
+							<br/>*Support (partiel) des plugins channels:
+							<br/>-A la connexion, le mod envoie un REGISTER pour signaler ce support aux serveurs
+							<br/>-Juste après, le mod envoie le numéro de version pour faciliter les supports
+							<br/>-Le mod gère également les REGISTER et UNREGISTER provenant du serveur
+							<br/>-Par la suite, le serveur peut envoyer une remote ou définir la valeur de l'argent
+							<br/>
+							<br/>*Suppression de TROIS trophées: 
+							<br/>-Etre détecté sur une map C0_Bl00d, commencer la map "Black Oups", terminer la map "Black Oups"
+							<br/>-zarb37 a confirmé que ce projet de map était abandonné, rendant ces trophées inutiles
+							<br/>
+							<br/>*Suppression du système "d'hébergeur partenaire"
+							<br/>-Cette suppression entraîne une simplification d'une bonne partie du code du mod
+							<br/>-Le menu "se connecter depuis un serveur partenaire" a également été supprimé
+							<br/>-A également été supprimé le concept d'accessoires event
+							<br/>
+							<br/>*"Dé-nerfage" des accessoires OptiFine:
+							<br/>-Si un porteur de cape OF est votre ami, sa cape s'affiche "normalement"
+							<br/>-Ajout d'un nouveau réglage social pour désactiver cette fonction
+							<br/>-Rappel : les capes fournies par OF ne sont pas légales et transgressent les CGUs du jeu!
+							<br/><font color="red">Pour une raison inconnue, cet ajout ne fonctionne pas et sera patché sur la 1.4.1</font>
+							<br/>
+							<br/>*Ajout dans l'hébergeur d'un moyen de permettre de débloquer le Trophée "Steve Co. SUpply Crate"
+							<br/>*Ajout d'un nouveau ClientBind permettant de changer les valeurs vrai/faux des menus de config
+							<br/>*Correction d'une faute de frappe dans le message par défaut de l'accessoire Optifine
+							<br/>
+							<br/>Interne:
+							<br/>*Suppression de pas mal d'imports inutiles dans la classe principale du mod
+							<br/>
+							<br/>*Simplification de l'utilisation de certains packets:
+							<br/>-Les appels aux packets sont réunis dans un seul fichier
+							<br/>
+							<br/>*Grosses optimisations sur le chargement du fichier en ligne:
+							<br/>-Gestion interne du Byte Order Mark, permet d'économiser une ligne de données
+							<br/>-Les joueurs sont stockés sur une seule liste sans sauvegarder leur groupe
+							<br/>-Nouveau format de configuration des bannières, utilise moins de place
+							<br/>-Le type d'aura débloqué est stocké dans un byte et non plus une chaîne de caractères</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.3.3 : Config Update</font></h3>
+
+							<p>*Les configurations (par opposition aux réglages) sont stockées séparément pour chaque serveur: 
+							<br/>-En singleplayer, il sera stocké sous l'ip "localhost:25565", le même lien que le "Serveur Perso"
+							<br/>-Les menus de configuration ne sont plus accessibles depuis le Menu C0_Bl00d
+							<br/>
+							<br/>*L'interface de craft se repositionne automatiquement lorsque l'on change d'inventaire: 
+							<br/>-Indispensable pour en faire un réglage séparé pour chaque serveur
+							<br/>
+							<br/>*Légères optimisations du ChatCrypter:
+							<br/><font color="red">Non compatible avec le crypter des versions précédentes</font>
+							<br/>1)L'espace après les ":" n'est plus obligatoire
+							<br/>2)Le crypter supporte désormais des formes d'écriture non standardisée
+							<br/>Exemples valides: "C0_Bl00dCrypter: test", "cobloodcrypter:toast", "C0_Bl00dCrypter:un message mdr", "coblOODCRypter: ok! ^^"
+							<br/>3)Il est désormais possible de "bidouiller" une valeur dans le fichier d'options (pas InGame!) pour changer légèrement le cryptage
+							<br/>Permet un système de "clé" à donner à un ami pour bien crypter ses messages, MEME pour ceux ayant le mod mais pas la clé
+							<br/>
+							<br/>*Les différentes auras sont désormais contrôlées via des options séparées:
+							<br/>-Aura du phenix (phenix aura, particules de flammes) : membre de la team uniquement
+							<br/>-Aura de l'end (end aura, particules de portail) : serveur partenaire/participant d'event
+							<br/>-Aura enfumée (smoke aura, particules de fumée) : cadeau abonné (simple demande à un membre)
+							<br/>(Cela signifie aussi la disparition du terme "MVP" datant du temps de CraftTech)
+							<br/>
+							<br/>*La fonction "progressive" du zoom peut désormais être désactivée dans les options basiques
+							<br/>-Son fonctionnement est alors totalement identique à celle de Optifine Mod
+							<br/>
+							<br/>*Les traductions du mod ont désormais une "priorité" inférieure à celle de en_US.lang:
+							<br/>-Permet un meilleur support des Ressources Pack vanilla
+							<br/>
+							<br/>
+							<br/>Interne:
+							<br/>*Le nom du mod et sa version sont automatiquement calculés: 
+							<br/>-AVANT: Il fallait indiquer la variable dans un fichier du mod, blabla...
+							<br/>-MAINTENANT: Indiquer "le mod" suffit pour que Java charge la valeur tout seul!
+							<br/>
+							<br/>Bugfixe:
+							<br/>*Une erreur de codage du Menu Bonus empêchait d'adapter l'affichage à plus de 5 membres C0_Bl00d:
+							<br/>-La limitation est désormais celle de la taille des textures, soit 16 joueurs
+							<br/>
+							<br/>Hors-code:
+							<br/>*Ajout de la texture du nouveau membre de la team C0_Bl00d
+							<br/>-Faites un accueil triomphal à... Shanatsu! :D
+							<br/>
+							<br/>*Intégration d'un nouveau format de chiffres romains dans le fichier de traduction:
+							<br/>-Une fois encore, cette amélioration est fournie par notre nouveau mini-logiciel EnchantWriter
+							<br/>-Contient toutes les valeurs allant de 1 à 9999 (peut être facilement étendu si nécessaire)
+							<br/>-Les chiffres sont accompagnés de leur "traduction" en décimal entre parenthèses
+							<br/>(Cette idée provient de Shanatsu, merci à elle!)
+							<br/>
+							<br/>-Les valeurs de 4000 ou plus ont une écriture non-conventionnelle:
+							<br/>Tout simplement car 3999 est la valeur "traditionnelle" maximale
+							<br/>Le nombre de milliers correspondra à une valeur en chiffre romain, suivie de "•M"
+							<br/>
+							<br/>-Exemple d'affichage en jeu: VI•MDCCCXXXVIII (6838)
+							<br/>Puisqu'il vaut "VI" milliers plus "DCCCXXXVIII", donc 6000 plus 838
+							<br/>
+							<br/>-Note : Bien que les enchants de 1 à 10 et les potions de 1 à 4 soient modifiés comme les autres, cela n'est pas visible en jeu
+							<br/>C'est parce qu'en pratique, les chiffres romains issus du fichier de langue original sont prioritaires sur ceux du mod</p>
+
+					</div>
+
+					<div class="post text">
+						
+							<h3><font color="green">CBM 1.3.2 : Social Update</font></h3>
+							
+							<p>*Ajout d'un nouveau menu de configuration:
+							<br/>-Vous permet de définir le format des mails sur votre serveur
+							<br/>-Permet au système de mail d'être compatible avec plus de serveur
+							<br/>-Il est également accessible via la commande bindée "openGui" ou un keybind
+							<br/>
+							<br/>*Ajout de deux menus pour libérer de l'espace: "Configuration" et "Divertissement":
+							<br/>-"Divertissement" ne contient (pour le moment) que le jukebox
+							<br/>-"Configuration" contient le menu de configuration de l'argent et celui de configuration des mails
+							<br/>
+							<br/>*Simplification de la configuration de l'argent:
+							<br/>-Les boutons "ON/OFF" ont été supprimés!
+							<br/>-Pour "désactiver" le début ou la fin, effacez simplement tout le contenu du cadre...
+							<br/>(Donc, pour indiquer "pas de texte après le message d'argent", videz intégralement le 2ème cadre et fermez le menu...)
+							<br/>
+							<br/>*L'adresse d'origine du "Supply Store" n'est plus une constante du mod
+							<br/>-Elle peut cependant être toujours modifiée via l'hébergeur du mod
+							<br/>
+							<br/>*Un keybind peut être désactivé via la touche "Escape":
+							<br/>-Tous les keybinds à l'exception du Menu Avatar et du Zoom sont désactivés par défaut
+							<br/>
+							<br/>*Les valeurs de serveur par défaut (en cas de panne internet) ne sont plus CraftTech
+							<br/>*Ajout d'un petit easter egg lié à l'activation du mode Super-Admin
+							<br/>
+							<br/>*Recodage de la détection de la connection/déconnection d'un ami: 
+							<br/>-Passe directement par la liste des joueurs et non plus par le chat
+							<br/>-Cela assure une compatibilité avec la majorité des serveurs!
+							<br/>
+							<br/>*Interne :
+							<br/>-Simplification de la gestion de certaines chaînes de caractères
+							<br/>-Recodage de la gestion des listes de stockage
+							<br/>-Ajouts et modifications diverses dans l'hébergeur (TRES GROS CHANGEMENT)
+							<br/>-Réduction du nombre d'accès fichiers de la liste des amis
+							<br/>
+							<br/>*Bugfixes : 
+							<br/>-La touche de zoom ne se bloque plus en ouvrant le tchat
+							<br/>-Accéder aux trophées depuis le menu C0_Bl00d faisait crasher le jeu
+							<br/>-Le CD "wait" n'était pas disponible, accidentellement remplacé par "ward"
+							<br/>-Correction des splashes :
+							<br/>1)Le fichier des "splashes" du menu CoBlood ne se chargeait pas
+							<br/>2)La première ligne du fichier avait un symbole "bizarre"</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.3.1 : Crypter Update</font></h3>
+
+							<p>*Ajout de la fonction ChatCrypter:
+							<br/>-Permet de crypter et décrypter les messages du chat
+							<br/>-Comment CRYPTER :
+							<br/>Taper dans le chat : textePasCrypté C0_Bl00dCrypter: messageAcrypter
+							<br/>Exemple : /msg laplongejr C0_Bl00dCrypter: Tu es très gentil signé un abo
+							<br/>(Ne pas oublier l'espace après les deux points!)
+							<br/>-Comment DECRYPTER :
+							<br/>Lorsque le chat reçoit un message avec "C0_Bl00dCrypter: ", il décrypte automatique
+							<br/>Le texte décrypté s'affiche alors en bas de la ligne originale
+							<br/>-Si le texte crypté dépasse la limite en caractère du chat :
+							<br/>Dans ce cas, C0_Bl00dMod se chargera d'envoyer le message en plusieurs parties
+							<br/>Une portion de message est alors envoyée toutes les 5 secondes (pour éviter les anti-spams)
+							<br/>
+							<br/>*TRES TRES grosse refonte du format de l'hébergeur (nom de code : Voltron Management)
+							<br/>-A noter que cet ajout ne sera PAS intégré à la version Partenaire de l'hébergeur pour limiter les abus
+							<br/>-Cet ajout aura nécessité de nombreuses heures de codage pour parvenir à ce résultat, et ce même si vous n'en voyez pas les effets
+							<br/><font color="red">Cette modification implique la perte de compatibilité avec les versions 1.3 et inférieures!</font>
+							<br/>1)De nouvelles informations ont été rajoutées:
+							<br/>-Les textes rajoutés par le mod, mais liés aux ajouts Optifine, sont désormais contrôlés par l'hébergeur
+							<br/>-La mention "Réalisé par laplongejunior" est elle aussi contrôlée par ce système
+							<br/>-Les capes OF ont besoin de l'autorisation de l'hébergeur pour s'afficher
+							<br/>-Les ajouts officiels peuvent être bloqués sur demande de l'hébergeur
+							<br/>2)Permet désormais de définir des "groupes" de joueurs pour à peu près n'importe quel ajout:
+							<br/>-Cela permet de s'assurer que plusieurs joueurs disposent d'un ajout identique
+							<br/>-De plus, la gestion des joueurs est bien plus simple et rapide!
+							<br/>3)Le groupe "OBFUSCATED" n'est plus spécialement réservé dans la gestion des rangs
+							<br/>
+							<br/>*Ajout d'un nouvel accessoire : les bannières rajoutées en 1.8
+							<br/>-Ces bannières s'affichent sur votre tête et ce même si vous portez un casque!
+							<br/>-Si vous portez une "vraie" bannière sur votre tête, la bannière du mod sera masquée
+							<br/>
+							<br/>*Suppression des options "download d'accessoires"
+							<br/>*L'option "Lapins Toast" n'affecte plus les Lapins Tueurs
+							<br/>*La santé custom fournie par un serveur partenaire ne s'affiche plus en mode masqué
+							<br/>
+							<br/>*Hors-code:
+							<br/>-Supprimé des références de traductions inutilisées mentionnant les auras
+							<br/>-Remplacé la tête de zarb37 dans le menu Bonus afin qu'elle corresponde à son nouveau skin
+							<br/>
+							<br/>*Bugfixes:
+							<br/>-Le bouton "Optifine" du C0_Bl00dBook faisait crasher le jeu
+							<br/>-Les boutons de l'inventaire se décalaient lorsqu'un effet était retiré ou ajouté
+							<br/>-La santé custom offerte par un serveur partenaire était indiquée comme fournie par la C0_Bl00d
+							<br/>-La cape OF pouvait buguer en présence d'une cape officielle
+							<br/>-La barre de santé d'un ami ne s'affichait pas
+							<br/>-Le chargement d'un Ressource Pack de serveur partenaire pouvait provoquer un crash
+							<br/>(Merci à au2001, l'admin-fondateur de ShadowAxe pour avoir trouvé ce bug!)
+							<br/>
+							<br/>*Interne:
+							<br/>-Le mod utilise désormais les références de couleurs de Minecraft
+							<br/>-La gestion des diférentes auras au sein de l'hébergeur a été modifiée
+							<br/>-De nombreuses références MInecraft.getMinecraft() ont été raccourcies</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.3 : 1.8 Update</font></h3>
+
+							<p>*Mise à jour pour Minecraft 1.8 :
+							<br/>-Suppression du fix du rendu des end portals au sein du mod (inclu en vanilla)
+							<br/>-Mise en service de l'option bonus "Lapins Custom" qui leur donne la texture secrète
+							<br/>-L'auto-détection est désormais utilisable suite à l'introduction du "/trigger"
+							<br/>(Consultez le changelog de la mise à jour 1.1 du mod plus d'informations sur cette fonction)
+							<br/>
+							<br/>*Suppression des objets icônes
+							<br/>-Rendus impossibles par le nouveau système de rendu de la 1.8
+							<br/>-Sont remplacés par des objets Vanilla, RIP! :'(
+							<br/>
+							<br/>*Ajout des skins/capes d'urgence :
+							<br/>-Le mod télécharge automatiquement les skins et capes officiels sur l'hébergeur de Mojang
+							<br/>-Si un de ces fichiers n'est pas fourni par votre serveur Minecraft, la copie de la texture sera utilisée
+							<br/>-Résumé : si votre serveur ne supporte pas les skins, le mod le fera à sa place!
+							<br/>-IMPORTANT : actuellement, seuls les skins de la 1.8 sont supportés, et s'affichent sous le modèle "Alex"!
+							<br/>
+							<br/>*Ajout d'une protection contre la commande "/crash" de certains serveurs
+							<br/>*L'avatar du menu Avatar tourne sur lui-même automatiquement
+							<br/>*L'option "Skins Secondaires" affiche le skin de secours même si vous avez un skin officiel
+							<br/>*Toutes les fonctions désactivables par le bouton cape sont désactivables en s'accroupissant
+							<br/>*Les coffres de noel sont (de nouveau) activables séparément pour les simples et les doubles
+							<br/>
+							<br/>*Modifications internes :
+							<br/>-Les accessoires events sont traités comme un "simple" accessoire de serveur
+							<br/>-deadmau5 n'est plus une constante du mod
+							<br/>-Le mod réalise tout seul une bonne partie du listing des options (rajout plus facile à l'avenir)
+							<br/>(Certains changements ne sont pas indiqués, car uniquement liés à l'update MC 1.8)
+							<br/>
+							<br/>*Bugfixes :
+							<br/>-Suppression d'une confusion avec les commandes de faction
+							<br/>-Suppression de TRES nombreuses erreurs affichées dans la console du launcher
+							<br/>
+							<br/>*Quelques petits changements au niveau des capes, lisez le paragraphe ci-dessous...</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="yellow">A propos des nouvelles capes</font></h3>
+
+							<p>Si vous n'aimez pas lire, laplongejunior a fait une explication en vidéo : <a href="http://www.youtube.com/watch?v=oCQWiRhBjQ8">CLIQUEZ ICI</a>
+							<br/>
+							<br/>1)SUPPRESSION PARTIELLE DES CAPES OPTIFINE
+							<br/>Depuis près d'un mois, OptiFine permet de créer n'importe quelle cape (ou presque) via le rendu des bannières
+							<br/>Etant donné que les capes OF ne sont plus identifiables comme telles, il est hors de question que nous les affichions via le mod!
+							<br/>Suite à la pression de nos abonnés YouTube, les détenteurs de capes OF possèdent tout de même une texture par défaut...
+							<br/>Toutes les capes OF sont donc remplacées par une cape OF standard : un OF doré sur fond rouge!
+							<br/><strong><font color="red">C'est moins bien qu'une cape customisable, mais BEAUCOUP mieux que pas de capes du tout...</font></strong>
+							<br/>
+							<br/>
+							<br/>2)DES CAPES CUSTOM SONT DE RETOUR! (en quelque sorte)
+							<br/>Oui, je sais, c'est interdit par les EULAs, j'ai donc décidé d'exploiter une petite faille...
+							<br/>"Vous n'avez pas le droit de vendre des capes ou de les donner gratuitement", c'est ce qui est marqué dans les questions-réponses, ok?
+							<br/>Il est évident qu'on ne vendra jamais ce genre de choses, mais penchons nous sur la logique du mot "donner"...
+							<br/>LOGIQUEMENT je peut attribuer une cape au perso laplongejr : puisqu'il s'agit de MON mod, je ne "donne" pas de cape : on ne peut pas donner quelque chose à soi-même!
+							<br/>
+							<br/>Continuons avec cette logique : que se passerait-t'il si ce n'était pas MOI qui ajoutait la cape?
+							<br/>Cette mise à jour du mod ajoute donc une option "Cape Secondaire", semblable à l'option "Skin Secondaire"
+							<br/>En activant cette option, vous pourrez vous ajouter une texture via un Ressource Pack, comme les skins par défaut...
+							<br/>La où la logique devient intéressante, c'est que la texture par défaut sur le mod est... transparente!
+							<br/>
+							<br/>Si aucune cape ne s'affiche normalement, on ne peut pas nous accuser de "donner" des capes à qui que ce soit, on est bien d'accord?
+							<br/><strong><font color="red">Cette fonction est là pour permettre aux joueurs de s'ajouter leur cape officielle si le serveur de skins tombe en panne</font></strong>
+							<br/>La team C0_Bl00d décline toute responsabilité si vous réalisez vous-même une cape non-officielle et utilisez le mod pour les afficher!
+							<br/>
+							<br/>Evitez d'abuser de cette fonction pour frimer : vous serez le seul à pouvoir voir votre cape, puisqu'elle est liée à votre RP...</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.2.2 : Jukebox Update</font></h3>
+
+							<p>*Intégration des "DoubleBoutons" du LegendaryCubeMod :
+							<br/>-Initialement crées par laplongejunior sur une demande spéciale de ce serveur partenaire
+							<br/>-Raison de l'ajout à CBM : le serveur a fermé et leur mod n'a donc plus d'utilité
+							<br/>-Lorsque la souris passe sur un de ces boutons, une seconde ligne de texte apparait
+							<br/>
+							<br/>*Ajout d'un menu JUKEBOX!
+							<br/>-Accessible via un nouveau KeyBind ou bien via le menu de commandes
+							<br/>-Vous permet (comme son nom l'indique) de lancer n'importe lequel des 12 CDs du jeu
+							<br/>-Le nom de l'auteur (sans RP : C418) s'affiche grâce aux DoubleBoutons
+							<br/>-Pendant que la musique est jouée, le nom du CD est affiché à l'écran comme un jukebox "minecraftien"!
+							<br/>
+							<br/>-Quelques petites notes intéressantes :
+							<br/>1)L'affichage du nom du CD est désactivable via un nouveau réglage standard ajouté pour l'occasion!
+							<br/>2)Vous avez changé la description ou/et la musique d'un CD via un Ressource Pack vanilla?
+							<br/>Aucun souci, le mod lancera automatiquement vos nouveaux fichiers au lieu des anciens!
+							<br/>3)N'oubliez pas : étant issue d'un mod, cette musique ne peut être entendue que par vous...
+							<br/>
+							<br/>-Un disque peut être démarré via une nouvelle Télécommande :
+							<br/>/tellraw @p "C0_Bl00dMod nécessaire pour démarrer le disque cat"
+							<br/>En remplaçant cat par le nom du disque voulu
+							<br/>/tellraw @p "C0_Bl00dMod nécessaire pour démarrer le disque "
+							<br/>Aura pour effet de couper le disque en cours
+							<br/>
+							<br/>*Modification de l'organisation du Menu Avatar
+							<br/>-Les ajouts visuels des MVPs sont désormais indiqués à gauche de l'écran
+							<br/>-La description des accessoires est remplacée par une couleur (pour gagner de la place)
+							<br/>
+							<br/>*Amélioration des menus de commandes :
+							<br/>-Ces menus utilisent les doubles boutons pour afficher la commande proposée
+							<br/>-Ajout d'un menu dédié au plugin Factions
+							<br/>
+							<br/>*Remplacement de quelques liens :
+							<br/>-Le lien vers la page "capes" du wiki mène vers les liens des EULAs
+							<br/>-Le lien "Premium?" du C0_Bl00dBook est désormais un lien "UUID?"
+							<br/>
+							<br>*Quelques modifications des trophées :
+							<br/>-Le trophée "GOTTA CHEATER" est désormais un Trophée Final
+							<br/>-Le trophée "Compacté!" requiert "Mon beau miroir"
+							<br/>
+							<br/>*Suppression de les majuscules de la plupart des remotes
+							<br/>
+							<br/>*Interne : simplification de l'activation d'un son
+							<br/>*Bugfixe : une commande trop longue provoquait un kick par le serveur
+							<br/>-Le mod ne permet plus l'envoi de messages de plus de 100 caractères (la limite du chat vanilla)
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="yellow">CBM est désormais multi-versions</font></h3>
+
+							<p>Dans la mesure où un de "nos" serveurs est encore en 1.7.2, le mod ne pouvait s'y connecter.
+							<br/>Une version "spéciale 1.7.2" du mod est désormais disponible via notre site internet, http://www.cobloodmod.fr.ht
+							<br/>Toutes les updates seront disponibles donc sous deux versions JUSQU'A ce que le mod soit en 1.8
+							<br/>
+							<br/>C'est un cas EXCEPTIONNEL, ne vous attendez pas à un multi-support pour toutes les versions passées ou futures du jeu!
+							<br/>Nous vous fournissons ce "mod alternatif" car la communauté est littéralement scindée en deux entre les serveurs "sûrs" en 1.7.2 et les "bidouillés" en 1.7.10
+							<br/>
+							<br/>PS : Le portage 1.7.2 ne s'applique qu'aux updates stables donc les versions BETA seront uniquement en 1.7.10...</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.2.1.1 : Optifine Patch</font></h3>
+
+							<p>Puisque zarb37 a HORREUR des mises à jours à 4 chiffres, bah j'en ai fait une! >:D
+							<br/>
+							<br/>*Séparation entre le code relatif aux ajouts visuels OptiFine et le reste du mod
+							<br/>*Recodage de la notion de "valeurs constantes", à la fois pour le mod et le patch d'OptiFine
+							<br/>
+							<br/>Pour rappel : les ajouts visuels d'OptiFine sont :
+							<br/>A)L'accessoire des donateurs d'OptiFine (actuellement une cape, bien qu'un tel accessoire soit illégal)
+							<br/>B)Deux mentions joyeux anniversaire : une pour OF le 4 avril, une pour son auteur le 14 août
+							<br/>
+							<br/>*Hors code : support des chiffres romains jusqu'à 100</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.2.1 : ClientBinds Update</font></h3>
+
+							<p>MCP n'est toujours pas mis à jour en 1.8(.1), donc autant continuer à améliorer le mod pendant ce temps-là...
+							<br/>
+							<br/>*Amélioration de l'interactivité des Commandes Bindées :
+							<br/>-Les commandes "directConnect" et "serverConnect" sont opérationnelles
+							<br/>-L'aide d'une commande donne la liste des arguments possibles
+							<br/>-Les messages d'erreur renvoient la valeur que vous avez entré AVEC ses majuscules
+							<br/>-Vous pouvez utiliser "$$C0_Bl00d" au lieu de "$$coblood" si vous voulez							
+							<br/>
+							<br/>Pour rappel :
+							<br/>-Tapez "$$" pour activer une commande, suivi de "coblood" pour les commandes du mod
+							<br/>-Vous pouvez créer vos propres Binds via le fichier ".minecraft/coblood/binds.txt"
+							<br/>
+							<br/>*Recodage de la sauvegarde des options :
+							<br/>-Permet de fournir une liste pour la gestion via Commandes
+							<br/>-La sauvegarde en soi n'est pas alterée, uniquement la classification
+							<br/>
+							<br/>*Ajout d'une "animation" esthétique à la fonction zoom :
+							<br/>-Le zoom s'active progressivement, comptez 1 bonne seconde pour s'enclencher
+							<br/>-Rend le zoom un petit peu moins OP en multijoueur
+							<br/>-Le "frein" de la souris a été retiré afin de ne pas limiter vos mouvements en cas d'urgence
+							<br/>-Suite au conseil de cilc0901, le zoom se désactive 5x plus vite que l'activation
+							<br/>
+							<br/>*Quelques ajouts au niveau des trophées :
+							<br/>-Le menu des trophées est accessible par le menu Avatar et non plus via les achievements vanilla
+							<br/>-Le trophée du menu avatar est débloqué avant le trophée de bienvenue
+							<br/>-Un trophée a été ajouté, il est lié aux Commandes Bindées
+							<br/>-Certains trophées sont temporairement offerts en vous connectant à notre serveur principal
+							<br/>-Le trophée de détection est offert tant que le mod ne sera pas en 1.8
+							<br/>-Les trophées blackOups sont offerts tant que la map ne sera pas publiquement en ligne
+							<br/>
+							<br/>*Les réglages par défaut de l'argent correspondent au nouveau serveur principal : CraftTech
+							<br/>
+							<br/>*Si vous avez un message de vie custom, votre barre personnelle l'affichera au lieu du message par défaut
+							<br/>
+							<br/>*Refonte de l'affichage des chiffres romains des effets de potions :
+							<br/>-A l'instar de Minecraft Vanilla, les potions utilisent les traductions "enchantment.level.?"
+							<br/>-Il n'y a plus de limitation à 10 niveaux, le maximum est déterminé par le Ressource Pack
+							<br/>
+							<br/>*Minecraft est reconnu comme "C0_Bl00dMod" et non plus comme "vanilla" :
+							<br/>-Les conséquences de ce changement (probablement inutile) sont totalement inconnues
+							<br/>-Le seul effet connu est que, en cas de crash du jeu, le launcher ne propose plus d'envoyer le crash report
+							<br/>-Assez bizarrement, cette information est transmise aux serveurs auxquels vous vous connectez...							
+							<br/>
+							<br/>*Suppression des accessoires "events" et du "masquage" obligatoire des pseudos :
+							<br/>-Sont toujours disponibles dans la configuration par serveur partenaire
+							<br/>-Ils avaient été conçu pour le serveur CraftTech, il y a plus d'un an
+							<br/>-Un réglage sur plusieurs serveurs simultanés serait à la fois énervant ET illogique
+							<br/>
+							<br/>*Suppression des fonctions anniversaires :
+							<br/>-La seule fonction restante est le splash custom du Menu Principal
+							<br/>-Le splash est désormais visible par tous les utilisateurs
+							<br/>-Pour des raisons de vie privée, cette fonction est réservée aux membres de la team
+							<br/>
+							<br/>*Hors code :
+							<br/>-Les niveaux de potions sont supportés jusqu'à 50
+							<br/>-La tête de tuba_37 a été supprimée des textures puisqu'il ne fait plus partie de la team
+							<br/>
+							<br/>*Bugfixes :
+							<br/>-Les notifications "Argent Gagné/Perdu" indiquaient "/money", quelque soit le réglage
+							<br/>-La page du menu Bonus n'était pas mémorisée au redémarrage
+							<br/>-Merci à cilc0901 d'avoir trouvé l'"Infinite Crafting Glitch" qui était surement présent depuis plus d'un 1 an...
+							<br/>...plus d'une journée de codage aura été nécessaire pour identifier et supprimer ce glitch très grave! o0
+							<br/>
+							<br/>*Et beaucoup de modifs internes : menu, zoom, hébergeur, texte, vie... :o</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.2 : Pre-1.8 Update</font></h3>
+
+							<p>Cette mise à jour corrige de nombreux bugs et incohérences en prévision de
+							<br/>la grosse update qui sera nécessaire pour porter le mod sur Minecraft 1.8.1...
+							<br/>
+							<br/>*Changement de l'emplacement de l'hébergeur du mod :
+							<br/>-Les versions antérieures à celle-ci auront donc une erreur "Hébergeur introuvable" sur le Menu Avatar
+							<br/>-Nécessaire afin de stabiliser le gros ajout ci-dessous...
+							<br/>
+							<br/>*Refonte de TOUS les modèles des accessoires du mod (pas celui d'Optifine) :
+							<br/>-Retire l'ENORME partie vide des textures qui ne servait à rien!
+							<br/>-Moins d'espace à stocker pour nous, moins d'espace à télécharger pour vous! :D
+							<br/>-Nos oreilles utilisent donc un modèle différent de celles de deadmau5
+							<br/>-Aucun changement InGame : nous avons nous-mêmes modifié chacune de vos textures! ;)
+							<br/>
+							<br/>*Réparation DEFINITIVE du problème d'accents dans la config :
+							<br/>-Négatif : du calcul inutile pour votre machine pour certaines parties de la config
+							<br/>-Positif : tous les éléments de la config supportent les accents! :D
+							<br/>
+							<br/>*Amélioration du C0_Bl00dBook : 
+							<br/>-L'accessoire optifine d'un joueur y est accessible
+							<br/>-Le bouton de l'EndPoem utilise le modèle de celui des KeyBindings
+							<br/>
+							<br/>*Les references textuelles de l'accessoire Optifine ne sont plus modifiables via un pack
+							<br/>
+							<br/>*Ajout de deux menus à la commande "$$coblood openGui ARGUMENT" : 
+							<br/>-Le menu de configuration de l'argent via l'argument "money"
+							<br/>-Le menu faisant la liste des trophées du mod via l'argument "trophies"
+							<br/>
+							<br/>*Amélioration de l'algorithme de l'argent :
+							<br/>1)Le mod retient quelle a été la dernière réponse du serveur
+							<br/>2)Si la nouvelle réponse correspond EXACTEMENT à l'ancienne, le calcul ne se refait pas
+							<br/>-Conséquence : cela évite du travail inutile à votre machine
+							<br/>
+							<br/>*Interne :
+							<br/>-ENCORE retiré beaucoup d'imports (ça commence à devenir énervant!)
+							<br/>-L'algorithme de conversion de l'argent a été un tout petit peu simplifié
+							<br/>
+							<br/>*Bugfixe : l'argent pouvait afficher un point juste après un signe moins
+							<br/>(Exemple : -.200.000,10 au lieu de -200.000,10)
+							<br/>
+							<br/>*Hors code :
+							<br/>-Le mot "C0_Bl00d" du menu multi possède désormais le terme "Serveur"
+							<br/>-Les "Gamertags" ont été renommés "Nameplates" pour éviter la confusion avec MC console...
+							<br/>-La texture du menu Bonus utilise la bonne texture et plus celle du Steve Co. Supply Crate
+							<br/>-Les niveaux d'enchantement 11 à 50 s'affichent correctement</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.1.2.1 : Optifine Update</font></h3>
+
+							<p>Yoyoyo, c'est laplongejunior, et voici une mini-update qui va en faire plaisir à certains!
+							<br/>La 1ère bonne nouvelle (peu importante) est que la sauvegarde des trophées n'utilise plus la librairie de la 1.6...
+							<br/>Cela signifie quoi? Eh bien que vous n'aurez plus de dossier "libraries" en installant le mod! :D
+							<br/>
+							<br/>Bon, ça c'était la bonne nouvelle qui m'était destinée car je n'aimais pas DU TOUT ce fichier à rajouter séparément... ^^
+							<br/>
+							<br/>2ème bonne nouvelle : les capes Optifine sont désormais visibles avec le mod!
+							<br/>Je vous vois venir "les EULA interdisent les capes, le mod est illégal"!
+							<br/>A moitié vrai, les EULA interdisent bien "toute distribution de cape", et j'insiste bien sur le terme "distribution"...
+							<br/>Sauf que c'est Optifine qui distribue illégalement des capes et non pas la team C0_Bl00d! >:)
+							<br/>
+							<br/>Vous pouvez, si vous le voulez, bloquer l'affichage des capes OF pour protester, mais PAS bloquer leur téléchargement...
+							<br/>Lorsque Optifine remplacera les capes par autre chose (purement théorique, mais ce serait le meilleur moyen pour eux de rester légal),
+							<br/>je verrai si je saurai implémenter leur système de donateurs pour l'afficher...
+							<br/>
+							<br/>Je fais cela car je considère personnellement les capes OF comme étant un petit ajout et non pas la base de OF,
+							<br/>au même titre que le zoom, et cela fera plaisir aux utilisateurs du mod qui auront dû sacrifier leur cape...
+							<br/>
+							<br/>PS : L'ajout des capes OF ne change rien aux trophées impliquant les capes et oreilles : les ajouts de Optifine,
+							<br/>même si vus par la moitié des joueurs, ne sont PAS des ajouts officiels et ne débloqueront donc pas les trophées!
+							<br/>
+							<br/>
+							<br/>Un grand merci à skynix05 qui m'a servi de "cobaye" pour tester le fonctionnement de la cape! ^^
+							<br/>
+							<br/>
+							<br/>Si vous n'avez pas compris, je répète : la team C0_Bl00d ne peut PAS ajouter de cape à quelqu'un, ce serait illégal!
+							<br/>Si je cautionne les capes de OF, c'est parce que, contrairement à ce qui se fait en France, le donateur ne peut PAS mettre
+							<br/>une texture custom, il est OBLIGE de suivre un modèle de base, là où certains systèmes FR permettent d'avoir une cape Minecon... :(</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.1.2 : OP update</font></h3>
+
+							<p>*Modifié la texture du bouton des KeyBindings :
+							<br/>-Les flèches peuvent désormais être éditées dans un ressource pack
+							<br/>
+							<br/>*Ajout d'un troisième easter egg dans le mod :
+							<br/>-Concerne le menu bonus... >:)
+							<br/>
+							<br/>*L'argent dans l'inventaire a été amélioré :
+							<br/>-Conçu pour les serveurs OP! ^^
+							<br/>-L'argent s'affiche désormais avec des points pour classer les milliers
+							<br/>
+							<br/>*Ajout des commandes /version et /plugin dans le Menu de Commandes :
+							<br/>-Remplace les commandes MobArena utilisées par aucun serveur partenaire
+							<br/>
+							<br/>*Modification de la configuration de l'argent par défaut :
+							<br/>-Est adaptée à Iconomy, le plugin de ForestCube, notre serveur principal
+							<br/>
+							<br/>*Hors-code : Supprimé un pixel blanc dans la texture du Locked Chest
+							<br/>
+							<br/>*Bugfixes :
+							<br/>-Le trophée "Austin Powers" ne pouvait pas être légitimement débloqué
+							<br/>-Les accents n'étaient pas supportés à certains points de la config
+							<br/>
+							<br/>*Interne : le bloquage des boutons des serveurs partenaires est calculé automatiquement :
+							<br/>-Cela n'a l'air de rien mais cette étape était OBLIGATOIRE avant d'envisager une mise à jour 1.8
+							<br/>-La fonction de reclassage des serveurs aurait permis de pouvoir débloquer les boutons en question</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.1.1 : Money update</font></h3>
+
+							<p>*Ajout d'un menu pour configurer VOUS-MEME la configuration de l'argent :
+							<br/>-Accessible depuis l'inventaire ou le menu de commandes
+							<br/>-Vous permet d'avoir votre argent dans l'inventaire sur (presque) tous les serveurs
+							<br/>-Vous pouvez configurer le début ou la fin du message d'argent
+							<br/>-Vous pouvez également reconfigurer les commandes /money et /balancetop
+							<br/>-Les 4 réglages liés à l'argent (notification + inventaire) sont transférés dans ce menu
+							<br/>
+							<br/>*Redisposition du menu de commandes :
+							<br/>-Les différentes commandes et les différents réglages sont dans un menu dédié
+							<br/>-Permet de repousser facilement la limite d'espace du menu
+							<br/>
+							<br/>*Quelques modifications liés aux trophées :
+							<br/>-Tout trophée obtenu déclenche le son de levelup (désactivable)
+							<br/>-Ajout de quatre trophées en rapport avec l'argent de l'inventaire
+							<br/>-Ajout d'un message de rappel pour le trophée du Menu Avatar
+							<br/>-L'option pour désactiver l'aide est controllable IG
+							<br/>
+							<br/>*Ajout d'une troisème Aura :
+							<br/>-Il s'agit d'une "Smoke Aura", constituée de fumée
+							<br/>-Est conçue comme une aura "pour tous" pouvant être demandée auprès de la team
+							<br/>-A été ajoutée comme cadeau aux admins partenaires pour leurs joueurs
+							<br/>
+							<br/>*Ajout d'un système de configuration pour les serveurs partenaires :
+							<br/>-Permet de configurer certaines options comme le fait la team
+							<br/>-Ne s'applique que lorsqu'on est connecté au serveur (logique!)
+							<br/>-La configuration de la team reste supérieure à la configuration partenaire
+							<br/>-Certaines fonctions (comme la Phenix Aura) ne sont pas disponibles
+							<br/>
+							<br/>*Seuls les membres du staff peuvent verrouiller l'effet des remotes
+							<br/>-Mesure prise afin que les admins partenaires puissent mieux contrôler le mod
+							<br/>
+							<br/>*Les hébergeurs peuvent bloquer l'affichage de l'heure IG
+							<br/>
+							<br/>*Changements internes : 
+							<br/>-Recodage de la gestion des keybinds dans les menus
+							<br/>-Le client ne stocke plus la liste complète des permissions
+							<br/>-Le système de traduction est plus facile à configurer
+							<br/>
+							<br/>*Quelques légers bugfixes</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="yellow">Procédure de mise à jour des fichiers de configuration pour la 1.1</font></h3>
+
+							<p>1)Lancez au moins une fois CBM 1.1 (ou supérieur) afin de générer le dossier "coblood"
+							<br/>
+							<br/>2)Allez dans le dossier de votre launcher (.minecraft sur le launcher officiel)
+							<br/>-Trouvez le fichier "coblood(.txt)" et renommez-le "settings(.txt)"
+							<br/>-Trouvez "password(.txt)" pour le renommer "passwords(.txt)", il faut ajouter un s...
+							<br/>
+							<br/>3)Localisez le dossier "coblood" (par défaut sur windows : %appdata%/.minecraft/coblood)
+							<br/>
+							<br/>4)Prenez "settings(.txt)", "passwords(.txt)" et "friends(.txt)" et glissez-les dans le dossier "coblood"
+							<br/>(Il est possible que vous n'ayez pas de fichier "friends" si vous n'avez jamais utilisé la liste d'amis!)
+							<br/>
+							<br/>5)Lancez le mod : votre configuration devrait se charger correctement! ;)</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.1 : Trophies update</font></h3>
+
+							<p>*Ajout d'achievements!
+							<br/>-Sont nommés "trophées" pour éviter des soucis de compatibilités
+							<br/>-Sont stockés côté client, de la même façon que ceux de MC 1.6
+							<br/>-L'interface est celle de la 1.7 mais reprend quelques éléments de la 1.6
+							<br/>-La fenêtre popup, par contre, est animée comme en 1.6
+							<br/>-Réunissez 4 trophées bien précis pour accéder à un Menu Bonus
+							<br/>
+							<br/>*Ajout d'une fonction d'auto-detection :
+							<br/>-Permet aux maps 1.8 de savoir si vous utilisez le mod
+							<br/>-Prend la forme d'une remote pour la demande
+							<br/>-Utilise les nouveaux /trigger pour la réponse
+							<br/>-Sur le serveur C0_Bl00d, l'envoi du /trigger est automatique
+							<br/>
+							<br/>*Ajout des commandes bindées :
+							<br/>-Si une remote manipule le chat entrant, un bind manipule le chat sortant
+							<br/>-1ère utilisation : taper "$$coblood " suivi du bind du mod a activer
+							<br/>Permet de contrôler les options, ouvrir les menus, ect.
+							<br/>Il existe "getTrophy + IDdeTrophée", "toggleSetting + IDd'Option", "serverConnect", "directConnect",
+							<br/>et "openGui inventory/avatar/friends/team/supply"
+							<br/>-2ème utilisation : configurer le fichier "binds.txt", un peu comme les passwords
+							<br/>Il faut alors taper "$$" suivi de la commande que VOUS avez bindée
+							<br/>-Permet de changer un message par un autre :
+							<br/>Exemple de commande configurable : "$$YT" => "Je vais record, voici ma chaîne, blablabla"
+							<br/>
+							<br/>*Amélioration du pseudo par défaut C0_Bl00dBook :
+							<br/>-Si vous utilisez un livre, ce sera votre pseudo qui sera chargé
+							<br/>-Si vous utilisez un livre en visant un joueur, ce sera SON pseudo
+							<br/>-Si vous utilisez une bibliothèque, le pseudo sera celui du dernier joueur visé
+							<br/>-De plus, l'End Poem n'est plus accessible depuis un livre simple
+							<br/>
+							<br/>*Quelques autres petites modifications :
+							<br/>-Un menu peut être fermé par son keybind si ses textfields ne sont pas sélectionnés
+							<br/>-Quelques splashs supplémentaires ont été rajouté dans le menu CoBlood
+							<br/>-L'argent n'est plus reset lors d'un respawn ou l'usage d'un portail
+							<br/>-Les timers du BalanceTop et des mails sont reset lors du changement de serveur
+							<br/>-Tous les fichiers de config sont dans un dossier dédié (désolé! :( )
+							<br/>-Le mot "obligatoire" des remotes a été remplacé par "nécessaire"
+							<br/>-Le slot d'aura du menu Avatar est remplacé par l'horloge
+							<br/>-Le mod fait crasher le jeu dans le mode Démo, ce qui évite de craquer
+							<br/>-Si l'option "gamma" est forcée au dessus de 1, le mod la limite à 1
+							<br/>
+							<br/>*Amélioration du système d'icones :
+							<br/>-Le classement des textures a été amélioré
+							<br/>-Les blocs icônes sont issues de bibliotheques et non plus de glowstone
+							<br/>-Ajout de plusieurs objets icônes, dont la cape et les oreilles
+							<br/>-Ajout de plusieurs blocs icônes, dont le minerai de rubis!
+							<br/>
+							<br/>*Fusion des deux configurations sur Dropbox :
+							<br/>-TOUS les éléments du mod sont configurable par la team
+							<br/>-Se charge beaucoup plus vite au démarrage
+							<br/>
+							<br/>*Bugfixes :
+							<br/>-Un avatar personnel devait être intégral
+							<br/>-Un serveur partenaire pouvait avoir un nom vide
+							<br/>-Les livres non-icones ne pouvaient pas ouvrir le CBbook
+							<br/>-Le menu Avatar crashait en mode offline
+							<br/>
+							<br/>*Et de TRES nombreux changements internes, dont :
+							<br/>-Recodage intégral de la gestion des pages du menu de Commandes
+							<br/>-Fusion de TOUS les fichiers de configuration côté hébergeur</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.0.3 : 1.7.10 Update</font></h3>
+
+							<p>*Update 1.7.10 :
+							<br/>-Implique la correction de nombreux bugs vanilla! =D
+							<br/>-Impose un recodage du download des accessoires
+							<br/>
+							<br/>*Suppression du code de bloquage du bouton Realms :
+							<br/>-Rendu virtuellement inutile en 1.7.10
+							<br/>(Pourquoi bloquer un bouton si le monde entier peut s'en servir?)
+							<br/>
+							<br/>*Ajout de nouvelles options :
+							<br/>-L'option "Moutons Discos" est maintenant disponible!
+							<br/>-Suppression de l'affichage custom des avatars...
+							<br/>-...remplacement par l'affichage des accessoires
+							<br/>
+							<br/>*Ajout d'un menu qui amusera les nostalgiques :
+							<br/>-Le Steve Co. Supply Crate est de retour!
+							<br/>-http://minecraft.gamepedia.com/Locked_chest
+							<br/>-La remote et le lien du "magasin" est configurable par la team
+							<br/>-Faites "/setblock ~ ~ ~ glowstone 1" pour generer le bloc! :D
+							<br/>(Bien évidemment, il vous faut être oppé pour le faire en multi...)
+							<br/>-Pour rappel, il ne faut AUCUN mod côté serveur pour que CBM marche... ^^
+							<br/>
+							<br/>*Certaines icones de notifications ne viennent plus d'items :
+							<br/>-Exemple : les notifications de mail utilisent une enveloppe
+							<br/>-De plus des blocs peuvent également servir d'icone
+							<br/>-Exemple : le coffre animé du Steve Co. Supply Crate
+							<br/>
+							<br/>*Message de santé custom pour les membres de la C0_Bl00d :
+							<br/>-Merci à tuba_37 pour le concept! :D
+							<br/>-Cet effet s'active quand vous chargez la vie d'un membre
+							<br/>-Le message par defaut est remplacé par un message personnel
+							<br/>-Si le membre n'est pas en ami, la "vie" est bloquée sur zéro
+							<br/>-Cet ajout ne s'affiche pas si la santé des amis est désactivée
+							<br/>
+							<br/>*Bugfixe hors-code : Correction des textures HD :
+							<br/>-Le slot Argent de l'inventaire fusionnait avec le craft
+							<br/>-Le bouton Vocal n'était pas en HD
+							<br/>
+							<br/>*Bugfixes :
+							<br/>-Le menu C0_Bl00d faisait planter le jeu
+							<br/>-Le bras en 1ère personne n'utilisait pas le skin custom
+							<br/>-Fermer les options du menu CoBlood pouvait mener au menu Minecraft
+							<br/>-Viser une bibli en solo bloquait tout, MEME avec biblis off!
+							<br/>-Une icone givée ne pouvait pas se stacker avec l'item originel
+							<br/>-Les fichiers de la team avaient un contrôle réduit
+							<br/>
+							<br/>*Modifications internes :
+							<br/>-Gestion simple du niveau d'effet de potion
+							<br/>-Suppression de code inutile (pas de copie lors de l'update 1.7.10)</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.0.2 : EULA update</font></h3>
+
+							<p>*Suppression DEFINITIVE de toutes les formes de capes
+							<br/>-Obligatoire pour respecter les nouvelles EULA de Mojang
+							<br/>http://twitter.com/notch/status/476477273424789504
+							<br/>
+							<br/>*Vous pouvez avoir l'heure du monde Minecraft dans le menu Avatar :
+							<br/>-Permet d'avoir le jour IG et l'heure IG
+							<br/>-Un nouveau monde est sur Jour 1 6h00
+							<br/>
+							<br/>*Ajout de TROIS fonctions anniversaires
+							<br/>-Impose de fournir votre date d'anniversaire
+							<br/>
+							<br/>*Amélioration des notifications
+							<br/>-Les icônes sont customisables via ressource pack
+							<br/>-Les remotes permettent de changer le son de la notification
+							<br/>-Elles permettent aussi d'afficher une notification... silencieuse!
+							<br/>
+							<br/>*Certaines parties de la config sont sur le site de la coblood :
+							<br/>-Ajout d'annonces dans le Menu Principal
+							<br/>
+							<br/>*Ajout d'un keybind pour la Liste d'Amis
+							<br/>*Ajout d'un timer pour le bouton balancetop
+							<br/>
+							<br/>*Le bouton Vocal a une texture custom
+							<br/>*Passage des textures en 32x32 (WORK IN PROGRESS)
+							<br/>
+							<br/>*Bugfixes :
+							<br/>-Impossible de trouver le statut "obfuscated"
+							<br/>-Correction de la redirection par Dropbox
+							<br/>
+							<br/>*Changements internes :
+							<br/>-Changement de l'organisation des textures
+							<br/>-Ajout d'un fichier de config pour toute la team
+							<br/>-Meilleur calcul des nouvelles versions
+							<br/>-Et bien d'autres choses peu (ou pas!) visibles pour vous...</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">CBM 1.0.1 : Host Update</font></h3>
+
+							<p>*Refonte totale du download des statuts
+							<br/>-Support de l'affichage sur tous les serveurs, Hypixel compris!
+							<br/>-Les statuts sont attribuables à un joueur en particulier
+							<br/>-Formation des groupes sur base de la configuration Dropbox
+							<br/>-En gros : il n'y aura plus jamais d'update "ajout d'un statut"
+							<br/>
+							<br/>*Ajout d'une fonction pour attribuer un avatar vers un autre hebergeur
+							<br/>-Permet aux joueurs qualifies d'avoir un controle total de leur avatar
+							<br/>-Tout ce qu'il faut est un lien vers votre texture
+							<br/>-Un lien FONCTIONNEL commence par http:// et finit par .png !!!
+							<br/>-Note : Utilisez un hebergeur qui vous permet de changer votre texture...
+							<br/>
+							<br/>*Ajout de deux notifications
+							<br/>-S'affiche quand votre argent change
+							<br/>-Une pour quand vous perdez de l'argent...
+							<br/>-...une pour quand vous en gagnez!
+							<br/>
+							<br/>*Ajout de deux remotes
+							<br/>-Une permet d'ouvrir automatiquement l'inventaire
+							<br/>-L'autre permet... de faire crasher le jeu!
+							<br/>
+							<br/>*Quelques petits changements :
+							<br/>-La notification des mails affiche le nombre de mails en attente
+							<br/>-Ajout d'options pour chaque notification
+							<br/>-Les boutons MobArena font leur grand retour!
+							<br/>-La touche Escape permet d'effacer la touche de zoom
+							<br/>-La barre de vie des amis n'indique plus la team
+							<br/>							
+							<br/>*Augmentation de la gestion par Dropbox :
+							<br/>-Ajout d'une blacklist (pseudo interdit = crash!)
+							<br/>-Controle de l'auto-connection au serveur principal
+							<br/>-On peut bloquer l'affichage des serveurs partenaires 
+							<br/>-Il est possible d'imposer de mettre certaines options ON ou OFF
+							<br/>-En gros : de quoi eviter des abus par des abos peu scrupuleux...
+							<br/>
+							<br/>*SUPPRESSION de la gestion custom des player heads :
+							<br/>-Cela vous force à acheter un compte Premium!
+							<br/>
+							<br/>*Interne :
+							<br/>-Meilleure gestion du nouvel easter egg
+							<br/>-L'argent est dans son propre fichier
+							<br/>-La syntaxe des remotes s'adapte automatiquement au nom du mod
+							<br/>-Changements divers
+							<br/>
+							<br/>*Bugfixes : 
+							<br/>-Les accessoires event bloquaient Dropbox
+							<br/>-Le menu Avatar se fermait par la touche du zoom</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="green">C0_Bl00dMod 1.0.0 : C0_Bl00d Update</font></h3>
+
+							<p>*Le mod est maintenant officiellement pour un usage par la Team C0_Bl00d :
+							<br/>-Changement du nom du mod, que ce soit dans le code ou dans le fichier de traduction
+							<br/>-Reset du nombre de version, qui devient donc 1.0.0
+							<br/>
+							<br/>*Ajout de deux nouveaux statuts : C0_Bl00d et BurnCoop
+							<br/>*Ajout d'une aura de particules de l'End
+							<br/>
+							<br/>*Ajout d'un bouton pour deco-reco sur le serveur où l'on se trouve actuellement
+							<br/>*Ajout d'un petit easter egg
+							<br/>
+							<br/>*Ajout d'une touche pour ZOOMER comme le mod Optifine :
+							<br/>-Touche changeable depuis le menu Avatar
+							<br/>-La touche Avatar ne se change plus que dans le menu de commandes					
+							<br/>
+							<br/>*Quelques modifications du menu CraftTech
+							<br/>-La mention "Made by laplongejr" est dans le fichier de traduction
+							<br/>-Ajout d'un bouton pour masquer le panorama
+							<br/>-Le panorama a un rendu un tout petit peu plus net
+							<br/>A noter que ce dernier ajout est TRES difficile a remarquer sans comparer deux versions...
+							<br/>
+							<br/>INCOMPATIBILITE DE VERSION :
+							<br/>*Vous devez inverser les symboles "#" et "@" de password.txt :
+							<br/>-Le symbole "#" correspond au serveur, le "@" au mot de passe
+							<br/>
+							<br/>*Interne : quelques petits changements Dropbox
+							<br/>*Bugfixe : le message "chat obtenu" s'affichait quand on avait... un chapeau!</p>
+
+					</div>
+
+					<div class="post text">
+
+							<h3><font color="red">CraftTechMod</font></h3>
+
+							<p>Les données relatives au CraftTechMod ont été effacées en juillet 2014
+							<br/>Le premier fichier du mod fut téléchargeable pour la première fois le 8 janvier 2013
+							<br/>Ce mod fut officiellement terminé le jour de la sortie de C0_Bl00dMod 1.0.0</p>
+
+					</div>
+
+		</ol>
+		
+		</div>
+		
+	 </div>
+</td><td width=180px class="sidebar" valign="top">
+<h2>C0_Bl00d:</h2>
+<a href="http://crafttech.forumactif.fr/">Forum</a><br/>
+<a href="http://crafttech.fr.ht">Site</a><br/>
+
+<h2>Minecraft:</h2>
+<a href="http://minecraft.net/">Minecraft.net</a><br/>
+<a href="http://mojang.com/">Mojang.com</a><br/>
+<a href="http://notch.tumblr.com/">Development&nbsp;blog</a><br/>
+<a href="http://www.facebook.com/minecraft">Minecraft&nbsp;on&nbsp;Facebook</a><br/>
+<a href="http://minecraftforum.net/">Minecraft&nbsp;Forums</a><br/>
+
+<h2>Remerciements :</h2>
+Xx_tomcraft_xX (Bukkit) :<br/>Modèle de Chapeau<br/>
+axeldu18 (Bukkit) :<br/>Modèle de Chat
+
+<h2>Textures :</h2>
+Remiber (C0_Bl00d) :<br/>Panorama<br/>
+sofiane_B (CraftTech) :<br/>Logo CraftTech<br/>
+IronCraft :<br/>Bouton Rouge<br/>
+MineField :<br/>Flèches De Boutons<br/>
+AetherTeam :<br/>Item Oreilles + Point D'Interrogation<br/>
+Faithfull :<br/>Base pour les textures 32x32
+
+</td></tr></table>
+<font size=0 color=#222222 style="display:none;">
+
+
+
+	<script>
+		// Makes this wait for the page to load, so that the iframe is finished before signaling. 
+		window.setTimeout(function(){
+			var analytics_frame = document.getElementById('ga_target');
+			analytics_frame.contentWindow.postMessage('enable_comscore', analytics_frame.src.split('/analytics.html')[0]);
+		}, 1000);
+	</script>
+
+
+
+	<script type="text/javascript">
+		__qoptions = _qoptions = { qacct: 'p-19UtqE8ngoZbM' };
+	</script>
+	<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+	<noscript>
+		<img src="http://pixel.quantserve.com/pixel/p-19UtqE8ngoZbM.gif"
+		style="display:none; border-width:0px; height:1px; width:1px;"/>
+	</noscript>
+
+
+<img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1362302933&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvbWN1cGRhdGUudHVtYmxyLmNvbVwvIn0=&U=FGJEBAHCFH&K=07ad46ca71ccf8fd5050277899d89e7d5853f10abea3ac22d6338cced6dda71a"/></body>
+</html>
