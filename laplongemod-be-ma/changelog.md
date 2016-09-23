@@ -1,26 +1,40 @@
 # Changelog du LaplongeMod
+### LaplongeMod 1.5.3 : Blacklist Update (23.09.2016)
+- Mise à jour en 1.10
+- Pas d'autres ajouts puisque la 1.10 n'a pas beaucoup rajouté de contenu
+
+- Si le démarrage du jeu est ralenti, le mod affichera un message dans la console pour le signaler
+  - Cela permet de laisser la blacklist tout en pouvant l'éviter si besoin 
+  ( Cela vous évitera de confondre une mauvaise connexion avec un crash! :P )
+
+- Changements internes:
+  - Accélération de l'accès aux valeurs du mod depuis le code de Minecraft
+  - La compatibilité de la librarie Netty est calculée durant le démarrage du mod
+
+---
+
 ### LaplongeMod 1.5.2 : Blacklist Update (24.06.2016)
 - **Tous les ajouts de la mise à jour 1.5.1.2**
 - Suppression de l'implémentation de la blacklist de Mojang 
 
-- *Ajout d'une forme moddée de la librarie gérant la blacklist de mojang: 
-- Cela permet de laisser la blacklist tout en pouvant l'éviter si besoin 
-- Les conséquences de la blacklist restent les mêmes qu'en 1.5.1.2 
+- Ajout d'une forme moddée de la librarie gérant la blacklist de mojang: 
+  - Cela permet de laisser la blacklist tout en pouvant l'éviter si besoin 
+  - Les conséquences de la blacklist restent les mêmes qu'en 1.5.1.2 
 
 - Ajout de vérifications de sécurité: 
-- Les modifications apportées à la blacklist peuvent être désactivées via le fichier settings.txt 
-- Le bouton "se connecter" sera bloqué si la librarie Netty n'est pas compatible 
+  - Les modifications apportées à la blacklist peuvent être désactivées via le fichier settings.txt 
+  - Le bouton "se connecter" sera bloqué si la librarie Netty n'est pas compatible 
 (Astuce: si vous ne désirez pas corriger le problème de compatibilité, vous pouvez masquer les erreurs dans la console en bloquant les modifications via settings.txt!) 
 
 - Suppression de problèmes dans le code vanilla du jeu: 
-- `Session ID is...` est écrit dans les logs du jeu (information sensible, permet de pirater un compte) 
+  - `Session ID is...` est écrit dans les logs du jeu (information sensible, permet de pirater un compte) 
 (Cette suppression sera intégrée en vanilla sur MC 1.9.1) 
-- Un "attribut inconnu" ne spam plus le jeu de "java.lang.IllegalArgumentException" 
+  - Un "attribut inconnu" ne spam plus le jeu de "java.lang.IllegalArgumentException" 
 (Le mod indiquera cependant une erreur plus claire dans la console) 
 
 - Bugfixes: Suppression de spam de la console par des erreurs de connexion 
- -Le code de Mojang qui lit un "byte array" plantait les plugins channels 
- -Le mod gérait mal du tchat reçu avant de spawner le joueur
+ - Le code de Mojang qui lit un "byte array" plantait les plugins channels 
+ - Le mod gérait mal du tchat reçu avant de spawner le joueur
 
 ---
 
