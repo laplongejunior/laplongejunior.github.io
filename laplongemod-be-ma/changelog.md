@@ -4,17 +4,17 @@
 - Suppression de l'implémentation de la blacklist de Mojang 
 
 - *Ajout d'une forme moddée de la librarie gérant la blacklist de mojang: 
- -Cela permet de laisser la blacklist tout en pouvant l'éviter si besoin 
- -Les conséquences de la blacklist restent les mêmes qu'en 1.5.1.2 
+- Cela permet de laisser la blacklist tout en pouvant l'éviter si besoin 
+- Les conséquences de la blacklist restent les mêmes qu'en 1.5.1.2 
 
 - Ajout de vérifications de sécurité: 
- -Les modifications apportées à la blacklist peuvent être désactivées via le fichier settings.txt 
- -Le bouton "se connecter" sera bloqué si la librarie Netty n'est pas compatible 
+- Les modifications apportées à la blacklist peuvent être désactivées via le fichier settings.txt 
+- Le bouton "se connecter" sera bloqué si la librarie Netty n'est pas compatible 
 (Astuce: si vous ne désirez pas corriger le problème de compatibilité, vous pouvez masquer les erreurs dans la console en bloquant les modifications via settings.txt!) 
 
 - Suppression de problèmes dans le code vanilla du jeu: 
 - `Session ID is...` est écrit dans les logs du jeu (information sensible, permet de pirater un compte) 
-(Cet suppression sera intégrée en vanilla sur MC 1.9.1) 
+(Cette suppression sera intégrée en vanilla sur MC 1.9.1) 
 - Un "attribut inconnu" ne spam plus le jeu de "java.lang.IllegalArgumentException" 
 (Le mod indiquera cependant une erreur plus claire dans la console) 
 
