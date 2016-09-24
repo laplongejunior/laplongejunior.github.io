@@ -10,6 +10,8 @@
 - Changements internes:
   - Accélération de l'accès aux valeurs du mod depuis le code de Minecraft
   - La compatibilité de la librarie Netty est calculée durant le démarrage du mod
+  
+- REUPLOAD: les livres et bibliothèques ne s'activaient pas
 
 ---
 
