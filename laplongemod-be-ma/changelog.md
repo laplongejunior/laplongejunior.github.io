@@ -1,22 +1,22 @@
 # Changelog du LaplongeMod
 ### LaplongeMod 1.5.3.1 : Anti-blacklist Patch (02.10.2016)
-<font color="red">Rajout d'une protection contre la blacklist pour les adresses locales</font>
-A l'heure actuelle, le code vanilla laisserait la blacklist agir même sur les réseaux locaux
-Désormais, le mod désactivera automatiquement la blacklist
-si l'adresse du serveur appartient à un "bloc réservé pour usage local"
+- <font color="red">Rajout d'une protection contre la blacklist pour les adresses locales</font>
+- A l'heure actuelle, le code vanilla laisserait la blacklist agir même sur les réseaux locaux
+- Désormais, le mod désactivera automatiquement la blacklist
+- si l'adresse du serveur appartient à un "bloc réservé pour usage local"
 
-Ce changement n'aura que peu d'utilité, mais évitera un usage malhonnête dans le futur
-A noter que cela devrait légèrement optimiser l'accès à des serveurs sur réseau local
+- Ce changement n'aura que peu d'utilité, mais évitera un usage malhonnête dans le futur
+- A noter que cela devrait légèrement optimiser l'accès à des serveurs sur réseau local
 
-Adresses IPv4:
-10.0.0.0/8 (gros réseau privé)
-127.0.0.0/8 (loopback/localhost)
-172.16.0.0/12 (moyen réseau privé)
-192.168.0.0/16 (petit réseau privé)
+- Adresses IPv4:
+- 10.0.0.0/8 (gros réseau privé)
+- 127.0.0.0/8 (loopback/localhost)
+- 172.16.0.0/12 (moyen réseau privé)
+- 192.168.0.0/16 (petit réseau privé)
   
-Adresses IPv6:
-::1 (loopback/localhost)
-fc00::/7 (adresses locales)
+- Adresses IPv6:
+- ::1 (loopback/localhost)
+- fc00::/7 (adresses locales)
 
 ---
 
