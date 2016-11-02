@@ -126,7 +126,7 @@ h3 {
 }
 
 span.octocat {
-	background: transparent url(img/octocat.png) 0 0 no-repeat;
+	background: transparent url(../img/octocat.png) 0 0 no-repeat;
 	display: block;
 	width: 30px;
 	height: 30px;
