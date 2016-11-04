@@ -3,6 +3,8 @@
  <> with <3 by remiber & laplongejunior
 */
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
 body {
 	font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
 }
@@ -129,12 +131,11 @@ h3 {
 }
 
 .logos {
-	margin: 20px;
+	margin: 15px;
 }
 
 .logos h5 {
 	font-weight: bold;
-	margin: auto auto 15px;
 	
 }
 
