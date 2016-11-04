@@ -125,10 +125,14 @@ h3 {
 	margin-bottom: 0
 }
 
-span.octocat {
-	background: transparent url(../img/octocat.png) 0 0 no-repeat;
+.logos p {
+	margin: auto auto 5px;
+}
+
+.logos a {
 	display: block;
 	width: 30px;
 	height: 30px;
-	margin: 0 auto 10px;
+	margin: 0 10px;
+	display: inline-block;
 }
