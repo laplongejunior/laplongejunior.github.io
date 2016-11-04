@@ -2,6 +2,7 @@
  CSS pour site web du mod "laplongemod"
  <> with <3 by remiber & laplongejunior
 */
+
 body {
 	font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
 }
@@ -14,8 +15,7 @@ h3 {
 	font-size: 23px
 }
 
-
-.infos 	{
+.infos {
 	background-color: #0275D8;
 	color: #FFF;
 	display: block;
@@ -124,23 +124,23 @@ h3 {
 	margin-bottom: 40px;
 }
 
-
 .bas p {
-	margin-bottom: 0
+	margin-bottom: 0;
 }
 
-.logos p {
-	margin: auto auto 5px;
+.logos {
+	margin: 20px;
+}
+
+.logos h5 {
+	font-weight: bold;
+	margin: auto auto 15px;
+	
 }
 
 .logos a {
-	display: block;
 	width: 30px;
 	height: 30px;
 	margin: 0 10px;
 	display: inline-block;
-}
-
-footer h5 {
-	margin: 20px;
 }
