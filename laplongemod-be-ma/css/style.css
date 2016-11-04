@@ -140,3 +140,7 @@ h3 {
 	margin: 0 10px;
 	display: inline-block;
 }
+
+footer h5 {
+	margin: 20px;
+}
