@@ -1,6 +1,6 @@
 /*
  CSS pour site web du mod "laplongemod"
- <> with <3 by remiber & laplongejunior
+ <> by remiber & laplongejunior
 */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
@@ -9,7 +9,17 @@ body {
 	font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
 }
 
+a {
+	border-bottom: 1px dotted #666666;
+	color: #1664a3;
+}
+
 a:hover {
+	color: #06c08e;
+	text-decoration: none;
+}
+
+a:active {
 	text-decoration: none;
 }
 
@@ -58,6 +68,7 @@ h3 {
 }
 
 .centered-pills a {
+	border-bottom: none;
 	float: left
 }
 
