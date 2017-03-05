@@ -1,12 +1,12 @@
-﻿Bois : deuxième mine A
-Briques (pierre moussue) : mine F (rare)
-Charbon (bloc) : mine D-E
-Charbon (minerai) : mine A-B
-Cobblestone : mine A-B
-Fer (bloc) : mine C(rare),E-F
-Fer (minerai) : mine B-F
-Or (minerai) : mine E-F
-Quartz (bloc) : mine D-F
-Quartz (minerai) : mine C(rare), D
-Pierre lisse : mine B-D, F(rare)
-Verre teinté blanc : mine A (rare)
+Bois :                      A bis
+Briques (pierre moussue) :  F (rare)
+Charbon (bloc) :            D-E
+Charbon (minerai) :         A-B
+Cobblestone :               A-B
+Fer (bloc) :                C(rare) , E-F
+Fer (minerai) :             B-F
+Or (minerai) :              E-F
+Quartz (bloc) :             D-F
+Quartz (minerai) :          C(rare), D
+Pierre lisse :              B-D, F(rare)
+Verre teinté blanc :        A (rare)
