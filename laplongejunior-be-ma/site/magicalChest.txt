@@ -1,18 +1,18 @@
-Liste des gains spéciaux possibles au "Magical Chest" du mini-jeu "Arena Brawl" du serveur mc.hypixel.net :
+Liste des gains spÃ©ciaux possibles au "Magical Chest" du mini-jeu "Arena Brawl" du serveur mc.hypixel.net :
 19 Chapeaux Communs
-12 Chapeaux Rares (16 depuis la grosse mise à jour)
-2 Chapeaux Epiques (5 depuis la grosse mise à jour)
-Capacité Offensive "Guided Pig 2000" + Achievement "Lucky Pig!" (15 pts)
-Capacité d'Aide "Star Shield"
+12 Chapeaux Rares (16 depuis la grosse mise Ã  jour)
+2 Chapeaux Epiques (5 depuis la grosse mise Ã  jour)
+CapacitÃ© Offensive "Guided Pig 2000" + Achievement "Lucky Pig!" (15 pts)
+CapacitÃ© d'Aide "Star Shield"
 
-En cas d'absence de gain spécial ou si le gain a déjà été gagné : QUELQUES pièces (trolololo Hypixel!)
+En cas d'absence de gain spÃ©cial ou si le gain a dÃ©jÃ  Ã©tÃ© gagnÃ© : QUELQUES piÃ¨ces (trolololo Hypixel!)
 
-Gains "de fidélité" :
-1ère ouverture = Achievement "Magical Shenanigans" (5 pts)
-50ème ouverture = Le 33ème Chapeau (Commun)
+Gains "de fidÃ©litÃ©" :
+1Ã¨re ouverture = Achievement "Magical Shenanigans" (5 pts)
+50Ã¨me ouverture = Le 33Ã¨me Chapeau (Commun)
 
 Tous les 5 chapeaux obtenus = Achievements "Gotta Wear 'Em All" (X pts)
-(Remplacer X par le nombre de chapeaux nécessaires, les points se cumulent, max level 5)
+(Remplacer X par le nombre de chapeaux nÃ©cessaires, les points se cumulent, max level 5)
 
 
 
@@ -20,7 +20,7 @@ Gains obtenus par laplongejunior :
 
 
 Total=
-17 Clés utilisées
+17 ClÃ©s utilisÃ©es
 4 Chapeaux Communs
 806 Coins
 
@@ -32,7 +32,7 @@ Episode 3 =
 2:42 Coins
 
 3:Copie de Troll Hat
-Remplacé par 10 Coins
+RemplacÃ© par 10 Coins
 
 4:47 Coins
 
@@ -42,7 +42,7 @@ Remplacé par 10 Coins
 
 7:12 Coins 
 
-Après la grosse mise à jour =
+AprÃ¨s la grosse mise Ã  jour =
 (Hors-record)
 
 8:172 Coins
