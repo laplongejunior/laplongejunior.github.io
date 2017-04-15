@@ -1,4 +1,4 @@
-﻿Lorsque je note un serveur, tous commencent avec 10 points
+Lorsque je note un serveur, tous commencent avec 10 points
 Un serveur qui ne respecte absolument pas l'extension des EULAs
 Perdra progressivement tous ses points jusqu'à tomber à 0
 (Ne sont évidemment comptés que les éléments contraire aux EULAs
