@@ -1,28 +1,28 @@
-Améliorer son chez-soi:
-1)  FAIT Construire un générateur de cobble
+AmÃ©liorer son chez-soi:
+1)  FAIT Construire un gÃ©nÃ©rateur de cobble
 2)  TODO Construire une maison
-3)  FAIT Etendre l'île
-8)  TODO Créer un champignon rouge géant
-12) FAIT Réaliser une source d'eau infinie
-14) TODO Créer un petit lac
-15) TODO Créer une plateforme à 24m de l'île (mob farm)
+3)  FAIT Etendre l'Ã®le
+8)  TODO CrÃ©er un champignon rouge gÃ©ant
+12) FAIT RÃ©aliser une source d'eau infinie
+14) TODO CrÃ©er un petit lac
+15) TODO CrÃ©er une plateforme Ã  24m de l'Ã®le (mob farm)
 32) TODO Invoquer 10 golems de neige
 34) TODO Construire et allumer un portail du nether
 
 Ressources renouvelables:
 4)  TODO Ferme de melons
 5)  TODO Ferme de citrouilles
-6)  TODO Ferme de canne à sucre
-7)  TODO Ferme de blé
-37) FAIT Obtenir 50 bûches de bouleau
+6)  TODO Ferme de canne Ã  sucre
+7)  TODO Ferme de blÃ©
+37) FAIT Obtenir 50 bÃ»ches de bouleau
 
-Drops de mobs à obtenir: 
+Drops de mobs Ã  obtenir: 
 21) TODO 10 enderperls
 49) TODO 64 poudres d'os
 35) TODO 5 lingots de fer
-38) TODO 64 flèches + 1 arc
+38) TODO 64 flÃ¨ches + 1 arc
 
-Objets à fabriquer:
+Objets Ã  fabriquer:
 9)  FAIT 1 lit
 10) FAIT 64 blocs de stone brick
 11) TODO 20 torches 
@@ -30,7 +30,7 @@ Objets à fabriquer:
 16) TODO 10 colorants verts
 17) TODO 10 soupes de champignons
 18) TODO 10 citrouilles-lanternes
-19) TODO 10 bibliothèques
+19) TODO 10 bibliothÃ¨ques
 20) TODO 10 pains
 22) TODO 10 poissons cuits
 23) TODO 10 laines noires
@@ -47,8 +47,8 @@ Objets à fabriquer:
 39) TODO 10 boutons en pierre
 40) TODO 30 dalles en pierre
 41) TODO 10 panneaux
-42) TODO 20 échelles
-43) TODO 20 barrières
+42) TODO 20 Ã©chelles
+43) TODO 20 barriÃ¨res
 44) TODO 20 portillions
 45) TODO 10 leviers
 46) TODO 10 trappes
