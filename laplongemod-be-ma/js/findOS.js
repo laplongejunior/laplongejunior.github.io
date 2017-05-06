@@ -30,8 +30,11 @@ function initOSloading(defaultClass, matchClass, invalidClass, unknownClass)
 function adaptButtonToOS(buttonID, OS)
 {
   var button = document.getElementById(buttonID);
+  var newClass;
+  if (OS === userOS) newClass = m_matchClass;
+  else if (OS == window.laplonge_enumOS.UNKNOWN) newClass = m_unknownClass;
+  else newClass = m_invalidClass;
+  
   button.classList.remove(m_defaultClass);
-  if (OS === userOS) button.classList.add(m_matchClass);
-  else if (OS == window.laplonge_enumOS.UNKNOWN) button.classList.add(m_unknownClass);
-  else button.classList.add(m_invalidClass);
+  button.classList.add(newClass);
 }
