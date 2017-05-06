@@ -10,13 +10,15 @@
 	<title>laplongemod &middot; Le mod prefere des laplongiens !</title>
 
 	<!-- Attribut ' class="jsonly" ' => afficher si JS activé -->
-	<noscript>
-		<style>
-			.jsonly {
-				display: none
-			}
-		</style>
-	</noscript>
+	<style>
+		.jsonly { display: inherit }
+		.nojs { display: none }
+	</style>
+	<!-- Le dernier style défini prend la priorité -->
+	<noscript><style> 
+			.jsonly { display: none }
+			.nojs { display: inherit }
+	</style></noscript>
 
 	<link href="https://cdn.jsdelivr.net/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
