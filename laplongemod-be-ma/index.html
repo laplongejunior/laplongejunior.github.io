@@ -36,11 +36,10 @@
 
 <!--TODO Ajouter l'ID d'un bouton déconseillé suivant l'OS -->
 <body onload="
-	initMD5('MD5box', 'MD5div');
 	initOSloading('btn btn-success btn-lg', 'btn btn-success btn-lg');
 	adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
 	adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
-	alert(window.laplonge_enumOS.UNIX);
+	initMD5('MD5box', 'MD5div')
       ">
 
 	<!--<a class="infos" href="#" target="_blank">Barre d'info avec lien</a>-->
