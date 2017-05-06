@@ -35,12 +35,12 @@
 </head>
 
 <body onload="
+	initMD5('MD5box', 'MD5div');"><!-- Décommenter si des installers par OS sont ajoutés
 	initOSloading('btn-success', 'btn-success', 'btn-danger', 'btn-primary');
 	adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS, 1);
 	adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC, 1);
 	adaptButtonToOS('AllInstallerButton', window.laplonge_enumOS.UNKNOWN, 1);
-	initMD5('MD5box', 'MD5div');
-      ">
+      ">-->
 
 	<!--<a class="infos" href="#" target="_blank">Barre d'info avec lien</a>-->
 	<!--<div class="infos">Information sans lien</div>-->
@@ -110,8 +110,10 @@
 
 			<p>
 				<a id="AllInstallerButton" class="btn btn-success btn-lg" href="https://dl.dropboxusercontent.com/s/7ztx7r0i85tb1m2/LaplongeInstaller.jar" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.jar, pour tous OS</span></a>
+				<!-- Décommenter si des installers par OS sont ajoutés
 				<br/><a id="WinInstallerButton" class="btn btn-success btn-lg" href="about:blank" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.exe, pour Windows</span></a>
 				<a id="MacInstallerButton" class="btn btn-success btn-lg" href="about:blank" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.app, pour MacOS</span></a>				
+				-->
 				
 				<br/><a href="http://md5file.com/calculator" target="_blank">Clef MD5</a> de LaplongeInstaller.jar (28.05.2016) :
 				<!-- Remplissage auto si JS désactivé -->
