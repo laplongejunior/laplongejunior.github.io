@@ -35,7 +35,7 @@ function adaptButtonToOS(buttonID, OS, arrayID)
   
   if (OS === userOS) {
     var index = m_goodOSfound.indexOf(arrayID);
-    if (index === -1) m_goodOSfound[m_goodOSfound.length] = arrayID;
+    if (index === -1) m_goodOSfound[m_goodOSfound.length-1] = arrayID;
     newClass = m_matchClass;
   }  
   else if (OS !== window.laplonge_enumOS.UNKNOWN) newClass = m_invalidClass;
