@@ -37,4 +37,6 @@ function adaptButtonToOS(buttonID, OS)
   
   button.classList.remove(m_defaultClass);
   button.classList.add(newClass);
+  
+  alert(button + " : " + newClass);
 }
