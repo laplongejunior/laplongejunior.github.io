@@ -27,7 +27,7 @@ function initOSloading(classMatch, classInvalid)
 
 function adaptButtonToOS(buttonID, OS)
 {
-  var button = document.getElementByID(buttonID);
+  var button = document.getElementById(buttonID);
   if (userOS === OS) button.class = OSclass;
   else button.class = otherClass;
 }
