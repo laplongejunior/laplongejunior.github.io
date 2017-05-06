@@ -39,11 +39,9 @@ function adaptButtonToOS(buttonID, OS, arrayID)
     newClass = m_matchClass;
   }  
   else if (OS !== window.laplonge_enumOS.UNKNOWN) newClass = m_invalidClass;
-  else if (m_goodOSfound.indexOf(arrayID) === -1) newClass = m_unknownClass;
-  else newClass = m_matchClass;
+  else if (m_goodOSfound.indexOf(arrayID) !== -1) newClass = m_matchClass;
+  else newClass = m_unknownClass;
   
   button.classList.remove(m_defaultClass);
   button.classList.add(newClass);
-  
-  alert(button + " : " + newClass);
 }
