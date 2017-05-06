@@ -36,7 +36,7 @@
 
 <!--TODO Ajouter l'ID d'un bouton déconseillé suivant l'OS -->
 <body onload="
-	initOSloading('btn btn-primary btn-lg', 'btn btn-default btn-lg', 'btn btn-success btn-lg');
+	initOSloading('btn btn-success btn-lg', 'btn btn-primary btn-lg', 'btn btn-default btn-lg', 'btn btn-success btn-lg');
 	adaptButtonToOS('AllInstallerButton', window.laplonge_enumOS.UNKNOWN);
 	adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
 	adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
@@ -116,9 +116,9 @@
 
 				<br/><a href="http://md5file.com/calculator" target="_blank">Clef MD5</a> de LaplongeInstaller.jar (28.05.2016) :
 				<!-- Remplissage auto si JS désactivé -->
-				<span id="MD5key" class="nojs">
+				<noscript><span id="MD5key">
 					f06bab837c300490573726dff6aa7d41
-				</span>
+				</span></noscript>
 				<!-- Affichage de l'interface si JS activé -->
 				<span class="jsonly">
 					<br/>
