@@ -29,7 +29,7 @@ function initOSloading(classMatch, classInvalid, classUnknown)
 function adaptButtonToOS(buttonID, OS)
 {
   var button = document.getElementById(buttonID);
-  if (userOS !== OS) button.class = dangerClass;
-  else if (OS == window.laplong_enumOS.UNKNOWN) button.class = warningClass;
-  else button.class = successClass;
+  if (OS == window.laplonge_enumOS.UNKNOWN) button.class = warningClass;
+  else if (OS === userOS) button.class = successClass;
+  else button.class = dangerClass;
 }
