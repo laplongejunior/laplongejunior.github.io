@@ -35,6 +35,7 @@ function adaptButtonToOS(buttonID, OS)
   else if (OS == window.laplonge_enumOS.UNKNOWN) newClass = m_unknownClass;
   else newClass = m_invalidClass;
   
+  alert(m_defaultClass);
   button.classList.remove(m_defaultClass);
   button.classList.add(newClass);
   
