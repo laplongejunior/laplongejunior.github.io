@@ -27,13 +27,20 @@ function initOSloading(defaultClass, matchClass, invalidClass, unknownClass)
   m_unknownClass = unknownClass;  
 }
 
-function adaptButtonToOS(buttonID, OS)
+var m_goodOSfound = []
+function adaptButtonToOS(buttonID, OS, arrayID)
 {
   var button = document.getElementById(buttonID);
   var newClass;
-  if (OS === userOS) newClass = m_matchClass;
-  else if (OS == window.laplonge_enumOS.UNKNOWN) newClass = m_unknownClass;
-  else newClass = m_invalidClass;
+  
+  if (OS === userOS) {
+    var index = m_goodOSfound.indexOf(arrayID);
+    if (index === -1) m_goodOSfound[m_goodOSfound.length] = arrayID;
+    newClass = m_matchClass;
+  }  
+  else if (OS !== window.laplonge_enumOS.UNKNOWN) newClass = m_invalidClass;
+  else if (m_goodOSfound.indexOf(arrayID) === -1) newClass = m_unknownClass;
+  else newClass = m_matchClass;
   
   button.classList.remove(m_defaultClass);
   button.classList.add(newClass);
