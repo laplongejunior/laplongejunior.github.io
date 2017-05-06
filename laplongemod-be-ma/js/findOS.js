@@ -27,7 +27,7 @@ function initOSloading(defaultClass, matchClass, invalidClass, unknownClass)
   m_unknownClass = unknownClass;  
 }
 
-var m_goodOSfound = []
+var m_goodOSfound = [];
 function adaptButtonToOS(buttonID, OS, arrayID)
 {
   var button = document.getElementById(buttonID);
