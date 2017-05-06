@@ -10,11 +10,11 @@ var OSclass, otherClass, userOS;
 
 function getUserOS()
 {
-  if (navigator.appVersion.indexOf("Win")!=-1) return EnumOS.WINDOWS;
-  if (navigator.appVersion.indexOf("Mac")!=-1) return EnumOS.MAC;
-  if (navigator.appVersion.indexOf("X11")!=-1) return EnumOS.UNIX;
-  if (navigator.appVersion.indexOf("Linux")!=-1) return EnumOS.LINUX;
-  return EnumOS.UNKNOWN;
+  if (navigator.appVersion.indexOf("Win")!=-1) return window.laplonge_enumOS.WINDOWS;
+  if (navigator.appVersion.indexOf("Mac")!=-1) return window.laplonge_enumOS.MAC;
+  if (navigator.appVersion.indexOf("X11")!=-1) return window.laplonge_enumOS.UNIX;
+  if (navigator.appVersion.indexOf("Linux")!=-1) return window.laplonge_enumOS.LINUX;
+  return window.laplonge_enumOS.UNKNOWN;
 }
 
 function initOSloading(classMatch, classInvalid)
