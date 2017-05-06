@@ -10,10 +10,11 @@ var OSclass, otherClass, userOS;
 
 function getUserOS()
 {
-  if (navigator.appVersion.indexOf("Win")!=-1) return window.laplonge_enumOS.WINDOWS;
-  if (navigator.appVersion.indexOf("Mac")!=-1) return window.laplonge_enumOS.MAC;
-  if (navigator.appVersion.indexOf("X11")!=-1) return window.laplonge_enumOS.UNIX;
-  if (navigator.appVersion.indexOf("Linux")!=-1) return window.laplonge_enumOS.LINUX;
+  var appVersion = navigator.appVersion;
+  if (appVersion.indexOf("Win")!=-1) return window.laplonge_enumOS.WINDOWS;
+  if (appVersion.indexOf("Mac")!=-1) return window.laplonge_enumOS.MAC;
+  if (appVersion.indexOf("X11")!=-1) return window.laplonge_enumOS.UNIX;
+  if (appVersion.indexOf("Linux")!=-1) return window.laplonge_enumOS.LINUX;
   return window.laplonge_enumOS.UNKNOWN;
 }
 
@@ -26,7 +27,7 @@ function initOSloading(classMatch, classInvalid)
 
 function adaptButtonToOS(buttonID, OS)
 {
-  var button = document.getByID(buttonID);
+  var button = document.getElementByID(buttonID);
   if (userOS === OS) button.class = OSclass;
   else button.class = otherClass;
 }
