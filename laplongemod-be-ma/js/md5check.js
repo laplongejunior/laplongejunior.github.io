@@ -2,7 +2,6 @@ var boxDoc;
 var divDoc;
 function initMD5(boxId, divId)
 {
-	console.log("test");
 	boxDoc = document.getElementById(boxId);
 	divDoc = document.getElementById(divId);
 }
