@@ -6,7 +6,8 @@ window.laplonge_enumOS = {
   UNIX : 4
 }
 
-var OSclass, otherClass, userOS;
+var successClass, dangerClass, warningClass;
+var userOS = getUserOS();
 
 function getUserOS()
 {
@@ -18,16 +19,17 @@ function getUserOS()
   return window.laplonge_enumOS.UNKNOWN;
 }
 
-function initOSloading(classMatch, classInvalid)
+function initOSloading(classMatch, classInvalid, classUnknown)
 {
-  OSclass = classMatch;
-  otherClass = classInvalid;
-  userOS = getUserOS();
+  successClass = classMatch;
+  dangerClass = classInvalid;
+  warningClass = classUnknown;  
 }
 
 function adaptButtonToOS(buttonID, OS)
 {
   var button = document.getElementById(buttonID);
-  if (userOS === OS) button.class = OSclass;
-  else button.class = otherClass;
+  if (userOS !== OS) button.class = dangerClass;
+  else if (OS == window.laplong_enumOS.UNKNOWN) button.class = warningClass;
+  else button.class = successClass;
 }
