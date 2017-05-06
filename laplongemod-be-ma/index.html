@@ -36,7 +36,8 @@
 
 <!--TODO Ajouter l'ID d'un bouton déconseillé suivant l'OS -->
 <body onload="
-	initOSloading('btn btn-success btn-lg', 'btn btn-success btn-lg');
+	initOSloading('btn btn-primary btn-lg', 'btn btn-default btn-lg', 'btn btn-success btn-lg');
+	adaptButtonToOS('AllInstallerButton', window.laplonge_enumOS.UNKNOWN);
 	adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
 	adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
 	initMD5('MD5box', 'MD5div')
@@ -109,7 +110,7 @@
 			</p>
 
 			<p>
-				<a class="btn btn-success btn-lg" href="https://dl.dropboxusercontent.com/s/7ztx7r0i85tb1m2/LaplongeInstaller.jar" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.jar, pour tous OS</span></a>
+				<a id="AllInstallerButton" class="btn btn-success btn-lg" href="https://dl.dropboxusercontent.com/s/7ztx7r0i85tb1m2/LaplongeInstaller.jar" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.jar, pour tous OS</span></a>
 				<br/><a id="WinInstallerButton" class="btn btn-success btn-lg" href="about:blank" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.exe, pour Windows</span></a>
 				<br/><a id="MacInstallerButton" class="btn btn-success btn-lg" href="about:blank" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.app, pour MacOS</span></a>
 
