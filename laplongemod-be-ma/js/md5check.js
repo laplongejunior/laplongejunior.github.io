@@ -10,6 +10,7 @@ var goodMD5;
 function setMD5(spanId, MD5hash)
 {
 	goodMD5 = MD5hash;
+	alert(spanId);
 	document.getElementById(spanId).innerHTML = goodMD5;
 }
 
