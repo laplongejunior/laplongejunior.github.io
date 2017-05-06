@@ -1,9 +1,9 @@
 window.laplonge_enumOS = {
-  UNKNOWN = 0,
-  WINDOWS = 1,
-  MAC = 2,
-  LINUX = 3,
-  UNIX = 4
+  UNKNOWN : 0,
+  WINDOWS : 1,
+  MAC : 2,
+  LINUX : 3,
+  UNIX : 4
 }
 
 var OSclass, otherClass, userOS;
