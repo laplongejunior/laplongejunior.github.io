@@ -22,9 +22,9 @@ function getUserOS()
 function initOSloading(defaultClass, matchClass, invalidClass, unknownClass)
 {
   m_defaultClass = defaultClass;
-  m_matchClass = classMatch;
-  m_invalidClass = classInvalid;
-  m_unknownClass = classUnknown;  
+  m_matchClass = matchClass;
+  m_invalidClass = invalidClass;
+  m_unknownClass = unknownClass;  
 }
 
 function adaptButtonToOS(buttonID, OS)
