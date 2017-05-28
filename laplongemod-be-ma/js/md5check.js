@@ -5,14 +5,7 @@ function initMD5(boxId, divId, keyId)
 {
 	m_boxDoc = document.getElementById(boxId);
 	m_divDoc = document.getElementById(divId);
-	var keyDoc = document.getElementById(keyId).innerHTML;
-	alert(keyDoc);
-}
-
-function setMD5(spanId, MD5hash)
-{
-	m_goodMD5 = MD5hash;
-	document.getElementById(spanId).innerHTML = m_goodMD5;
+	m_goodMD5 = document.getElementById(keyId).innerHTML;
 }
 
 function updateMD5()
