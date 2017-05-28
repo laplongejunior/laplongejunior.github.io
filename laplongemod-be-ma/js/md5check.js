@@ -1,8 +1,9 @@
-var m_boxDoc, m_divDoc;
-function initMD5(boxId, divId)
+var m_boxDoc, m_divDoc, m_keyDoc;
+function initMD5(boxId, divId, keyId)
 {
 	m_boxDoc = document.getElementById(boxId);
 	m_divDoc = document.getElementById(divId);
+	m_keyDoc = document.getElementById(divId);
 }
 
 var m_goodMD5;
