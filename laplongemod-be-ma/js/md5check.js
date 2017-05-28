@@ -5,8 +5,7 @@ function initMD5(boxId, divId, keyId)
 {
 	m_boxDoc = document.getElementById(boxId);
 	m_divDoc = document.getElementById(divId);
-	m_goodMD5 = document.getElementById(keyId).innerHTML;
-	console.log(m_goodMD5);
+	m_goodMD5 = document.getElementById(keyId).innerHTML.replace('\t','').replace('\n','').trim();
 }
 
 function updateMD5()
