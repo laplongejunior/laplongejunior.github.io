@@ -5,7 +5,7 @@ function initMD5(boxId, divId, keyId)
 {
 	m_boxDoc = document.getElementById(boxId);
 	m_divDoc = document.getElementById(divId);
-	keyDoc = document.getElementById(keyId);
+	var keyDoc = document.getElementById(keyId).innerHTML;
 	alert(keyDoc);
 }
 
