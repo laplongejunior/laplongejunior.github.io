@@ -1,12 +1,14 @@
-var m_boxDoc, m_divDoc, m_keyDoc;
+var m_boxDoc, m_divDoc;
+var m_goodMD5;
+
 function initMD5(boxId, divId, keyId)
 {
 	m_boxDoc = document.getElementById(boxId);
 	m_divDoc = document.getElementById(divId);
-	m_keyDoc = document.getElementById(divId);
+	keyDoc = document.getElementById(keyId);
+	alert(keyDoc);
 }
 
-var m_goodMD5;
 function setMD5(spanId, MD5hash)
 {
 	m_goodMD5 = MD5hash;
