@@ -29,9 +29,9 @@ function initOSloading(defaultClass, matchClass, invalidClass)
 function adaptButtonToOS(buttonID, targetOS)
 {
   var button = document.getElementById(buttonID);
-  for (var item in button.classList)
+  for (var i in button.classList)
   {
-    console.log(item);
+    console.log(i);
   }
   
   if (m_userOS === window.laplonge_enumOS.UNKNOWN) return;
@@ -51,8 +51,8 @@ function adaptButtonToOS(buttonID, targetOS)
   }
   
   button.classList.add(resultClass);
-  for (var item in button.classList)
+  for (var i in button.classList)
   {
-    console.log(item);
+    console.log(i);
   }
 }
