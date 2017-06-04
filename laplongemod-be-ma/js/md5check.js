@@ -1,12 +1,20 @@
 var m_boxDoc, m_divDoc;
-var m_goodMD5;
+var m_correctHashes;
 
 function initMD5(boxId, divId, keyId)
 {
 	m_boxDoc = document.getElementById(boxId);
 	m_divDoc = document.getElementById(divId);
-	m_goodMD5 = document.getElementById(keyId).innerHTML.replace(/\t| |\r?\n|\r/gm,'');
-	console.log(m_goodMD5);
+	
+	var namedArgs = 2;
+	m_correctHashes = new Array(arguments.length-namedArgs);
+	
+	for (var i = 0; i < m_correctHashes.length; i++)
+	{
+		var doc = document.getElementById(arguments[i+namedArgs]);
+		m_correctHashes[i] = doc.innerHTML.replace(/\t| |\r?\n|\r/gm,'');
+		console.log(m_correctHashes[i]);
+	}
 }
 
 function updateMD5()
@@ -18,14 +26,20 @@ function updateMD5()
 		return;
 	}
 	
-	var compare = compareHexa(MD5input, m_goodMD5);
+	for (var i = 0; i < m_correctHashes.length; i++)
+	{
+		var compare = compareHexa(MD5input, m_correctHashes[i]);
 	
-	if (compare === null)
-		m_divDoc.innerHTML = "<font color='red'>Un MD5 contient 32 caractères</font>";
-	else if (!compare)
-		m_divDoc.innerHTML = "<font color='red'>Ce MD5 n'est pas "+m_goodMD5+" : retéléchargez votre fichier</font>";
-	else
-		m_divDoc.innerHTML = "<font color='green'>Les MD5 correspondent : votre fichier est à jour</font>";
+		if (compare === null)
+			m_divDoc.innerHTML = "<font color='red'>Un MD5 contient 32 caractères</font>";
+		else if (!compare)
+			m_divDoc.innerHTML = "<font color='red'>Ce MD5 ne correspond à aucun fichier: retéléchargez</font>";
+		else
+		{
+			m_divDoc.innerHTML = "<font color='green'>Les MD5 correspondent : votre fichier est à jour</font>";
+			break;
+		}
+	}
 }
 
 function compareHexa(badMD5, goodMD5)
@@ -35,9 +49,7 @@ function compareHexa(badMD5, goodMD5)
 	badMD5 = badMD5.toLowerCase();
 	
 	for (var i = 0; i < length; i++)
-	{
 		if (badMD5[i] != goodMD5[i])
 			return false;
-	}
 	return true;
 }
