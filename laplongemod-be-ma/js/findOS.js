@@ -51,6 +51,7 @@ function adaptButtonToOS(buttonID, targetOS)
   }
   
   button.classList.add(resultClass);
+  console.log(resultClass);
   var test = button.className.split(' ');
   for (var i in test)
   {
