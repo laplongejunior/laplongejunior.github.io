@@ -31,6 +31,11 @@ var m_goodOSfound = [];
 function adaptButtonToOS(buttonID, targetOS, arrayID)
 {
   var button = document.getElementById(buttonID);
+  for (var item in button.classList)
+  {
+    console.log(item);
+  }
+  
   var newClass;
   
   if (targetOS === userOS) {
