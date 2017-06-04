@@ -1,5 +1,5 @@
 var m_boxDoc, m_divDoc;
-var m_correctHashes;
+var m_files, m_correctHashes;
 
 function initMD5(boxId, divId, ...args)
 {
@@ -11,8 +11,10 @@ function initMD5(boxId, divId, ...args)
 	{
 		var doc = document.getElementById(args[i]);
 		if (doc === null) continue;
-		m_correctHashes[i] = doc.innerHTML.replace(/\t| |\r?\n|\r/gm,'');
-		console.log(m_correctHashes[i]);
+		var data = doc.innerHTML.replace(/\t| |\r?\n|\r/gm,'');
+		m_files[i] = data.substring(0, data.length-33);
+		m_correctHashes[i] = data.substring(32);
+		console.log(m_files[i] + " " + m_correctHashes[i]);
 	}
 }
 
@@ -42,8 +44,7 @@ function updateMD5()
 			m_divDoc.innerHTML = "<font color='red'>Ce MD5 ne correspond à aucun fichier: retéléchargez</font>";
 			break;
 		default:
-			var toast = "votre fichier"
-			m_divDoc.innerHTML = "<font color='green'>Les MD5 correspondent : "+ toast +"est à jour</font>";
+			m_divDoc.innerHTML = "<font color='green'>Les MD5 correspondent : "+ m_Files[i] +"est à jour</font>";
 			break;
 	}
 }
