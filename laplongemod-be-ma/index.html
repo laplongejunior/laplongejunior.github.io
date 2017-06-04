@@ -32,15 +32,19 @@
     	<script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
     	<script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script>
+    function _LOAD() {
+    	initMD5('MD5box', 'MD5div', 'hashJar', 'hashExe', 'hashApp');
+	initOSloading('btn-success', 'btn-warning', 'btn-danger');
+	adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
+	adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
+	adaptButtonToOS('AllInstallerButton', window.laplonge_enumOS.UNKNOWN);
+    }
+    </script>
 </head>
 
-<body onload="
-		initMD5('MD5box', 'MD5div', 'hashJar', 'hashExe', 'hashApp');
-		initOSloading('btn-success', 'btn-warning', 'btn-danger');
-		adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
-		adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
-		adaptButtonToOS('AllInstallerButton', window.laplonge_enumOS.UNKNOWN);
-	">
+<body onload="_LOAD()">
 
 	<!--<a class="infos" href="#" target="_blank">Barre d'info avec lien</a>-->
 	<!--<div class="infos">Information sans lien</div>-->
