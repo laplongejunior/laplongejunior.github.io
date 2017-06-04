@@ -46,7 +46,7 @@ function updateMD5()
 			m_divDoc.innerHTML = "<font color='red'>Ce MD5 ne correspond à aucun fichier: retéléchargez</font>";
 			break;
 		default:
-			m_divDoc.innerHTML = "<font color='green'>Les MD5 correspondent : "+ m_files[i] +"est à jour</font>";
+			m_divDoc.innerHTML = "<font color='green'>Les MD5 correspondent : "+ m_files[i] +" est à jour</font>";
 			break;
 	}
 }
