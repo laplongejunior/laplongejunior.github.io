@@ -15,7 +15,7 @@ function initMD5(boxId, divId, ...args)
 		if (doc === null) continue;
 		var data = doc.innerHTML.replace(/\t| |\r?\n|\r/gm,'');
 		m_files[i] = data.substring(0, data.length-33);
-		m_correctHashes[i] = data.substring(32);
+		m_correctHashes[i] = data.substring(data.length-32);
 		console.log(m_files[i] + " " + m_correctHashes[i]);
 	}
 }
