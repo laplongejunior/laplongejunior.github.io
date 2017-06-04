@@ -35,7 +35,7 @@
 </head>
 
 <body onload="
-	initMD5('MD5box', 'MD5div', 'MD5key');"><!-- Décommenter si des installers par OS sont ajoutés
+	initMD5('MD5box', 'MD5div', 'hashJar'/*, 'hashExe', 'hashApp'*/);"><!-- Décommenter si des installers par OS sont ajoutés
 	initOSloading('btn-success', 'btn-success', 'btn-danger', 'btn-primary');
 	adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS, 1);
 	adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC, 1);
@@ -115,14 +115,17 @@
 				<a id="MacInstallerButton" class="btn btn-success btn-lg" href="about:blank" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.app, pour MacOS</span></a>				
 				-->
 				
-				<br/><a href="http://md5file.com/calculator" target="_blank">Clef MD5</a> de LaplongeInstaller.jar (03.06.2017) :
 				<!-- Remplissage auto si JS désactivé -->
-				<span id="MD5key" class="nojs">
-					bfa1fbb76b10a192e6c8ed721b2ce712
+				<span class="nojs">
+					<br/>Clefs MD5 des programmes d'installation (dernière mise à jour : 04.06.2017 )		
+					<br/>LaplongeInstaller.jar: <span id="hashJar"> bfa1fbb76b10a192e6c8ed721b2ce712 </span>
+					<!--<br/>LaplongeWindows.exe:  <span id="hashExe"> f5e8d5b68b6c8667222b777eb531b463 </span> -->
+					<!--<br/>LaplongeMac.zip:  <span id="hashApp"> 10c993c59f407e589747b4f147259477 </span> -->
 				</span>
 				<!-- Affichage de l'interface si JS activé -->
 				<span class="jsonly">
 					<br/>
+					<a href="http://md5file.com/calculator" target="_blank">Cliquez ici pour calculer le hash de votre fichier téléchargé</a>
 					<input id="MD5box" type="text" size=36 maxlength=40 placeholder="Entrez le MD5 de votre fichier" onkeyup="updateMD5()" class="form-control"/>
 					<div id="MD5div"></div>
 				</span>
