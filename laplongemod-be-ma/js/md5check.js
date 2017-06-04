@@ -26,19 +26,25 @@ function updateMD5()
 		return;
 	}
 	
+	var compareResult = -1;
 	for (var i = 0; i < m_correctHashes.length; i++)
 	{
 		var compare = compareHexa(MD5input, m_correctHashes[i]);
+		if (compare === null) { compareResult = -2; break; }
+		else if (compare === true) { compareResult = i; break; }
+	}
 	
-		if (compare === null)
+	switch (compareResult)
+	{
+		case -2:
 			m_divDoc.innerHTML = "<font color='red'>Un MD5 contient 32 caractères</font>";
-		else if (!compare)
+			break;
+		case -1:
 			m_divDoc.innerHTML = "<font color='red'>Ce MD5 ne correspond à aucun fichier: retéléchargez</font>";
-		else
-		{
+			break;
+		default:
 			m_divDoc.innerHTML = "<font color='green'>Les MD5 correspondent : votre fichier est à jour</font>";
 			break;
-		}
 	}
 }
 
