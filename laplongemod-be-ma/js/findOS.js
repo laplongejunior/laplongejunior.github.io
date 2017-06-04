@@ -6,8 +6,8 @@ window.laplonge_enumOS = {
   UNIX : 4
 }
 
-var m_DefaultClass, m_matchClass, m_invalidClass, m_unknownClass;
-var userOS = getUserOS();
+var m_matchClass, m_invalidClass;
+var m_userOS = getUserOS();
 
 function getUserOS()
 {
@@ -19,34 +19,21 @@ function getUserOS()
   return window.laplonge_enumOS.UNKNOWN;
 }
 
-function initOSloading(defaultClass, matchClass, invalidClass, unknownClass)
+function initOSloading(matchClass, invalidClass)
 {
-  m_defaultClass = defaultClass;
   m_matchClass = matchClass;
-  m_invalidClass = invalidClass;
-  m_unknownClass = unknownClass;  
+  m_invalidClass = invalidClass; 
 }
 
-var m_goodOSfound = [];
-function adaptButtonToOS(buttonID, targetOS, arrayID)
+function adaptButtonToOS(buttonID, targetOS)
 {
+  if (m_userOS === window.laplonge_enumOS.UNKNOWN) return;
+  
   var button = document.getElementById(buttonID);
   for (var item in button.classList)
   {
     console.log(item);
   }
   
-  var newClass;
-  
-  if (targetOS === userOS) {
-    var index = m_goodOSfound.indexOf(arrayID);
-    if (index === -1) m_goodOSfound.push(arrayID);
-    newClass = m_matchClass;
-  }  
-  else if (targetOS !== window.laplonge_enumOS.UNKNOWN) newClass = m_invalidClass;
-  else if (m_goodOSfound.indexOf(arrayID) !== -1) newClass = m_matchClass;
-  else newClass = m_unknownClass;
-  
-  button.classList.remove(m_defaultClass);
-  button.classList.add(newClass);
+  button.classList.add((m_userOS === targetOS) ? m_matchClass : m_invalidClass);
 }
