@@ -27,13 +27,13 @@ function initOSloading(matchClass, invalidClass)
 
 function adaptButtonToOS(buttonID, targetOS)
 {
-  if (m_userOS === window.laplonge_enumOS.UNKNOWN) return;
-  
   var button = document.getElementById(buttonID);
   for (var item in button.classList)
   {
     console.log(item);
   }
+  
+  if (m_userOS === window.laplonge_enumOS.UNKNOWN) return;
   
   button.classList.add((m_userOS === targetOS) ? m_matchClass : m_invalidClass);
 }
