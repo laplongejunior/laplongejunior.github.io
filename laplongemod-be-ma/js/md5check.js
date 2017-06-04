@@ -4,10 +4,12 @@ var m_files, m_correctHashes;
 function initMD5(boxId, divId, ...args)
 {
 	m_boxDoc = document.getElementById(boxId);
-	m_divDoc = document.getElementById(divId);	
+	m_divDoc = document.getElementById(divId);
+	
+	m_files = new Array(args.length);	
 	m_correctHashes = new Array(args.length);
 	
-	for (var i = 0; i < m_correctHashes.length; i++)
+	for (var i = 0; i < args.length; i++)
 	{
 		var doc = document.getElementById(args[i]);
 		if (doc === null) continue;
