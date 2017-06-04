@@ -35,11 +35,12 @@
 </head>
 
 <body onload="
-	initMD5('MD5box', 'MD5div', 'hashJar', 'hashExe', 'hashApp');">
-	initOSloading('btn-warning', 'btn-danger');
-	adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
-	adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
-	adaptButtonToOS('AllInstallerButton', window.laplonge_enumOS.UNKNOWN);
+		initMD5('MD5box', 'MD5div', 'hashJar', 'hashExe', 'hashApp');
+		initOSloading('btn-success', 'btn-warning', 'btn-danger');
+		adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
+		adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
+		adaptButtonToOS('AllInstallerButton', window.laplonge_enumOS.UNKNOWN);
+	">
 
 	<!--<a class="infos" href="#" target="_blank">Barre d'info avec lien</a>-->
 	<!--<div class="infos">Information sans lien</div>-->
