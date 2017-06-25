@@ -3,10 +3,12 @@ Briques (pierre moussue) :  F (rare)
 Charbon (bloc) :            D-E
 Charbon (minerai) :         A-B
 Cobblestone :               A-B
-Fer (bloc) :                C(rare) , E-F
+Fer (bloc) :                C(rare) , E-G
 Fer (minerai) :             B-F
-Or (minerai) :              E-F
+Or (minerai) :              E-G
+Or (bloc) :                 G
 Quartz (bloc) :             D-F
 Quartz (minerai) :          C(rare), D
 Pierre lisse :              B-D, F(rare)
+Sandstone :                 G
 Verre teinté blanc :        A (rare)
