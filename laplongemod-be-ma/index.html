@@ -35,7 +35,7 @@
     
     <script>
     function _LOAD() {
-    	initMD5('MD5box', 'MD5div', 'hashJar', 'hashExe', 'hashApp');
+    	initHashes('MD5box', 'MD5div', 'hashJar', 'hashExe', 'hashApp');
 	initOSloading('btn-success', 'btn-warning', 'btn-danger');
 	adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
 	adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
@@ -113,7 +113,7 @@
 			</p>
 
 			<p>
-				<br/>Programmes d'installation automatique (dernière mise à jour : 10.06.2017 )<br/>
+				<br/>Programmes d'installation automatique (dernière mise à jour : 25.06.2017 )<br/>
 				
 				<a id="AllInstallerButton" class="btn btn-success btn-lg" href="https://dl.dropbox.com/s/7ztx7r0i85tb1m2/LaplongeInstaller.jar" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.jar, pour tous OS</span></a>
 				<br/><a id="WinInstallerButton" class="btn btn-warning btn-lg" href="https://dl.dropbox.com/s/qpv2pwy00nise3j/LaplongeWindows.exe" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.exe, pour Windows</span></a>
@@ -123,15 +123,15 @@
 				
 				<!-- Remplissage auto si JS désactivé -->
 				<span class="nojs">
-					<br/>Hashs MD5 des programmes d'installation		
-					<br/><span id="hashJar">LaplongeInstaller.jar: e08411291db4d0879b1c9a800718f7b4</span>
-					<br/><span id="hashExe">LaplongeWindows.exe: 14f00b049d4601198d0e85eab0362156</span>
-					<br/><span id="hashApp">LaplongeMac.zip: 8d25f74b32f1af1f97102da27ec31f99</span>
+					<br/>Hashs SHA1 des programmes d'installation		
+					<br/><span id="hashJar">LaplongeInstaller.jar: ec6f662a88183150f1a1baa45af35f8db8f58297</span>
+					<br/><span id="hashExe">LaplongeWindows.exe: b6d2f9b1f737962f05454b4ad7c46474c4e10424</span>
+					<br/><span id="hashApp">LaplongeMac.zip: 918db3cc9dcf5589531661479efa7eb1fffc5bf8</span>
 				</span>
 				<!-- Affichage de l'interface si JS activé -->
 				<span class="jsonly">
 					<br/>
-					<input id="MD5box" type="text" size=36 maxlength=40 placeholder="Entrez le MD5 de votre fichier" onkeyup="updateMD5()" class="form-control"/>
+					<input id="MD5box" type="text" size=36 maxlength=60 placeholder="Entrez le SHA1 de votre fichier" onkeyup="updateMD5()" class="form-control"/>
 					<div id="MD5div"></div>
 				</span>
 				<br/><a target="_blank" class="btn btn-success btn-lg" href="https://dl.dropbox.com/s/azztyfrg18fwktp/LaplongePack.zip" role="button">Pack de textures du mod</a>
