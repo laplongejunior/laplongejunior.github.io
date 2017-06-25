@@ -1,7 +1,7 @@
 var m_boxDoc, m_divDoc;
 var m_files, m_correctHashes;
 
-function initMD5(boxId, divId, ...args)
+function initHash(boxId, divId, ...args)
 {
 	m_boxDoc = document.getElementById(boxId);
 	m_divDoc = document.getElementById(divId);
@@ -20,10 +20,10 @@ function initMD5(boxId, divId, ...args)
 	}
 }
 
-function updateMD5()
+function updateHash()
 {
-	var MD5input = m_boxDoc.value.trim();
-	if (MD5input.length == 0)
+	var hashInput = m_boxDoc.value.trim();
+	if (hashInput.length == 0)
 	{
 		m_divDoc.innerHTML = "";
 		return;
@@ -32,7 +32,7 @@ function updateMD5()
 	var compareResult = -1;
 	for (var i = 0; i < m_correctHashes.length; i++)
 	{
-		var compare = compareHexa(MD5input, m_correctHashes[i]);
+		var compare = compareHexa(hashInput, m_correctHashes[i]);
 		if (compare === null) { compareResult = -2; break; }
 		else if (compare === true) { compareResult = i; break; }
 	}
@@ -40,25 +40,25 @@ function updateMD5()
 	switch (compareResult)
 	{
 		case -2:
-			m_divDoc.innerHTML = "<font color='red'>Un MD5 contient 32 caractères</font>";
+			m_divDoc.innerHTML = "<font color='red'>Un SHA1 contient 40 caractères</font>";
 			break;
 		case -1:
-			m_divDoc.innerHTML = "<font color='red'>Ce MD5 ne correspond à aucun fichier: retéléchargez</font>";
+			m_divDoc.innerHTML = "<font color='red'>Ce SHA1 ne correspond à aucun fichier: retéléchargez</font>";
 			break;
 		default:
-			m_divDoc.innerHTML = "<font color='green'>Les MD5 correspondent : "+ m_files[i] +" est à jour</font>";
+			m_divDoc.innerHTML = "<font color='green'>Les SHA1 correspondent : "+ m_files[i] +" est à jour</font>";
 			break;
 	}
 }
 
-function compareHexa(badMD5, goodMD5)
+function compareHexa(badHash, goodHash)
 {
-	var length = goodMD5.length;
-	if (badMD5.length != length) return null;
-	badMD5 = badMD5.toLowerCase();
+	var length = goodHash.length;
+	if (badHash.length != length) return null;
+	badHash = badHash.toLowerCase();
 	
 	for (var i = 0; i < length; i++)
-		if (badMD5[i] != goodMD5[i])
+		if (badHash[i] != goodHash[i])
 			return false;
 	return true;
 }
