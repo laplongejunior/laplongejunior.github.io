@@ -74,17 +74,23 @@ img {
 							<p>*Mise à jour en 1.12
 							<br/>-Pas de version 1.11 car laplonge était occupé par son TFE
 							<br/>
+							<br/>*Ajout d'une fonction "Simuler Crash" sur le menu pause
+							<br/>-Bloque la connexion avec le serveur, causant un TimeOut au lieu d'une déconnexion classique
+							<br/>-La connexion côté client n'est libérée qu'après que le serveur ait cessé de communiquer
+							<br/>-ATTENTION: Le résultat de cette action sur un serveur non-vanilla est IMPREVISIBLE!
+							<br/>-Piéger un serveur en simulant une panne Internet est assimilable à un HACK et bannissable!
+							<br/>
+							<br/>*Amélioration de la gestion de l'inventaire:
+							<br/>-L'inventaire modifié tient compte du livre de recettes ajouté en 1.12
+							<br/>-La gestion des niveaux de potions gère le standard Vanilla si l'option est désactivée					
+							<br/>
 							<br/>*Modifications diverses:
 							<br/>-Suppression du "localhost" du menu multi, trop peu utilisé
 							<br/>-Les serveurs partenaires téléchargent automatiquement leur Resource Pack
 							<br/>-Les ClientBinds sont de nouveau disponibles
 							<br/>-Le code de gestion des Elytras custom est désormais activé
 							<br/>
-							<br/>*Amélioration de la gestion de l'inventaire:
-							<br/>-L'inventaire modifié tient compte du livre de recettes ajouté en 1.12
-							<br/>-La gestion des niveaux de potions gère le standard Vanilla si l'option est désactivée
-							<br/>
-							<br/>*Hors code: Renommage de plusieurs fichiers afin de respecter le standard 1.12
+							<br/>*Hors code: Renommage de plusieurs fichiers afin de faire un Resource Pack 1.12
 							<br/>
 							<br/>*Interne: Optimisations diverses du code
 							<br/>-Simplification du stockage de la plupart des données du mod
@@ -94,6 +100,7 @@ img {
 							<br/>-Meilleure gestion des KeyBindings
 							<br/>-Refonte du chargement des bannières
 							<br/>
+							<br/>-Les menus "Oui/Non" sont partiellement générés par du code source de Minecraft
 							<br/>-Optimisation du chargement des menus de commandes
 							<br/>-Amélioration massive du menu secret + correction d'un bug vieux de plusieurs années!</p>
 							
