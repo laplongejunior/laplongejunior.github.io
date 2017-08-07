@@ -81,7 +81,7 @@ img {
 							<br/>-Bloque la connexion avec le serveur, causant un TimeOut au lieu d'une déconnexion classique
 							<br/>-La connexion côté client n'est libérée qu'après que le serveur ait cessé de communiquer
 							<br/>-ATTENTION: Le résultat de cette action sur un serveur non-vanilla est IMPREVISIBLE!
-							<br/>-Piéger un serveur en simulant une panne Internet est assimilable à un HACK et bannissable!
+							<br/><font color="red">-Piéger un serveur en simulant une panne Internet est assimilable à un HACK et bannissable!</font>
 							<br/>
 							<br/>*Nouveau menu de réglage: le contrôle de l'armure du skin
 							<br/>-Utile pour les joueurs avec la seconde couche (désactivable) sur leur skin
@@ -91,19 +91,20 @@ img {
 							<br/>Réduit le spam, autant pour votre connexion que pour celle du serveur!
 							<br/>
 							<br/>*Autres ajouts divers:
+							<br/>-Le code de gestion des Elytras custom est désormais activé
 							<br/>-Le zoom progressif a un effet comme lorsqu'on s'approche d'une WorldBorder
 							<br/>-Les bannières du mod chargent un .json différent des bannières vanilla
 							<br/>-Un serveur contournant la blacklist par SRV record sera tout de même détecté comme tel
 							<br/>(Une seconde détection se fait lorsque l'IP entrée ne correspond pas à l'adresse de connexion de MC)
 							<br/>
 							<br/>*Modifications diverses:
-							<br/>-La gestion des niveaux de potions gère le standard Vanilla si l'option est désactivée
+							<br/>-La gestion des niveaux de potions utilise le standard Vanilla si l'option est désactivée
 							<br/>-Suppression du "localhost" du menu multi, trop peu utilisé
 							<br/>-Les serveurs partenaires téléchargent automatiquement leur Resource Pack
-							<br/>-Les ClientBinds sont de nouveau disponibles
-							<br/>-Le code de gestion des Elytras custom est désormais activé	
+							<br/>-Les ClientBinds sont de nouveau disponibles	
 							<br/>
 							<br/>*Bugfix: Un problème hardware sur un LAN pouvait causer une boucle infinie de "serveur blacklisté"
+							<br/>(Car Minecraft simule une panne LAN pour notifier le blocage d'un serveur)
 							<br/>
 							<br/>*Interne:
 							<br/>1) Il est désormais possible de changer d'interface graphique depuis le chargement d'une autre
