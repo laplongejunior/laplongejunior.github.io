@@ -1,4 +1,58 @@
 # Changelog du LaplongeMod
+### LaplongeMod 1.6 : Comback Update (08.08.2017)
+- Mise à jour en 1.12 (Pas de version 1.11 car laplonge était occupé par son TFE)
+   - <font color="red">Le menu Avatar par défaut correspond par défaut à P ("player"), L étant les advancements</font>
+   - L'inventaire modifié contient le nouveau livre de recettes
+   - La couleur d'une bannière n'est pas gérée de la même façon (aucun changement visuel normalement)
+   - Hors code: Renommage de plusieurs fichiers afin de faire un Resource Pack 1.12
+
+- Ajout d'une fonction "Simuler Crash" sur le menu pause
+   - Bloque la connexion avec le serveur, causant un TimeOut au lieu d'une déconnexion classique
+   - La connexion côté client n'est libérée qu'après que le serveur ait cessé de communiquer
+   - ATTENTION: Le résultat de cette action sur un serveur non-vanilla est IMPREVISIBLE!
+   - <font color="red">-Piéger un serveur en simulant une panne Internet est assimilable à un HACK et bannissable</font>
+
+- Nouveau menu de réglage: le contrôle de l'armure du skin
+   - Utile pour les joueurs avec la seconde couche (désactivable) sur leur skin
+   - Masque la couche lorsqu'une armure est portée et la réaffiche lorsque l'armure est enlevée
+   - Le casque, le plastron, et la combinaison pantalon+bottes sont configurables séparément
+   - Le mod réduit autant que possible la quantité de changements transmis
+      Réduit le spam, autant pour votre connexion que pour celle du serveur!
+
+- Autres ajouts divers:
+   - Le code de gestion des Elytras custom est désormais activé
+   - Le zoom progressif a un effet comme lorsqu'on s'approche d'une WorldBorder
+   - Les bannières du mod chargent un .json différent des bannières vanilla
+   - Un serveur contournant la blacklist par SRV record sera tout de même détecté comme tel
+      (Une seconde détection se fait lorsque l'IP entrée ne correspond pas à l'adresse de connexion de MC)
+
+- Modifications diverses:
+   - La gestion des niveaux de potions utilise le standard Vanilla si l'option est désactivée
+   - Suppression du "localhost" du menu multi, trop peu utilisé
+   - Les serveurs partenaires téléchargent automatiquement leur Resource Pack
+   - Les ClientBinds sont de nouveau disponibles
+   - Le masquage du /login ne masque plus les espaces
+
+- Bugfix: Un problème hardware sur un LAN pouvait causer une boucle infinie de "serveur blacklisté"
+    (Car Minecraft simule une panne LAN pour notifier le blocage d'un serveur)
+
+- Interne:
+  1) Il est désormais possible de changer d'interface graphique depuis le chargement d'une autre
+  2) Optimisations diverses du code
+   - Nettoyage du traitement des réglages/configurations
+   - Simplification du stockage de la plupart des données du mod
+      Jukeboxes, serveurs partenaires et les membres de l'ancienne team C0_Bl00d
+
+   - Identification simplifiée des auras
+   - Meilleure gestion des KeyBindings
+   - Refonte du chargement des bannières
+
+   - Les menus "Oui/Non" sont partiellement générés par du code source de Minecraft
+   - Optimisation du chargement des menus de commandes
+- Amélioration massive du menu secret + correction d'un bug vieux de plusieurs années!</p>
+
+---
+
 ### LaplongeMod 1.5.3.1 : Anti-blacklist Patch (02.10.2016)
 - <font color="red">Rajout d'une protection contre la blacklist pour les adresses locales</font>  
 A l'heure actuelle, le code vanilla laisserait la blacklist agir même sur les réseaux locaux  
