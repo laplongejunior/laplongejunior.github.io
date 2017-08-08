@@ -51,7 +51,7 @@
    - Optimisation du chargement des menus de commandes
    - Amélioration massive du menu secret + correction d'un bug vieux de plusieurs années!
   
-- REUPLOAD: l'argent n'était pas détecté par l'inventaire
+- REUPLOAD: correction de quelques défauts dans les interfaces graphiques
 
 ---
 
