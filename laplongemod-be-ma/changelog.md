@@ -49,7 +49,9 @@
 
    - Les menus "Oui/Non" sont partiellement générés par du code source de Minecraft
    - Optimisation du chargement des menus de commandes
-- Amélioration massive du menu secret + correction d'un bug vieux de plusieurs années!</p>
+   - Amélioration massive du menu secret + correction d'un bug vieux de plusieurs années!
+  
+- REUPLOAD: l'argent n'était pas détecté par l'inventaire
 
 ---
 
