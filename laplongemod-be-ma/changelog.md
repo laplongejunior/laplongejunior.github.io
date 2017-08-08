@@ -1,5 +1,5 @@
 # Changelog du LaplongeMod
-### LaplongeMod 1.6 : Comback Update (08.08.2017)
+### LaplongeMod 1.6 : Comeback Update (08.08.2017)
 - Mise à jour en 1.12 (Pas de version 1.11 car laplonge était occupé par son TFE)
    - <font color="red">Le menu Avatar par défaut correspond par défaut à P ("player"), L étant les advancements</font>
    - L'inventaire modifié contient le nouveau livre de recettes
