@@ -1,6 +1,6 @@
 # Changelog du LaplongeMod
 ### LaplongeMod 1.6.1 : API Update (18/08/2017)
-- <font="red">Préface: cette MAJ est déployée sur deux fronts</font>
+- Préface: cette MAJ est déployée sur deux fronts
    D'une part l'utilisation de l'API de Mojang afin d'améliorer le support
    des comptes Premiums sur les serveurs cracks non adaptés
    D'autre part une gestion plus adaptable des capes Moddées
@@ -44,7 +44,7 @@
 
 ### LaplongeMod 1.6 : Comeback Update (08.08.2017)
 - Mise à jour en 1.12 (Pas de version 1.11 car laplonge était occupé par son TFE)
-   - <font color="red">Le menu Avatar par défaut correspond par défaut à P ("player"), L étant les advancements</font>
+   - Le menu Avatar par défaut correspond par défaut à P ("player"), L étant les advancements
    - L'inventaire modifié contient le nouveau livre de recettes
    - La couleur d'une bannière n'est pas gérée de la même façon (aucun changement visuel normalement)
    - Hors code: Renommage de plusieurs fichiers afin de faire un Resource Pack 1.12
