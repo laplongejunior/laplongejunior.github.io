@@ -1,4 +1,47 @@
 # Changelog du LaplongeMod
+### LaplongeMod 1.6.1 : API Update (18/08/2017)
+- <font="red">Préface: cette MAJ est déployée sur deux fronts</font>
+   D'une part l'utilisation de l'API de Mojang afin d'améliorer le support
+   des comptes Premiums sur les serveurs cracks non adaptés
+   D'autre part une gestion plus adaptable des capes Moddées
+
+   Le code des capes avait été conçu pour Optifine, et non pas pour une grande palette de mods
+   Et même si la cape était indépendante du reste du code, les réglages étaient situé dans mon mod
+   EN BREF, il fallait repartir de zéro pour obtenir un résultat convenable!
+   Refaire le code d'une chose aussi simple qu'une cape, afin de le rendre adaptable, s'est averé être
+   une tâche très grande, nécessitant une bonne semaine de modding...
+
+   Gérer l'API de Mojang a été un véritable casse-tête chinois puisqu'il fallait
+   1)Eviter de demander deux fois la même chose aux serveurs (pour économiser la connexion!)
+   2)Ne le demander que quand nécessaire (certains serveurs cracks n'ont pas l'UUID, mais bien les skins!)
+   3)Et faire tout ça en évitant de bloquer le jeu en attendant la réponse
+   Je ne promets pas que la gestion sera parfaite du premier coup, mais j'espère l'avoir assez optimisée.
+
+
+
+- Quelques améliorations "visibles" au système de Skin d'Urgence:
+   - Finies les heures d'attente entre un changement de skin et un effet lors du redémarrage du mod
+   - Les gros bras ("Steve?") et les bras fins ("Alex?") s'appliquent correctement en fonction du joueur
+
+- Les URLs des capes par défaut sont stockées sur l'hébergeur
+   - Cela permet de faire fonctionner des capes dont les textures sont normalement situées côté client
+
+- Support des capes de certains clients hack pour tester
+- Utilisation de l'API de Mojang (voir plus bas)
+- Bug fixe: les boutons de "Config Sociale" étaient mélangés
+- Interne: création d'un moyen d'accéder à <a href="http://wiki.vg/Mojang_API">l'API de Mojang</a>
+   - Dispose d'un cache et d'un système de traitement parallèle afin de ne jamais refaire deux fois la même requête
+   - Vous permet de disposer de toutes vos données officielles même sur un serveur crack!
+   - Permet d'associer à votre pseudo votre véritable UUID stocké chez Mojang
+   - Permet de récupérer vos textures de skin, cape et elytra ainsi que votre modèle Skin/Alex
+
+- Interne: refonte complète du code de support
+   - Ajout semi-automatique des réglages/configurations en fonction des mods supportés
+   - Support de cape à texture unique
+   - Création d'une structure commune pour toutes les capes moddées
+
+---
+
 ### LaplongeMod 1.6 : Comeback Update (08.08.2017)
 - Mise à jour en 1.12 (Pas de version 1.11 car laplonge était occupé par son TFE)
    - <font color="red">Le menu Avatar par défaut correspond par défaut à P ("player"), L étant les advancements</font>
