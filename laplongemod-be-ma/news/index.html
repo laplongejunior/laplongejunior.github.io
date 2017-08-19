@@ -64,40 +64,78 @@ img {
 							</h3>
 						
 					</div>
+			
+			
+					<div class="post text">
+
+							<h3><font color="blue">Prochainement LapMod 1.6.1.1 : API Patch</font></h3>
+
+							<p>Pas de gros changements, surtout des perfectionnements des nouveaux systèmes rajoutés en 1.6.1
+							<br/>
+							<br/>*L'hébergeur du mod peut désormais attribuer des skins à gros bras ("Steve?")
+							<br/>
+							<br/>*Suppression du support des capes des mods de hacks qui ont servis aux tests
+							<br/>-Ces capes n'existent plus sur les dernières versions, et leurs serveurs ne les fournissent plus
+							<br/>(Je ne suis pas contre le support des capes donateurs/devs d'un hack, si il en existe encore)
+							<br/>
+							<br/>*Ajout du support des capes donateurs du LabyMod (en cours)
+							<br/>-Leurs cosmétiques customs ne sont, évidemment, pas supportés
+							<br/>
+							<br/>*Bugfixes:
+							<br/>-La sécurité anti-skin-1.7 bloquait les capes
+							<br/>-Suppression de quelques erreurs liées au cache de l'API
+							<br/>
+							<br/>*Interne: amélioration du remplacement des skins
+							<br/>-Il s'applique automatiquement à toutes leurs utilisations au sein du jeu</p>
+					</div>
 					
 					
 					<div class="post text">
 
-							<h3><font color="yellow">Prochainement LapMod 1.6.0.1 : Capes Patch</font></h3>
+							<h3><font color="yellow">LapMod 1.6.1 : API Update</font></h3>
 
-							<p>Lorsque j'ai ajouté le support des capes Optifine, je l'avais conçu
-							<br/>Pour pouvoir être supprimable en un clic (à l'époque, Notch leur demandait de les retirer)
-							<br/>J'ai souvent dit que j'aimerais supporter les capes d'autres mods à venir
-							<br/>Cependant, j'ai compris que le code de support n'était pas facilement réutilisable
+							<p><font="red">Préface: cette MAJ est déployée sur deux fronts</font>
+							<br/>D'une part l'utilisation de l'API de Mojang afin d'améliorer le support
+							<br/>des comptes Premiums sur les serveurs cracks non adaptés
+							<br/>D'autre part une gestion plus adaptable des capes Moddées
 							<br/>
-							<br/>Le code des capes avait été spécifiquement conçu pour Optifine, et non pas pour une grande palette de mods
-							<br/>Pour vous donner une idée, la cape était nommée dans le code "donateur", et la celle par défaut... n'avait pas de nom!
-							<br/>Et même si la cape était indépendante du reste du code, le réglage pour activer/désactiver était situé dans mon mod
+							<br/>Le code des capes avait été conçu pour Optifine, et non pas pour une grande palette de mods
+							<br/>Et même si la cape était indépendante du reste du code, les réglages étaient situé dans mon mod
 							<br/>EN BREF, il fallait repartir de zéro pour obtenir un résultat convenable!
-							<br/>
-							<br/>Refaire le code d'une chose aussi simple qu'une cape, afin de le rendre adaptable s'est averé être
+							<br/>Refaire le code d'une chose aussi simple qu'une cape, afin de le rendre adaptable, s'est averé être
 							<br/>une tâche très grande, nécessitant une bonne semaine de modding...
 							<br/>
+							<br/>Gérer l'API de Mojang a été un véritable casse-tête chinois puisqu'il fallait
+							<br/>1)Eviter de demander deux fois la même chose aux serveurs (pour économiser la connexion!)
+							<br/>2)Ne le demander que quand nécessaire (certains serveurs cracks n'ont pas l'UUID, mais bien les skins!)
+							<br/>3)Et faire tout ça en évitant de bloquer le jeu en attendant la réponse
+							<br/>Je ne promets pas que la gestion sera parfaite du premier coup, mais j'espère l'avoir assez optimisée.
 							<br/>
 							<br/>
-							<br/>*Les URLs des capes par défautsont stockées sur l'hébergeur
+							<br/>
+							<br/>*Quelques améliorations "visibles" au système de Skin d'Urgence:
+							<br/>-Finies les heures d'attente entre un changement de skin et un effet lors du redémarrage du mod
+							<br/>-Les gros bras ("Steve?") et les bras fins ("Alex?") s'appliquent correctement en fonction du joueur
+							<br/>
+							<br/>*Les URLs des capes par défaut sont stockées sur l'hébergeur
 							<br/>-Cela permet de faire fonctionner des capes dont les textures sont normalement situées côté client
 							<br/>
 							<br/>*Support des capes de certains clients hack pour tester
 							<br/>
-							<br/>*Bug fixe: les boutons de "Config Sociale" étaient mélangés 
+							<br/>*Utilisation de l'API de Mojang (voir plus bas)
+							<br/>
+							<br/>*Bug fixe: les boutons de "Config Sociale" étaient mélangés
+							<br/>
+							<br/>*Interne: création d'un moyen d'accéder à <a href="http://wiki.vg/Mojang_API">l'API de Mojang</a>
+							<br/>-Dispose d'un cache et d'un système de traitement parallèle afin de ne jamais refaire deux fois la même requête
+							<br/>-Vous permet de disposer de toutes vos données officielles même sur un serveur crack!
+							<br/>-Permet d'associer à votre pseudo votre véritable UUID stocké chez Mojang
+							<br/>-Permet de récupérer vos textures de skin, cape et elytra ainsi que votre modèle Skin/Alex
 							<br/>
 							<br/>*Interne: refonte complète du code de support
 							<br/>-Ajout semi-automatique des réglages/configurations en fonction des mods supportés
 							<br/>-Support de cape à texture unique
-							<br/>-Création d'une structure commune pour toutes les capes moddées
-							<br/>-Ajout, dans les données de l'hébergeur, d'une URL</p>
-							
+							<br/>-Création d'une structure commune pour toutes les capes moddées</p>
 					</div>
 
 					<div class="post text">
