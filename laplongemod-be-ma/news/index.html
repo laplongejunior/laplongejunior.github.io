@@ -74,7 +74,7 @@ img {
 							<br/>
 							<br/>*L'hébergeur du mod peut désormais attribuer des skins à gros bras ("Steve?")
 							<br/>
-							<br/>*Suppression du support des capes des mods de hacks qui ont servis aux tests
+							<br/>*Suppression du support des capes des mods de hacks qui ont servi aux tests
 							<br/>-Ces capes n'existent plus sur les dernières versions, et leurs serveurs ne les fournissent plus
 							<br/>(Je ne suis pas contre le support des capes donateurs/devs d'un hack, si il en existe encore)
 							<br/>
@@ -89,13 +89,15 @@ img {
 							<br/>-La sécurité anti-skin-1.7 bloquait les capes
 							<br/>-Suppression de quelques erreurs liées au cache de l'API
 							<br/>
-							<br/>*Interne:
-							<br/>-Amélioration du remplacement des skins
+							<br/>*Interne: Amélioration du remplacement des skins
 							<br/>Il s'applique automatiquement à toutes leurs utilisations au sein du jeu
-							<br/>-L'API permet désormais d'obtenir le pseudo associé à un UUID
-							<br/>Combiné à l'API existante afin d'éviter de faire une résolution dans les deux sens
-							<br/>
-							<br/>*Sécurité: Le nombre de requêtes vers l'API pouvant être créees simultanément est limité</p>
+							<br/>*Interne: Augmentation des capacités d'utilisation de l'API de Mojang
+							<br/>-Elle permet désormais d'obtenir le pseudo associé à un UUID
+							<br/>Combiné à l'API existante afin d'éviter de faire deux résolutions opposées
+							<br/>-Du code java peut être exécuté directement après la réussite ou l'échec d'une requête
+							<br/>-(Légère?) réduction de l'impact de l'API sur les performances du jeu
+							<br/>Des accès "simplifiés" vers l'API regroupent plusieurs requêtes en une seule exécution
+							<br/>-Le nombre de requêtes simulanées sur l'API est désormais limité</p>
 					</div>
 					
 					
