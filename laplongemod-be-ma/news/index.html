@@ -85,12 +85,19 @@ img {
 							<br/>-Fêtent l'anniversaire de Notch (créateur de Minecraft) et Ez (sa femme)
 							<br/>-Honteusement supprimé par Notch avait revenu Mojang à l'époque
 							<br/>
+							<br/>*Optimisation des performances de l'accès à l'API de Mojang:
+							<br/>-Le mod classe désormais les UUIDs des joueurs en trois catégories:
+							<br/>Les offlines (version 3) fonctionnent comme avant la mise à jour
+							<br/>Les officiels (version 4) ne demandent pas l'UUID, déjà fourni par un serveur online
+							<br/>Les impossibles (autres versions) ne font rien: ce sont des NPCs sur des serveurs modifiés
+							<br/>
 							<br/>*Bugfixes:
 							<br/>-La sécurité anti-skin-1.7 bloquait les capes
-							<br/>-Suppression de quelques erreurs liées au cache de l'API
+							<br/>-Suppression de quelques erreurs liées au cache de l'API			
 							<br/>
 							<br/>*Interne: Amélioration du remplacement des skins
 							<br/>Il s'applique automatiquement à toutes leurs utilisations au sein du jeu
+							<br/>
 							<br/>*Interne: Augmentation des capacités d'utilisation de l'API de Mojang
 							<br/>-Elle permet désormais d'obtenir le pseudo associé à un UUID
 							<br/>Combiné à l'API existante afin d'éviter de faire deux résolutions opposées
