@@ -1,4 +1,42 @@
 # Changelog du LaplongeMod
+### LaplongeMod 1.6.1.1 : API Patch (30/08/2017)
+Pas de gros changements, surtout des perfectionnements des nouveaux systèmes rajoutés en 1.6.1
+- L'hébergeur du mod peut désormais attribuer des skins à gros bras ("Steve?")
+- Les logs du jeu affichent les données récupérées via l'API de Mojang
+
+- Amélioration vanilla: Rajout des splashs d'anniversaire retirés sur MC1.8.5
+   - Fêtent l'anniversaire de Notch (créateur de Minecraft) et Ez (sa femme)
+   - Honteusement supprimé car Notch avait revendu Mojang à l'époque
+
+- Bugfixes:
+   - La sécurité anti-skin-1.7 bloquait les capes
+   - Suppression de quelques erreurs liées au cache de l'API
+
+- Optimisation des performances de l'accès à l'API de Mojang:
+   - Le mod classe désormais les UUIDs des joueurs en trois catégories:
+      Les offlines (version 3) des serveurs cr@cks fonctionnent comme avant la mise à jour
+      Les officiels (version 4) ne demandent pas l'UUID, déjà fourni par un serveur online
+      Les impossibles (autres versions) sur des serveurs modifiés ne font rien: ce sont des NPCs
+   - Cette modification a un côté positif et un côté négatif
+      Le bon côté est que la connexion est moins souvent utilisée sur la plupart des serveurs
+      Le mauvais est que le mod dépend en partie des données envoyées par le serveur de jeu	
+
+- Interne: Amélioration du remplacement des skins
+   Il s'applique automatiquement à toutes leurs utilisations au sein du jeu
+
+- Interne: Les modèles des accessoires supportés sont séparés des modèles du mod
+   Avec cette modification, les mods supportés sont complètement dissociés du LaplongeMod
+
+- Interne: Augmentation des capacités d'utilisation de l'API de Mojang
+   - Elle permet désormais d'obtenir le pseudo associé à un UUID
+      Combiné à l'API existante afin d'éviter de faire deux résolutions opposées
+   - Du code java peut être exécuté directement après la réussite ou l'échec d'une requête
+   - Le nombre de requêtes simulanées sur l'API est désormais limité
+   - (Légère?) réduction de l'impact de l'API sur les performances du jeu:
+      Des accès "simplifiés" vers l'API regroupent plusieurs requêtes en une seule exécution
+
+---
+
 ### LaplongeMod 1.6.1 : API Update (18/08/2017)
 - Préface: cette MAJ est déployée sur deux fronts
    D'une part l'utilisation de l'API de Mojang afin d'améliorer le support
