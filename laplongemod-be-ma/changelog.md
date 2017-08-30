@@ -2,7 +2,7 @@
 ### LaplongeMod 1.6.1.1 : API Patch (30/08/2017)
 Pas de gros changements, surtout des perfectionnements des nouveaux systèmes rajoutés en 1.6.1
 - L'hébergeur du mod peut désormais attribuer des skins à gros bras ("Steve?")
-- Les logs du jeu affichent les données récupérées via l'API de Mojang
+- Les logs du jeu affichent les requêtes envoyées à l'API de Mojang
 
 - Amélioration vanilla: Rajout des splashs d'anniversaire retirés sur MC1.8.5
    - Fêtent l'anniversaire de Notch (créateur de Minecraft) et Ez (sa femme)
