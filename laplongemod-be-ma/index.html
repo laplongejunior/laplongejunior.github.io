@@ -1,428 +1,377 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="theme-color" content="#2196f3">
-
-	<title>laplongemod &middot; Le mod prefere des laplongiens !</title>
-
-	<!-- Attribut ' class="jsonly" ' => afficher si JS activé -->
-	<style>
-		.jsonly { display: inherit }
-		.nojs { display: none }
-	</style>
-	<!-- Le dernier style défini prend la priorité -->
-	<noscript><style> 
-			.jsonly { display: none }
-			.nojs { display: inherit }
-	</style></noscript>
-	
-	<script type="text/javascript" src="js/md5check.js"></script>
-	<script type="text/javascript" src="js/findOS.js"></script>
-
-	<link href="https://cdn.jsdelivr.net/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-    	<script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
-    	<script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
-    <script>
-    function _LOAD() {
-	if(!window.console)window.console = {log: function(){}, error: function(){}, clear: function(){}};
-    	initHash('hashBox', 'hashDiv', 'hashJar', 'hashExe', 'hashApp');
-	initOSloading('btn-success', 'btn-warning', 'btn-danger');
-	adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
-	adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
-	adaptButtonToOS('AllInstallerButton', window.laplonge_enumOS.UNKNOWN);
-    }
-    </script>
-</head>
-
-<body onload="_LOAD()">
-
-	<!--<a class="infos" href="#" target="_blank">Barre d'info avec lien</a>-->
-	<!--<div class="infos">Information sans lien</div>-->
-
-
-	<div class="container">
-		<div class="header">
-			<div class="centered-pills">
-				<nav>
-					<ul class="nav nav-pills">
-						<li role="presentation"><a href="#presentation">Présentation</a></li>
-						<li role="presentation"><a href="#telechargements">Téléchargements</a></li>
-						<li role="presentation"><a href="#consignes">Nos consignes</a></li>
-						<li role="presentation"><a href="#specifications">Spécifications</a></li>
-					</ul>
-				</nav>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#2196f3">
+		<title>laplongemod &middot; Le mod prefere des laplongiens !</title>
+		<!-- Attribut ' class="jsonly" ' => afficher si JS activé -->
+		<style>
+			.jsonly { display: inherit }
+			.nojs { display: none }
+		</style>
+		<!-- Le dernier style défini prend la priorité -->
+		<noscript><style>
+				.jsonly { display: none }
+				.nojs { display: inherit }
+		</style></noscript>
+		
+		<script type="text/javascript" src="js/md5check.js"></script>
+		<script type="text/javascript" src="js/findOS.js"></script>
+		<link href="https://cdn.jsdelivr.net/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		
+		<script>
+		function _LOAD() {
+			if(!window.console)window.console = {log: function(){}, error: function(){}, clear: function(){}};
+			initHash('hashBox', 'hashDiv', 'hashJar', 'hashExe', 'hashApp');
+			initOSloading('btn-success', 'btn-warning', 'btn-danger');
+			adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
+			adaptButtonToOS('MacInstallerButton', window.laplonge_enumOS.MAC);
+			adaptButtonToOS('AllInstallerButton', window.laplonge_enumOS.UNKNOWN);
+		}
+		</script>
+	</head>
+	<body onload="_LOAD()">
+		<!--<a class="infos" href="#" target="_blank">Barre d'info avec lien</a>-->
+		<!--<div class="infos">Information sans lien</div>-->
+		<div class="container">
+			<div class="header">
+				<div class="centered-pills">
+					<nav>
+						<ul class="nav nav-pills">
+							<li role="presentation"><a href="#presentation">Présentation</a></li>
+							<li role="presentation"><a href="#telechargements">Téléchargements</a></li>
+							<li role="presentation"><a href="#consignes">Nos consignes</a></li>
+							<li role="presentation"><a href="#specifications">Spécifications</a></li>
+						</ul>
+					</nav>
+				</div>
 			</div>
+			<hr class="separation">
 		</div>
-
-		<hr class="separation">
-
-	</div>
-
-	<div class="container-fluid imgfond">
-		<h1 class="titre">laplonge<strong>mod</strong></h1>
-		<h3 class="titre2">Le mod préféré des laplongiens !</h3>
-	</div>
-
-	<div class="container">
-
-		<hr class="separation">
-
-		<a id="presentation"></a>
-
-		<div class="row">
-			<div class="col-md-4 text-center">
-				<img src="img/installer.jpg" alt="Installateur" class="img-circle">
-				<h2>Installation facile</h2>
-				<p class="lead">Le laplongemod s'installe rapidement et facilement avec son installeur, le LaplongeInstaller !</p>
-			</div>
-			<div class="col-md-4 text-center">
-				<img src="img/argent.jpg" alt="Argent" class="img-circle">
-				<h2>Affichage de l'argent</h2>
-				<p class="lead">Sur les serveurs possédant un plugin d'économie compatible, le laplongemod vous affichera votre argent.</p>
-			</div>
-			<div class="col-md-4 text-center">
-				<img src="img/jukebox.jpg" alt="Argent" class="img-circle">
-				<h2>Jukebox</h2>
-				<p class="lead">Jukebox intégré pour écouter la musique du jeu que vous voulez.</p>
-			</div>
+		<div class="container-fluid imgfond">
+			<h1 class="titre">laplonge<strong>mod</strong></h1>
+			<h3 class="titre2">Le mod préféré des laplongiens !</h3>
 		</div>
-
-		<hr class="separation">
-
-		<a id="telechargements"></a>
-
-		<div class="downloads">
-			<h1 class="text-center">Téléchargements</h1>
-			<p class="lead">
-				Version actuelle du mod: <strong>1.6.1.1</strong> <em>Le patch de l'API</em>
-				<br/>(30.08.2017)
-				<br/><a href="http://laplongemod.be.ma/changelog" target="_blank">Changelog</a>
-				<br/>
-				<br/>Version Minecraft modifiée: <strong>1.12</strong>
-				<!--<br/><em>1.8.8 dispo plus bas</em>-->
-			</p>
-
-			<p>
-				<br/>Programmes d'installation automatique (dernière mise à jour : 09.08.2017 )<br/>
-				
-				<a id="AllInstallerButton" class="btn btn-success btn-lg" href="https://dl.dropbox.com/s/7ztx7r0i85tb1m2/LaplongeInstaller.jar" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.jar, pour tous OS</span></a>
-				<br/><a id="WinInstallerButton" class="btn btn-warning btn-lg" href="https://dl.dropbox.com/s/qpv2pwy00nise3j/LaplongeWindows.exe" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.exe, pour Windows</span></a>
-				<a id="MacInstallerButton" class="btn btn-warning btn-lg" href="https://dl.dropbox.com/s/qpvm8jr9jjlvrsy/LaplongeMac.zip" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.app, pour MacOS</span></a>				
-				
-				<br/><br/><a href="http://md5file.com/calculator" target="_blank">Cliquez ici pour calculer le hash de votre fichier téléchargé</a>
-				
-				<!-- Remplissage auto si JS désactivé -->
-				<span class="nojs">
-					<br/>Hashs SHA1 des programmes d'installation		
-					<br/><span id="hashJar">LaplongeInstaller.jar: 56874181d6e79686c155b13341813d942bc0d479</span>
-					<br/><span id="hashExe">LaplongeWindows.exe: 147a6c0b6d1f68287d9b3ccc4bc2da31c166fff2</span>
-					<br/><span id="hashApp">LaplongeMac.zip: efcc0bd4876cf5cec849f0ba6bc1944c3f31db73</span>
-				</span>
-				<!-- Affichage de l'interface si JS activé -->
-				<span class="jsonly">
+		<div class="container">
+			<hr class="separation">
+			<a id="presentation"></a>
+			<div class="row">
+				<div class="col-md-4 text-center">
+					<img src="img/installer.jpg" alt="Installateur" class="img-circle">
+					<h2>Installation facile</h2>
+					<p class="lead">Le laplongemod s'installe rapidement et facilement avec son installeur, le LaplongeInstaller !</p>
+				</div>
+				<div class="col-md-4 text-center">
+					<img src="img/argent.jpg" alt="Argent" class="img-circle">
+					<h2>Affichage de l'argent</h2>
+					<p class="lead">Sur les serveurs possédant un plugin d'économie compatible, le laplongemod vous affichera votre argent.</p>
+				</div>
+				<div class="col-md-4 text-center">
+					<img src="img/jukebox.jpg" alt="Argent" class="img-circle">
+					<h2>Jukebox</h2>
+					<p class="lead">Jukebox intégré pour écouter la musique du jeu que vous voulez.</p>
+				</div>
+			</div>
+			<hr class="separation">
+			<a id="telechargements"></a>
+			<div class="downloads">
+				<h1 class="text-center">Téléchargements</h1>
+				<p class="lead">
+					Version actuelle du mod: <strong>1.6.1.1</strong> <em>Le patch de l'API</em>
+					<br/>(30.08.2017)
+					<br/><a href="http://laplongemod.be.ma/changelog" target="_blank">Changelog</a>
 					<br/>
-					<input id="hashBox" type="text" size=36 maxlength=60 placeholder="Entrez le SHA1 de votre fichier" onkeyup="updateHash()" class="form-control"/>
-					<div id="hashDiv"></div>
-				</span>
-				<br/><a target="_blank" class="btn btn-success btn-lg" href="https://dl.dropbox.com/s/azztyfrg18fwktp/LaplongePack.zip" role="button">Pack de textures du mod</a>
-				<br/>(L'installer peut télécharger et vérifier lui-même la validité du resource pack)
-			</p>
-			<div class="panel panel-primary">
-				<div class="panel-heading"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Instructions du LaplongeInstaller</div>
-				<div class="panel-body text-left">
-					0) Obtenez la version vanilla du jeu (l'installateur a besoin de copier des fichiers)
-					<br/>1) Téléchargez LaplongeInstaller.jar
-					<br/><strong>Si Internet Explorer le télécharge en <em>.zip</em>, renommez-le en <em>.zip</em> (ou utilisez un autre browser)</strong>
-					<br/> 2) Double-cliquez dessus
-					<br/><strong>Si ça ne marche pas, clic droit + <em>ouvrir avec</em> + <em>Java(TM) Platform Binary</em></strong>
-					<br/> 3) Suivez les instructions de l'installateur
-					<br/> 4) Ouvrez votre launcher Minecraft
-					<br/> 5a) Sur l'ancien launcher, créez un nouveau profil
-					<br/> 5b) Sur le Mojang Launcher 2.0, modifiez les options de lancement puis "nouvelle version"
-					<br/> 6) Sélectionnez la version <em>release laplongemod</em> juste au-dessus de la release vanilla)
-					<br/> 7) Sauvegardez et démarrez le jeu
-					<br/>
-					<br/><strong>Astuce pour utilisateurs confirmés</strong>: l'installateur accepte des paramètres Java au démarrage:
-					<br/>"-buffer" suivi d'un nombre entier non négatif
-					<br/>Si nombre 0 : Affiche dans la console la taille du buffer par défaut (taille d'un buffer de BufferedOutputStream)
-					<br/>Si positif : Modifie la taille (en bytes) du buffer de téléchargement et de hashage, peut accélérer le programme
-					<br/>"-mcDir" suivi de texte
-					<br/>Définit l'emplacement du dossier du launcher, évite ainsi de devoir le taper au clavier à chaque fois
-					<br/>"-nogui" (seul) désactive l'interface graphique
-					<br/><strong>Exemple: -mcDir C:/Users/boblaplonge/AppData/Roaming/.minecraft -buffer 16384</strong>
+					<br/>Version Minecraft modifiée: <strong>1.12</strong>
+					<!--<br/><em>1.8.8 dispo plus bas</em>-->
+				</p>
+				<p>
+					<br/>Programmes d'installation automatique (dernière mise à jour : 09.08.2017 )<br/>
+					
+					<a id="AllInstallerButton" class="btn btn-success btn-lg" href="https://dl.dropbox.com/s/7ztx7r0i85tb1m2/LaplongeInstaller.jar" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.jar, pour tous OS</span></a>
+					<br/><a id="WinInstallerButton" class="btn btn-warning btn-lg" href="https://dl.dropbox.com/s/qpv2pwy00nise3j/LaplongeWindows.exe" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.exe, pour Windows</span></a>
+					<a id="MacInstallerButton" class="btn btn-warning btn-lg" href="https://dl.dropbox.com/s/qpvm8jr9jjlvrsy/LaplongeMac.zip" role="button">Téléchargement <span class="label label-primary">LaplongeInstaller.app, pour MacOS</span></a>
+					
+					<br/><br/><a href="http://md5file.com/calculator" target="_blank">Cliquez ici pour calculer le hash de votre fichier téléchargé</a>
+					
+					<!-- Remplissage auto si JS désactivé -->
+					<span class="nojs">
+						<br/>Hashs SHA1 des programmes d'installation
+						<br/><span id="hashJar">LaplongeInstaller.jar: 56874181d6e79686c155b13341813d942bc0d479</span>
+						<br/><span id="hashExe">LaplongeWindows.exe: 147a6c0b6d1f68287d9b3ccc4bc2da31c166fff2</span>
+						<br/><span id="hashApp">LaplongeMac.zip: efcc0bd4876cf5cec849f0ba6bc1944c3f31db73</span>
+					</span>
+					<!-- Affichage de l'interface si JS activé -->
+					<span class="jsonly">
+						<br/>
+						<input id="hashBox" type="text" size=36 maxlength=60 placeholder="Entrez le SHA1 de votre fichier" onkeyup="updateHash()" class="form-control"/>
+						<div id="hashDiv"></div>
+					</span>
+					<br/><a target="_blank" class="btn btn-success btn-lg" href="https://dl.dropbox.com/s/azztyfrg18fwktp/LaplongePack.zip" role="button">Pack de textures du mod</a>
+					<br/>(L'installer peut télécharger et vérifier lui-même la validité du resource pack)
+				</p>
+				<div class="panel panel-primary">
+					<div class="panel-heading"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Instructions du LaplongeInstaller</div>
+					<div class="panel-body text-left">
+						0) Obtenez la version vanilla du jeu (l'installateur a besoin de copier des fichiers)
+						<br/>1) Téléchargez LaplongeInstaller.jar
+						<br/><strong>Si Internet Explorer le télécharge en <em>.zip</em>, renommez-le en <em>.zip</em> (ou utilisez un autre browser)</strong>
+						<br/> 2) Double-cliquez dessus
+						<br/><strong>Si ça ne marche pas, clic droit + <em>ouvrir avec</em> + <em>Java(TM) Platform Binary</em></strong>
+						<br/> 3) Suivez les instructions de l'installateur
+						<br/> 4) Ouvrez votre launcher Minecraft
+						<br/> 5a) Sur l'ancien launcher, créez un nouveau profil
+						<br/> 5b) Sur le Mojang Launcher 2.0, modifiez les options de lancement puis "nouvelle version"
+						<br/> 6) Sélectionnez la version <em>release laplongemod</em> juste au-dessus de la release vanilla)
+						<br/> 7) Sauvegardez et démarrez le jeu
+						<br/>
+						<br/><strong>Astuce pour utilisateurs confirmés</strong>: l'installateur accepte des paramètres Java au démarrage:
+						<br/>"-buffer" suivi d'un nombre entier non négatif
+						<br/>Si nombre 0 : Affiche dans la console la taille du buffer par défaut (taille d'un buffer de BufferedOutputStream)
+						<br/>Si positif : Modifie la taille (en bytes) du buffer de téléchargement et de hashage, peut accélérer le programme
+						<br/>"-mcDir" suivi de texte
+						<br/>Définit l'emplacement du dossier du launcher, évite ainsi de devoir le taper au clavier à chaque fois
+						<br/>"-nogui" (seul) désactive l'interface graphique
+						<br/><strong>Exemple: -mcDir C:/Users/boblaplonge/AppData/Roaming/.minecraft -buffer 16384</strong>
+					</div>
 				</div>
-			</div>
-
-			<div class="panel panel-primary">
-				<div class="panel-heading"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Avantages du LaplongeInstaller</div>
-				<div class="panel-body text-left">
-					1) Facilité : il suffit d'indiquer son répertoire .minecraft, l'installateur télécharge et copie tout ce qu'il faut tout seul
-					<br/>2) Efficacité : en combinant quelques fichiers moddés à une grosse copie du jeu vanilla, il économise la connexion
-					<br/>3) Sécurité : comme l'a dit Jeb_ , la plupart des launchers demandent le mot de passe Minecraft, ce qui peut conduire à du piratage
-					<br/>4) Légalité : les fichiers téléchargés étant incomplets, ils sont insuffisants pour pirater le jeu
-					<br/>5) Adaptation : en ne remplacant pas le launcher de Mojang, il n'y aura aucun souci si leur authentification change
+				<div class="panel panel-primary">
+					<div class="panel-heading"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Avantages du LaplongeInstaller</div>
+					<div class="panel-body text-left">
+						1) Facilité : il suffit d'indiquer son répertoire .minecraft, l'installateur télécharge et copie tout ce qu'il faut tout seul
+						<br/>2) Efficacité : en combinant quelques fichiers moddés à une grosse copie du jeu vanilla, il économise la connexion
+						<br/>3) Sécurité : comme l'a dit Jeb_ , la plupart des launchers demandent le mot de passe Minecraft, ce qui peut conduire à du piratage
+						<br/>4) Légalité : les fichiers téléchargés étant incomplets, ils sont insuffisants pour pirater le jeu
+						<br/>5) Adaptation : en ne remplacant pas le launcher de Mojang, il n'y aura aucun souci si leur authentification change
+					</div>
 				</div>
-			</div>
-
-			<!--<p><a class="btn btn-default" href="https://dl.dropboxusercontent.com/s/h8jgw4qgt4ikr9l/LAPmod.zip" role="button">Téléchargement du mod <span class="label label-warning">Installation manuelle</span></a></p>
-
-			<h4>Anciennes versions</h4>
-
-			<div class="table-responsive">
-				<table class="table table-bordered table-condensed table-hover">
-					<thead>
-						<tr>
-							<th>Version du jeu</th>
-							<th>Version du mod</th>
-							<th>Date</th>
-							<th>Téléchargement</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1.7.10</td>
-							<td>1.2.2</td>
-							<td>16.01.2015</td>
-							<td><a href="https://dl.dropboxusercontent.com/s/dl8vesqnxgmrj12/CBM-1.7.10.zip">CBM-1.7.10.zip</a></td>
-						</tr>
-						<tr>
-							<td>1.7.2</td>
-							<td>1.2.2</td>
-							<td>12.12.2014</td>
-							<td><a href="https://dl.dropboxusercontent.com/s/j20pj909dh9i78y/CBM-1.7.2.zip">CBM-1.7.2.zip</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<p><a class="btn btn-primary" href="https://dl.dropbox.com/s/2dphkroi6osrkak/LAPbeta.zip">Version <span class="badge">1.5</span> <strong>BETA</strong> <span class="label label-warning">Installation manuelle</span></a></p>-->
-
-			<p><a class="btn btn-default" href="https://www.youtube.com/user/laplongejunior" target="_blank"><strong>Retrouvez laplongejunior sur You<span class="label label-danger">Tube</span></strong></a></p>
-			<p><a href="https://twitter.com/laplongejunior" class="twitter-follow-button" data-size="large" data-lang="fr" data-dnt="true" data-show-count="true">Suivre @laplongejunior</a></p>
-
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<strong>Partenaires</strong>
+				<!--<p><a class="btn btn-default" href="https://dl.dropboxusercontent.com/s/h8jgw4qgt4ikr9l/LAPmod.zip" role="button">Téléchargement du mod <span class="label label-warning">Installation manuelle</span></a></p>
+				<h4>Anciennes versions</h4>
+				<div class="table-responsive">
+						<table class="table table-bordered table-condensed table-hover">
+								<thead>
+										<tr>
+												<th>Version du jeu</th>
+												<th>Version du mod</th>
+												<th>Date</th>
+												<th>Téléchargement</th>
+										</tr>
+								</thead>
+								<tbody>
+										<tr>
+												<td>1.7.10</td>
+												<td>1.2.2</td>
+												<td>16.01.2015</td>
+												<td><a href="https://dl.dropboxusercontent.com/s/dl8vesqnxgmrj12/CBM-1.7.10.zip">CBM-1.7.10.zip</a></td>
+										</tr>
+										<tr>
+												<td>1.7.2</td>
+												<td>1.2.2</td>
+												<td>12.12.2014</td>
+												<td><a href="https://dl.dropboxusercontent.com/s/j20pj909dh9i78y/CBM-1.7.2.zip">CBM-1.7.2.zip</a></td>
+										</tr>
+								</tbody>
+						</table>
 				</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-6">
-							<a href="http://shadowaxe.fr" target="_blank">
-								<figure class="sa">
-									<img src="img/logo_shadowaxe.png">
-									<figcaption>
+				<p><a class="btn btn-primary" href="https://dl.dropbox.com/s/2dphkroi6osrkak/LAPbeta.zip">Version <span class="badge">1.5</span> <strong>BETA</strong> <span class="label label-warning">Installation manuelle</span></a></p>-->
+				<p><a class="btn btn-default" href="https://www.youtube.com/user/laplongejunior" target="_blank"><strong>Retrouvez laplongejunior sur You<span class="label label-danger">Tube</span></strong></a></p>
+				<p><a href="https://twitter.com/laplongejunior" class="twitter-follow-button" data-size="large" data-lang="fr" data-dnt="true" data-show-count="true">Suivre @laplongejunior</a></p>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Partenaires</strong>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6">
+								<a href="http://shadowaxe.fr" target="_blank">
+									<figure class="sa">
+										<img src="img/logo_shadowaxe.png">
+										<figcaption>
 										Serveur ShadowAxe
-									</figcaption>
-								</figure>
-							</a>
-						</div>
-						<div class="col-md-6">
-							<a href="http://crafttech.fr.ht" target="_blank">
-								<figure>
-									<img src="https://remiber.github.io/crafttech/img/logo/128.png" alt="Logo CraftTech" title="Serveur CraftTech">
-									<figcaption>
+										</figcaption>
+									</figure>
+								</a>
+							</div>
+							<div class="col-md-6">
+								<a href="http://crafttech.fr.ht" target="_blank">
+									<figure>
+										<img src="https://remiber.github.io/crafttech/img/logo/128.png" alt="Logo CraftTech" title="Serveur CraftTech">
+										<figcaption>
 										Serveur CraftTech
-									</figcaption>
-								</figure>
-							</a>
+										</figcaption>
+									</figure>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-		</div>
-		<!-- /downloads -->
-
-		<hr class="separation">
-
-		<a id="consignes"></a>
-
-		<div class="consignes">
-			<h1>Nos consignes</h1>
-			<p class="lead">
-				Voici nos consignes d'Utilisation du laplongemod.
-				<br/>Si dessous, vous pouvez savoir ce que vous pouvez faire et ne pas faire.
-			</p>
-
-			<div class="row">
-
-				<div class="col-md-3">
-					<h4><strong>Ce que vous pouvez faire avec notre mod en tant qu'utilisateur</strong></h4>
-
-					<p class="text-justify">
-						Vous en servir en solo sans enregistrer votre partie
-						<br/>L'utiliser en multijoueur <strong><u>seulement</u></strong> pour améliorer votre confort de jeu
-						<br/>Passer l'<strong>adresse</strong> de téléchargement à un ami ou la diffuser sur Internet
-						<br/>Enregistrer votre partie et mettre la vidéo ou les screens en ligne SI vous expliquez de quel mod il s'agit (En utilisant l'option bonus "Mini-Pub", le nom du mod et la version s'afficheront à l'écran, ça nous suffit! ;) )
-						<br/>Modifier le ressource pack du mod (pour l'adapter à un autre RP par exemple)
-						<br/>Altérer le mod SI c'est nécessaire pour le rendre compatible avec un autre mod
-						<br/>Mettre en ligne une version <strong>alterée</strong> en précisant que ce n'est PAS la version stable
-					</p>
+			<!-- /downloads -->
+			<hr class="separation">
+			<a id="consignes"></a>
+			<div class="consignes">
+				<h1>Nos consignes</h1>
+				<p class="lead">
+					Voici nos consignes d'Utilisation du laplongemod.
+					<br/>Si dessous, vous pouvez savoir ce que vous pouvez faire et ne pas faire.
+				</p>
+				<div class="row">
+					<div class="col-md-3">
+						<h4><strong>Ce que vous pouvez faire avec notre mod en tant qu'utilisateur</strong></h4>
+						<p class="text-justify">
+							Vous en servir en solo sans enregistrer votre partie
+							<br/>L'utiliser en multijoueur <strong><u>seulement</u></strong> pour améliorer votre confort de jeu
+							<br/>Passer l'<strong>adresse</strong> de téléchargement à un ami ou la diffuser sur Internet
+							<br/>Enregistrer votre partie et mettre la vidéo ou les screens en ligne SI vous expliquez de quel mod il s'agit (En utilisant l'option bonus "Mini-Pub", le nom du mod et la version s'afficheront à l'écran, ça nous suffit! ;) )
+							<br/>Modifier le ressource pack du mod (pour l'adapter à un autre RP par exemple)
+							<br/>Altérer le mod SI c'est nécessaire pour le rendre compatible avec un autre mod
+							<br/>Mettre en ligne une version <strong>alterée</strong> en précisant que ce n'est PAS la version stable
+						</p>
+					</div>
+					<div class="col-md-3">
+						<h4><strong>Ce que vous ne pouvez <u>pas</u> faire avec notre mod en tant qu'utilisateur</strong></h4>
+						<p class="text-justify">
+							Prétendre que ce mod provient de vous, que ce soit en modifiant les traductions ou en laissant flou la source du mod
+							<br/>Modifier les ressources dans le but d'atteindre à l'image d'un joueur ("JOUEUR est un idiot" par exemple)
+							<br/>Remettre en ligne une copie non-alterée du mod (Si vous avez juste changé une texture, il y a les RP pour ça!)
+							<br/>Exploiter ce mod de manière contraire aux règles de votre serveur (par exemple voir la vie d'un adversaire en pvp)
+						</p>
+					</div>
+					<div class="col-md-3">
+						<h4><strong>Ce que vous pouvez faire avec notre mod en tant qu'administrateur</strong></h4>
+						<p class="text-justify">
+							Signaler à la team un usage abusif du mod fait par un joueur pour tricher
+							<br/>Utiliser les ServerRemotes pour interagir directement avec le mod d'un joueur (auto-crash par exemple)
+							<br/>Accorder un traitement de faveur à ceux qui n'utilisent <strong><u>pas</u></strong> le mod (Vous <strong>pouvez</strong> préférer les vanilla!)
+						</p>
+					</div>
+					<div class="col-md-3">
+						<h4><strong>Ce que vous ne pouvez <u>pas</u> faire avec notre mod en tant qu'administrateur</strong></h4>
+						<p class="text-justify">
+							Utiliser abusivement la fonction des ServerRemotes pour gâcher l'expérience de jeu d'un joueur (spam de son)
+							<br/>Faire croire à vos joueurs qu'un accessoire visible grâce au mod pourrait être vu en vanilla
+							<br/>Vous plaindre des avantages visuels accordés par la team à certains joueurs
+							<br/>Vous plaindre de l'immunité aux ServerRemotes accordée aux membres de la team
+							<br/>Cela nous permet de nous assurer qu'il n'y a pas d'abus de la part des administrateurs
+						</p>
+					</div>
 				</div>
-				<div class="col-md-3">
-					<h4><strong>Ce que vous ne pouvez <u>pas</u> faire avec notre mod en tant qu'utilisateur</strong></h4>
-
-					<p class="text-justify">
-						Prétendre que ce mod provient de vous, que ce soit en modifiant les traductions ou en laissant flou la source du mod
-						<br/>Modifier les ressources dans le but d'atteindre à l'image d'un joueur ("JOUEUR est un idiot" par exemple)
-						<br/>Remettre en ligne une copie non-alterée du mod (Si vous avez juste changé une texture, il y a les RP pour ça!)
-						<br/>Exploiter ce mod de manière contraire aux règles de votre serveur (par exemple voir la vie d'un adversaire en pvp)
-					</p>
-				</div>
-				<div class="col-md-3">
-					<h4><strong>Ce que vous pouvez faire avec notre mod en tant qu'administrateur</strong></h4>
-
-					<p class="text-justify">
-						Signaler à la team un usage abusif du mod fait par un joueur pour tricher
-						<br/>Utiliser les ServerRemotes pour interagir directement avec le mod d'un joueur (auto-crash par exemple)
-						<br/>Accorder un traitement de faveur à ceux qui n'utilisent <strong><u>pas</u></strong> le mod (Vous <strong>pouvez</strong> préférer les vanilla!)
-					</p>
-				</div>
-				<div class="col-md-3">
-					<h4><strong>Ce que vous ne pouvez <u>pas</u> faire avec notre mod en tant qu'administrateur</strong></h4>
-
-					<p class="text-justify">
-						Utiliser abusivement la fonction des ServerRemotes pour gâcher l'expérience de jeu d'un joueur (spam de son)
-						<br/>Faire croire à vos joueurs qu'un accessoire visible grâce au mod pourrait être vu en vanilla
-						<br/>Vous plaindre des avantages visuels accordés par la team à certains joueurs
-						<br/>Vous plaindre de l'immunité aux ServerRemotes accordée aux membres de la team
-						<br/>Cela nous permet de nous assurer qu'il n'y a pas d'abus de la part des administrateurs
-					</p>
-				</div>
-
+				<!-- /row -->
 			</div>
-			<!-- /row -->
-
-		</div>
-		<!-- /consignes -->
-
-		<hr class="separation">
-
-		<a id="specifications"></a>
-
-		<div class="specifications">
-			<h1>Spécifications</h1>
-			<p class="lead">
-				Nom de notre Plugin Channel : <strong>LaplongeChannel</strong>
+			<!-- /consignes -->
+			<hr class="separation">
+			<a id="specifications"></a>
+			<div class="specifications">
+				<h1>Spécifications</h1>
+				<p class="lead">
+					Nom de notre Plugin Channel : <strong>LaplongeChannel</strong>
+					<br/>
+					<br/><em>Plus d'informations sur <a href="http://dinnerbone.com/blog/2012/01/13/minecraft-plugin-channels-messaging" target="_blank">la page de Dinnerbone</a></em>
+				</p>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <strong>Comment utiliser ce PluginChannel? <i>(pour les admins)</i></strong>
+							</div>
+							<div class="panel-body text-left">
+								0) Lors de la connection à un serveur, Minecraft envoie le <i>"ClientModName"</i> via le PluginChannel <i>"MC|Brand"</i>
+								<br/>
+								<br/> 1) Avec le mod, cette valeur (normalement "vanilla") devient "LaplongeMod".
+								<br/>
+								<br/> 2) Juste après, le mod envoie, sur son PluginChannel, <i>"ModVersion:"</i> suivi du numéro de version du mod.
+								<br/>
+								<br/> 3) A partir de ce moment-là, pour transmettre des informations au mod, il <strong>faut</strong> d'abord envoyer le nom du PluginChannel dans le channel <i>"REGISTER"</i>
+								<br/> <i>(Cela informera le joueur que votre serveur est channel-compatible avec le mod)</i>
+								<br/>4) Vous pouvez ensuite envoyer quelques informations :
+								<br/> a) <i>"GetVersion"</i> pour demander au mod de re-envoyer son numéro de version.
+								<br/> b) <i>"Remote:"</i> suivi d'une ServerRemote à exécuter <i>(évite de passer par le chat)</i>.
+								<br/> c) <i>"Money:"</i> suivi de la quantité d'argent à afficher dans l'inventaire (évite au mod de lire le chat)
+								<br/><strong>A PARTIR DE CE POINT, LE MOD ENVERRA SUR SON CHANNEL <i>"GetMoney"</i> AU LIEU DE LA COMMANDE "/money" DANS LE CHAT.</strong>
+								<br/>
+								<br/> 5) Pour demander au mod de repasser en "mode standard", ré-envoyez le nom du PluginChannel via le channel <i>"UNREGISTER"</i>
+								<br/> <i>(Cela informera le joueur que votre serveur n'est plus channel-compatible pour le moment)</i>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <strong>	Quels sont les paramètres valides pour les ServerRemotes ?</strong>
+							</div>
+							<div class="panel-body text-left">
+								<strong>Important</strong> : Le texte "non formatté" envoyé dans le chat doit être exact au caractère près !
+								<br/>
+								<i>(En revanche, la présence de couleur, italique, info-bulle, ect. ne change rien au fonctionnement de la Remote)</i>
+								<br/>
+								<br/> 0) Toute remote commence par <i>"LaplongeMod nécessaire pour "</i>.
+								<br/> 0b) La seule exception est <i>"added a chest !"</i> qui ouvre le menu du <i>Steve Co. Supply Crate</i>.
+								<br/>
+								<br/> 1) Pour ouvrir un menu, faites-le suivre de <i>"ouvrir "</i>, puis <i>"le menu avatar"</i>, <i>"la liste d'amis"</i>, <i>"le LaplongeBook"</i> ou <i>"l'inventaire"</i>.
+								<br/>
+								<i>(Sauf dans le cas du Locked Chest mentionné auparavant)</i>
+								<br/>
+								<br/> 2) <i>"afficher une notification "</i> permettra d'afficher un message customisé en haut à droite de l'écran.
+								<br/> Il doit alors être suivi de texte, avec <i>@</i> pour séparer le titre et le message.
+								<br/> Exemple avec la commande <i>/tellraw laplongejr "LaplongeMod nécessaire pour afficher une notification testA@TestB."</i>
+								<br/> Le mod affichera en haut à droite de l'écran de laplongejr une notification avec testA en 1ere ligne et testB en deuxième ligne.
+								<br/>
+								<br/> 3) <i>"démarrer le disque "</i> suivi du nom d'un disque de musique forcera le Jukebox à démarrer un CD.
+								<br/>
+								<br/> 4) Avec <i>"être détecté comme utilisateur du mod"</i> cela devient un peu compliqué : le mod renverra la commande <i>"/trigger set CBMuser 1"</i>
+								<br/> Cela permet de détecter via un scoreboard si un joueur possède le mod ou non.
+								<br/>
+								<strong>De plus</strong>, la remote peut être suivie de <i>" via "</i> et un nom de score pour changer un score différent et ne pas être obligé de changer CBMuser.
+							</div>
+						</div>
+					</div>
+				</div>
 				<br/>
-
-				<br/><em>Plus d'informations sur <a href="http://dinnerbone.com/blog/2012/01/13/minecraft-plugin-channels-messaging" target="_blank">la page de Dinnerbone</a></em>
-			</p>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <strong>Comment utiliser ce PluginChannel? <i>(pour les admins)</i></strong>
-						</div>
-						<div class="panel-body text-left">
-							0) Lors de la connection à un serveur, Minecraft envoie le <i>"ClientModName"</i> via le PluginChannel <i>"MC|Brand"</i>
-							<br/>
-							<br/> 1) Avec le mod, cette valeur (normalement "vanilla") devient "LaplongeMod".
-							<br/>
-							<br/> 2) Juste après, le mod envoie, sur son PluginChannel, <i>"ModVersion:"</i> suivi du numéro de version du mod.
-							<br/>
-							<br/> 3) A partir de ce moment-là, pour transmettre des informations au mod, il <strong>faut</strong> d'abord envoyer le nom du PluginChannel dans le channel <i>"REGISTER"</i>
-							<br/> <i>(Cela informera le joueur que votre serveur est channel-compatible avec le mod)</i>
-							<br/>4) Vous pouvez ensuite envoyer quelques informations :
-							<br/> a) <i>"GetVersion"</i> pour demander au mod de re-envoyer son numéro de version.
-							<br/> b) <i>"Remote:"</i> suivi d'une ServerRemote à exécuter <i>(évite de passer par le chat)</i>.
-							<br/> c) <i>"Money:"</i> suivi de la quantité d'argent à afficher dans l'inventaire (évite au mod de lire le chat)
-							<br/><strong>A PARTIR DE CE POINT, LE MOD ENVERRA SUR SON CHANNEL <i>"GetMoney"</i> AU LIEU DE LA COMMANDE "/money" DANS LE CHAT.</strong>
-							<br/>
-							<br/> 5) Pour demander au mod de repasser en "mode standard", ré-envoyez le nom du PluginChannel via le channel <i>"UNREGISTER"</i>
-							<br/> <i>(Cela informera le joueur que votre serveur n'est plus channel-compatible pour le moment)</i>
-						</div>
+				<br/>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Les paramètres utilisables via les ClientBinds par défaut</strong>
+					</div>
+					<div class="panel-body text-left">
+						0) Pour utiliser ses ClientBinds particulier, tapez dans le chat <i>"$$"</i> suivi de <i>"laplonge"</i>.
+						<br/>
+						<br/> 1) <i>openGui</i> : ouvre l'un des menus du mod.
+						<br/> Unique paramètre : le nom du menu (inventory, friends, money, social, avatar ou trophies).
+						<br/> Deux autres menus peuvent être accessibles : "supply" durant certains events, "team" si trophées finaux débloqués.
+						<br/>
+						<br/> 2) <i>toggleSetting</i> : permet de modifier la valeur booléenne d'un réglage.
+						<br/> 1er paramètre : la liste associée à ce réglage (other, basic, avatar, social ou bonus).
+						<br/> 2eme paramètre : le nom du réglage (consultez la liste via l'aide intégrée au chat).
+						<br/>
+						<br/> 3) <i>toggleConfig</i> : permet de modifier la valeur booléenne d'une config (associée au serveur actuel).
+						<br/> Les paramètres sont semblables à <i>settingsList</i> : le 1er pour la liste (money ou social), le 2eme pour la config.
+						<br/>
+						<br/> 4) <i>getTrophy</i> : permet de débloquer un trophée (STAFF UNIQUEMENT).
+						<br/> Les non-membres du staff n'ont accès qu'au trophée <i>"cheater"</i>.
+						<br/>
+						<br/> 5) <i>directConnect</i> : permet de se déconnecter et d'accéder directement à un autre serveur.
+						<br/> Unique paramètre : l'ip du serveur (si le port est 25565) ou <i>IP:PORT</i>.
+						<br/>
+						<br/> 6) <i>serverConnect</i> : semblable à directConnect, mais reconnecte directement sur le Serveur Principal du mod.
+						<br/> Pas de paramètre ! (si il y en a un, affichera un message demandant d'utiliser <i>directConnect</i> à la place).
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <strong>	Quels sont les paramètres valides pour les ServerRemotes ?</strong>
-						</div>
-						<div class="panel-body text-left">
-							<strong>Important</strong> : Le texte "non formatté" envoyé dans le chat doit être exact au caractère près !
-							<br/>
-							<i>(En revanche, la présence de couleur, italique, info-bulle, ect. ne change rien au fonctionnement de la Remote)</i>
-							<br/>
-							<br/> 0) Toute remote commence par <i>"LaplongeMod nécessaire pour "</i>.
-							<br/> 0b) La seule exception est <i>"added a chest !"</i> qui ouvre le menu du <i>Steve Co. Supply Crate</i>.
-							<br/>
-							<br/> 1) Pour ouvrir un menu, faites-le suivre de <i>"ouvrir "</i>, puis <i>"le menu avatar"</i>, <i>"la liste d'amis"</i>, <i>"le LaplongeBook"</i> ou <i>"l'inventaire"</i>.
-							<br/>
-							<i>(Sauf dans le cas du Locked Chest mentionné auparavant)</i>
-							<br/>
-							<br/> 2) <i>"afficher une notification "</i> permettra d'afficher un message customisé en haut à droite de l'écran.
-							<br/> Il doit alors être suivi de texte, avec <i>@</i> pour séparer le titre et le message.
-							<br/> Exemple avec la commande <i>/tellraw laplongejr "LaplongeMod nécessaire pour afficher une notification testA@TestB."</i>
-							<br/> Le mod affichera en haut à droite de l'écran de laplongejr une notification avec testA en 1ere ligne et testB en deuxième ligne.
-							<br/>
-							<br/> 3) <i>"démarrer le disque "</i> suivi du nom d'un disque de musique forcera le Jukebox à démarrer un CD.
-							<br/>
-							<br/> 4) Avec <i>"être détecté comme utilisateur du mod"</i> cela devient un peu compliqué : le mod renverra la commande <i>"/trigger set CBMuser 1"</i>
-							<br/> Cela permet de détecter via un scoreboard si un joueur possède le mod ou non.
-							<br/>
-							<strong>De plus</strong>, la remote peut être suivie de <i>" via "</i> et un nom de score pour changer un score différent et ne pas être obligé de changer CBMuser.
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<br/>
-			<br/>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<strong>Les paramètres utilisables via les ClientBinds par défaut</strong>
-				</div>
-				<div class="panel-body text-left">
-					0) Pour utiliser ses ClientBinds particulier, tapez dans le chat <i>"$$"</i> suivi de <i>"laplonge"</i>.
-					<br/>
-					<br/> 1) <i>openGui</i> : ouvre l'un des menus du mod.
-					<br/> Unique paramètre : le nom du menu (inventory, friends, money, social, avatar ou trophies).
-					<br/> Deux autres menus peuvent être accessibles : "supply" durant certains events, "team" si trophées finaux débloqués.
-					<br/>
-					<br/> 2) <i>toggleSetting</i> : permet de modifier la valeur booléenne d'un réglage.
-					<br/> 1er paramètre : la liste associée à ce réglage (other, basic, avatar, social ou bonus).
-					<br/> 2eme paramètre : le nom du réglage (consultez la liste via l'aide intégrée au chat).
-					<br/>
-					<br/> 3) <i>toggleConfig</i> : permet de modifier la valeur booléenne d'une config (associée au serveur actuel).
-					<br/> Les paramètres sont semblables à <i>settingsList</i> : le 1er pour la liste (money ou social), le 2eme pour la config.
-					<br/>
-					<br/> 4) <i>getTrophy</i> : permet de débloquer un trophée (STAFF UNIQUEMENT).
-					<br/> Les non-membres du staff n'ont accès qu'au trophée <i>"cheater"</i>.
-					<br/>
-					<br/> 5) <i>directConnect</i> : permet de se déconnecter et d'accéder directement à un autre serveur.
-					<br/> Unique paramètre : l'ip du serveur (si le port est 25565) ou <i>IP:PORT</i>.
-					<br/>
-					<br/> 6) <i>serverConnect</i> : semblable à directConnect, mais reconnecte directement sur le Serveur Principal du mod.
-					<br/> Pas de paramètre ! (si il y en a un, affichera un message demandant d'utiliser <i>directConnect</i> à la place).
-				</div>
-			</div>
-
-			<br/>
-
-			<div class="alert alert-warning" role="alert">
-				<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				<br/>
+				<div class="alert alert-warning" role="alert">
+					<p><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 					<span class="sr-only">Attention ! </span> N'oubliez pas de lire nos consignes d'utilisation du mod (ce que vous pouvez faire et ne pas faire avec).
-					<br> Le mod a la faculté de bloquer certains pseudos, vous êtes prévenus...</p>
+				<br> Le mod a la faculté de bloquer certains pseudos, vous êtes prévenus...</p>
 			</div>
-
 		</div>
 		<!-- /specifications -->
-
 		<p class="text-right"><a href="#">Retour en haut</a></p>
 		<hr>
 		<footer class="text-center">
@@ -439,7 +388,6 @@
 					<a href="https://getbootstrap.com/" target="_blank" class="bootstrap-logo"><img src="img/bootstrap-solid.svg" alt="Bootstrap" title="Bootstrap"></a>
 					<a href="https://pages.github.com" target="_blank" class="octocat"><img src="img/octocat.png" alt="GitHub Pages" title="GitHub Pages"></a>
 				</div>
-
 			</p>
 		</footer>
 		<hr>
@@ -456,26 +404,6 @@
 		</div>
 	</div>
 	<!-- /container -->
-
 	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-	<script>
-		var $buoop = {
-			c: 2,
-			reminder: 0
-		};
-
-		function $buo_f() {
-			var e = document.createElement("script");
-			e.src = "https://browser-update.org/update.min.js";
-			document.body.appendChild(e);
-		};
-		try {
-			document.addEventListener("DOMContentLoaded", $buo_f, false)
-		} catch (e) {
-			window.attachEvent("onload", $buo_f)
-		}
-	</script>
 </body>
-
 </html>
