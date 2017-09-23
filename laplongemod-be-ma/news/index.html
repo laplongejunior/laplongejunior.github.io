@@ -69,13 +69,15 @@ img {
 
 							<h3><font color="green">(Prochaine mise à jour)</font></h3>
 
-							<p>*Le gestionnaire de l'API de Mojang peut détecter un UUID offiline incorrect
-							<br/>
-							<br/>*Les textures fournies par les serveurs sont copiées dans le cache de l'API
-							<br/>-Fonctionne même si la texture est associé à l'UUID offline
+							<p>*Le gestionnaire de l'API de Mojang peut détecter un UUID offline incorrect:
+							<br/>-Ce cas de figure ne peut survenir que si un serveur est fortement modifié
 							<br/>
 							<br/>*En combinant l'API de Mojang et l'hébergeur, le mod peut déterminer quelle cape vous avez:
 							<br/>-Auparavant, seule la possession d'une cape pouvait être détectée, sans savoir laquelle
+							<br/>
+							<br/>*Les textures fournies par les serveurs sont copiées dans le cache de l'API:
+							<br/>-Fonctionne même si la texture est associé à l'UUID offline
+							<br/>-L'utilité est évidente : consommation réduite de la connexion à Internet
 							<br/>
 							<br/>*Vous pouvez demander au Menu Avatar de simuler le rendu en portant une Elytra
 							<br/>
@@ -86,14 +88,13 @@ img {
 							<br/>
 							<br/>*Bugfixe: Gestion des erreurs survenues lors de l'utilisation de l'API
 							<br/>-Les requêtes erronées sont répétées après un petit délai
+							<br/>-Le délai augmente à chaque fois, une panne chez Mojang ne démolira pas votre connexion
 							<br/>
 							<br/>*Bugfixe: Porter une elytra interférait avec le Menu Avatar
 							<br/>
 							<br/>*Interne: Le mod peut désormais dupliquer le joueur afin de l'afficher correctement dans un menu
-							<br/>-Auparavant une seule variation pouvait être affichée en même temps, ce qui touchait le joueur IG
+							<br/>-Auparavant une seule variation pouvait être affichée en même temps, ce qui affectait le joueur IG
 							<br/>-Cela rend également possible d'afficher plusieurs variations du joueur (cf. nouveaux ajouts)
-							<br/>
-							<br/>*Interne: Petite amélioration des performances du cache
 							<br/>
 							<br/>
 							<br/>
