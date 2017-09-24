@@ -96,17 +96,8 @@ img {
 							<br/>-Auparavant une seule variation pouvait être affichée en même temps, ce qui affectait le joueur IG
 							<br/>-Cela rend également possible d'afficher plusieurs variations du joueur (cf. nouveaux ajouts)
 							<br/>
-							<br/>
-							<br/>
-							<br/>*Bugfixes: Augmentation de la sécurité du cache lors de l'accès par plusieurs threads
-							<br/>-Patch d'un bug théorique pouvant faire attendre une requête jamais lancée
-							<br/>Rend théoriquement possible qu'une requête soit accidentellement relancée une fois
-							<br/>-Sous-patch afin de rendre le nouveau bug pratiquement quasi-impossible à rencontrer
-							<br/><font color="red">Ce bug est sans danger, il peut seulement envoyer une seconde requête Internet pour rien</font>
-							<br/>	
-							<br/>*Launcher: le cache de l'API enverra un avertissement en cas de deux comportements inhabituels:
-							<br/>-L'échec d'une requête à cause d'un timeout de Mojang
-							<br/>-L'arrivée du bug théorique concerné par le patch ci-dessus (il n'est JAMAIS survenu durant les tests!)</p>
+							<br/>*Launcher: le cache de l'API enverra un avertissement si une requête à timeout
+							<br/>*Bugfixe: Il est désormais physiquement impossible que l'API relance accidentellement une requête</p>
 					</div>
 					
 					<div class="post text">
