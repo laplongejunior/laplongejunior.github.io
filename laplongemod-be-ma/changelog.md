@@ -1,6 +1,6 @@
 # Changelog du LaplongeMod
 
-### LapMod 1.6.2 : Legacy Update (3/10/2017)
+### LapMod 1.6.2 : Legacy Update (03/10/2017)
 
 - Les anciens skins au format de la 1.7 s'affichent correctement
    - S'applique à la fois aux skins rajoutés par le mod et aux skins fournis par l'API
