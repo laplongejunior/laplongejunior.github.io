@@ -1,4 +1,54 @@
 # Changelog du LaplongeMod
+
+### LapMod 1.6.2 : Legacy Update (3/10/2017)
+
+- Les anciens skins au format de la 1.7 s'affichent correctement
+   - S'applique à la fois aux skins rajoutés par le mod et aux skins fournis par l'API
+   - Le mod est désormais capable d'afficher correctement l'intégralité des joueurs en multijoueurs!
+     (Un skin format 1.7 est un skin en 64x32, avec un seul bras et une seule jambe)
+
+- Le gestionnaire de l'API de Mojang peut détecter un UUID offline incorrect
+   - Ce cas de figure ne peut survenir que si un serveur est fortement modifié
+
+- En combinant l'API de Mojang et l'hébergeur, le mod peut déterminer quelle cape vous avez
+   - Auparavant, seule la possession d'une cape pouvait être détectée, sans savoir laquelle
+
+- Les textures fournies par les serveurs sont copiées dans le cache de l'API
+   - Fonctionne même si la texture est associé à l'UUID offline
+   - L'utilité est évidente : consommation réduite de la connexion à Internet
+
+- Les textures rajoutées sur les autres joueurs ne sont pas téléchargées si son option est désactivée
+   - Réduit l'usage de la connexion en multijoueurs, notemment l'accès aux accessoires rajoutés par d'autres mods
+   - Les textures du joueur principal (= vous) sont toujours téléchargées afin de faire fonctionner le Menu Avatar
+
+- Activer/désactiver l'accessoire rajouté par un mod supporté affiche un lien vers leur site web
+   - Cette nouveauté est désactivable dans les Réglages Basiques
+- Vous pouvez demander au Menu Avatar de simuler le rendu en portant une Elytra
+
+- Création d'une sous-section du menu Avatar dédiée aux possesseurs de capes officielles:
+   - Affiche votre cape, son rendu sous forme d'Elytra et quelques informations sur cette carte
+   - Les rendus sont gérés par les données de Mojang et de Minecraft et sont donc 100% corrects
+   - Les informations affichées, en revanche, proviennent du mod et peuvent donc contenir des erreurs
+
+- Suppression des accessoires des mods de hacks rajoutés pour tester le système de Support:
+   - Les mods "supportés" ne rajoutaient plus d'accessoires depuis des années
+     (Je ne suis PAS contre le support des accessoires d'un hack, si leur attribution est limitée!)
+
+- Bugfixe: Gestion des erreurs survenues lors de l'utilisation de l'API
+   - Les requêtes erronées sont répétées après un petit délai
+   - Le délai augmente à chaque fois, une panne chez Mojang ne démolira pas votre connexion
+
+- Bugfixe: Porter une elytra interférait avec le Menu Avatar
+
+- Interne: Le mod peut désormais dupliquer le joueur afin de l'afficher correctement dans un menu
+   - Auparavant une seule variation pouvait être affichée en même temps, ce qui affectait le joueur IG
+   - Cela rend également possible d'afficher plusieurs variations du joueur (cf. nouveaux ajouts)
+
+- Launcher: le cache de l'API enverra un avertissement si une requête à timeout
+- Bugfixe: Il est désormais physiquement impossible que l'API relance accidentellement une requête
+
+---
+
 ### LaplongeMod 1.6.1.1 : API Patch (30/08/2017)
 Pas de gros changements, surtout des perfectionnements des nouveaux systèmes rajoutés en 1.6.1
 - L'hébergeur du mod peut désormais attribuer des skins à gros bras ("Steve?")
