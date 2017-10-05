@@ -19,7 +19,7 @@
 
 - Les textures rajoutées sur les autres joueurs ne sont pas téléchargées si son option est désactivée
    - Réduit l'usage de la connexion en multijoueurs, notemment l'accès aux accessoires rajoutés par d'autres mods
-   - Les textures du joueur principal (= vous) sont toujours téléchargées afin de faire fonctionner le Menu Avatar
+   - Les textures du joueur principal (vous!) sont toujours téléchargées afin de faire fonctionner le Menu Avatar
 
 - Activer/désactiver l'accessoire rajouté par un mod supporté affiche un lien vers leur site web
    - Cette nouveauté est désactivable dans les Réglages Basiques
@@ -44,8 +44,9 @@
    - Auparavant une seule variation pouvait être affichée en même temps, ce qui affectait le joueur IG
    - Cela rend également possible d'afficher plusieurs variations du joueur (cf. nouveaux ajouts)
 
-- Launcher: le cache de l'API enverra un avertissement si une requête à timeout
+- Launcher: Le cache de l'API enverra un avertissement si une requête a timeout
 - Bugfixe: Il est désormais physiquement impossible que l'API relance accidentellement une requête
+- Performances: Réduction de la création d'objets lors des requêtes au cache de l'API
 
 ---
 
