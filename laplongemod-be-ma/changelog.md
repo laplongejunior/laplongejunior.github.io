@@ -1,7 +1,28 @@
 # Changelog du LaplongeMod
 
-### LapMod 1.6.2 : Legacy Update (03/10/2017)
+### LapMod 1.6.2.1 : Hypenio Patch (15/10/2017)						
+- Les capes du mod HypeMod (serveur Hypenio) sont désormais supportées:
+   - Tous leurs donateurs reçoivent une cape avec le logo de Hypenio
 
+- Le menu Avatar dirige sur un menu avec la liste des mods supportés
+   - Pour rappel, la plupart des mods fournissent les capes à leurs donateurs, mais pas tous!
+
+- Bugfixe: Le réglage social des mods supportés avait le nom de l'autre réglage
+
+- Bugfixe: La fonction "couche de skin en fonction de l'armure" empêchait d'utiliser le menu vanilla
+   - Désormais, modifier la couche de skin directement désactive la synchronisation avec l'armure
+
+- Interne: La gestion des capes moddées est simplifiée
+   - Le démarrage du mod devrait également être légèrement plus rapide
+
+ - Interne: Ajout d'un message d'avertissement si une version contient un ajout non-autorisé:
+   - Par exemple, la cape d'un mod qui n'accepte pas les supports de donateurs
+   - L'avertissement s'affiche en haut à gauche de votre écran (en plus du nom et de la version du mod)
+     Si il y a un avertissement en haut à gauche de votre écran, supprimez la version SVP
+					
+---
+
+### LapMod 1.6.2 : Legacy Update (03/10/2017)
 - Les anciens skins au format de la 1.7 s'affichent correctement
    - S'applique à la fois aux skins rajoutés par le mod et aux skins fournis par l'API
    - Le mod est désormais capable d'afficher correctement l'intégralité des joueurs en multijoueurs!
