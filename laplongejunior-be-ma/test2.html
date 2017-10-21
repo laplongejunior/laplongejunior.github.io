@@ -30,6 +30,9 @@ function _countdownReceived(xhr, iframeID)
 	var innerDoc = (iframe.contentDocument || iframe.contentWindow.document);
 	alert(innerDoc);
 	innerDoc.write(xhr.responseText);
+	innerDoc.open();
+	innerDoc.write(xhr.responseText);
+	innerDoc.close();
 }
 </script>
 </head>
