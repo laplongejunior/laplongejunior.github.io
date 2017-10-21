@@ -9,16 +9,17 @@ function _onload() {
 	var LENGTH = arguments.length/2;
 	for (var i = 0; i < LENGTH; ++i)
 	{
-		alert(i);
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', 'https://laplongejunior.github.io/laplongejunior-be-ma/test.html');
 		xhr.addEventListener('readystatechange', _countdownReceived(xhr, arguments[i*2]));		
 		xhr.send(null);
+		alert(i);
 	}
 }
 
 function _countdownReceived(xhr, iframeID)
 {
+	alert(iframeID);
 	if (xhr.readyState !== XMLHttpRequest.DONE) return;
 		
 	var iframe = document.getElementById(iframeID);
