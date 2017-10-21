@@ -5,31 +5,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <script>
+versionNumber = 0;
 function _onload() {
+	console.log('running:'+versionNumber);
 	var LENGTH = arguments.length/2;
 	for (var i = 0; i < LENGTH; ++i)
 	{
-		alert(i);
+		console.log(i);
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', 'https://laplongejunior.github.io/laplongejunior-be-ma/test.html');
 		xhr.addEventListener('readystatechange', _countdownReceived(xhr, arguments[i*2]));		
 		xhr.send(null);
-		alert(i);
+		console.log(i);
 	}
 }
 
 function _countdownReceived(xhr, iframeID)
 {
-	alert(iframeID);
+	console.log(iframeID);
 	if (xhr.readyState !== XMLHttpRequest.DONE) return;
 		
 	var iframe = document.getElementById(iframeID);
-	alert(iframe);
-	alert(iframe.contentDocument);
-	alert(iframe.contentWindow.document);
+	console.log(iframe);
+	console.log(iframe.contentDocument);
+	console.log(iframe.contentWindow.document);
 	var innerDoc = (iframe.contentDocument || iframe.contentWindow.document);
-	alert(innerDoc);
-	innerDoc.write(xhr.responseText);
+	console.log(innerDoc);
 	innerDoc.open();
 	innerDoc.write(xhr.responseText);
 	innerDoc.close();
