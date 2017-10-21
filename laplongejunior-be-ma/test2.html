@@ -7,6 +7,7 @@ function _onload() {
 	var LENGTH = arguments.length/2;
 	for (var i = 0; i < LENGTH; ++i)
 	{
+		alert(i);
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', 'https://laplongejunior.github.io/laplongejunior-be-ma/test.html');
 		xhr.addEventListener('readystatechange', _countdownReceived(xhr, arguments[i*2]));		
