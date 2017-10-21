@@ -21,6 +21,8 @@ function _countdownReceived(xhr, iframeID)
 	var iframe = document.getElementById(iframeID);
 	alert(iframe);
 	var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+	alert(innerDoc);
+	innerDoc.write(xhr.responseText);
 }
 </script>
 </head>
