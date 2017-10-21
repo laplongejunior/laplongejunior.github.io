@@ -4,12 +4,11 @@
 
 <script>
 function _onload() {
-	alert("ok");
 	var LENGTH = arguments.length/2;
 	for (var i = 0; i < LENGTH; ++i)
 	{
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'https://www.dropbox.com/s/fqvevh00c1d5c98/test.html?dl=1');
+		xhr.open('GET', 'https://laplongejunior.github.io/laplongejunior-be-ma/test.html');
 		xhr.addEventListener('readystatechange', _countdownReceived(xhr, arguments[i*2]));		
 		xhr.send(null);
 	}
