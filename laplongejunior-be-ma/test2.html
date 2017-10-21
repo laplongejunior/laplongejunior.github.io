@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+function _onload() {
+	alert("ok");
+	var LENGTH = arguments.length/2;
+	for (var i = 0; i < LENGTH; ++i)
+	{
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', 'https://www.dropbox.com/s/fqvevh00c1d5c98/test.html?dl=1');
+		xhr.addEventListener('readystatechange', _countdownReceived(xhr, arguments[i*2]));		
+		xhr.send(null);
+	}
+}
+
+function _countdownReceived(xhr, iframeID)
+{
+	if (xhr.readyState !== XMLHttpRequest.DONE) return;
+		
+	var iframe = document.getElementById(iframeID);
+	alert(iframe);
+	var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+}
+</script>
+</head>
+<body onload="_onload('countdown1', 1979194)">
+<iframe id="countdown1" height=700 width=360 frameborder=0 src=""></iframe>
+</body>
+</html>
