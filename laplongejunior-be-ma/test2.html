@@ -3,26 +3,25 @@
 <head>
 <title>Test</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <script>
-function _onload() {for (var i = 0, LENGTH = arguments.length/2; i < LENGTH; ++i){
+function e(){for (var i = 0, a = arguments.length/2; i < a; ++i){
 var r = new XMLHttpRequest();
 var iframeID = arguments[i*2];
-r.addEventListener('readystatechange', function() {
-if (r.readyState !== XMLHttpRequest.DONE) return;	
-var iframe = document.getElementById(iframeID);
-var innerDoc = (iframe.contentDocument || iframe.contentWindow.document);
+r.addEventListener('readystatechange', function(){
+if (r.readyState !== XMLHttpRequest.DONE)return;	
+var iframe=document.getElementById(iframeID);
+var innerDoc=(iframe.contentDocument || iframe.contentWindow.document);
 innerDoc.open();
 innerDoc.write(r.responseText);
 innerDoc.close();
-var elements = innerDoc.getElementsByClassName('demo');
-for (var i = 0, LENGTH = elements.length; i < LENGTH; ++i)elements[i].innerHTML = '';
+var elements=innerDoc.getElementsByClassName('demo');
+for (var j=0,b=elements.length;j<b;++j)elements[j].innerHTML = '';
 });
 r.open('GET', '/countdowns/' + arguments[i*2+1] + '.ihtml');r.send();
 }}
 </script>
 </head>
-<body onload="_onload('countdown1', 1979194)">
+<body onload="e('countdown1', 1979194)">
 <iframe id="countdown1" height=700 width=360 frameborder=0></iframe>
 </body>
 </html>
