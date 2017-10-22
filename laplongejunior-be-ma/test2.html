@@ -5,9 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <script>
-versionNumber = 1;
 function _onload() {
-	console.log('running:'+versionNumber);
 	var LENGTH = arguments.length/2;
 	for (var i = 0; i < LENGTH; ++i)
 	{
@@ -22,10 +20,8 @@ function _onload() {
 
 function _countdownReceived(xhr, iframeID)
 {
-	console.log(iframeID);
-	console.log(xhr.readyState);
-	console.log(XMLHttpRequest.DONE);
 	if (xhr.readyState !== XMLHttpRequest.DONE) return;
+	console.log(iframeID);
 		
 	var iframe = document.getElementById(iframeID);
 	console.log(iframe);
