@@ -10,7 +10,7 @@ function _onload() {
 	for (var i = 0; i < LENGTH; ++i)
 	{
 		var xhr = new XMLHttpRequest();
-		xhr.addEventListener('readystatechange', function() { _countdownReceived(xhr, arguments[i*2]); });
+		xhr.addEventListener('readystatechange', function() { if (xhr.readyState === XMLHttpRequest.DONE) _countdownReceived(xhr, arguments[i*2]); });
 		xhr.open('GET', '/laplongejunior-be-ma/test.html');	
 		xhr.send('');
 	}
@@ -18,10 +18,6 @@ function _onload() {
 
 function _countdownReceived(xhr, iframeID)
 {
-	console.log(xhr.readyState);
-	alert(xhr.responseText);
-	if (xhr.readyState !== XMLHttpRequest.DONE) return;
-		
 	var iframe = document.getElementById(iframeID);
 	console.log(iframe);
 	console.log(iframe.contentDocument);
