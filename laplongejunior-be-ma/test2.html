@@ -5,31 +5,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <script>
-function _onload() {
-	for (var i = 0, LENGTH = arguments.length/2; i < LENGTH; ++i)
-	{
-		var xhr = new XMLHttpRequest();
-		var iframeID = arguments[i*2];
-		xhr.addEventListener('readystatechange', function() {
-			if (xhr.readyState === XMLHttpRequest.DONE) _countdownReceived(xhr, iframeID);
-		});
-		xhr.open('GET', '/laplongejunior-be-ma/countdowns/' + arguments[i*2+1] + '.ihtml');	
-		xhr.send();
-	}
-}
-
-function _countdownReceived(xhr, iframeID)
-{
-	var iframe = document.getElementById(iframeID);
-	var innerDoc = (iframe.contentDocument || iframe.contentWindow.document);
-	innerDoc.open();
-	innerDoc.write(xhr.responseText);
-	innerDoc.close();
+function _onload() {for (var i = 0, LENGTH = arguments.length/2; i < LENGTH; ++i){
+var xhr = new XMLHttpRequest();
+var iframeID = arguments[i*2];
+xhr.addEventListener('readystatechange', function() {
+if (xhr.readyState !== XMLHttpRequest.DONE) return;	
+var iframe = document.getElementById(iframeID);
+var innerDoc = (iframe.contentDocument || iframe.contentWindow.document);
+innerDoc.open();
+innerDoc.write(xhr.responseText);
+innerDoc.close();
 	
-	var elements = innerDoc.getElementsByClassName('demo');
-	for (var i = 0, LENGTH = elements.length; i < LENGTH; ++i)
-		elements[i].innerHTML = '';
-}
+var elements = innerDoc.getElementsByClassName('demo');
+for (var i = 0, LENGTH = elements.length; i < LENGTH; ++i)
+	elements[i].innerHTML = '';
+});
+xhr.open('GET', '/laplongejunior-be-ma/countdowns/' + arguments[i*2+1] + '.ihtml');	
+xhr.send();
+}}
 </script>
 </head>
 <body onload="_onload('countdown1', 1979194)">
