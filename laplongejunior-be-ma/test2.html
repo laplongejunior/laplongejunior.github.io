@@ -6,22 +6,19 @@
 
 <script>
 function _onload() {for (var i = 0, LENGTH = arguments.length/2; i < LENGTH; ++i){
-var xhr = new XMLHttpRequest();
+var r = new XMLHttpRequest();
 var iframeID = arguments[i*2];
-xhr.addEventListener('readystatechange', function() {
-if (xhr.readyState !== XMLHttpRequest.DONE) return;	
+r.addEventListener('readystatechange', function() {
+if (r.readyState !== XMLHttpRequest.DONE) return;	
 var iframe = document.getElementById(iframeID);
 var innerDoc = (iframe.contentDocument || iframe.contentWindow.document);
 innerDoc.open();
-innerDoc.write(xhr.responseText);
+innerDoc.write(r.responseText);
 innerDoc.close();
-	
 var elements = innerDoc.getElementsByClassName('demo');
-for (var i = 0, LENGTH = elements.length; i < LENGTH; ++i)
-	elements[i].innerHTML = '';
+for (var i = 0, LENGTH = elements.length; i < LENGTH; ++i)elements[i].innerHTML = '';
 });
-xhr.open('GET', '/laplongejunior-be-ma/countdowns/' + arguments[i*2+1] + '.ihtml');	
-xhr.send();
+r.open('GET', '/countdowns/' + arguments[i*2+1] + '.ihtml');r.send();
 }}
 </script>
 </head>
