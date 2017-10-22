@@ -26,6 +26,9 @@ function _countdownReceived(xhr, iframeID)
 	innerDoc.open();
 	innerDoc.write(xhr.responseText);
 	innerDoc.close();
+	
+	var element = innerDoc.getElementsByClass("demo")[0];
+	console.log(element);
 }
 </script>
 </head>
