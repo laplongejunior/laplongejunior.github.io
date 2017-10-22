@@ -10,7 +10,7 @@ function _onload() {
 	for (var i = 0; i < LENGTH; ++i)
 	{
 		var xhr = new XMLHttpRequest();
-		xhr.addEventListener('readystatechange', _countdownReceived(xhr, arguments[i*2]));
+		xhr.addEventListener('readystatechange', function() { _countdownReceived(xhr, arguments[i*2]); });
 		xhr.open('GET', '/laplongejunior-be-ma/test.html');	
 		xhr.send('');
 	}
