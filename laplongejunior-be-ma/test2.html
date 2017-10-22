@@ -5,7 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script>
 function e(){for (var i=0,a=arguments.length/2;i<a;++i){
-document.getElementById(arguments[i*2]).src = '/countdowns/' + arguments[i*2+1] + '.html';
+var iframe=document.getElementById(arguments[i*2]);
+iframe.src = '/countdowns/' + arguments[i*2+1] + '.html';
 var innerDoc=(iframe.contentDocument || iframe.contentWindow.document);
 innerDoc.getElementsByClassName('demo')[0].innerHTML = '';
 }}
