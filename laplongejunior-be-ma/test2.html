@@ -24,6 +24,7 @@ function _countdownReceived(xhr, iframeID)
 {
 	console.log(iframeID);
 	console.log(xhr.readyState);
+	console.log(XMLHttpRequest.DONE);
 	if (xhr.readyState !== XMLHttpRequest.DONE) return;
 		
 	var iframe = document.getElementById(iframeID);
