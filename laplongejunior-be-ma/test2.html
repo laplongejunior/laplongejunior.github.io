@@ -10,7 +10,8 @@ function _onload() {
 	for (var i = 0; i < LENGTH; ++i)
 	{
 		var xhr = new XMLHttpRequest();
-		xhr.addEventListener('readystatechange', function() { if (xhr.readyState === XMLHttpRequest.DONE) _countdownReceived(xhr, arguments[i*2]); });
+		var iframeID = arguments[i*2];
+		xhr.addEventListener('readystatechange', function() { if (xhr.readyState === XMLHttpRequest.DONE) _countdownReceived(xhr, iframeID); });
 		xhr.open('GET', '/laplongejunior-be-ma/test.html');	
 		xhr.send('');
 	}
