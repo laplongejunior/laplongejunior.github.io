@@ -14,7 +14,7 @@ function _onload() {
 		xhr.addEventListener('readystatechange', function() {
 			if (xhr.readyState === XMLHttpRequest.DONE) _countdownReceived(xhr, iframeID);
 		});
-		xhr.open('GET', '/laplongejunior-be-ma/test.html');	
+		xhr.open('GET', '/countdowns/' + arguments[i*2+1] + '.html');	
 		xhr.send();
 	}
 }
