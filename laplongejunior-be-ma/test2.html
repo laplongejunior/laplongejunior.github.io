@@ -5,19 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script>
 function e(){for (var i=0,a=arguments.length/2;i<a;++i){
-var r = new XMLHttpRequest();
-var iframeID = arguments[i*2];
-r.addEventListener('readystatechange', function(){
-if (r.readyState !== XMLHttpRequest.DONE)return;	
-var iframe=document.getElementById(iframeID);
+document.getElementById(arguments[i*2]).src = '/countdowns/' + arguments[i*2+1] + '.html';
 var innerDoc=(iframe.contentDocument || iframe.contentWindow.document);
-innerDoc.open();
-innerDoc.write(r.responseText);
-innerDoc.close();
-var elements=innerDoc.getElementsByClassName('demo');
-for (var j=0,b=elements.length;j<b;++j)elements[j].innerHTML = '';
-});
-r.open('GET', '/countdowns/' + arguments[i*2+1] + '.ihtml');r.send();
+innerDoc.getElementsByClassName('demo')[0].innerHTML = '';
 }}
 </script>
 </head>
