@@ -13,8 +13,8 @@ function _onload() {
 	{
 		console.log(i);
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'https://laplongejunior.github.io/laplongejunior-be-ma/test.html');
-		xhr.addEventListener('readystatechange', _countdownReceived(xhr, arguments[i*2]));		
+		xhr.addEventListener('readystatechange', _countdownReceived(xhr, arguments[i*2]));
+		xhr.open('GET', 'https://laplongejunior.github.io/laplongejunior-be-ma/test.html');		
 		xhr.send(null);
 		console.log(i);
 	}
