@@ -6,10 +6,11 @@
 <script>
 function e(){for (var i=0,a=arguments.length/2;i<a;++i){
 var iframe=document.getElementById(arguments[i*2]);
-iframe.src = '/countdowns/' + arguments[i*2+1] + '.html';
+iframe.onload = function(iframe){
 var innerDoc=(iframe.contentDocument || iframe.contentWindow.document);
 var e = innerDoc.getElementsByClassName('demo');
 e[0].innerHTML = '';
+} iframe.src = '/countdowns/' + arguments[i*2+1] + '.html';
 }}
 </script>
 </head>
