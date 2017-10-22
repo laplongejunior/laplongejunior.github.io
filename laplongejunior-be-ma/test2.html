@@ -7,12 +7,8 @@
 function e(){for (var i=0,a=arguments.length/2;i<a;++i){
 var iframe=document.getElementById(arguments[i*2]);
 iframe.onload = function(){
-console.log(this);console.log(this.contentDocument); console.log(this.contentWindow.document);
-var innerDoc=(this.contentDocument || this.contentWindow.document);
-var e = innerDoc.getElementsByClassName('demo');
-e[0].innerHTML = '';
-}; iframe.src = '/countdowns/' + arguments[i*2+1] + '.html';
-}}
+(this.contentDocument || this.contentWindow.document).getElementsByClassName('demo')[0].innerHTML = '';
+};iframe.src = '/countdowns/' + arguments[i*2+1] + '.html';}}
 </script>
 </head>
 <body onload="e('countdown1', 1979194)">
