@@ -11,21 +11,18 @@ function _onload() {
 	{
 		var xhr = new XMLHttpRequest();
 		var iframeID = arguments[i*2];
-		xhr.addEventListener('readystatechange', function() { if (xhr.readyState === XMLHttpRequest.DONE) _countdownReceived(xhr, iframeID); });
+		xhr.addEventListener('readystatechange', function() {
+			if (xhr.readyState === XMLHttpRequest.DONE) _countdownReceived(xhr, iframeID);
+		});
 		xhr.open('GET', '/laplongejunior-be-ma/test.html');	
-		xhr.send('');
+		xhr.send();
 	}
 }
 
 function _countdownReceived(xhr, iframeID)
 {
-	console.log(iframeID);
 	var iframe = document.getElementById(iframeID);
-	console.log(iframe);
-	console.log(iframe.contentDocument);
-	console.log(iframe.contentWindow.document);
 	var innerDoc = (iframe.contentDocument || iframe.contentWindow.document);
-	console.log(innerDoc);
 	innerDoc.open();
 	innerDoc.write(xhr.responseText);
 	innerDoc.close();
