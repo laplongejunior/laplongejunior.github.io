@@ -4,10 +4,12 @@
 <title>Test</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script>
-function e(){for(var i=0,a=arguments.length/2;i<a;++i){var o=document.getElementById(arguments[i*2]);o.onload=function(){(this.contentDocument||this.contentWindow.document).getElementsByClassName('demo')[0].innerHTML='';};o.src='/countdowns/'+arguments[i*2+1]+'.html';}}
+function e(t){
+  console.log(t);
+}
 </script>
 </head>
 <body onload="e('countdown1', 1979194)">
-<iframe id="countdown1" height=700 width=360 frameborder=0></iframe>
+<iframe height=700 width=360 frameborder=0 onload="e(this)"></iframe>
 </body>
 </html>
