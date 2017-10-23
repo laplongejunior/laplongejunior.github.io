@@ -4,10 +4,15 @@
 <title>Test</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script>
-function e(i){console.log(i); console.log(this);}
+function e(a){
+  var e=document.getElementsByClassName(a);
+  for(var i=0;i<e.length;++i){
+    console.log(e[i]);
+  }
+}
 </script>
 </head>
-<body>
-<iframe height=700 width=360 frameborder=0 onload="e(this)" src="https://countingdownto.com/countdown/minecon-earth-countdown-clock-6640ac21-68d2-4f42-b0d3-5be42845af57"></iframe>
+<body onload="e('countdown')">
+<iframe class="countdown" height=700 width=360 frameborder=0 src="https://countingdownto.com/countdown/minecon-earth-countdown-clock-6640ac21-68d2-4f42-b0d3-5be42845af57"></iframe>
 </body>
 </html>
