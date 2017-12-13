@@ -121,7 +121,16 @@ h3 {
 	text-align: center;
 }
 
-.sa img {
+figure img {
+	filter: grayscale(1);
+	transition: all 0.5s;
+}
+
+figure:hover img {
+	filter: none;
+}
+
+figure.sa img {
 	height: 128px;
 	position: relative;
 }
