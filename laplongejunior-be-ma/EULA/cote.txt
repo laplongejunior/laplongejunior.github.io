@@ -12,8 +12,10 @@ Ainsi, un serveur à kits COSMETIQUES aura la mention "pas de kit")
 Serveur ouvert aux versions piratées: -2 points
 (Pas interdit dans l'extension des EULAs, mais illégal quand même)
 -1 pour avoir désactivé l'authentification
--1 si un ajout est achetable en cr@ck et PLUS CHER que Minecraft (20 euros ou plus)
-(En soi, ce deuxième point n'est "pas plus grave", mais il y a un problème moral!)
+Un deuxième point pour une action "pas plus illégale", mais posant un problème moral
+Ce point est retiré soit si:
+A) Un achat est faisable en cr@ck et coûte plus cher que le jeu
+B) Un achat n'a de sens que pour un joueur cr@ck (ajout d'un skin par exemple)
 
 Présence de cape: -1 point
 -1 pour usage du modèle 3D de Mojang
