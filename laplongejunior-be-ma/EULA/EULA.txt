@@ -50,7 +50,7 @@ Il est en revanche permis de:
 - Créer un serveur dont la TOTALITE de l'accès est payant
 - Réaliser un accès INTEGRAL à durée limitée (mais pas de limitation de gameplay)
 - Donner une "priorité d'accès" aux donateurs (les non-payants ayant une chance d'y accéder)
-Brandon Anderson a déclaré la vente d'outils administrateurs non conformes aux EULAs, les unbans ne peuvent donc pas être venus
+Brandon Anderson a déclaré la vente d'outils administrateurs non conformes aux EULAs, les unbans ne peuvent donc pas être vendus
 
 4) Vendre de l'argent InGame contre une monnaie réelle
 (Depuis novembre 2015, TOUTES les monnaies comestiques ou non avec un taux de convertion en argent réel ne sont plus autorisées
