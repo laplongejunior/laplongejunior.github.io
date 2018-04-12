@@ -33,4 +33,4 @@ Contenu de la boutique: -5 points
 -1 pour section réservée aux donateurs (-0.5 si "serveur" sans déconnexion)
 -1 pour monnaie "d'échange" contre de l'argent réel
 -1 pour gain supplémentaire (booster)
--1 pour récompense non conforme via des actions hors-jeu (vote)
+-1 pour récompense boutique via du temps hors-jeu (vote)
