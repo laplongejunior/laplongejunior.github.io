@@ -6,3 +6,8 @@ function sanitizeConsole()
     clear: function() {}
   };
 }
+
+function removeElement(element)
+{
+  element.parentNode.removeChild(element);
+}
