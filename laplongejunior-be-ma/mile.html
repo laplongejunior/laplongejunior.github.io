@@ -2,12 +2,23 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8"/>
+		
+		<script type="text/javascript" src="https://laplongejunior.github.io/js/laplongeUtils.js"></script>
+		<script type="text/javascript" src="https://laplongejunior.github.io/js/adWarning.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css">
 		<!--Police perso-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700">
 		<style>body {font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif}</style>
 		<title>laplongejunior</title>
+				
+		<script>
+			function _LOAD() {
+				laplongeUtils_sanitizeConsole();
+				controlAdWarning('adWarn');
+			}
+		</script>
 	</head>
 
 	<body>
@@ -21,7 +32,7 @@
 			</div> <!-- /header -->
 
 			<div class="jumbotron" align="center">
-				<p class="alert alert-danger"><strong><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Important !</strong>
+				<p id="adWarn" class="alert alert-danger"><strong><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Important !</strong>
 				<br/>La barre de pub en haut de votre écran est totalement aléatoire, je ne peut ni prédire ni contrôler ce qui peut s'y afficher, donc ne cliquez surtout pas dessus, on ne sait jamais ! ^^
 				<br/>Elle est fournie par l'hébergeur, je ne sais pas la désactiver...</p>
 				
