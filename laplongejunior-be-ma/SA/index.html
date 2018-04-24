@@ -19,11 +19,12 @@
 			function _LOAD() {
 				laplongeUtils_sanitizeConsole();
 				controlAdWarning('adWarn');
+				initScript('YTviewer', 'YTtitle', 'YTdesign', 'YTcolor', 'YTloop');
 			}
 		</script>
 	</head>
 
-	<body onload="initScript('YTviewer', 'YTtitle', 'YTdesign', 'YTcolor', 'YTloop')">
+	<body onload="_LOAD()">
 		<div class="container">
 			<div class="page-header">
 				<div class="pull-right">
