@@ -7,9 +7,19 @@
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700">
 		<style>body {font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif}</style>
 		<title>laplongejunior</title>
+				
+		<script>
+			function _LOAD() {
+				if (!window.console) window.console = {
+					log: function() {},
+					error: function() {},
+					clear: function() {}
+				};
+			}
+		</script>
 	</head>
 
-	<body>
+	<body onload="_LOAD()">
 		<div class="container">
 			<div class="page-header">
 				<div class="pull-right">
