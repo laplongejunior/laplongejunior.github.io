@@ -20,6 +20,7 @@
 
 	<script type="text/javascript" src="https://laplongejunior.github.io/js/md5check.js"></script>
 	<script type="text/javascript" src="https://laplongejunior.github.io/js/findOS.js"></script>
+	<script type="text/javascript" src="https://laplongejunior.github.io/js/laplongeUtils.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootswatch@3.3.7/paper/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -31,11 +32,7 @@
 
 	<script>
 		function _LOAD() {
-			if (!window.console) window.console = {
-				log: function() {},
-				error: function() {},
-				clear: function() {}
-			};
+			santizeConsole();
 			initHash('hashBox', 'hashDiv', 'hashJar', 'hashExe', 'hashApp');
 			initOSloading('btn-success', 'btn-warning', 'btn-danger');
 			adaptButtonToOS('WinInstallerButton', window.laplonge_enumOS.WINDOWS);
