@@ -1,4 +1,4 @@
-function sanitizeConsole()
+function laplongeUtils_sanitizeConsole()
 {
   if (!window.console) window.console = {
     log: function() {},
@@ -7,7 +7,4 @@ function sanitizeConsole()
   };
 }
 
-function removeElement(element)
-{
-  element.parentNode.removeChild(element);
-}
+function laplongeUtils_removeElement(element) { element.parentNode.removeChild(element); }
