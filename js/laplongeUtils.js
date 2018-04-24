@@ -8,3 +8,9 @@ function laplongeUtils_sanitizeConsole()
 }
 
 function laplongeUtils_removeElement(element) { element.parentNode.removeChild(element); }
+
+function laplongeUtils_isInIFRAME()
+{
+    try { return window.self !== window.top; }
+    catch (e) { return true; }
+}
