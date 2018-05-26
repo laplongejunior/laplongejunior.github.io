@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script>
+function _onload(contentClass) {
+	var arr = window.document.getElementsByClassName(contentClass);
+	for (var i=0; i<arr.length; ++i) {
+		// Creates dynamic elements
+		var content = arr[i];
+		var link = document.createElement('a');
+		var mask = document.createElement('span');
+		content.appendChild(link);
+		link.appendChild(mask);
+				
+		// Loads specific parameters
+		var iframe = content.getElementsByTagName('iframe')[0];			
+		mask.classList.add(iframe.dataset.mask);
+		link.href=iframe.dataset.link;
+		
+		// Enable superposition
+		content.style.position = 'relative';
+		mask.style.position = 'absolute';	
+		
+		// TODO: Based on iframe's width?
+		var width = 90;
+		mask.style.left += (iframe.width-width)+'px';	
+		mask.style.borderTopWidth = mask.style.borderLeftWidth = width+'px';
+		
+		// Start loading
+		iframe.onload = function() {
+			mask.style.borderTopColor = iframe.dataset.color;
+			content.style.visibility='visible';
+			iframe.removeAttribute('data-color');
+		};	
+		iframe.src = "https://w2.countingdownto.com/"+iframe.dataset.id;
+		
+		// Frees memory
+		iframe.removeAttribute('data-id');
+		iframe.removeAttribute('data-mask');
+		iframe.removeAttribute('data-link');
+	}
+}
+function old_showContent(content, maskClass) {
+	content.parentElement.visibility='visible';
+}
+</script>
+<style>
+.countdown {
+	/* Still takes the iframe's space */
+	visibility:hidden;
+	float:right;
+}
+.triangle {
+	width:0;
+	height:0;
+	border-top-style:solid;
+	border-left-style:solid;
+	border-left-color:transparent;
+}
+</style>
+</head>
+<body onload="_onload('countdown')">
+	<iframe height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" ></iframe>
+	<div class="countdown">
+		<iframe height=480 width=360 frameborder=0 data-id="2185328" data-color="#1F1F1F" data-mask="triangle" data-link="http://brusselsgamesfestival.be"></iframe>
+	</div>
+</body>
+</html>
