@@ -5,26 +5,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script>
 // Handle two separate loading events
-var loadedIframes = [];
-var loadedMasks = [];
+var loadedIframes = new Set();
+var loadedMasks = new Set();
 
 function _loadedIframe(iframe) {
 	_loadedElement(iframe.parentElement, loadedIframes);
 }
-function _loadedElement(content, array) {
-	array.push(content);
-	if (loadedIframes.includes(content) && loadedMasks.includes(content))
+function _loadedElement(content, set) {
+	set.add(content);
+	if (loadedIframes.has(content) && loadedMasks.has(content))
 	{
 		content.style.visibility='visible';
 		// Frees memory
-		removeElement(loadedIframes,content);
-		removeElement(loadedMasks,content);
+		loadedIframes.delete(content);
+		loadedMasks.delete(content);
 	}
-}
-function removeElement(array,element) {
-	var index = array.indexOf(element);
-	if (index >= 0)
-		array.splice(index,1);
 }
 
 function _onload(contentClass) {
@@ -33,16 +28,17 @@ function _onload(contentClass) {
 		var content = arr[i];
 		var iframe = content.getElementsByTagName('iframe')[0];		
 		var mask = document.createElement('span');
-		var link = iframe.dataset.link;
+		var href = iframe.dataset.href;
 		
 		// If needed, creates a link on the mask
 		var child;
-		if (link === undefined)
+		if (href === undefined)
 			child = mask;
 		else
 		{
 			child = document.createElement('a');
-			child.href=link;
+			child.href=href;
+			child.target='_blank';
 			child.appendChild(mask);
 		}
 		content.appendChild(child);
@@ -61,9 +57,9 @@ function _onload(contentClass) {
 		_loadedElement(content, loadedMasks);
 		
 		// Frees memory
-		iframe.removeAttribute('data-mask');
-		iframe.removeAttribute('data-link');
-		iframe.removeAttribute('data-color');
+		delete iframe.dataset.mask;
+		delete iframe.dataset.href;
+		delete iframe.dataset.color;
 	}
 }
 </script>
@@ -85,7 +81,7 @@ function _onload(contentClass) {
 <body onload="_onload('countdown');">
 	<iframe height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" ></iframe>
 	<div class="countdown">
-		<iframe onload="_loadedIframe(this)" height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-link="http://brusselsgamesfestival.be"></iframe>
+		<iframe onload="_loadedIframe(this)" height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
 	</div>
 </body>
 </html>
