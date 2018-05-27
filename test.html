@@ -4,46 +4,67 @@
 <title>Test</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script>
+// Handle two separate loading events
+var loadedIframes = [];
+var loadedMasks = [];
+
+function _loadedIframe(iframe) {
+	_loadedElement(iframe.parentElement, loadedIframes);
+}
+function _loadedElement(content, array) {
+	array.push(content);
+	if (loadedIframes.includes(content) && loadedMasks.includes(content))
+	{
+		content.style.visibility='visible';
+		// Frees memory
+		removeElement(loadedIframes,content);
+		removeElement(loadedMasks,content);
+	}
+}
+function removeElement(array,element) {
+	var index = array.indexOf(element);
+	if (index >= 0)
+		array.splice(index,1);
+}
+
 function _onload(contentClass) {
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
-		// Creates dynamic elements
 		var content = arr[i];
-		var link = document.createElement('a');
+		var iframe = content.getElementsByTagName('iframe')[0];		
 		var mask = document.createElement('span');
-		content.appendChild(link);
-		link.appendChild(mask);
-				
-		// Loads specific parameters
-		var iframe = content.getElementsByTagName('iframe')[0];			
-		mask.classList.add(iframe.dataset.mask);
-		link.href=iframe.dataset.link;
+		var link = iframe.dataset.link;
 		
+		// If needed, creates a link on the mask
+		var child;
+		if (link === undefined)
+			child = mask;
+		else
+		{
+			child = document.createElement('a');
+			child.href=link;
+			child.appendChild(mask);
+		}
+		content.appendChild(child);
+			
 		// Enable superposition
+		var style = mask.style;
 		content.style.position = 'relative';
-		mask.style.position = 'absolute';	
+		style.position = 'absolute';
+		style.borderTopColor = iframe.dataset.color;
+		mask.classList.add(iframe.dataset.mask);
 		
 		// TODO: Based on iframe's width?
 		var width = 90;
-		mask.style.left += (iframe.width-width)+'px';	
-		mask.style.borderTopWidth = mask.style.borderLeftWidth = width+'px';
-		
-		// Start loading
-		iframe.onload = function() {
-			mask.style.borderTopColor = iframe.dataset.color;
-			content.style.visibility='visible';
-			iframe.removeAttribute('data-color');
-		};	
-		iframe.src = "https://w2.countingdownto.com/"+iframe.dataset.id;
+		style.left += (iframe.width-width)+'px';	
+		style.borderTopWidth = mask.style.borderLeftWidth = width+'px';
+		_loadedElement(content, loadedMasks);
 		
 		// Frees memory
-		iframe.removeAttribute('data-id');
 		iframe.removeAttribute('data-mask');
 		iframe.removeAttribute('data-link');
+		iframe.removeAttribute('data-color');
 	}
-}
-function old_showContent(content, maskClass) {
-	content.parentElement.visibility='visible';
 }
 </script>
 <style>
@@ -61,10 +82,10 @@ function old_showContent(content, maskClass) {
 }
 </style>
 </head>
-<body onload="_onload('countdown')">
+<body onload="_onload('countdown');">
 	<iframe height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" ></iframe>
 	<div class="countdown">
-		<iframe height=480 width=360 frameborder=0 data-id="2185328" data-color="#1F1F1F" data-mask="triangle" data-link="http://brusselsgamesfestival.be"></iframe>
+		<iframe onload="_loadedIframe(this)" height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-link="http://brusselsgamesfestival.be"></iframe>
 	</div>
 </body>
 </html>
