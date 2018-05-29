@@ -40,8 +40,8 @@ function _onload(contentClass) {
 			child.href=href;
 			child.target='_blank';
 			child.appendChild(mask);
-		}
-		content.appendChild(child);
+		}	
+		content.insertBefore(child, content.childNodes[1]);	
 			
 		// Enable superposition
 		var style = mask.style;
@@ -79,9 +79,9 @@ function _onload(contentClass) {
 </style>
 </head>
 <body onload="_onload('countdown');">
-	<iframe height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" ></iframe>
+	<iframe height=480 width=360 style="border:0" src="https://w2.countingdownto.com/2185328" ></iframe>
 	<div class="countdown">
-		<iframe onload="_loadedIframe(this)" height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
+		<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
 	</div>
 </body>
 </html>
