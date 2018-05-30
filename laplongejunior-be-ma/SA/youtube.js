@@ -22,12 +22,12 @@ function setVideo(URLvideo)
 	{
 		window.viewer.src = 'about:blank';
 		if (window.viewer.width != 1)
-			window.viewer.frameBorder = 1;
+			window.viewer.style.removeAttribute('border');
 	}
 	else
 	{
 		if (window.viewer.width == 1) setViewer();
-		window.viewer.frameBorder = 0;
+		window.viewer.style.border = '0';
 		if (URLvideo.indexOf("videoseries?list=") == -1)
 			URLvideo += '?playlist=,';
 			
