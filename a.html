@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html><head>
+<title>Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script>
+// Handle two separate loading events
+var loadedIframes = new Set();
+var loadedMasks = new Set();
+
+function _loadedIframe(iframe) {
+	_loadedElement(iframe.parentElement, loadedIframes);
+}
+function _loadedElement(content, set) {
+	set.add(content);
+	if (loadedIframes.has(content) && loadedMasks.has(content))
+	{
+		content.style.visibility='visible';
+		// Frees memory
+		loadedIframes.delete(content);
+		loadedMasks.delete(content);
+	}
+}
+
+function _onload(contentClass) {
+	var arr = window.document.getElementsByClassName(contentClass);
+	for (var i=0; i<arr.length; ++i) {
+		var content = arr[i];
+		var iframe = content.getElementsByTagName('iframe')[0];		
+		var mask = document.createElement('span');
+		var href = iframe.dataset.href;
+		
+		// If needed, creates a link on the mask
+		var child;
+		if (href === undefined)
+			child = mask;
+		else
+		{
+			child = document.createElement('a');
+			child.href=href;
+			child.target='_blank';
+			child.appendChild(mask);
+		}	
+		content.insertBefore(child, content.childNodes[1]);	
+			
+		// Enable superposition
+		var style = mask.style;
+		content.style.position = 'relative';
+		style.position = 'absolute';
+		style.borderTopColor = iframe.dataset.color;
+		mask.classList.add(iframe.dataset.mask);
+		
+		// TODO: Based on iframe's width?
+		var width = 90;
+		style.left += (iframe.width-width)+'px';	
+		style.borderTopWidth = mask.style.borderLeftWidth = width+'px';
+		_loadedElement(content, loadedMasks);
+		
+		// Frees memory
+		delete iframe.dataset.mask;
+		delete iframe.dataset.href;
+		delete iframe.dataset.color;
+	}
+}
+</script>
+<style>
+.countdown {
+	/* Still takes the iframe's space */
+	visibility:hidden;
+	float:right;
+}
+.triangle {
+	width:0;
+	height:0;
+	border-top-style:solid;
+	border-left-style:solid;
+	border-left-color:transparent;
+}
+</style>
+</head>
+<body onload="_onload('countdown');">
+	<iframe height="480" width="360" style="border:0" src="https://w2.countingdownto.com/2185328"></iframe>
+	<div class="countdown" style="position: relative; visibility: visible;">
+		<a href="http://brusselsgamesfestival.be" target="_blank"><span class="triangle" style="position: absolute; border-top-color: rgb(31, 31, 31); left: 270px; border-left-width: 90px; border-top-width: 90px;"></span></a><iframe onload="_loadedIframe(this)" style="border:0" height="480" width="360" frameborder="0" src="https://w2.countingdownto.com/2185328"></iframe>
+	</div>
+
+</body></html>
