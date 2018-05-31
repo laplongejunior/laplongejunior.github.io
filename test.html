@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
 <title>Test</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,7 +26,7 @@ function _onload(contentClass) {
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
 		var content = arr[i];
-		var iframe = content.getElementsByTagName('iframe')[0];		
+		var iframe = content.getElementsByTagName('iframe')[0];
 		var mask = document.createElement('span');
 		var href = iframe.dataset.href;
 		
@@ -43,27 +43,32 @@ function _onload(contentClass) {
 		}	
 		content.insertBefore(child, content.childNodes[1]);	
 			
-		// Enable superposition
-		var style = mask.style;
-		content.style.position = 'relative';
-		style.position = 'absolute';
-		style.borderTopColor = iframe.dataset.color;
-		mask.classList.add(iframe.dataset.mask);
+		// Enable superposition	
+		var cStyle = content.style;
+		var mStyle = mask.style;
+		cStyle.position = 'relative';
+		mStyle.position = 'absolute';	
+		
+		mStyle.borderTopColor = iframe.dataset.color;
+		mask.classList.add(iframe.dataset.mask);	
 		
 		// TODO: Based on iframe's width?
 		var width = 90;
-		style.left += (iframe.width-width)+'px';	
-		style.borderTopWidth = mask.style.borderLeftWidth = width+'px';
+		mStyle.left += (iframe.width-width)+'px';	
+		mStyle.borderTopWidth = mask.style.borderLeftWidth = width+'px';
 		_loadedElement(content, loadedMasks);
 		
 		// Frees memory
-		delete iframe.dataset.mask;
-		delete iframe.dataset.href;
-		delete iframe.dataset.color;
+		iframe.removeAttribute('data-mask');
+		iframe.removeAttribute('data-href');
+		iframe.removeAttribute('data-color');
 	}
 }
 </script>
 <style>
+.paragraph {
+	display:inline-block
+}
 .countdown {
 	/* Still takes the iframe's space */
 	visibility:hidden;
@@ -79,9 +84,17 @@ function _onload(contentClass) {
 </style>
 </head>
 <body onload="_onload('countdown');">
-	<iframe height=480 width=360 style="border:0" src="https://w2.countingdownto.com/2185328" ></iframe>
-	<div class="countdown">
-		<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 frameborder=0 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
-	</div>
+<div class="paragraph">
+	<span class="countdown">
+		<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
+	</span>
+</div>
+<br/>            
+<div class="paragraph">
+	<span class="countdown">
+		<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2187210" data-color="#F9FDF7" data-mask="triangle" data-href="https://www.daymarrally.com"></iframe>
+	</span>
+</div>
+
 </body>
 </html>
