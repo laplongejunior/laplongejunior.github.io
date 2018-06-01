@@ -26,6 +26,14 @@ function _onload(contentClass) {
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
 		var content = arr[i];
+		var wrapper = document.createElement('div');
+		wrapper.style.display = 'inline-block';
+		var base = content.parentElement;
+		base.removeChild(content);
+		base.appendChild(wrapper);
+		wrapper.appendChild(content);
+		content = wrapper;
+		
 		var iframe = content.getElementsByTagName('iframe')[0];
 		var mask = document.createElement('span');
 		var href = iframe.dataset.href;
@@ -66,9 +74,6 @@ function _onload(contentClass) {
 }
 </script>
 <style>
-.paragraph {
-	display:inline-block
-}
 .countdown {
 	/* Still takes the iframe's space */
 	visibility:hidden;
@@ -84,14 +89,12 @@ function _onload(contentClass) {
 </style>
 </head>
 <body onload="_onload('countdown');">
-<div class="paragraph">
-	<span class="countdown">
-		<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
-	</span>     
-	<span class="countdown">
-		<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2189066" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
-	</span>       
-</div>
+<span class="countdown">
+	<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
+</span>     
+<span class="countdown">
+	<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2189066" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
+</span>
 <br/>           
 <div class="paragraph">
 	<span class="countdown">
