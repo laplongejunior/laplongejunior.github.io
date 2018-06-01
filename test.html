@@ -26,15 +26,15 @@ function _onload(contentClass) {
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
 		var content = arr[i];
-		var wrapper = document.createElement('div');
+		var wrapper = document.createElement(content.tagName);
 		wrapper.style.display = 'inline-block';
 		
 		var base = content.parentElement;
-		base.removeChild(content);
-		base.appendChild(wrapper);
+		base.replaceChild(wrapper, content);
 		wrapper.appendChild(content);
+		/*
 		content = wrapper;
-		alert(content);
+		*/
 		
 		var iframe = content.getElementsByTagName('iframe')[0];
 		var mask = document.createElement('span');
@@ -95,7 +95,7 @@ function _onload(contentClass) {
 	<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2185328" data-color="#1F1F1F" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
 </span>     
 <span class="countdown">
-	<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2189066" data-color="#3599FB" data-mask="triangle" data-href="http://brusselsgamesfestival.be"></iframe>
+	<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2189066" data-color="#3599FB" data-mask="triangle" data-href="https://minecraft.net/en-us/minecon/"></iframe>
 </span>
 <br/>           
 <div class="paragraph">
