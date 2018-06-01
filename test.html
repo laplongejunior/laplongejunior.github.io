@@ -28,11 +28,13 @@ function _onload(contentClass) {
 		var content = arr[i];
 		var wrapper = document.createElement('div');
 		wrapper.style.display = 'inline-block';
+		
 		var base = content.parentElement;
 		base.removeChild(content);
 		base.appendChild(wrapper);
 		wrapper.appendChild(content);
 		content = wrapper;
+		alert(content);
 		
 		var iframe = content.getElementsByTagName('iframe')[0];
 		var mask = document.createElement('span');
