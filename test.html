@@ -4,22 +4,15 @@
 <title>Test</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script>
-// Handle two separate loading events
-var loadedIframes = new Set();
-var loadedMasks = new Set();
-
+var loading = new Set();
 function _loadedIframe(iframe) {
-	_loadedElement(iframe.parentElement, loadedIframes);
+	_loadedContent(iframe.parentElement);
 }
-function _loadedElement(content, set) {
-	set.add(content);
-	if (loadedIframes.has(content) && loadedMasks.has(content))
-	{
+function _loadedContent(content) {
+	if (loading.delete(content))
 		content.style.visibility='visible';
-		// Frees memory
-		loadedIframes.delete(content);
-		loadedMasks.delete(content);
-	}
+	else
+		loading.add(content);
 }
 
 function _onload(contentClass) {
@@ -63,7 +56,7 @@ function _onload(contentClass) {
 		var width = 91;
 		mStyle.left += (iframe.width-width)+'px';	
 		mStyle.borderTopWidth = mask.style.borderLeftWidth = width+'px';
-		_loadedElement(content, loadedMasks);
+		_loadedContent(content);
 		
 		// Frees memory
 		iframe.removeAttribute('data-mask');
