@@ -1,5 +1,15 @@
 # Changelog du LaplongeMod
 
+### LapMod 1.6.2.2: 2018 Patch (24/06/2018)							
+- Les capes du mod HypeMod sont désactivées suite à la disparition de ce mod
+   - Supprime quelques tentatives de connexion inutiles au démarrage
+
+- Quelques bugfixes:
+   - Ouvrir le Menu Avatar ne désynchronise plus les particules de sprint
+   - Le jukebox refonctionne et son volume utilise le même réglage que la version vanilla
+					
+---
+
 ### LapMod 1.6.2.1 : Hypenio Patch (15/10/2017)						
 - Les capes du mod HypeMod (serveur Hypenio) sont désormais supportées:
    - Tous leurs donateurs reçoivent une cape avec le logo de Hypenio
