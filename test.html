@@ -66,13 +66,14 @@ function _onload(contentClass) {
 }
 </script>
 <noscript><style>
-.countdown {
-	/* Still takes the iframe's space */
-	visibility:show;
-	float:right;
+.yesjs {
+	visibility:hidden;
 }
 </style></noscript>
 <style>
+.yesjs {
+	visibility:show;
+}
 .countdown {
 	/* Still takes the iframe's space */
 	visibility:hidden;
@@ -87,7 +88,7 @@ function _onload(contentClass) {
 }
 </style>
 </head>
-<body onload="_onload('countdown');">
+<body onload="_onload('countdown');" class="yesjs">
 <span class="countdown">
 	<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2189066" data-color="#3599FB" data-mask="triangle" data-href="https://minecraft.net/en-us/minecon/"></iframe>
 </span>
