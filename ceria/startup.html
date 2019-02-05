@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>Liste des absences du Ceria (mode startup)</title>
+<link rel="icon" href="http://www.ceria.be/irl/templates/ja_purity/favicon.ico" type="image/x-icon" />
+<style>
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+iframe {
+	border:none;
+	height:100%;
+	width:100%;
+	position:absolute;
+}
+.nojs { visibility: hidden; }
+</style>
+<noscript>
+<style>
+.nojs { visibility: visible; }
+</style>
+</noscript>
+<script>
+function load(iframeID) {
+	var target = 'https://www.google.be';
+	
+	var iframe = window.document.getElementById(iframeID);
+	
+	if (!ceriaAllowed()) {
+		window.open(target, '_blank');
+		iframe.style.visibility = 'visible';
+	}
+	else {
+		window.location.replace(target);
+	}
+}
+function ceriaAllowed() {
+	var date = new Date()
+	var day = date.getDay();
+	
+	if (day > 2 || day === 0)
+		return false;
+	if (day === 1) return true;
+	
+	return (date.getHours() < 17);
+}
+
+window.addEventListener('load', function(){load('toast')}, false);
+</script>
+</head>
+<body>
+<iframe src="./ceria.html" id="toast" class="nojs">ERREUR, iframe non supporté</iframe>
+</body>
+</html>
