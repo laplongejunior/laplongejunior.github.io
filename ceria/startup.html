@@ -30,7 +30,7 @@ function load(iframeID) {
 	
 	var iframe = window.document.getElementById(iframeID);
 	
-	if (!ceriaAllowed()) {
+	if (ceriaAllowed()) {
 		window.open(target, '_blank');
 		iframe.style.visibility = 'visible';
 	}

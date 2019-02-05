@@ -2,7 +2,7 @@
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
 <title>Liste des absences du Ceria</title>
 <link rel="icon" href="http://www.ceria.be/irl/templates/ja_purity/favicon.ico" type="image/x-icon" />
 <style>.yesjs { visibility:visible; }</style>
@@ -25,6 +25,7 @@ html, body {
 	display:grid;
 	grid-template-columns: 500px 1fr;
 	grid-template-rows: 500px 1fr;
+	position:absolute;
 }
 
 .cell {
@@ -70,7 +71,6 @@ function load(fbId, profsId, consoleId) {
 	window.addEventListener("resize", func);
 	
 	log('Page ouverte');
-	window.open('https://www.google.be', '_blank');
 }
 function redraw(grid) {
 	var temp = window.document.body.offsetWidth/2;
@@ -80,6 +80,7 @@ function redraw(grid) {
 	grid.style['gridTemplateColumns'] = temp+'px 1fr';
 }
 function refresh(iframe) {
+	iframe.contentWindow.location.reload();
 	var src = iframe.src;
 	iframe.src = 'about:blank';
 	iframe.src = src;
@@ -95,16 +96,13 @@ function log(line) {
 function pad(str) {
 	return ('00' + str).slice(-2);
 }
-function toast(iframe) {
-	console.alert(iframe);
-}
 
 window.addEventListener('load', function(){load('fb','profs','console')}, false);
 </script>
 </head>
 <body class="main">
-<iframe id="fb" class="cell cell-a" src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/456811884398747&tabs=timeline&width=500&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false" sandbox="allow-same-origin allow-scripts"></iframe>
-<iframe id="profs" onload="toast(this)" class="cell cell-b" src="https://www.ceria.be/irl/index.php?option=com_content&view=article&id=114&Itemid=129" sandbox=""></iframe>
+<iframe id="fb" class="cell cell-a" src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/456811884398747&tabs=timeline&width=500&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false" sandbox="allow-same-origin allow-scripts">ERREUR, iframe non supporté</iframe>
+<iframe id="profs" class="cell cell-b" src="http://www.ceria.be/irl/index.php?option=com_content&view=article&id=114&Itemid=129" sandbox="">ERREUR, iframe non supporté</iframe>
 <div class="cell cell-c">
 	<span id="console" class="yesjs local">Première ligne de la console</span>
 	<noscript>
