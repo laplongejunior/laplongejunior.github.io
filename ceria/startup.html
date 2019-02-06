@@ -2,9 +2,10 @@
 <html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8" />
+<!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
 <title>Liste des absences du Ceria (mode startup)</title>
 <link rel="icon" href="http://www.ceria.be/irl/templates/ja_purity/favicon.ico" type="image/x-icon" />
-<style>
+<style type="text/css">
 html, body {
 	height:100%;
 	width:100%;
@@ -17,26 +18,15 @@ iframe {
 	width:100%;
 	position:absolute;
 }
-.nojs { visibility:hidden; }
 </style>
-<noscript>
-<style>
-.nojs { visibility:visible; }
-</style>
-</noscript>
-<script>
-function load(iframeID) {
-	var target = 'https://www.google.be';
-	
-	var iframe = window.document.getElementById(iframeID);
-	
-	if (ceriaAllowed()) {
+<script type="text/javascript">
+//<![CDATA[
+function load() {
+	var target = 'https://www.google.be';	
+	if (!ceriaAllowed())
 		window.open(target, '_blank');
-		iframe.style.visibility = 'visible';
-	}
-	else {
+	else
 		window.location.replace(target);
-	}
 }
 function ceriaAllowed() {
 	var date = new Date()
@@ -49,10 +39,11 @@ function ceriaAllowed() {
 	return (date.getHours() < 17);
 }
 
-window.addEventListener('load', function(){load('toast')}, false);
+window.addEventListener('load', load, false);
+//]]>
 </script>
 </head>
 <body>
-<iframe src="./ceria.html" id="toast" class="nojs"></iframe>
+<iframe src="./ceria.xhtml" sandbox="allow-same-origin allow-scripts"></iframe>
 </body>
 </html>

@@ -5,12 +5,7 @@
 <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
 <title>Liste des absences du Ceria</title>
 <link rel="icon" href="http://www.ceria.be/irl/templates/ja_purity/favicon.ico" type="image/x-icon" />
-<style>.yesjs { visibility:visible; }</style>
-<noscript>
-	<meta http-equiv="refresh" content="600">
-	<style>.yesjs { visibility:hidden; }</style>
-</noscript>
-<style>
+<style type="text/css">
 iframe { border:none; }
 html, body {
 	height:100%;
@@ -55,7 +50,8 @@ html, body {
 .local {
 }
 </style>
-<script>
+<script type="text/javascript">
+//<![CDATA[
 var m_originalWidth, m_console;
 function load(fbId, profsId, consoleId) {
 	var doc = window.document;
@@ -63,6 +59,8 @@ function load(fbId, profsId, consoleId) {
 	m_originalWidth = parseInt(originalStyle['width']);
 	
 	m_console = doc.getElementById(consoleId);
+	m_console.innerHTML = 'Première ligne de la console';
+	
 	var profsElement = doc.getElementById(profsId);
 	window.setInterval(function(){refresh(profsElement)}, 600000);
 	
@@ -86,30 +84,29 @@ function refresh(iframe) {
 	iframe.src = src;
 	log('Fenêtre Ceria rechargée');
 }
-function log(line) {	
-	var temp = m_console.innerHTML;
-	if (temp.length > 0) temp = '<br/>' + temp;
+function log(line) {
+	var text = m_console.innerHTML;
+	if (text.length !== 0) text = '<br />' + text;
 	var now = new Date();
-	temp = '['+pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds())+'] ' + line + temp;
-	m_console.innerHTML = temp;
+	line = '['+pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds())+'] ' + line;
+	m_console.innerHTML = line + text;
 }
 function pad(str) {
 	return ('00' + str).slice(-2);
 }
 
 window.addEventListener('load', function(){load('fb','profs','console')}, false);
+//]]>
 </script>
 </head>
 <body class="main">
-<iframe id="fb" class="cell cell-a" src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/456811884398747&tabs=timeline&width=500&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false" sandbox="allow-same-origin allow-scripts"></iframe>
-<iframe id="profs" class="cell cell-b" src="http://www.ceria.be/irl/index.php?option=com_content&view=article&id=114&Itemid=129" sandbox=""></iframe>
+<iframe id="fb" class="cell cell-a" src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/456811884398747&amp;tabs=timeline&amp;width=500&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=true&amp;show_facepile=false" sandbox="allow-same-origin allow-scripts"></iframe>
+<iframe id="profs" class="cell cell-b" src="http://www.ceria.be/irl/index.php?option=com_content&amp;view=article&amp;id=114&amp;Itemid=129" sandbox=""></iframe>
 <div class="cell cell-c">
-	<span id="console" class="yesjs local">Première ligne de la console</span>
-	<noscript>
+	<span id="console" class="local">
 	Javascript est désactivé<br />
-	Cette page s'auto-rafraîchira intégralement<br />
-	Toutes les 10 minutes
-	</noscript>
+	Cette page ne s'auto-rafraîchira pas
+	</span>
 </div>   
 </body>
 </html>
