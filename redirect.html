@@ -21,11 +21,13 @@ function popup(url) {
 }
 
 function redirect(url, doc) {	
-	let meta = doc.createElement('meta');
-	meta.name = 'referrer';
-	meta.content = 'none';
+	let el;
+	el = doc.createElement('meta');
+	el.name = 'referrer';
+	el.content = 'none';
+	doc.head.appendChild(el);
 	
-	let el = doc.createElement('script');
+	el = doc.createElement('script');
 	el.appendChild(doc.createTextNode("location.replace('"+url+"')"));
 	doc.head.appendChild(el);
 }
