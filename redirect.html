@@ -24,7 +24,7 @@ function redirect(url, doc) {
 	let el;
 	el = doc.createElement('meta');
 	el.name = 'referrer';
-	el.content = 'none';
+	el.content = 'never';
 	doc.head.appendChild(el);
 	
 	el = doc.createElement('script');
