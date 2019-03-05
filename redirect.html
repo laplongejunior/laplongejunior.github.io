@@ -23,7 +23,7 @@ function popup(url) {
 function redirect(url, doc) {	
 	let meta = doc.createElement('meta');
 	meta.name = 'referrer';
-	meta.content = 'never';
+	meta.content = 'none';
 	
 	let el = doc.createElement('script');
 	el.appendChild(doc.createTextNode("location.replace('"+url+"')"));
