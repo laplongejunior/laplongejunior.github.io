@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Un test</title>
+<script>
+const url = "https://www.whatismyreferer.com/";
+popup(url);
+redirect(url);
+//location.replace(url);
+
+function popup(url) {
+	let exit = window.open('about:blank');
+	if (!exit) return;
+	exit.opener = null;
+	
+	let doc = exit.document;
+	
+	/*
+	let el = doc.createElement('meta');
+	el.httpEquiv = 'refresh';
+	el.content = '0; URL='+url;
+	*/
+	
+	let el = doc.createElement('script');
+	el.appendChild(doc.createTextNode("location.replace('"+url+"')"));
+
+	doc.head.appendChild(el);
+}
+
+function redirect(url) {
+	location.replace('about:blank');
+	let doc = document;
+	
+	let el = doc.createElement('script');
+	el.appendChild(doc.createTextNode("location.replace('"+url+"')"));
+
+	doc.head.appendChild(el);
+}
+</script>
+</head>
+<body>
+</body>
+</html>
