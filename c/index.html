@@ -65,7 +65,7 @@ html, body {
 </head>
 <body class="main">
 <iframe id="fb" class="cell feed" data-src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/456811884398747&tabs=timeline&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false" sandbox="allow-same-origin allow-scripts"></iframe>
-<iframe id="profs" class="cell site" src="https://www.whatismyreferer.com" data-src="http://www.ceria.be/irl/index.php?option=com_content&view=article&id=114&Itemid=129" sandbox=""></iframe>
+<iframe id="profs" class="cell site" src="http://www.ceria.be/irl/index.php?option=com_content&view=article&id=114&Itemid=129" sandbox=""></iframe>
 <div class="cell console">
 	<noscript>
 	Javascript est désactivé<br />
@@ -93,22 +93,24 @@ html, body {
 	const fbElement = document.getElementById('fb');
 	
 	// Calcul redimensionnement fb
-	let m_fbSrc = fbElement.getAttribute('data-src');	
-	let m_fbWidth = -1, m_fbHeight = -1;
+	const m_fbSrc = fbElement.getAttribute('data-src');	
+	let m_prevWidth = -1, m_prevHeight = -1;
 	const resizeFb = function(){
+		let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+		let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+		
+		if (m_prevWidth === width && m_prevHeight === height)
+			return;		
+		m_prevWidth = width;
+		m_prevHeight = height;
+			
 		const style = getComputedStyle(fbElement);
-		let width = parseInt(style['width']);
-		// Limites de largeur dans l'API facebook
-		if (width < 170) width = 170;
-		else if (width > 500) width = 500;
+		width = parseInt(style['width']);
+		height = parseInt(style['height']);
 		
-		// Hauteur max dans l'API facebook
-		let height = parseInt(style['height']);
-		if (height < 70) height = 70;
-		
-		if (m_fbWidth === width && m_fbHeight === height) return;	
-		m_fbWidth = width;
-		m_fbHeight = height;
+		// Limites de l'API facebook
+		width = Math.min(Math.max(170, width, 500));	
+		height = Math.max(height, 70);
 		
 		fbElement.src = m_fbSrc + '&width='+width + '&height='+height;
 		log('Facebook '+width+'x'+height);

@@ -22,7 +22,7 @@
 		exit.opener = null;
 		
 		// Sécurité #2 : préciser que la fenêtre à rediriger ne doit pas inclure le referer
-		// Sécurité #2+1/2 : ancien referrer pour IE	
+		// Sécurité #2+1/2 : ancien referrer pour IE, puis l'officiel pour les autres
 		for (let content of ['never', 'no-referrer']) {
 			el = exit.document.createElement('meta');
 			el.name = 'referrer';
@@ -35,9 +35,9 @@
 	delete window.X;
 	
 	const doc = exit.document;	
-	// Rajouter à la fenêtre à rediriger un script de redirection, fonctionne même sur about:blank
+	// Rajouter à la fenêtre à rediriger un script de redirection, fonctionne même sur about:blank avec IE11
 	el = doc.createElement('script');
-	el.appendChild(doc.createTextNode("location.replace('"+'https://whatismyreferer.com'+"')"));
+	el.appendChild(doc.createTextNode("location.replace('"+'https://www.google.be'+"')"));
 	doc.head.appendChild(el);
 })();
 </script>
