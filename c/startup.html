@@ -20,23 +20,26 @@
 		if (!exit) return;
 		// Sécurité #1 : empêcher la nouvelle fenêtre de rediriger notre webapp
 		exit.opener = null;
+		// Sécurité #2 : préciser que la fenêtre à rediriger ne doit pas inclure le referer
+	
+		let meta = function(param) {
+			doc.createElement('meta');
+			el.name = 'referrer';
+			el.content = param;
+			doc.head.appendChild(el);
+		};
+		meta('never');
+		meta('no-referrer');
 	}
 	
 	// Supprimer la seule modification apportée à l'objet global
 	delete window.X;
 	
 	const doc = exit.document;
-	let el;
-	
-	// Sécurité #2 : préciser que la fenêtre à rediriger ne doit pas inclure le referer
-	el = doc.createElement('meta');
-	el.name = 'referrer';
-	el.content = 'never';
-	doc.head.appendChild(el);
 		
 	// Rajouter à la fenêtre à rediriger un script de redirection, fonctionne même sur about:blank
-	el = doc.createElement('script');
-	el.appendChild(doc.createTextNode("location.replace('"+'https://www.google.be'+"')"));
+	let el = doc.createElement('script');
+	el.appendChild(doc.createTextNode("location.replace('"+'https://whatismyreferer.com'+"')"));
 	doc.head.appendChild(el);
 })();
 </script>
