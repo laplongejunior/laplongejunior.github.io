@@ -9,7 +9,7 @@
 <script>
 (function() {
 	"use strict";
-	let exit;
+	let exit, el;
 	
 	// Si X est une fonction retournant TRUE, rediriger la fenêtre en cours
 	if (typeof window.X === 'function' && !window.X())
@@ -20,24 +20,23 @@
 		if (!exit) return;
 		// Sécurité #1 : empêcher la nouvelle fenêtre de rediriger notre webapp
 		exit.opener = null;
+		
 		// Sécurité #2 : préciser que la fenêtre à rediriger ne doit pas inclure le referer
-	
-		let meta = function(param) {
-			exit.document.createElement('meta');
+		// Sécurité #2+1/2 : ancien referrer pour IE	
+		for (let content of ['never', 'no-referrer']) {
+			el = exit.document.createElement('meta');
 			el.name = 'referrer';
-			el.content = param;
+			el.content = content;
 			exit.document.head.appendChild(el);
-		};
-		meta('never');
-		meta('no-referrer');
+		}
 	}
 	
 	// Supprimer la seule modification apportée à l'objet global
 	delete window.X;
 	
-	const doc = exit.document;
+	const doc = exit.document;	
 	// Rajouter à la fenêtre à rediriger un script de redirection, fonctionne même sur about:blank
-	let el = doc.createElement('script');
+	el = doc.createElement('script');
 	el.appendChild(doc.createTextNode("location.replace('"+'https://whatismyreferer.com'+"')"));
 	doc.head.appendChild(el);
 })();
