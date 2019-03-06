@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Liste des absences du Ceria (mode startup)</title>
+<script src="https://laplongejunior.github.io/holiday.min.js"></script>
+<script>
+(function() {
+	"use strict";
+	let exit;
+	
+	// Si X est une fonction retournant TRUE, rediriger la fenêtre en cours
+	if (typeof window.X === 'function' && window.X())
+		exit = window;
+	else {
+		// Popup vide par défaut afin de configurer la sécurité avant redirection
+		exit = open('about:blank', '_blank');
+		if (!exit) return;
+		// Sécurité #1 : empêcher la nouvelle fenêtre de rediriger notre webapp
+		exit.opener = null;
+	}
+	
+	// Supprimer la seule modification apportée à l'objet global
+	delete window.X;
+	
+	const doc = exit.document;
+	let el;
+	
+	// Sécurité #2 : préciser que la fenêtre à rediriger ne doit pas inclure le referer
+	el = doc.createElement('meta');
+	el.name = 'referrer';
+	el.content = 'never';
+	doc.head.appendChild(el);
+		
+	// Rajouter à la fenêtre à rediriger un script de redirection, fonctionne même sur about:blank
+	el = doc.createElement('script');
+	el.appendChild(doc.createTextNode("location.replace('"+url+"')"));
+	doc.head.appendChild(el);
+})();
+</script>
+<style>
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+iframe {
+	border:none;
+	height:100%;
+	width:100%;
+	position:absolute;
+}
+</style>
+</head>
+<body>
+<iframe src="./index.html"></iframe>
+</body>
+</html>
