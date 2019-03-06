@@ -10,7 +10,7 @@
 	let exit;
 	
 	// Si X est une fonction retournant TRUE, rediriger la fenêtre en cours
-	if (typeof window.X === 'function' && window.X())
+	if (typeof window.X === 'function' && !window.X())
 		exit = window;
 	else {
 		// Popup vide par défaut afin de configurer la sécurité avant redirection
