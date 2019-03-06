@@ -23,10 +23,10 @@
 		// Sécurité #2 : préciser que la fenêtre à rediriger ne doit pas inclure le referer
 	
 		let meta = function(param) {
-			doc.createElement('meta');
+			exit.document.createElement('meta');
 			el.name = 'referrer';
 			el.content = param;
-			doc.head.appendChild(el);
+			exit.document.head.appendChild(el);
 		};
 		meta('never');
 		meta('no-referrer');
@@ -36,7 +36,6 @@
 	delete window.X;
 	
 	const doc = exit.document;
-		
 	// Rajouter à la fenêtre à rediriger un script de redirection, fonctionne même sur about:blank
 	let el = doc.createElement('script');
 	el.appendChild(doc.createTextNode("location.replace('"+'https://whatismyreferer.com'+"')"));
