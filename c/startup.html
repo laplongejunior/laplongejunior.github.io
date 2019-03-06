@@ -37,7 +37,7 @@
 	const doc = exit.document;	
 	// Rajouter à la fenêtre à rediriger un script de redirection, fonctionne même sur about:blank avec IE11
 	el = doc.createElement('script');
-	el.appendChild(doc.createTextNode("location.replace('"+'https://www.google.be'+"')"));
+	el.appendChild(doc.createTextNode("location.replace('"+'https://whatismyreferer.com'+"')"));
 	doc.head.appendChild(el);
 })();
 </script>
