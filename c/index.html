@@ -96,21 +96,18 @@ html, body {
 	const m_fbSrc = fbElement.getAttribute('data-src');	
 	let m_prevWidth = -1, m_prevHeight = -1;
 	const resizeFb = function(){
-		let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-		let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+		const style = getComputedStyle(fbElement);
+		let width = parseInt(style['width']);
+		let height = parseInt(style['height']);
 		
+		// Limites de l'API facebook
+		width = Math.min(Math.max(170, width), 500);	
+		height = Math.max(height, 70);
+	
 		if (m_prevWidth === width && m_prevHeight === height)
 			return;		
 		m_prevWidth = width;
 		m_prevHeight = height;
-			
-		const style = getComputedStyle(fbElement);
-		width = parseInt(style['width']);
-		height = parseInt(style['height']);
-		
-		// Limites de l'API facebook
-		width = Math.min(Math.max(170, width, 500));	
-		height = Math.max(height, 70);
 		
 		fbElement.src = m_fbSrc + '&width='+width + '&height='+height;
 		log('Facebook '+width+'x'+height);
