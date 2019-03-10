@@ -12,7 +12,7 @@
 	let exit, el;
 	
 	// Si X est une fonction retournant TRUE, rediriger la fenêtre en cours
-	if (typeof window.X === 'function' && !window.X())
+	if (typeof window.X === 'function' && window.X())
 		exit = window;
 	else {		
 		// En local, Chrome n'autorise pas à éditer depuis l'iframe
