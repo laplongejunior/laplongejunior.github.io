@@ -96,6 +96,10 @@ html, body {
 	</span>
 </div>
 <script>
+insertCeriaFavicon = function(doc) {
+	
+};
+
 (function() {
 	"use strict";
 	// Log dans la page web
@@ -136,13 +140,17 @@ html, body {
 			m_fbTimer = setTimeout(resizeFb, 5000);
 		});
 	resizeFb();
-	
-	// Ajout favicon dans startup.html ou index.html
-	const link = parent.document.createElement('link');
-	link.rel = 'icon';
+		
+	// Ne fonctionne pas en local sur chrome, cross-domain
+	// const doc = parent.document;
+	const doc = document;
+
+	const link = doc.createElement('link');
+	// Shortcut pour support IE
+	link.rel = 'shortcut icon';
 	link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
 	link.type = 'image/x-icon';
-	parent.document.head.appendChild(link);
+	doc.head.appendChild(link);
 	
 	// Rechargement
 	const profsElement = document.getElementById('profs');
@@ -152,12 +160,13 @@ html, body {
 		iframe.src = src;
 		log('Fenêtre Ceria rechargée');
 	}, 600000, profsElement);
-	
+
 	// Suppression données inutiles
 	fbElement.removeAttribute('data-src');
 	m_console.removeAttribute('id');
 	fbElement.removeAttribute('id');
 	profsElement.removeAttribute('id');
+	
 })();
 </script>
 </body>
