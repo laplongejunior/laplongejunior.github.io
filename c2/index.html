@@ -96,10 +96,6 @@ html, body {
 	</span>
 </div>
 <script>
-insertCeriaFavicon = function(doc) {
-	
-};
-
 (function() {
 	"use strict";
 	// Log dans la page web
@@ -144,12 +140,10 @@ insertCeriaFavicon = function(doc) {
 	// Ne fonctionne pas en local sur chrome, cross-domain
 	// const doc = parent.document;
 	const doc = document;
-
 	const link = doc.createElement('link');
-	// Shortcut pour support IE
 	link.rel = 'shortcut icon';
-	link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
 	link.type = 'image/x-icon';
+	link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
 	doc.head.appendChild(link);
 	
 	// Rechargement
@@ -165,8 +159,7 @@ insertCeriaFavicon = function(doc) {
 	fbElement.removeAttribute('data-src');
 	m_console.removeAttribute('id');
 	fbElement.removeAttribute('id');
-	profsElement.removeAttribute('id');
-	
+	profsElement.removeAttribute('id');	
 })();
 </script>
 </body>
