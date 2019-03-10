@@ -8,10 +8,6 @@ X = function() {
 	var year = today.getFullYear();
 	*/
 	
-	// Congé carnaval
-	if (month == 3 && today.getDate() < 9)
-		return true;
-	
 	// Ceria le lundi
 	if (dayOfWeek == 1)
 		return false;
