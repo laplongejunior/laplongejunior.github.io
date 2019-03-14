@@ -17,8 +17,9 @@
 	else {		
 		// En local, Chrome n'autorise pas à éditer depuis l'iframe
 		const link = document.createElement('link');
-		link.rel = 'shortcut icon';
-		link.type = 'image/x-icon';
+		link.ref = 'icon';
+		//link.rel = 'shortcut icon';
+		//link.type = 'image/x-icon';
 		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
 		document.head.appendChild(link);
 
