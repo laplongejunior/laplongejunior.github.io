@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="referrer" content="never" />
 <meta name="referrer" content="no-referrer" />
 <noscript>
-	<meta http-equiv="refresh" content="600; URL=./index.html" />
+	<meta http-equiv="refresh" content="600" />
 </noscript>
 <title>Liste des absences du Ceria</title>
 <style>
@@ -16,17 +16,42 @@ html, body {
 	margin:0;
 	padding:0;
 }
+
 .main {
-	display:-ms-grid;
-	-ms-grid-columns: min-content 1fr;
-	-ms-grid-rows: 1fr min-content;
-	display:grid;
-	grid-template-columns: min-content 1fr;
-	grid-template-rows: 1fr min-content;
 	position:absolute;
+	display:-ms-grid;
+	display:grid;
+	/* Moitié de l'écran pour chaque colonne */
+	-ms-grid-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	/* Taille fixe pour la 2ème, le reste à la 1ere */
+	-ms-grid-rows: 1fr 50px;
+	grid-template-rows: 1fr 50px;
+}
+@media all and (max-width: 340px /*170x2*/) {
+   .main {
+	/* Minimum 170px pour la 1ère, le reste à la 2ème */
+	-ms-grid-columns: 170px 1fr;
+	grid-template-columns: 170px 1fr;
+   }
+}
+@media all and (min-width: 1000px /*500x2*/) {
+   .main {
+	/* Maximum 500px pour la 1ère, le reste à la 2ème */
+	-ms-grid-columns: 500px 1fr;
+	grid-template-columns: 500px 1fr;
+   }
+}
+@media all and (max-height: 120px /*70+50*/) {
+   .main {
+	/* Minimum 70 px pour la 1ère, le reste à la 2ème */
+	-ms-grid-rows: 70px 1fr;
+	grid-template-rows: 70px 1fr;
+   }
 }
 
 .cell {
+	/* Prendre les dimensions de la grille */
 	width:100%;
 	height:100%;
 }
@@ -35,9 +60,6 @@ html, body {
 	-ms-grid-column:1;
 	grid-row:1;
 	grid-column:1;
-	
-	max-width:500px;
-	width:50vw;
 	overflow-y:scroll;
 }
 .site {
@@ -52,8 +74,6 @@ html, body {
 	-ms-grid-column:1;
 	grid-row:2;
 	grid-column:1;
-	
-	height:50px;
 	overflow-y:auto;
 }
 
@@ -95,17 +115,13 @@ html, body {
 	// Calcul redimensionnement fb
 	const m_fbSrc = fbElement.getAttribute('data-src');	
 	let m_prevWidth = -1, m_prevHeight = -1;
-	const resizeFb = function(){
+	const refreshFb = function() {
 		const style = getComputedStyle(fbElement);
 		let width = parseInt(style['width']);
 		let height = parseInt(style['height']);
-		
-		// Limites de l'API facebook
-		width = Math.min(Math.max(170, width), 500);	
-		height = Math.max(height, 70);
 	
 		if (m_prevWidth === width && m_prevHeight === height)
-			return;		
+			return;
 		m_prevWidth = width;
 		m_prevHeight = height;
 		
@@ -115,18 +131,23 @@ html, body {
 	
 	// Trigger redimensionnement fb
 	let m_fbTimer;
-	addEventListener('resize', function() {
+	const onResize = function() {
 			if (m_fbTimer) clearTimeout(m_fbTimer);
-			m_fbTimer = setTimeout(resizeFb, 5000);
-		});
-	resizeFb();
-	
-	// Ajout favicon dans startup.html ou index.html
-	const link = parent.document.createElement('link');
-	link.rel = 'icon';
-	link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
-	link.type = 'image/x-icon';
-	parent.document.head.appendChild(link);
+			m_fbTimer = setTimeout(refreshFb, 5000);
+		};
+	addEventListener('load', onResize);
+	addEventListener('resize', onResize);
+
+	// En local, Chrome n'autorise pas à éditer depuis l'iframe
+	let isTop;
+	try { isTop = (window === top) }
+	catch (e) { isTop = false; }
+	if (isTop) {
+		const link = document.createElement('link');
+		link.rel = "icon";
+		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
+		document.head.appendChild(link);
+	}
 	
 	// Rechargement
 	const profsElement = document.getElementById('profs');
@@ -136,12 +157,12 @@ html, body {
 		iframe.src = src;
 		log('Fenêtre Ceria rechargée');
 	}, 600000, profsElement);
-	
+
 	// Suppression données inutiles
 	fbElement.removeAttribute('data-src');
 	m_console.removeAttribute('id');
 	fbElement.removeAttribute('id');
-	profsElement.removeAttribute('id');
+	profsElement.removeAttribute('id');	
 })();
 </script>
 </body>

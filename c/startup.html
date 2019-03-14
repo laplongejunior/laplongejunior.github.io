@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
@@ -14,7 +14,13 @@
 	// Si X est une fonction retournant TRUE, rediriger la fenêtre en cours
 	if (typeof window.X === 'function' && window.X())
 		exit = window;
-	else {
+	else {		
+		// En local, Chrome n'autorise pas à éditer depuis l'iframe
+		const link = document.createElement('link');
+		link.rel = 'icon';
+		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
+		document.head.appendChild(link);
+
 		// Popup vide par défaut afin de configurer la sécurité avant redirection
 		exit = open('about:blank', '_blank');
 		if (!exit) return;
@@ -22,23 +28,21 @@
 		exit.opener = null;
 		
 		// Sécurité #2 : préciser que la fenêtre à rediriger ne doit pas inclure le referer
-		// Sécurité #2+1/2 : ancien referrer pour IE, puis l'officiel pour les autres
-		for (let content of ['never', 'no-referrer']) {
+		const addReferer = function(content) {
 			el = exit.document.createElement('meta');
 			el.name = 'referrer';
 			el.content = content;
 			exit.document.head.appendChild(el);
-		}
+		};
+		// Sécurité #2+1/2 : ancien referrer pour IE, puis l'officiel pour les autres
+		addReferer('never');
+		addReferer('no-referrer');
 	}
 	
 	// Supprimer la seule modification apportée à l'objet global
 	delete window.X;
 	
-	const doc = exit.document;	
-	// Rajouter à la fenêtre à rediriger un script de redirection, fonctionne même sur about:blank avec IE11
-	el = doc.createElement('script');
-	el.appendChild(doc.createTextNode("location.replace('"+'https://www.google.be'+"')"));
-	doc.head.appendChild(el);
+	exit.location.replace('https://www.google.be');
 })();
 </script>
 <style>
@@ -57,6 +61,6 @@ iframe {
 </style>
 </head>
 <body>
-<iframe src="./index.html"></iframe>
+<iframe id="content" src="./index.html"></iframe>
 </body>
 </html>
