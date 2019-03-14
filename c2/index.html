@@ -115,7 +115,7 @@ html, body {
 	// Calcul redimensionnement fb
 	const m_fbSrc = fbElement.getAttribute('data-src');	
 	let m_prevWidth = -1, m_prevHeight = -1;
-	const resizeFb = function() {
+	const refreshFb = function() {
 		const style = getComputedStyle(fbElement);
 		let width = parseInt(style['width']);
 		let height = parseInt(style['height']);
@@ -131,11 +131,12 @@ html, body {
 	
 	// Trigger redimensionnement fb
 	let m_fbTimer;
-	addEventListener('load', resizeFb);
-	addEventListener('resize', function() {
+	const onResize = function() {
 			if (m_fbTimer) clearTimeout(m_fbTimer);
-			m_fbTimer = setTimeout(resizeFb, 5000);
-		});
+			m_fbTimer = setTimeout(refreshFb, 5000);
+		};
+	addEventListener('load', onResize);
+	addEventListener('resize', onResize);
 
 	// En local, Chrome n'autorise pas à éditer depuis l'iframe
 	let isTop;
