@@ -115,7 +115,7 @@ html, body {
 	// Calcul redimensionnement fb
 	const m_fbSrc = fbElement.getAttribute('data-src');	
 	let m_prevWidth = -1, m_prevHeight = -1;
-	const resizeFb = function(){
+	const resizeFb = function() {
 		const style = getComputedStyle(fbElement);
 		let width = parseInt(style['width']);
 		let height = parseInt(style['height']);
@@ -131,20 +131,23 @@ html, body {
 	
 	// Trigger redimensionnement fb
 	let m_fbTimer;
+	addEventListener('load', resizeFb);
 	addEventListener('resize', function() {
 			if (m_fbTimer) clearTimeout(m_fbTimer);
 			m_fbTimer = setTimeout(resizeFb, 5000);
 		});
-	resizeFb();
-		
-	// Ne fonctionne pas en local sur chrome, cross-domain
-	// const doc = parent.document;
-	const doc = document;
-	const link = doc.createElement('link');
-	link.rel = 'shortcut icon';
-	link.type = 'image/x-icon';
-	link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
-	doc.head.appendChild(link);
+
+	// En local, Chrome n'autorise pas à éditer depuis l'iframe
+	let isTop;
+	try { isTop = (window === top) }
+	catch (e) { isTop = false; }
+	if (isTop) {
+		const link = document.createElement('link');
+		link.rel = 'shortcut icon';
+		link.type = 'image/x-icon';
+		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
+		document.head.appendChild(link);
+	}
 	
 	// Rechargement
 	const profsElement = document.getElementById('profs');
