@@ -97,73 +97,73 @@ html, body {
 </div>
 <script>
 (function() {
-	"use strict";
+	"use strict"
 	// Log dans la page web
-	let m_console = document.getElementById('console');
+	let m_console = document.getElementById('console')
 	const log = function(p_str) {	
-		let start = m_console.firstChild;
+		let start = m_console.firstChild
 		if (start)
-			m_console.insertBefore(start = document.createElement("br"), m_console.firstChild);
-		const now = new Date();
-		const pad = function(p_val) {return ('00' + p_val).slice(-2)};
-		p_str = '['+pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds())+'] ' + p_str;
-		m_console.insertBefore(document.createTextNode(p_str), start);
-	};
+			m_console.insertBefore(start = document.createElement("br"), m_console.firstChild)
+		const now = new Date()
+		const pad = function(p_val) {return ('00' + p_val).slice(-2)}
+		p_str = '['+pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds())+'] ' + p_str
+		m_console.insertBefore(document.createTextNode(p_str), start)
+	}
 	
-	const fbElement = document.getElementById('fb');
+	const fbElement = document.getElementById('fb')
 	
 	// Calcul redimensionnement fb
-	const m_fbSrc = fbElement.getAttribute('data-src');	
-	let m_prevWidth = -1, m_prevHeight = -1;
+	const m_fbSrc = fbElement.getAttribute('data-src')
+	let m_prevWidth = -1, m_prevHeight = -1
 	const refreshFb = function() {
-		const style = getComputedStyle(fbElement);
-		let width = parseInt(style['width']);
-		let height = parseInt(style['height']);
+		const style = getComputedStyle(fbElement)
+		let width = parseInt(style['width'])
+		let height = parseInt(style['height'])
 	
 		if (m_prevWidth === width && m_prevHeight === height)
-			return;
-		m_prevWidth = width;
-		m_prevHeight = height;
+			return
+		m_prevWidth = width
+		m_prevHeight = height
 		
-		fbElement.src = m_fbSrc + '&width='+width + '&height='+height;
-		log('Facebook '+width+'x'+height);
+		fbElement.src = m_fbSrc + '&width='+width + '&height='+height
+		log('Facebook '+width+'x'+height)
 	};
 	
 	// Trigger redimensionnement fb
-	let m_fbTimer;
+	let m_fbTimer
 	const onResize = function() {
-			if (m_fbTimer) clearTimeout(m_fbTimer);
-			m_fbTimer = setTimeout(refreshFb, 5000);
-		};
-	addEventListener('load', onResize);
-	addEventListener('resize', onResize);
+			if (m_fbTimer) clearTimeout(m_fbTimer)
+			m_fbTimer = setTimeout(refreshFb, 5000)
+		}
+	addEventListener('load', onResize)
+	addEventListener('resize', onResize)
 
 	// En local, Chrome n'autorise pas à éditer depuis l'iframe
-	let isTop;
+	let isTop
 	try { isTop = (window === top) }
-	catch (e) { isTop = false; }
+	catch (e) { isTop = false }
 	if (isTop) {
-		const link = document.createElement('link');
-		link.rel = "icon";
-		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
-		document.head.appendChild(link);
+		const link = document.createElement('link')
+		link.rel = "icon"
+		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico'
+		document.head.appendChild(link)
 	}
 	
 	// Rechargement
-	const profsElement = document.getElementById('profs');
-	setInterval(function(iframe) {		
-		const src = iframe.src;
-		iframe.src = 'about:blank';
-		iframe.src = src;
-		log('Fenêtre Ceria rechargée');
-	}, 600000, profsElement);
+	const profsElement = document.getElementById('profs')
+	setInterval(function(iframe) {
+		const src = iframe.src
+		iframe.src = 'about:blank'
+		iframe.src = src
+		log('Fenêtre Ceria rechargée')
+	}, 600000, profsElement)
 
 	// Suppression données inutiles
-	fbElement.removeAttribute('data-src');
-	m_console.removeAttribute('id');
-	fbElement.removeAttribute('id');
-	profsElement.removeAttribute('id');	
-})();
+	fbElement.removeAttribute('data-src')
+	m_console.removeAttribute('id')
+	fbElement.removeAttribute('id')
+	profsElement.removeAttribute('id')
+})()
 </script>
 </body>
 </html>
