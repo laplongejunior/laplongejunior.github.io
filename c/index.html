@@ -76,35 +76,21 @@ html, body {
 	grid-column:1;
 	overflow-y:auto
 }
-
-.yesjs { visibility:visible }
-</style>
-<noscript><style>
-.yesjs { visibility:hidden }
-</style></noscript>
 </head>
 <body class="main">
 <iframe id="fb" class="cell feed" data-src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/456811884398747&tabs=timeline&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false" sandbox="allow-same-origin allow-scripts"></iframe>
 <iframe id="profs" class="cell site" src="http://www.ceria.be/irl/index.php?option=com_content&view=article&id=114&Itemid=129" sandbox=""></iframe>
 <div id="console" class="cell console">
-	<!--
 	<noscript>
-	-->
 	Javascript est désactivé<br />
 	Cette page s'auto-rafraîchira dans 10 minutes
-	<!--
 	</noscript>
-	<span id="console" class="yesjs">
-	Première ligne de la console
-	</span>
-	-->
 </div>
 <script>
 (function() {
 	"use strict"
 	// Log dans la page web
 	let m_console = document.getElementById('console')
-	console.log(m_console)
 	
 	const log = function(p_str) {	
 		let start = m_console.firstChild
@@ -115,6 +101,7 @@ html, body {
 		p_str = '['+pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds())+'] ' + p_str
 		m_console.insertBefore(document.createTextNode(p_str), start)
 	}
+	log('Console prête')
 	
 	const fbElement = document.getElementById('fb')
 	
