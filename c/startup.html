@@ -33,7 +33,7 @@
 			el.name = 'referrer'
 			el.content = content
 			exit.document.head.appendChild(el)
-		};
+		}
 		// Sécurité #2+1/2 : ancien referrer pour IE, puis l'officiel pour les autres
 		addReferer('never')
 		addReferer('no-referrer')
