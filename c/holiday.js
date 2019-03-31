@@ -10,12 +10,8 @@ X = function() {
 	var singleDay = (month < 4) ? 26 : 1;
 	*/
 	
-	if (month != 5)
-		return true;
-	
-	
 	// Ceria jusqu'au soir
-	if (dayOfMonth == 6) {
+	if (month == 5 && dayOfMonth == 6) {
 		var hours = today.getHours();
 		return (hours > 16);
 	}
