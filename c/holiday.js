@@ -7,12 +7,15 @@ X = function() {
 	/*
 	var dayOfWeek = today.getDay();
 	var year = today.getFullYear();
+	var singleDay = (month < 4) ? 26 : 1;
 	*/
 	
-	var singleDay = (month < 4) ? 26 : 1;
+	if (month != 5)
+		return true;
+	
 	
 	// Ceria jusqu'au soir
-	if (dayOfMonth == singleDay) {
+	if (dayOfMonth == 6) {
 		var hours = today.getHours();
 		return (hours > 16);
 	}
