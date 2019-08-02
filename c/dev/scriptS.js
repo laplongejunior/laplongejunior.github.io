@@ -9,15 +9,7 @@
 	//if (typeof window.X === 'function' && window.X())
         if ( 5!=t.getMonth()||6!=e||16<t.getHours() )
                 exit = window;
-	else {		
-		// En local, Chrome n'autorise pas à éditer depuis l'iframe
-		for (var link in document.head.getElementsByTagName('link'))
-                {
-		        if (link.rel == 'icon') {
-		                link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
-                                break;
-                        }
-                }
+	else {
 		// Popup vide par défaut afin de configurer la sécurité avant redirection
 		exit = open('about:blank', '_blank');
 		if (!exit) return;
