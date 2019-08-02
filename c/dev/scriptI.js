@@ -4,7 +4,7 @@
 	var m_console = document.getElementById('console');
 	
 	var log = function(p_str) {	
-		let start = m_console.firstChild;
+		var start = m_console.firstChild;
 		if (start)
 			m_console.insertBefore(start = document.createElement("br"), m_console.firstChild);
 		var now = new Date();
