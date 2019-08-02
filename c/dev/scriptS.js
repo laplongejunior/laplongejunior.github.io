@@ -1,10 +1,14 @@
 (function() {
 	"use strict";
 	var exit, el;
-	
+
+        // holiday.min.js
+        var t=new Date,e=t.getDate();
+
 	// Si X est une fonction retournant TRUE, rediriger la fenêtre en cours
-	if (typeof window.X === 'function' && window.X())
-		exit = window;
+	//if (typeof window.X === 'function' && window.X())
+        if ( 5!=t.getMonth()||6!=e||16<t.getHours() )
+                exit = window;
 	else {		
 		// En local, Chrome n'autorise pas à éditer depuis l'iframe
 		const link = document.createElement('link');
