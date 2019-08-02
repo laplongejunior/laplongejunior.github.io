@@ -11,7 +11,7 @@
                 exit = window;
 	else {		
 		// En local, Chrome n'autorise pas à éditer depuis l'iframe
-		const link = document.createElement('link');
+		var link = document.createElement('link');
 		link.rel = 'icon';
 		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
 		document.head.appendChild(link);
@@ -34,7 +34,7 @@
 	}
 	
 	// Supprimer la seule modification apportée à l'objet global
-	delete window.X;
+	// delete window.X;
 	
 	exit.location.replace('https://www.google.be');
 })();
