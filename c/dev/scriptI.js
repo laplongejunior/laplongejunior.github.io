@@ -46,7 +46,7 @@
 	try { isTop = (window === top); }
 	catch (e) { isTop = false; }
 	if (isTop) {
-		const link = document.createElement('link');
+		var link = document.createElement('link');
 		link.rel = "icon";
 		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
 		document.head.appendChild(link);
@@ -55,7 +55,7 @@
 	// Rechargement
 	var profsElement = document.getElementById('profs')
 	setInterval(function(iframe) {
-		const src = iframe.src
+		var src = iframe.src
 		iframe.src = 'about:blank'
 		iframe.src = src
 		log('Fenêtre Ceria rechargée')
