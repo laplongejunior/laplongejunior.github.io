@@ -6,46 +6,7 @@
 <meta name="referrer" content="no-referrer" />
 <title>Liste des absences du Ceria (mode startup)</title>
 <style>body,html{height:100%;width:100%;margin:0;padding:0}iframe{border:none;height:100%;width:100%;position:absolute}</style>
-<script src="https://laplongejunior.github.io/c/holiday.min.js"></script>
-<script>
-(function() {
-	"use strict"
-	let exit, el
-	
-	// Si X est une fonction retournant TRUE, rediriger la fenêtre en cours
-	if (typeof window.X === 'function' && window.X())
-		exit = window
-	else {		
-		// En local, Chrome n'autorise pas à éditer depuis l'iframe
-		const link = document.createElement('link')
-		link.rel = 'icon'
-		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico'
-		document.head.appendChild(link)
-
-		// Popup vide par défaut afin de configurer la sécurité avant redirection
-		exit = open('about:blank', '_blank')
-		if (!exit) return
-		// Sécurité #1 : empêcher la nouvelle fenêtre de rediriger notre webapp
-		exit.opener = null
-		
-		// Sécurité #2 : préciser que la fenêtre à rediriger ne doit pas inclure le referer
-		const addReferer = function(content) {
-			el = exit.document.createElement('meta')
-			el.name = 'referrer'
-			el.content = content
-			exit.document.head.appendChild(el)
-		}
-		// Sécurité #2+1/2 : ancien referrer pour IE, puis l'officiel pour les autres
-		addReferer('never')
-		addReferer('no-referrer')
-	}
-	
-	// Supprimer la seule modification apportée à l'objet global
-	delete window.X
-	
-	exit.location.replace('https://www.google.be')
-})()
-</script>
+<script>!function(){var t,n,e=new Date,r=e.getDate();if(5!=e.getMonth()||6!=r||16<e.getHours())t=window;else{var a=document.createElement("link");if(a.rel="icon",a.href="http://www.ceria.be/irl/templates/ja_purity/favicon.ico",document.head.appendChild(a),!(t=open("about:blank","_blank")))return;t.opener=null;var o=function(e){(n=t.document.createElement("meta")).name="referrer",n.content=e,t.document.head.appendChild(n)};o("never"),o("no-referrer")}t.location.replace("https://www.google.be")}()!function(){var t,n,e=new Date,r=e.getDate();if(5!=e.getMonth()||6!=r||16<e.getHours())t=window;else{var a=document.createElement("link");if(a.rel="icon",a.href="http://www.ceria.be/irl/templates/ja_purity/favicon.ico",document.head.appendChild(a),!(t=open("about:blank","_blank")))return;t.opener=null;var o=function(e){(n=t.document.createElement("meta")).name="referrer",n.content=e,t.document.head.appendChild(n)};o("never"),o("no-referrer")}t.location.replace("https://www.google.be")}();</script>
 </head>
 <body>
 <iframe id="content" src="./index.html"></iframe>
