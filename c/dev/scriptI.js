@@ -53,7 +53,7 @@
 	}
 	
 	// Rechargement
-	const profsElement = document.getElementById('profs')
+	var profsElement = document.getElementById('profs')
 	setInterval(function(iframe) {
 		const src = iframe.src
 		iframe.src = 'about:blank'
