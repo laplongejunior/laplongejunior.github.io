@@ -11,10 +11,13 @@
                 exit = window;
 	else {		
 		// En local, Chrome n'autorise pas à éditer depuis l'iframe
-		var link = document.createElement('link');
-		link.rel = 'icon';
-		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
-		document.head.appendChild(link);
+		for (var link in document.head.getElementsByTagName('link'))
+                {
+		        if (link.rel == 'icon') {
+		                link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
+                                break;
+                        }
+                }
 		// Popup vide par défaut afin de configurer la sécurité avant redirection
 		exit = open('about:blank', '_blank');
 		if (!exit) return;
