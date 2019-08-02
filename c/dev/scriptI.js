@@ -41,16 +41,6 @@
 		};
 	addEventListener('load', onResize);
 	addEventListener('resize', onResize);
-	// En local, Chrome n'autorise pas à éditer depuis l'iframe
-	var isTop;
-	try { isTop = (window === top); }
-	catch (e) { isTop = false; }
-	if (isTop) {
-		var link = document.createElement('link');
-		link.rel = "icon";
-		link.href = 'http://www.ceria.be/irl/templates/ja_purity/favicon.ico';
-		document.head.appendChild(link);
-	}
 	
 	// Rechargement
 	var profsElement = document.getElementById('profs')
