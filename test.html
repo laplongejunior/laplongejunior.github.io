@@ -53,8 +53,11 @@ function _onload(contentClass) {
 		mask.classList.add(iframe.dataset.mask);	
 		
 		// TODO: Based on iframe's width?
-		var width = 91;
-		mStyle.left += (iframe.width-width)+'px';	
+		// var width = 91;
+                var totWidth = iframe.width;
+                var width = totWidth/4 + 1;
+
+		mStyle.left += (totWidth-width)+'px';	
 		mStyle.borderTopWidth = mask.style.borderLeftWidth = width+'px';
 		_loadedContent(content);
 		
