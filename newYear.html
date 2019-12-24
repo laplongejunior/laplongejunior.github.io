@@ -55,7 +55,7 @@ function _onload(contentClass) {
 		// TODO: Based on iframe's width?
 		// var width = 91;
 		var totWidth = iframe.width;
-		var width = Math.ceil(totWidth/4) + 1;
+		var width = _computeWidth(totWidth);
 
 		mStyle.left += (totWidth-width)+'px';	
 		mStyle.borderTopWidth = mask.style.borderLeftWidth = width+'px';
@@ -67,6 +67,13 @@ function _onload(contentClass) {
 		iframe.removeAttribute('data-href');
 		iframe.removeAttribute('data-color');
 	}
+}
+/*
+350 = 89
+360 = 91
+*/
+function _computeWidth(var width) {
+	return Math.ceil(width/4) + 1;
 }
 </script>
 <style>
@@ -96,7 +103,7 @@ function _onload(contentClass) {
 <body onload="_onload('countdown');">
 <div class="content">
 	<span class="countdown">
-		<iframe onload="_loadedIframe(this)" style="border:0" height=467 width=350 src="https://w2.countingdownto.com/2791299" data-color="#FC0001" data-mask="triangle"></iframe>	
+		<iframe onload="_loadedIframe(this)" style="border:0" height=480 width=360 src="https://w2.countingdownto.com/2791299" data-color="#FC0001" data-mask="triangle"></iframe>	
 	</span>
 	<br/>
 	<a href="https://www.youtube.com/watch?v=HKyq4_VIGkk&list=PL8kH5oigXF9vKuPcY0FFzekqQJ7iS6UdH">Playlist principale</a>
