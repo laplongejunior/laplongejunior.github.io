@@ -1,15 +1,27 @@
-var loading = new Set();
-function _loadedIframe(iframe) {
+function _init(iframe) {
+	_init2(iframe);
 	_loadedContent(iframe.parentElement);
 }
+function _init2(iframe) {
+	iframe.location.replace(iframe.dataset.src)
+	// Frees memory
+	iframe.removeAttribute('data-src');
+}
 function _loadedContent(content) {
-	if (loading.delete(content))
-		content.style.visibility='visible';
+	var ATT_NAME = "_customLoad";
+	if (!content.hasAttribute(ATT_NAME))
+		content.setAttribute(ATT_NAME, 1);
 	else
-		loading.add(content);
+	{
+		var att = content.getAttribute(ATT_NAME);
+		if (att === 2) {
+			content.removeAttribute(ATT_NAME);
+			content.style.visibility='visible';
+		}
+	}
 }
 
-function _onload(contentClass) {
+function _load(contentClass) {
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
 		var content = arr[i];
