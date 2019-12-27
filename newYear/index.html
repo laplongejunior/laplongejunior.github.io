@@ -5,9 +5,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="script.js"/>
 <style>
-.countdown {
+.noscript {
 	/* Still takes the iframe's space */
 	visibility:hidden;
+}
+.countdown {
 	float:right;
 }
 .countdown iframe {
@@ -26,14 +28,14 @@
 }
 </style>
 <noscript><style>
-.countdown {
+.noscript {
 	visibility:show;
 }
 </style></noscript>
 </head>
 <body onload="_onload('countdown');">
 <div class="content">
-	<span class="countdown">
+	<span class="countdown noscript">
 		<iframe onload="_loadedIframe(this)" height=480 width=360 src="https://w2.countingdownto.com/2791299" data-color="#FC0001" data-mask="triangle"></iframe>	
 	</span>
 	<br/>
