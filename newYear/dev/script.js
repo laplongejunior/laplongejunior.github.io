@@ -1,23 +1,14 @@
 function _init(iframe) {
-	_init2(iframe);
-	_loadedContent(iframe.parentElement);
+	_loaded(iframe.parentElement);
 }
-function _init2(iframe) {
-	iframe.window.location.replace(iframe.dataset.src)
-	// Frees memory
-	iframe.removeAttribute('data-src');
-}
-function _loadedContent(content) {
+function _loaded(content) {
 	var ATT_NAME = "_customLoad";
 	if (!content.hasAttribute(ATT_NAME))
 		content.setAttribute(ATT_NAME, 1);
 	else
 	{
-		var att = content.getAttribute(ATT_NAME);
-		if (att === 2) {
-			content.removeAttribute(ATT_NAME);
-			content.style.visibility='visible';
-		}
+		content.removeAttribute(ATT_NAME);
+		content.style.visibility='visible';
 	}
 }
 
@@ -65,7 +56,7 @@ function _load(contentClass) {
 
 		mStyle.left += (totWidth-width)+'px';	
 		mStyle.borderTopWidth = mask.style.borderLeftWidth = width+'px';
-		_loadedContent(content);
+		_loaded(content);
 		
 		// Frees memory
 		iframe.removeAttribute('data-mask');
