@@ -3,7 +3,7 @@ function _init(iframe) {
 	_loadedContent(iframe.parentElement);
 }
 function _init2(iframe) {
-	iframe.location.replace(iframe.dataset.src)
+	iframe.window.location.replace(iframe.dataset.src)
 	// Frees memory
 	iframe.removeAttribute('data-src');
 }
