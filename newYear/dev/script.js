@@ -1,4 +1,14 @@
 "strict mode";
+function _insertTag() {
+	var tagName = arguments[0];
+	var tag = document.createElement(tagName);
+	var length = arguments.length;
+	for (var i = 1; i+1 < length; i+=2)
+		tag[arguments[i]] = arguments[i+1];
+	var first = document.getElementsByTagName(tagName)[0];
+	first.parentNode.insertBefore(tag, first);
+}
+
 function _init(iframe) {
 	_loaded(iframe.parentElement);
 }
