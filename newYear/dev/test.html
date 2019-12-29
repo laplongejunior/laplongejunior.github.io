@@ -10,7 +10,7 @@
 _asyncTag('script','src',"https://www.youtube.com/iframe_api");
 
 function onYouTubeIframeAPIReady() {
-	var stopFunc = function(event) {console.log("stop"); event.target._done = true; event.target.stopVideo()};
+	var stopFunc = function(event) {console.log("stop"); event.target._laplongejr.done = true; event.target.stopVideo()};
 	
 	var test = new YT.Player('test', {
 		height: '200',
@@ -18,10 +18,10 @@ function onYouTubeIframeAPIReady() {
 		videoId: 'M7lc1UVf-VE',
 		events: {
 			'onReady': function(event) { console.log("teststart"); event.target.playVideo()},
-			'onStateChange': function(event) { if (!event.target._done) setTimeout(stopFunc, 1, event); }
+			'onStateChange': function(event) { if (!event.target._laplongejr.done) setTimeout(stopFunc, 1, event); }
 		}
         });
-	test._done = false;
+	test._laplongejr = {done : false};
 }
 </script>
 </head>
