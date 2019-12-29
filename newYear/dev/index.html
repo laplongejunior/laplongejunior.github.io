@@ -32,12 +32,12 @@ function onYouTubeIframeAPIReady() {
           	}
         });
 	test = new YT.Player('test', {
-		height: '1',
-		width: '1',
+		height: '200',
+		width: '200',
 		videoId: 'M7lc1UVf-VE',
 		events: {
 			'onReady': function(event) {event.target.playVideo()},
-			'onStateChange': stopFunc
+			'onStateChange': function(event) {setTimeout(stopFunc, 1000)};
 		}
         });
 }
