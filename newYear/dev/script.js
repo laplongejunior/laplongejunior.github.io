@@ -1,15 +1,13 @@
+var loading = new Set();
 function _init(iframe) {
 	_loaded(iframe.parentElement);
 }
 function _loaded(content) {
 	var ATT_NAME = "_customLoad";
-	if (!content.hasAttribute(ATT_NAME))
-		content.setAttribute(ATT_NAME, 1);
+	if (!loading.delete(content))
+		loading.add(content);
 	else
-	{
-		content.removeAttribute(ATT_NAME);
 		content.style.visibility='visible';
-	}
 }
 
 function _load(contentClass) {
