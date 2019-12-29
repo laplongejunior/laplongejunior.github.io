@@ -15,7 +15,8 @@ _asyncTag('script','src',"https://www.youtube.com/iframe_api");
 _asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
 	
 var _laplongejr = {};
-function onYouTubeIframeAPIReady() {
+window.onYouTubeIframeAPIReady = function() {
+	window.onYouTubeIframeAPIReady = undefined;
 	var stopFunc = function(event) {event.target.stopVideo()};
 	
 	_laplongejr.anim = new YT.Player('player', {
@@ -46,10 +47,8 @@ function onYouTubeIframeAPIReady() {
 		<a rel="noopener" class="btn btn-success" href="https://www.youtube.com/watch?v=HKyq4_VIGkk&list=PL8kH5oigXF9vXtyIBGcZvAIdTGcbWu00J">Les Kassos</a>
 		<a rel="noopener" class="btn btn-success" href="https://www.youtube.com/watch?v=OeOdMsEWbB4&list=PL8kH5oigXF9vd8jN2TlE4bfAiOJ0DSCWv">Les Tutos</a>	
 	</div>
-	<span class="noscript" id="player">
+	<span <!--class="noscript"--> id="player">
 	</span>
-	<div id="test">
-	</div>
 </div>
 </body>
 </html>
