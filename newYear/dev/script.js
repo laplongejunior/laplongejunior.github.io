@@ -86,31 +86,25 @@ function _load(contentClass, playerID) {
 		
 		var done = false;
 		var s = 132;
-		new YT.Player(playerID, {
-    			playerVars: {
-				start: s,
-				end: s+19
-			},
-			events: {
-				'onReady': function(event) {
-					var trigger = new Date(2019,12-1,29,19,28,00);
-					var func = function() {
-						document.getElementById(playerID).parentElement.style.visibility='visible';
-						event.target.playVideo();
-					};
+		new YT.Player(playerID, {events: {
+			'onReady': function(event) {
+				var trigger = new Date(2019,12-1,29,19,28,00);
+				var func = function() {
+					document.getElementById(playerID).parentElement.style.visibility='visible';
+					event.target.playVideo();
+				};
 
-					var diff = trigger.getTime()-new Date().getTime();
-					if (diff <= 0) func();
-					else setTimeout(func, diff);
-				},
-				'onStateChange': function(event) {
-					if (event.data == YT.PlayerState.PLAYING && !done) {
-						setTimeout(event.target.stopVideo, 15000);
-						done = true;
-					}
+				var diff = trigger.getTime()-new Date().getTime();
+				if (diff <= 0) func();
+				else setTimeout(func, diff);
+			},
+			'onStateChange': function(event) {
+				if (event.data == YT.PlayerState.PLAYING && !done) {
+					setTimeout(event.target.stopVideo, 15000);
+					done = true;
 				}
 			}
-		});			
+		}});			
 	}
 	
 	_asyncTag('script','src',"https://www.youtube.com/iframe_api");
