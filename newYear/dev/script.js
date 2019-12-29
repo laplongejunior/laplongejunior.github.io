@@ -23,6 +23,8 @@ function _loaded(content) {
 }
 
 function _load(contentClass) {
+	_asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
+	
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
 		var content = arr[i];
@@ -77,9 +79,6 @@ function _load(contentClass) {
 		iframe.removeAttribute('data-href');
 		iframe.removeAttribute('data-color');
 	}
-	
-	_asyncTag('script','src',"https://www.youtube.com/iframe_api");
-	_asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
 
 	window.onYouTubeIframeAPIReady = function() {
 		window.onYouTubeIframeAPIReady = undefined;
@@ -111,4 +110,6 @@ function _load(contentClass) {
 		else
 			setTimeout(func, diff);
 	}
+	
+	_asyncTag('script','src',"https://www.youtube.com/iframe_api");
 }
