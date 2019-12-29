@@ -84,11 +84,16 @@ function _load(contentClass, playerID) {
 	window.onYouTubeIframeAPIReady = function() {
 		window.onYouTubeIframeAPIReady = undefined;
 		
-		var done = false;		
+		var done = false;
+		var s = 132;
 		new YT.Player(playerID, {
 			height: '360',
 			width: '640',
 			videoId: 'o8VvdUUpeYE',
+    			playerVars: {
+				start: s,
+				end: s+15
+			},
 			events: {
 				'onReady': function(event) {
 					var trigger = new Date(2019,12-1,29,17,20,00);
