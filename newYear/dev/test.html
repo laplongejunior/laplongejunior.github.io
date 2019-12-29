@@ -10,21 +10,21 @@
 _asyncTag('script','src',"https://www.youtube.com/iframe_api");
 
 function onYouTubeIframeAPIReady() {
-	var stopFunc = function(event) {event.target._laplongejr.done = true; event.target.stopVideo()};
-	
+	var done = false;
 	var test = new YT.Player('test', {
 		height: '100',
 		width: '100',
 		videoId: 'M7lc1UVf-VE',
 		events: {
-			'onReady': function(event) {event.target.playVideo()},
+			'onReady': event.target.playVideo,
 			'onStateChange': function(event) {
-				if (!event.target._laplongejr.done)
-					setTimeout(stopFunc, 1000, event);
+				if (event.data == YT.PlayerState.PLAYING && !done) {
+					setTimeout(event.target.stopVideo, 1000, event);
+					done = true;
+				}
 			}
 		}
         });
-	test._laplongejr = {done : false};
 }
 </script>
 </head>
