@@ -1,16 +1,17 @@
-var loading = new Set();
 function _init(iframe) {
 	_loaded(iframe.parentElement);
 }
+
+var s = new Set();
 function _loaded(content) {
 	var ATT_NAME = "_customLoad";
-	if (!loading.delete(content))
-		loading.add(content);
+	if (!s.delete(content))
+		s.add(content);
 	else
 		content.style.visibility='visible';
 }
 
-function _load(contentClass) {
+function _load(contentClass) {	
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
 		var content = arr[i];
@@ -50,7 +51,11 @@ function _load(contentClass) {
 		// TODO: Based on iframe's width?
 		// var width = 91;
 		var totWidth = iframe.width;
-		var width = _computeWidth(totWidth);
+		/*
+		350 = 89
+		360 = 91
+		*/
+		var width = Math.ceil(totWidth/4) + 1;
 
 		mStyle.left += (totWidth-width)+'px';	
 		mStyle.borderTopWidth = mask.style.borderLeftWidth = width+'px';
@@ -61,11 +66,18 @@ function _load(contentClass) {
 		iframe.removeAttribute('data-href');
 		iframe.removeAttribute('data-color');
 	}
+	
+	dateTrigger(new Date(2019,29,12,16,03,00), specialEffect);
 }
-/*
-350 = 89
-360 = 91
-*/
-function _computeWidth(width) {
-	return Math.ceil(width/4) + 1;
+
+function specialEffect() {
+	alert("test");
+}
+
+function dateTrigger(trigger, func) {
+	var diff = trigger-new Date();
+	if (diff <= 0)
+		func();
+	else
+		setTimeout(func, diff);
 }
