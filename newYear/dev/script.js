@@ -92,7 +92,7 @@ function _load(contentClass, playerID) {
 			videoId: 'o8VvdUUpeYE',
     			playerVars: {
 				start: s,
-				end: s+15
+				end: s+19
 			},
 			events: {
 				'onReady': function(event) {
