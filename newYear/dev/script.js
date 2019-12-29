@@ -22,7 +22,7 @@ function _loaded(content) {
 		content.style.visibility='visible';
 }
 
-function _load(contentClass) {	
+function _load(contentClass) {
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
 		var content = arr[i];
@@ -78,13 +78,37 @@ function _load(contentClass) {
 		iframe.removeAttribute('data-color');
 	}
 	
-	var func = function() {		
-		console.log("test");
-	};
-	var trigger = new Date(2019,12-1,29,17,20,00);
-	var diff = trigger.getTime()-new Date().getTime();
-	if (diff <= 0)
-		func();
-	else
-		setTimeout(func, diff);
+	_asyncTag('script','src',"https://www.youtube.com/iframe_api");
+	_asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
+
+	window.onYouTubeIframeAPIReady = function() {
+		window.onYouTubeIframeAPIReady = undefined;
+		var stopFunc = function(event) {event.target.stopVideo()};
+
+		var anim = new YT.Player('player', {
+			height: '360',
+			width: '640',
+			videoId: 'o8VvdUUpeYE',
+			events: {
+				//'onReady': onPlayerReady,
+				'onStateChange': function(event) {
+					if (event.data == YT.PlayerState.PLAYING && !event.target._laplongejr.done) {
+							setTimeout(stopFunc, 15000, event);
+							event.target._laplongejr.done = true;
+						}
+					}
+			}
+		});
+		anim._laplongejr = {done : false};
+	
+		var func = function() {		
+			console.log("test");
+		};
+		var trigger = new Date(2019,12-1,29,17,20,00);
+		var diff = trigger.getTime()-new Date().getTime();
+		if (diff <= 0)
+			func();
+		else
+			setTimeout(func, diff);
+	}
 }
