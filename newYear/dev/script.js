@@ -80,10 +80,11 @@ function _load(contentClass) {
 		iframe.removeAttribute('data-color');
 	}
 
+	// Global object name reserved by YT api
 	window.onYouTubeIframeAPIReady = function() {
 		window.onYouTubeIframeAPIReady = undefined;
+		
 		var stopFunc = function(event) {event.target.stopVideo()};
-
 		var anim = new YT.Player('player', {
 			height: '360',
 			width: '640',
