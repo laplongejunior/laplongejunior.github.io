@@ -12,11 +12,16 @@
 <style>.noscript {visibility:hidden}</style>
 <noscript><style>.noscript {visibility:show}</style></noscript>
 <script>
-var tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+var tag = document.createElement('link');
+tag['rel'] = "stylesheet"
+tag.['href'] = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css";
+var first = document.getElementsByTagName('link')[0];
+first.parentNode.insertBefore(tag, first);
+	
+tag = document.createElement('script');
+tag.['src'] = "https://www.youtube.com/iframe_api";
+first = document.getElementsByTagName('script')[0];
+first.parentNode.insertBefore(tag, first);
 	
 var done = false;
 var anim, test;
