@@ -96,7 +96,7 @@ function _load(contentClass, playerID) {
 			},
 			events: {
 				'onReady': function(event) {
-					var trigger = new Date(2019,12-1,29,17,20,00);
+					var trigger = new Date(2019,12-1,29,19,28,00);
 					var func = function() {
 						document.getElementById(playerID).style.visibility='visible';
 						event.target.playVideo();
