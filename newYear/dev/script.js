@@ -1,3 +1,4 @@
+"strict mode";
 function _init(iframe) {
 	_loaded(iframe.parentElement);
 }
