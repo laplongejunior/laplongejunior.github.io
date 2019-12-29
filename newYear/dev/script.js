@@ -103,7 +103,7 @@ function _load(contentClass, playerID) {
 		var trigger = new Date(2019,12-1,29,17,20,00);
 		var func = function() {
 			document.getElementById(playerID).style.visibility='visible';	
-			anim.startVideo();
+			anim.playVideo();
 		};
 		
 		var diff = trigger.getTime()-new Date().getTime();
