@@ -30,7 +30,7 @@ function onYouTubeIframeAPIReady() {
 			//'onReady': onPlayerReady,
 			'onStateChange': function(event) {
 				if (event.data == YT.PlayerState.PLAYING && !done) {
-						setTimeout(function(){stopFunc(event)}, 15000);
+						setTimeout(stopFunc, 15000, event);
 						done = true;
 					}
 				}
@@ -42,7 +42,7 @@ function onYouTubeIframeAPIReady() {
 		videoId: 'M7lc1UVf-VE',
 		events: {
 			'onReady': function(event) {event.target.playVideo()},
-			'onStateChange': function(event) {setTimeout(function(){stopFunc(event)}, 1000)}
+			'onStateChange': function(event) {stopFunc, 1000, event)}
 		}
         });
 }
