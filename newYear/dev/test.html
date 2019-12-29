@@ -10,7 +10,7 @@
 _asyncTag('script','src',"https://www.youtube.com/iframe_api");
 
 function onYouTubeIframeAPIReady() {
-	var stopFunc = function(event) {console.log("stop"); event.target.stopVideo()};
+	var stopFunc = function(event) {console.log("stop"); event.target._done = true; event.target.stopVideo()};
 	
 	var test = new YT.Player('test', {
 		height: '200',
