@@ -18,7 +18,7 @@ function onYouTubeIframeAPIReady() {
 		videoId: 'M7lc1UVf-VE',
 		events: {
 			'onReady': function(event) { console.log("teststart"); event.target.playVideo()},
-			'onStateChange': function(event) { if (!event.target._laplongejr.done) setTimeout(stopFunc, 1, event); }
+			'onStateChange': function(event) { if (!event.target._laplongejr.done) setTimeout(stopFunc, 1000, event); }
 		}
         });
 	test._laplongejr = {done : false};
