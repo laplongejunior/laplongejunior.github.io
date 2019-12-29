@@ -87,9 +87,6 @@ function _load(contentClass, playerID) {
 		var done = false;
 		var s = 132;
 		new YT.Player(playerID, {
-			height: '360',
-			width: '640',
-			videoId: 'o8VvdUUpeYE',
     			playerVars: {
 				start: s,
 				end: s+19
@@ -98,7 +95,7 @@ function _load(contentClass, playerID) {
 				'onReady': function(event) {
 					var trigger = new Date(2019,12-1,29,19,28,00);
 					var func = function() {
-						document.getElementById(playerID).style.visibility='visible';
+						document.getElementById(playerID).parentElement.style.visibility='visible';
 						event.target.playVideo();
 					};
 
