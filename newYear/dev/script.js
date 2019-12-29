@@ -4,7 +4,6 @@ function _init(iframe) {
 
 var s = new Set();
 function _loaded(content) {
-	var ATT_NAME = "_customLoad";
 	if (!s.delete(content))
 		s.add(content);
 	else
