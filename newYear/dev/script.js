@@ -22,7 +22,7 @@ function _loaded(content) {
 		content.style.visibility='visible';
 }
 
-function _load(contentClass) {
+function _load(contentClass, playerID) {
 	_asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
 	
 	var arr = window.document.getElementsByClassName(contentClass);
@@ -84,10 +84,8 @@ function _load(contentClass) {
 	window.onYouTubeIframeAPIReady = function() {
 		window.onYouTubeIframeAPIReady = undefined;
 		
-		var stopFunc = function(event) {event.target.stopVideo()};
-		var done = false;
-		var id = 'player';
-		var anim = new YT.Player(id, {
+		var done = false;		
+		var anim = new YT.Player(playerID, {
 			height: '360',
 			width: '640',
 			videoId: 'o8VvdUUpeYE',
@@ -95,23 +93,22 @@ function _load(contentClass) {
 				//'onReady': onPlayerReady,
 				'onStateChange': function(event) {
 					if (event.data == YT.PlayerState.PLAYING && !done) {
-						setTimeout(stopFunc, 15000, event);
+						setTimeout(event.target.stopVideo, 15000);
 						done = true;
 					}
 				}
 			}
 		});
 	
+		var trigger = new Date(2019,12-1,29,17,20,00);
 		var func = function() {
-			document.getElementById(id).style.visibility='visible';	
+			document.getElementById(playerID).style.visibility='visible';	
 			anim.startVideo();
 		};
-		var trigger = new Date(2019,12-1,29,17,20,00);
+		
 		var diff = trigger.getTime()-new Date().getTime();
-		if (diff <= 0)
-			func();
-		else
-			setTimeout(func, diff);		
+		if (diff <= 0) func();
+		else setTimeout(func, diff);		
 	}
 	
 	_asyncTag('script','src',"https://www.youtube.com/iframe_api");
