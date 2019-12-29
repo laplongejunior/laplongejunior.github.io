@@ -86,7 +86,7 @@ function _load(contentClass, playerID) {
 		
 		new YT.Player(playerID, {events: {
 			'onReady': function(event) {
-				var trigger = new Date(2019,12-1,29,19,28,00);
+				var trigger = new Date(2019,12-1,31,23,59,50);
 				var func = function() {
 					document.getElementById(playerID).parentElement.style.visibility='visible';
 					event.target.playVideo();
