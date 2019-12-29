@@ -85,6 +85,7 @@ function _load(contentClass) {
 		window.onYouTubeIframeAPIReady = undefined;
 		
 		var stopFunc = function(event) {event.target.stopVideo()};
+		var done = false;
 		var anim = new YT.Player('player', {
 			height: '360',
 			width: '640',
@@ -92,17 +93,16 @@ function _load(contentClass) {
 			events: {
 				//'onReady': onPlayerReady,
 				'onStateChange': function(event) {
-					if (event.data == YT.PlayerState.PLAYING && !event.target._laplongejr.done) {
-							setTimeout(stopFunc, 15000, event);
-							event.target._laplongejr.done = true;
-						}
+					if (event.data == YT.PlayerState.PLAYING && !done) {
+						setTimeout(stopFunc, 15000, event);
+						done = true;
 					}
+				}
 			}
 		});
-		anim._laplongejr = {done : false};
 	
 		var func = function() {		
-			console.log("test");
+			anim.startVideo()
 		};
 		var trigger = new Date(2019,12-1,29,17,20,00);
 		var diff = trigger.getTime()-new Date().getTime();
