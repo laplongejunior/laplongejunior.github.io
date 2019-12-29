@@ -20,7 +20,6 @@ _asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/b
 var done = false;
 var anim, test;
 function onYouTubeIframeAPIReady() {
-	console.log("testYT");	
 	var stopFunc = function(event) {event.target.stopVideo()};
 	
 	anim = new YT.Player('player', {
@@ -38,8 +37,8 @@ function onYouTubeIframeAPIReady() {
           	}
         });
 	test = new YT.Player('test', {
-		height: '200',
-		width: '200',
+		height: '1',
+		width: '1',
 		videoId: 'M7lc1UVf-VE',
 		events: {
 			'onReady': function(event) {event.target.playVideo()},
