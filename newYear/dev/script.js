@@ -68,7 +68,7 @@ function _load(contentClass) {
 	}
 	
 	var func = function() {		
-		alert("test");
+		console.log("test");
 	};
 	var trigger = new Date(2019,12-1,29,17,20,00);
 	var diff = trigger.getTime()-new Date().getTime();
