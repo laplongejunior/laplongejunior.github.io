@@ -1,9 +1,6 @@
 .countdown {
 	float:right;
 }
-.countdown iframe {
-	border:0;
-}
 .triangle {
 	width:0;
 	height:0;
@@ -13,4 +10,7 @@
 }
 .content {
 	text-align: center;
+}
+.content iframe {
+	border:0;
 }
