@@ -6,11 +6,42 @@
 <meta name="referrer" content="never" />
 <meta name="referrer" content="no-referrer" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://www.youtube.com/iframe_api"></script>
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
 <base target="_blank">
 <style>.noscript {visibility:hidden}</style>
 <noscript><style>.noscript {visibility:show}</style></noscript>
+<script>
+var done = false;
+var anim, test;
+function onYouTubeIframeAPIReady() {
+	var stopFunc = function(event) {event.target.stopVideo()};
+	anim = new YT.Player('player', {
+		height: '360',
+		width: '640',
+		videoId: 'o8VvdUUpeYE',
+          	events: {
+			//'onReady': onPlayerReady,
+			'onStateChange': function(event) {
+				if (event.data == YT.PlayerState.PLAYING && !done) {
+						setTimeout(stopFunc, 15000);
+						done = true;
+					}
+				}
+          	}
+        });
+	test = new YT.Player('test', {
+		height: '1',
+		width: '1',
+		videoId: 'M7lc1UVf-VE',
+		events: {
+			'onReady': function() {event.target.playVideo()},
+			'onStateChange': stopFunc
+		}
+        });
+}
+</script>
 </head>
 <body onload="_load('countdown');">
 <div class="content">
@@ -22,9 +53,10 @@
 		<a rel="noopener" class="btn btn-success" href="https://www.youtube.com/watch?v=HKyq4_VIGkk&list=PL8kH5oigXF9vXtyIBGcZvAIdTGcbWu00J">Les Kassos</a>
 		<a rel="noopener" class="btn btn-success" href="https://www.youtube.com/watch?v=OeOdMsEWbB4&list=PL8kH5oigXF9vd8jN2TlE4bfAiOJ0DSCWv">Les Tutos</a>	
 	</div>
-	<span class="noscript">
-		test
+	<span class="noscript" id="player">
 	</span>
+	<div id="test">
+	</div>
 </div>
 </body>
 </html>
