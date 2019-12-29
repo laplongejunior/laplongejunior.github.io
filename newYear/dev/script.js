@@ -66,17 +66,11 @@ function _load(contentClass) {
 		iframe.removeAttribute('data-color');
 	}
 	
-	dateTrigger(new Date(2019,12-1,29,16,15,00), specialEffect);
-}
-
-function specialEffect() {
-	alert("test");
-}
-
-function dateTrigger(trigger, func) {
-	var today = new Date();
-	var diff = trigger.getTime()-today.getTime();
-	console.log(trigger.toISOString()+"-"+today.toISOString()+"="+diff);
+	var func = function() {		
+		alert("test");
+	});
+	var trigger = new Date(2019,12-1,29,16,15,00);
+	var diff = trigger.getTime()-new Date().getTime();
 	if (diff <= 0)
 		func();
 	else
