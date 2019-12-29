@@ -66,7 +66,7 @@ function _load(contentClass) {
 		iframe.removeAttribute('data-color');
 	}
 	
-	dateTrigger(new Date(2019,29,12,16,03,00), specialEffect);
+	dateTrigger(new Date(2019,29,12,16,05,00), specialEffect);
 }
 
 function specialEffect() {
@@ -74,7 +74,7 @@ function specialEffect() {
 }
 
 function dateTrigger(trigger, func) {
-	var diff = trigger-new Date();
+	var diff = trigger.getTime()-new Date().getTime();
 	if (diff <= 0)
 		func();
 	else
