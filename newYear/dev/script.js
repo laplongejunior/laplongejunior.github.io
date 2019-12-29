@@ -1,5 +1,5 @@
 "strict mode";
-function _insertTag() {
+function _asyncTag() {
 	var tagName = arguments[0];
 	var tag = document.createElement(tagName);
 	var length = arguments.length;
@@ -7,6 +7,7 @@ function _insertTag() {
 		tag[arguments[i]] = arguments[i+1];
 	var first = document.getElementsByTagName(tagName)[0];
 	first.parentNode.insertBefore(tag, first);
+	return tag;
 }
 
 function _init(iframe) {
