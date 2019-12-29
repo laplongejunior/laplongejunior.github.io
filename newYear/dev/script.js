@@ -66,7 +66,7 @@ function _load(contentClass) {
 		iframe.removeAttribute('data-color');
 	}
 	
-	dateTrigger(new Date(2019,29,12,16,05,00), specialEffect);
+	dateTrigger(new Date(2019,12-1,29,16,15,00), specialEffect);
 }
 
 function specialEffect() {
