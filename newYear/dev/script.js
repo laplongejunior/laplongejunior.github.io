@@ -84,8 +84,6 @@ function _load(contentClass, playerID) {
 	window.onYouTubeIframeAPIReady = function() {
 		window.onYouTubeIframeAPIReady = undefined;
 		
-		var done = false;
-		var s = 132;
 		new YT.Player(playerID, {events: {
 			'onReady': function(event) {
 				var trigger = new Date(2019,12-1,29,19,28,00);
@@ -97,12 +95,6 @@ function _load(contentClass, playerID) {
 				var diff = trigger.getTime()-new Date().getTime();
 				if (diff <= 0) func();
 				else setTimeout(func, diff);
-			},
-			'onStateChange': function(event) {
-				if (event.data == YT.PlayerState.PLAYING && !done) {
-					setTimeout(event.target.stopVideo, 15000);
-					done = true;
-				}
 			}
 		}});			
 	}
