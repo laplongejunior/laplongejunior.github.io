@@ -86,7 +86,8 @@ function _load(contentClass) {
 		
 		var stopFunc = function(event) {event.target.stopVideo()};
 		var done = false;
-		var anim = new YT.Player('player', {
+		var id = 'player';
+		var anim = new YT.Player(id, {
 			height: '360',
 			width: '640',
 			videoId: 'o8VvdUUpeYE',
@@ -101,15 +102,16 @@ function _load(contentClass) {
 			}
 		});
 	
-		var func = function() {		
-			anim.startVideo()
+		var func = function() {
+			document.getElementById(id).style.visibility='visible';	
+			anim.startVideo();
 		};
 		var trigger = new Date(2019,12-1,29,17,20,00);
 		var diff = trigger.getTime()-new Date().getTime();
 		if (diff <= 0)
 			func();
 		else
-			setTimeout(func, diff);
+			setTimeout(func, diff);		
 	}
 	
 	_asyncTag('script','src',"https://www.youtube.com/iframe_api");
