@@ -19,7 +19,7 @@ function onYouTubeIframeAPIReady() {
 		videoId: 'M7lc1UVf-VE',
 		events: {
 			'onReady': function(event) { console.log("teststart"); event.target.playVideo()},
-			'onStateChange': function(event) {setTimeout(function(){stopFunc(event)}, 1000)}
+			'onStateChange': function(event) {setTimeout(stopFunc, 1000, event)}
 		}
         });
 }
