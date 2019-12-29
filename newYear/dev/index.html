@@ -5,9 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="referrer" content="never" />
 <meta name="referrer" content="no-referrer" />
-	<!--
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
--->
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
 <base target="_blank">
@@ -17,34 +14,25 @@
 _asyncTag('script','src',"https://www.youtube.com/iframe_api");
 _asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
 	
-var done = false;
-var anim, test;
+var _laplongejr = {};
 function onYouTubeIframeAPIReady() {
 	var stopFunc = function(event) {event.target.stopVideo()};
 	
-	anim = new YT.Player('player', {
+	_laplongejr.anim = new YT.Player('player', {
 		height: '360',
 		width: '640',
 		videoId: 'o8VvdUUpeYE',
           	events: {
 			//'onReady': onPlayerReady,
 			'onStateChange': function(event) {
-				if (event.data == YT.PlayerState.PLAYING && !done) {
+				if (event.data == YT.PlayerState.PLAYING && !event.target._laplongejr.done) {
 						setTimeout(stopFunc, 15000, event);
-						done = true;
+						event.target._laplongejr.done = true;
 					}
 				}
           	}
         });
-	test = new YT.Player('test', {
-		height: '200',
-		width: '200',
-		videoId: 'M7lc1UVf-VE',
-		events: {
-			'onReady': function(event) {event.target.playVideo()},
-			'onStateChange': function(event) {stopFunc, 1000, event)}
-		}
-        });
+	anim._laplongejr = {done : false};
 }
 </script>
 </head>
