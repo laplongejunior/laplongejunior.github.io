@@ -76,7 +76,7 @@ function specialEffect() {
 function dateTrigger(trigger, func) {
 	var today = new Date();
 	var diff = trigger.getTime()-today.getTime();
-	console.log(trigger.toISOString()+"-"+today.toISOString()+"="diff);
+	console.log(trigger.toISOString()+"-"+today.toISOString()+"="+diff);
 	if (diff <= 0)
 		func();
 	else
