@@ -23,7 +23,7 @@ function _loaded(content) {
 }
 
 function _load(contentClass, playerID) {
-	_asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
+	//_asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
 	
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
