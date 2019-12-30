@@ -1,5 +1,5 @@
 "strict mode";
-function _asyncTag() {
+function _async() {
 	var tagName = arguments[0];
 	var tag = document.createElement(tagName);
 	var length = arguments.length;
@@ -23,7 +23,7 @@ function _loaded(content) {
 }
 
 function _load(contentClass, playerID) {
-	//_asyncTag('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
+	//_async('link','rel',"stylesheet",'href',"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css");
 	
 	var arr = window.document.getElementsByClassName(contentClass);
 	for (var i=0; i<arr.length; ++i) {
@@ -99,5 +99,5 @@ function _load(contentClass, playerID) {
 		}});			
 	}
 	
-	_asyncTag('script','src',"https://www.youtube.com/iframe_api");
+	_async('script','src',"https://www.youtube.com/iframe_api");
 }
