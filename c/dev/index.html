@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
+<!-- IE support -->
 <meta name="referrer" content="never" />
 <meta name="referrer" content="no-referrer" />
 <link rel="icon" href="http://www.ceria.be/irl/templates/ja_purity/favicon.ico" />
@@ -9,6 +10,7 @@
 	<meta http-equiv="refresh" content="600" />
 </noscript>
 <title>Liste des absences du Ceria</title>
+<!-- /main/style.min.css -->
 <style>
 iframe{border:none}iframe .partial{overflow:hidden}body,html{height:100%;width:100%;margin:0;padding:0}.main{position:absolute;display:-ms-grid;display:grid;-ms-grid-columns:1fr 1fr;grid-template-columns:1fr 1fr;-ms-grid-rows:1fr 50px;grid-template-rows:1fr 50px}@media all and (max-width:340px){.main{-ms-grid-columns:170px 1fr;grid-template-columns:170px 1fr}}@media all and (min-width:1000px){.main{-ms-grid-columns:500px 1fr;grid-template-columns:500px 1fr}}@media all and (max-height:120px){.main{-ms-grid-rows:70px 1fr;grid-template-rows:70px 1fr}}.cell{width:100%;height:100%}.feed{-ms-grid-row:1;-ms-grid-column:1;grid-row:1;grid-column:1;overflow-y:scroll}.site{-ms-grid-row:1;-ms-grid-row-span:2;-ms-grid-column:2;grid-row:1/span 2;grid-column:2}.console{-ms-grid-row:2;-ms-grid-column:1;grid-row:2;grid-column:1;overflow-y:auto}
 </style>
@@ -22,6 +24,7 @@ iframe{border:none}iframe .partial{overflow:hidden}body,html{height:100%;width:1
 	Cette page s'auto-rafraîchira dans 10 minutes
 	</noscript>
 </div>
+<!-- /main/script.min.js -->
 <script>
 !function(){function n(e){var t=i.firstChild;function r(e){return("00"+e).slice(-2)}t&&i.insertBefore(t=document.createElement("br"),i.firstChild);var n=new Date;e="["+r(n.getHours())+":"+r(n.getMinutes())+":"+r(n.getSeconds())+"] "+e,i.insertBefore(document.createTextNode(e),t)}var i=document.getElementById("console");n("Console prête");function e(){var e=getComputedStyle(o),t=parseInt(e.width),r=parseInt(e.height);c===t&&s===r||(c=t,s=r,o.src=a+"&width="+t+"&height="+r,n("Facebook "+t+"x"+r))}function t(){r&&clearTimeout(r),r=setTimeout(e,5e3)}var r,o=document.getElementById("fb"),a=o.getAttribute("data-src"),c=-1,s=-1;addEventListener("load",t),addEventListener("resize",t);var d=document.getElementById("profs");setInterval(function(e){var t=e.src;e.src="about:blank",e.src=t,n("Fenêtre Ceria rechargée")},6e5,d),o.removeAttribute("data-src"),i.removeAttribute("id"),o.removeAttribute("id"),d.removeAttribute("id")}()
 </script>
