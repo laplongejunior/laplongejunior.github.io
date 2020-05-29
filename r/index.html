@@ -75,7 +75,10 @@ window.addEventListener('load', function(){
 		var width = parseInt(style['width']);
 		var height = parseInt(style['height']);
 		fbElement.sandbox = "allow-same-origin allow-scripts allow-popups"
-		fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"+fbElement.getAttribute('data-id')+"&tabs=timeline&hide_cover=true&show_facepile=false&de_cta=false&small_header=true&adapt_container_width=false&width="+width + "&height="+height;
+		fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"
+			+fbElement.getAttribute('data-id')
+			+"&tabs=timeline&hide_cover=true&show_facepile=false&de_cta=false&small_header=true&adapt_container_width=false&width="
+			+width + "&height="+height;
 	}
 });
 </script>
