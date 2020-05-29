@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<!-- IE support -->
+<meta name="referrer" content="never" />
+<meta name="referrer" content="no-referrer" />
+<meta http-equiv="refresh" content="600" />
+<title>Test</title>
+<style>
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+iframe {
+    border:none;
+}
+
+.main {
+	position:absolute;
+	display:-ms-grid;
+	display:grid;
+	/* Moitié de l'écran pour chaque colonne */
+	-ms-grid-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+.fb {
+border:0;
+width:100%;
+height:100%;
+	overflow-y:scroll;
+}
+</style>
+</head>
+<body class="main">
+<iframe class="fb" data-id="1534915190170411" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+<iframe class="fb" data-id="105696207575318" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+<iframe class="fb" data-id="391884014273249" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+<script>
+// (function(){
+	window.addEventListener('load', function(){
+		for (fbElement of document.getElementsByClassName('fb')) {
+			var style = getComputedStyle(fbElement);
+			var width = parseInt(style['width']);
+			var height = parseInt(style['height']);
+			fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"+fbElement.getAttribute('data-id')+"&tabs=timeline&hide_cover=true&show_facepile=false&de_cta=false&small_header=true&adapt_container_width=false&width="+width + "&height="+height;
+			console.log(width+"x"+height);
+		}
+	});
+// })();
+</script>
+</html>
