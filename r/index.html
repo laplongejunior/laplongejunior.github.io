@@ -44,7 +44,7 @@ height:100%;
 <script>
 "use strict";
 window.addEventListener('load', function(){
-	for (fbElement of document.getElementsByClassName('fb')) {
+	for (var fbElement of document.getElementsByClassName('fb')) {
 		var style = getComputedStyle(fbElement);
 		var width = parseInt(style['width']);
 		var height = parseInt(style['height']);
