@@ -34,22 +34,21 @@ height:100%;
 </style>
 </head>
 <body class="main">
-<iframe class="fb" data-id="1534915190170411" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
-<iframe class="fb" data-id="105696207575318" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
-<iframe class="fb" data-id="391884014273249" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
-<iframe class="fb" data-id="112730843512992" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
-<iframe class="fb" data-id="101101308043085" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+<iframe class="fb" data-id="1534915190170411"></iframe>
+<iframe class="fb" data-id="105696207575318"></iframe>
+<iframe class="fb" data-id="391884014273249"></iframe>
+<iframe class="fb" data-id="112730843512992"></iframe>
+<iframe class="fb" data-id="101101308043085"></iframe>
 <script>
-// (function(){
-	window.addEventListener('load', function(){
-		for (fbElement of document.getElementsByClassName('fb')) {
-			var style = getComputedStyle(fbElement);
-			var width = parseInt(style['width']);
-			var height = parseInt(style['height']);
-			fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"+fbElement.getAttribute('data-id')+"&tabs=timeline&hide_cover=true&show_facepile=false&de_cta=false&small_header=true&adapt_container_width=false&width="+width + "&height="+height;
-			console.log(width+"x"+height);
-		}
-	});
-// })();
+"use strict";
+window.addEventListener('load', function(){
+	for (fbElement of document.getElementsByClassName('fb')) {
+		var style = getComputedStyle(fbElement);
+		var width = parseInt(style['width']);
+		var height = parseInt(style['height']);
+		fbElement.sandbox = "allow-same-origin allow-scripts allow-popups"
+		fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"+fbElement.getAttribute('data-id')+"&tabs=timeline&hide_cover=true&show_facepile=false&de_cta=false&small_header=true&adapt_container_width=false&width="+width + "&height="+height;
+	}
+});
 </script>
 </html>
