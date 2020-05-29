@@ -30,6 +30,7 @@
 		m_prevHeight = height;
 		
 		fbElement.src = m_fbSrc + '&width='+width + '&height='+height;
+		log(fbElement.src)
 		log('Facebook '+width+'x'+height);
 	};
 	
