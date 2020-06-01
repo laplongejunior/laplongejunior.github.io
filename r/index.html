@@ -95,12 +95,10 @@ window.addEventListener('load', function(){
 			if (m_fbTimer) clearTimeout(m_fbTimer);
 			m_fbTimer = setTimeout(refreshFb, 5000);
 		};
-	addEventListener('load', function() {
-		for (var fbElement of document.getElementsByClassName('fb'))
-			fbElement.sandbox = "allow-same-origin allow-scripts allow-popups"
-		onResize()
-	});
+	for (var fbElement of document.getElementsByClassName('fb'))
+		fbElement.sandbox = "allow-same-origin allow-scripts allow-popups"
 	addEventListener('resize', onResize);
+	onResize()
 });
 </script>
 </html>
