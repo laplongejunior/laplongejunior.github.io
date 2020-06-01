@@ -69,8 +69,10 @@ iframe {
 <iframe class="fb" data-id="456882059848"></iframe>
 <script>
 "use strict";
-window.addEventListener('load', function(){
-	alert("ok")
+window.addEventListener('load', function(){	
+	for (var fbElement of document.getElementsByClassName('fb'))
+		fbElement.sandbox = "allow-same-origin allow-scripts allow-popups"
+	
 	var refreshFb = function() {
 		for (var fbElement of document.getElementsByClassName('fb')) {
 			var style = getComputedStyle(fbElement);
@@ -87,18 +89,15 @@ window.addEventListener('load', function(){
 				+"&tabs=timeline&hide_cover=true&show_facepile=false&de_cta=false&small_header=true&adapt_container_width=false&width="
 				+width + "&height="+height;
 		}
-	};
+	}
+	refreshFb()
 	
 	// Trigger redimensionnement fb
 	var m_fbTimer;
-	var onResize = function() {
+	addEventListener('resize', function() {
 			if (m_fbTimer) clearTimeout(m_fbTimer);
 			m_fbTimer = setTimeout(refreshFb, 5000);
-		};
-	for (var fbElement of document.getElementsByClassName('fb'))
-		fbElement.sandbox = "allow-same-origin allow-scripts allow-popups"
-	addEventListener('resize', onResize);
-	onResize()
+		})
 });
 </script>
 </html>
