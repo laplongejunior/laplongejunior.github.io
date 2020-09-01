@@ -42,7 +42,7 @@ document.getElementById('outlook').addEventListener('click', function(){
 		month = 3 + f((L + 40)/44),
 		day = L + 28 - 31 * f(month / 4);
 
-		return new Date(year, month, day);
+		return new Date(year, month, day+1); // Monday
 	};
 	
 	var MIN_YEAR = 2017;
@@ -72,11 +72,11 @@ document.getElementById('outlook').addEventListener('click', function(){
 	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {	
 		for (var [name,data] of map)
 			result.set(new Date(year, data[0], data[1]), name);		
-		var easter = _addDays(getEaster(year),1);
+		var easter = getEaster(year);
 		// Holy friday is included in Outlook, but is not a legal holiday
-		result.set(easter, "Lundi de Pâques");
-		result.set(_addDays(easter,39-1), "Ascension");
-		result.set(_addDays(easter,49), "Lundi de Pentecôte");
+		result.set(easter,"Lundi de Pâques");
+		result.set(_addDays(easter,39-1),"Ascension");
+		result.set(_addDays(easter,49),"Lundi de Pentecôte");
 	}
 	
 	var txt = "[Belgique] 212";
