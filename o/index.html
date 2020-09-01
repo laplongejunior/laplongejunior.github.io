@@ -82,7 +82,7 @@ document.getElementById('outlook').addEventListener('click', function(){
 	}
 	
 	var txt = "[Belgique] 212";
-	for (var [date,name] of result) {
+	for (var [date,name] of new Map([...map.entries()].sort())) {
 		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
 	}
 	document.getElementById('output').value = txt;
