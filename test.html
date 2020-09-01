@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<style>
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.text {
+width:90%;
+height:90%;
+}
+</style>
+<meta charset="utf-8" />
+<title>Test outlook</title>
+</head>
+<body>
+<button id="outlook">Click here to generate</button>
+<br/>
+<label>Outlook code</label>
+<br/>
+<textarea class="text" id="output"></textarea>
+<script>
+"use strict";
+document.getElementById('outlook').addEventListener('click', function(){
+	// Source: https://gist.github.com/johndyer/0dffbdd98c2046f41180c051f378f343
+	var getEaster = function(year) {
+		var f = Math.floor,
+		// Golden Number - 1
+		G = year % 19,
+		C = f(year / 100),
+		// related to Epact
+		H = (C - f(C / 4) - f((8 * C + 13)/25) + 19 * G + 15) % 30,
+		// number of days from 21 March to the Paschal full moon
+		I = H - f(H/28) * (1 - f(29/(H + 1)) * f((21-G)/11)),
+		// weekday for the Paschal full moon
+		J = (year + f(year / 4) + I + 2 - C + f(C / 4)) % 7,
+		// number of days from 21 March to the Sunday on or before the Paschal full moon
+		L = I - J,
+		month = 3 + f((L + 40)/44),
+		day = L + 28 - 31 * f(month / 4);
+
+		return new Date(year, month, day);
+	};
+	
+	var MIN_YEAR = 2017;
+	var MAX_YEAR = 2030;
+	
+	var list = [];
+	list.push(["Jour de l'an", 1, 1]);
+	list.push(["Fête du travail", 5, 1]);
+	list.push(["Fête nationale", 7, 21]);
+	list.push(["Assomption", 8, 15]);
+	list.push(["Toussaint", 11, 1]);
+	list.push(["*Jour des morts", 11, 2]);
+	list.push(["Armistice 1918", 11, 11]);
+	list.push(["*Fête du roi", 11, 15]);
+	list.push(["Noël", 12, 25]);
+	list.push(["*Après-noël", 12, 26]);
+	for (var day = 27; day <= 31; day++)
+		list.push(["Comp. fin d'année", 12, day]);
+	
+	var _addDays = function(date,days) {
+		var date = new Date(date.valueOf());
+		date.setDate(date.getDate() + days);
+		return date;
+	};
+	console.log(list);
+		
+	var result = [];
+	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {
+		for (var data of list)
+			result.push([data[0], new Date(year, data[1], data[2])]);
+			
+		var easter = _addDays(getEaster(year),1);
+		// Holy friday is included in Outlook, but is not a legal holiday
+		result.push(["Lundi de Pâques", easter]);
+		result.push(["Ascension", _addDays(easter,39-1)]);
+		result.push(["Lundi de Pentecôte", _addDays(easter,49)]);
+	}
+	
+	var txt = '[Belgique] 212';
+	for (var holiday of result) {
+	console.log(holiday)
+		var date = holiday[1];
+		txt += "\n"+holiday[0]+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+	}
+	document.getElementById('output').value = txt;
+});
+</script>
+</body>
+</html>
