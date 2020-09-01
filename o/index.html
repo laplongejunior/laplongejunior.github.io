@@ -48,7 +48,7 @@ document.getElementById('outlook').addEventListener('click', function(){
 	var MIN_YEAR = 2017;
 	var MAX_YEAR = 2030;
 	
-	var map = {};
+	var map = new Map();
 	map.set("Jour de l'an",[1,1]);
 	map.set("Fête du travail",[5,1]);
 	map.set("Fête nationale",[7,21]);
@@ -68,7 +68,7 @@ document.getElementById('outlook').addEventListener('click', function(){
 		return date;
 	};
 		
-	var result = {};
+	var result = new Map();
 	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {	
 		for (var [name,data] of map)
 			result.set(new Date(year, data[0], data[1]), name);		
