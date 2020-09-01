@@ -48,19 +48,19 @@ document.getElementById('outlook').addEventListener('click', function(){
 	var MIN_YEAR = 2017;
 	var MAX_YEAR = 2030;
 	
-	var list = [];
-	list.push(["Jour de l'an", 1, 1]);
-	list.push(["Fête du travail", 5, 1]);
-	list.push(["Fête nationale", 7, 21]);
-	list.push(["Assomption", 8, 15]);
-	list.push(["Toussaint", 11, 1]);
-	list.push(["*Jour des morts", 11, 2]);
-	list.push(["Armistice 1918", 11, 11]);
-	list.push(["*Fête du roi", 11, 15]);
-	list.push(["Noël", 12, 25]);
-	list.push(["*Après-noël", 12, 26]);
+	var map = {};
+	map.set("Jour de l'an", [1, 1]);
+	map.set("Fête du travail", [5, 1]);
+	map.set("Fête nationale", [7, 21]);
+	map.set("Assomption", [8, 15]);
+	map.set("Toussaint", [11, 1]);
+	map.set("*Jour des morts", [11, 2]);
+	map.set("Armistice 1918", [11, 11]);
+	map.set("*Fête du roi", [11, 15]);
+	map.set("Noël", [12, 25]);
+	map.set("*Après-noël", [12, 26]);
 	for (var day = 27; day <= 31; day++)
-		list.push(["Comp. fin d'année", 12, day]);
+		map.set("Comp. fin d'année", [12, day]);
 	
 	var _addDays = function(date,days) {
 		var date = new Date(date.valueOf());
@@ -69,23 +69,21 @@ document.getElementById('outlook').addEventListener('click', function(){
 	};
 	console.log(list);
 		
-	var result = [];
+	var result = {};
 	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {
-		for (var data of list)
-			result.push([data[0], new Date(year, data[1], data[2])]);
+		for (var [name,data] of map)
+			result.set(new Date(year, data[0], data[1]), name);
 			
 		var easter = _addDays(getEaster(year),1);
 		// Holy friday is included in Outlook, but is not a legal holiday
-		result.push(["Lundi de Pâques", easter]);
-		result.push(["Ascension", _addDays(easter,39-1)]);
-		result.push(["Lundi de Pentecôte", _addDays(easter,49)]);
+		result.set(easter, "Lundi de Pâques");
+		result.set(_addDays(easter,39-1), "Ascension");
+		result.set(_addDays(easter,49), "Lundi de Pentecôte);
 	}
 	
-	var txt = '[Belgique] 212';
-	for (var holiday of result) {
-	console.log(holiday)
-		var date = holiday[1];
-		txt += "\n"+holiday[0]+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+	var txt = "[Belgique] 212";
+	for (var [date,name] of result) {
+		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
 	}
 	document.getElementById('output').value = txt;
 });
