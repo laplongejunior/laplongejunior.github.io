@@ -47,8 +47,8 @@ document.getElementById('outlook').addEventListener('click', function(){
 		return new Date(year, month, day+1); // Monday
 	};
 	
-	var MIN_YEAR = document.getElementById('minYear').value();
-	var MAX_YEAR = document.getElementById('maxYear').value();
+	var MIN_YEAR = document.getElementById('minYear').value;
+	var MAX_YEAR = document.getElementById('maxYear').value;
 	
 	var map = new Map();
 	map.set("Jour de l'an",[1,1]);
