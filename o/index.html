@@ -17,6 +17,8 @@ height:90%;
 <title>Test outlook</title>
 </head>
 <body>
+<input type="number" id="minYear" value="2017"></input>
+<input type="number" id="maxYear" value="2030"></input>
 <button id="outlook">Click here to generate</button>
 <br/>
 <label>Outlook code</label>
@@ -45,8 +47,8 @@ document.getElementById('outlook').addEventListener('click', function(){
 		return new Date(year, month, day+1); // Monday
 	};
 	
-	var MIN_YEAR = 2017;
-	var MAX_YEAR = 2030;
+	var MIN_YEAR = document.getElementById('minYear').value();
+	var MAX_YEAR = document.getElementById('maxYear').value();
 	
 	var map = new Map();
 	map.set("Jour de l'an",[1,1]);
