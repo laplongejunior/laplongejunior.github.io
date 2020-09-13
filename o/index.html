@@ -80,10 +80,8 @@ document.getElementById('outlook').addEventListener('click', function(){
 	}
 	
 	var txt = "[Belgique] 212";
-	for (var [date,name] of new Map([...map.entries()].sort())) {
-		console.log(date)
+	for (var [date,name] of new Map([...result.entries()].sort()))
 		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
-	}
 	document.getElementById('output').value = txt;
 });
 </script>
