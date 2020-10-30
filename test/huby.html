@@ -11,11 +11,12 @@
 </head>
 <body class="content">
 	<div class="noscript">
-		<iframe id="player" width="640" height="360" src="https://www.youtube.com/embed/o8VvdUUpeYE?rel=0&showinfo=0&start=132&end=151&enablejsapi=1&origin=https://laplongejunior.github.io"></iframe>
+		<iframe id="player" width="640" height="360" <!--src="https://www.youtube.com/embed/o8VvdUUpeYE?rel=0&showinfo=0&start=132&end=151&enablejsapi=1&origin=https://laplongejunior.github.io"-->></iframe>
 	</div>
 <script>
 	"strict mode";
 	var playerID = "player";
+	var loaded = false;
 	
 	function _async() {
 		var tagName = arguments[0];
@@ -32,12 +33,11 @@
 	window.onYouTubeIframeAPIReady = function() {
 		window.onYouTubeIframeAPIReady = undefined;
 			
-		new YT.Player(playerID, {events: {
+		var player = new YT.Player(playerID, {events: {
 			'onReady': function(event) {
-				var player = event.target;
-				player.loadVideoById('jmHK4vIvWLE');
 			}
-		}});			
+		}});
+		player.loadVideoById('jmHK4vIvWLE');
 	}
 		
 	_async('script','src',"https://www.youtube.com/iframe_api");
