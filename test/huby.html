@@ -5,17 +5,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="referrer" content="never" />
 	<meta name="referrer" content="no-referrer" />
-	<base target="_blank" />
-	<style>.noscript {visibility:hidden}</style>
-	<noscript><style>.noscript {visibility:show}</style></noscript>
 </head>
-<body class="content">
-	 <!-- src="https://www.youtube.com/embed/o8VvdUUpeYE?rel=0&showinfo=0&start=132&end=151&enablejsapi=1&origin=https://laplongejunior.github.io" -->
-		<div id="player" width="640" height="360"></div>
+<body>
+	<div id="player"></div>
 <script>
 	"strict mode";
 	var playerID = "player";
 	var loaded = false;
+	var next = 'jmHK4vIvWLE';
 	
 	function _async() {
 		var tagName = arguments[0];
@@ -35,9 +32,13 @@
 		new YT.Player(playerID, {events: {
 			'onReady': function(event) {
 				var player = event.target;
-				if (loaded) return;
-				loaded = true;
-				player.loadVideoById('jmHK4vIvWLE');
+				player.loadVideoById(next);
+				/*
+				{'videoId': next,
+               'startSeconds': 5,
+               'endSeconds': 60,
+               'suggestedQuality': 'large'}
+				*/
 			}
 		}});			
 	}
