@@ -12,7 +12,21 @@
 	"strict mode";
 	var playerID = "player";
 	var loaded = false;
-	var next = 'jmHK4vIvWLE';
+	var schedule = new Array();
+	schedule.push(['jmHK4vIvWLE',undefined,undefined]);
+	
+	function playNext(player) {
+		var params = schedule.shift();
+		setVideo(player, params[0], params[1], params[2]);
+	}
+	function setVideo(player, id, start, end) {
+		player.loadVideoById({
+			'videoId': id,
+            'startSeconds': start,
+            'endSeconds': end/*,
+            'suggestedQuality': 'large'*/});
+		player.playVideo();
+	}
 	
 	function _async() {
 		var tagName = arguments[0];
@@ -31,15 +45,7 @@
 			
 		new YT.Player(playerID, {events: {
 			'onReady': function(event) {
-				var player = event.target;
-				player.loadVideoById(next);
-				player.playVideo();
-				/*
-				{'videoId': next,
-               'startSeconds': 5,
-               'endSeconds': 60,
-               'suggestedQuality': 'large'}
-				*/
+				setVideo(event.target, next, undefined, undefined);
 			}
 		}});			
 	}
