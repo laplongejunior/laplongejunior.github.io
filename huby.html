@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>Titre</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="referrer" content="never" />
+	<meta name="referrer" content="no-referrer" />
+	<base target="_blank" />
+	<style>.noscript {visibility:hidden}</style>
+	<noscript><style>.noscript {visibility:show}</style></noscript>
+</head>
+<body class="content">
+	<div class="noscript">
+		<iframe id="player" width="640" height="360" src="https://www.youtube.com/embed/o8VvdUUpeYE?rel=0&showinfo=0&start=132&end=151&enablejsapi=1&origin=https://laplongejunior.github.io"></iframe>
+	</div>
+<script>
+	"strict mode";
+	var playerID = "player";
+	
+	function _async() {
+		var tagName = arguments[0];
+		var tag = document.createElement(tagName);
+		var length = arguments.length;
+		for (var i = 1; i+1 < length; i+=2)
+			tag[arguments[i]] = arguments[i+1];
+		var first = document.getElementsByTagName(tagName)[0];
+		first.parentNode.insertBefore(tag, first);
+		return tag;
+	}
+
+	// Global object name reserved by YT api
+	window.onYouTubeIframeAPIReady = function() {
+		window.onYouTubeIframeAPIReady = undefined;
+			
+		new YT.Player(playerID, {events: {
+			'onReady': function(event) {
+				var player = event.target;
+				player.loadVideoById('jmHK4vIvWLE');
+			}
+		}});			
+	}
+		
+	_async('script','src',"https://www.youtube.com/iframe_api");
+</script>
+</body>
+</html>
