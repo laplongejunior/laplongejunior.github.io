@@ -13,19 +13,26 @@
 	var playerID = "player";
 	var loaded = false;
 	var schedule = new Array();
-	schedule.push(['jmHK4vIvWLE',undefined,undefined]);
+	schedule.push(['jmHK4vIvWLE',60,75]);
+	schedule.push(['jmHK4vIvWLE',10,15]);
 	
 	function playNext(player) {
 		var params = schedule.shift();
 		setVideo(player, params[0], params[1], params[2]);
 	}
 	function setVideo(player, id, start, end) {
-		player.loadVideoById({
+		var onState = function(event) {
+			if (event.data != 5) return;
+			var player = event.target;
+			player.removeEventHandler("onStateChange", onState);
+			player.playVideo();
+		});
+		player.addEventHandler("onStateChange", onState);
+		player.cueVideoById({
 			'videoId': id,
             'startSeconds': start,
-            'endSeconds': end/*,
-            'suggestedQuality': 'large'*/});
-		player.playVideo();
+            'endSeconds': end,
+            'suggestedQuality': 'large'});
 	}
 	
 	function _async() {
