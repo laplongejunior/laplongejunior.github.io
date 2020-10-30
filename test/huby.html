@@ -45,7 +45,7 @@
 			
 		new YT.Player(playerID, {events: {
 			'onReady': function(event) {
-				setVideo(event.target, next, undefined, undefined);
+				playNext(event.target);
 			}
 		}});			
 	}
