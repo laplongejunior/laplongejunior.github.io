@@ -17,7 +17,7 @@
       this.onbservers.remove(obs);
     }
     onUpdate() {
-      for (obs : observers)
+      for (obs of observers)
         obs.fire(this);
     }
   
