@@ -7,7 +7,9 @@
     fire(subject) {}
   };
   class Subject {
-    this.observers = new Array();
+    constructor() {
+      this.observers = new Array();
+    }
     subscribe(obs) {
       this.observers.push(obs);
     }
