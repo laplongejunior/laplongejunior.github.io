@@ -106,7 +106,19 @@
     }
   };
   
+  let createRuinView = function(ruin) {
+    let newItem = doc.createElement("li");
+    li.addClass("list-group-item"); // Bootstrap
+    li.insertChild(ruin.createUI());
+    return newItem;
+  };
+  
   global.addEventListener("load", function() {
-    
+    let doc = global.document;
+    let ruinList = doc.getElementById("arfr-ruin-list");
+    let addRuinButton = doc.getElementById("arfr-add-ruin");
+    addRuinButton.addEventListener("click", function() {
+      ruinList.addChild(createRuinView(new Ruin()));
+    });
   });
 })(this);
