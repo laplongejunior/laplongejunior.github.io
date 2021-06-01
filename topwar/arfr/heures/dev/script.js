@@ -67,6 +67,10 @@
       let time = new Date();
       return new Date(time.getTime()+ ((((h*60)+m*60)+s)*1000) );
     }
+    
+    createUI() {
+      // TODO
+    }
   };
   
   class Ruin extends Subject {
@@ -97,5 +101,12 @@
       onUpdate();
       return null;
     }
+    
+    createUI() {
+      // TODO
+    }
   };
+  
+  
+  
 })(this);
