@@ -56,6 +56,7 @@
       addError(errors, setHour(parseInt(arr[0])));
       addError(errors, setMin(parseInt(arr[1])));
       addError(errors, setSec(parseInt(arr[2])));
+      return errors;
     }
     
     getTime() {
@@ -64,7 +65,8 @@
     }
     
     createUI() {
-      // TODO
+      let ui = global.document.createElement("span");
+      return ui;
     }
   };
   
@@ -98,10 +100,13 @@
     }
     
     createUI() {
-      // TODO
+      let ui = global.document.createElement("div");
+      ui.insertChild(this.spoil.createUI());
+      return ui;
     }
   };
   
-  
-  
+  global.addEventListener("load", function() {
+    
+  });
 })(this);
