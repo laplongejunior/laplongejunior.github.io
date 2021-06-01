@@ -3,6 +3,24 @@
     if (err != null) arr.push(err);
   };
   
+  class Observer {
+    fire() {}
+  };
+  class Subject {
+    this.observers = new Array();
+    subscribe(obs) {
+      this.observers.push(obs);
+    }
+    unsubscribe(obs) {
+      this.onbservers.remove(obs);
+    }
+    onUpdate() {
+      for (obs : observers)
+        obs.fire();
+    }
+  
+  };
+  
   class Diff {
     constructor() {
       this.h = 0;
