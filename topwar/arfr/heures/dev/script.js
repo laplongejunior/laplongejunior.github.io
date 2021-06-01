@@ -50,11 +50,6 @@
       onUpdate();
       return null;
     }
-    constructor(h, m, s) {
-      setHour(h);
-      setMin(m);
-      setSec(s);
-    }
     setTimestamp(timestamp) {
       let errors = new Array();
       let arr = timestamp.split(':');
