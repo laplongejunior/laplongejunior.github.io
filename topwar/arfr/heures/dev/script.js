@@ -1,13 +1,43 @@
 (function(global){
+  let addError = function(arr, err){
+    if (err != null) arr.push(err);
+  };
+  
   class Diff {
-    constructor(h, m, s) {
-      this.h = h;
-      this.m = m;
-      this.s = s;
+    constructor() {
+      this.h = 0;
+      this.m = 0;
+      this.s = 0;
     }
-    constructor(timestamp) {
+    
+    setHour(h) {
+      if (h < 0) return "Heure négative";
+      this.h = h;
+      return null;
+    }
+    setMin(m) {
+      if (m < 0) return "Minutes négatives";
+      if (m >= 60) return "Minutes trop élevées";
+      this.m = m;
+      return null;
+    }
+    setSec(s) {
+      if (s < 0) return "Secondes négatives";
+      if (s >= 60) return "Secondes trop élevées";
+      this.s = s;
+      return null;
+    }
+    constructor(h, m, s) {
+      setHour(h);
+      setMin(m);
+      setSec(s);
+    }
+    setTimestamp(timestamp) {
+      let errors = new Array();
       let arr = timestamp.split(':');
-      super(parseInt(arr[0]), parseInt(arr[1]), parseInt(arr[2]));
+      addError(errors, setHour(parseInt(arr[0])));
+      addError(errors, setMin(parseInt(arr[1])));
+      addError(errors, setSec(parseInt(arr[2])));
     }
     
     getTime() {
@@ -22,8 +52,8 @@
       this.owner = owner;
     }
     
-    setCountdown(countdown) {
-      this.spoil = countdown.getTime();
+    setCountdown(diff) {
+      this.spoil = diff.getTime();
     }
   };
 })(this);
