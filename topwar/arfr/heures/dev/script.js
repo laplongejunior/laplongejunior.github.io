@@ -115,16 +115,6 @@
     return newItem;
   };
 
-const createEnum = function(values){
-let result = {};
-for (const value in values){
-result[value]=value;
-}
-return Object.freeze(result);
-};
-
-const EnumDirections = createEnum(["UP", "DOWN", "LEFT", "RIGHT");
-
 class SafeMatrix {
 let matrix;
 constructor(SIDE) {
@@ -133,8 +123,13 @@ for (let i=0;i<SIDE;++i)
 matrix.push(new Array(SIDR).fill(undefined));
 }
 
-let id = 1;
+let id = 1, tries = 0;
 insertId(x,y) {
+let result = _insertId(x,y);
+if (result) tries = 0;
+else ++tries;
+}
+_insertId(x,y) {
 if (x < 0 || x >= matrix.length) return false;
 let arr = matrix[x];
 if (y < 0 || y >= arr.length) return false;
@@ -144,8 +139,34 @@ arr[y] = id;
 return true;
 }
 
-let x = 1, y = 1, direction = EnumDirections.LEFT;
-let gen = new SafeMatrix(16);
+const BASE = 2;
+const Directions = {
+UP:{next:Directions.RIGHT, onX:function(x){}}, 
+DOWN:{next:Directions.LEFT},
+LEFT:{next:Directions.UP}, 
+RIGHT:{next:Directions.DOWN}
+};
+const SIDE = 16, BASE = 2;
+let gen = new SafeMatrix(SIDE);
+const MIDDLE = SIZE/2;
+const UPPER=MIDDLE+1, LOWER=MIDDLE-1;
+const inMiddle = function(index) {
+return index >= UPPER && index <= LOWER;
+}
+let x = 1, y = 3, direction = EnumDirections.RIGHT;
+
+while (gen.tries < 4) {
+if (inMiddle(x)) x = MIDDLE;
+if (inMiddle(y)) y = MIDDLE;
+if (!gen.insertId(x,y)) direction = direction.next;
+
+switch (direction) {
+case EnumDirections.UP:
+
+break;
+}
+
+}
 
   /*
   const ruinMatrix = [
