@@ -1,4 +1,6 @@
 (function(global){
+  "use strict";
+  
   let addError = function(arr, err){
     if (err != null) arr.push(err);
   };
@@ -111,6 +113,34 @@
     li.addClass("list-group-item"); // Bootstrap
     li.insertChild(ruin.createUI());
     return newItem;
+  };
+  
+  const ruinMatrix = [
+    [1,2,3],
+    [12,13,14,4],
+    [20,21,15],
+    [11,24,22,5],
+    [19,23,16],
+    [10,18,17,6],
+    [9,8,7]
+  ];
+  let ruinCoords = function(id) {
+    for (let i = 0; i < ruinMatrix.length; ++i) {
+      let array = ruinMatrix[i];
+      for (let j = 0; j < array.length; ++j) {
+        let value = array[j];
+        if (id === value) {
+          let posX = i*2+1;
+          if
+        }
+      }
+    }
+  };
+  
+  let calculateCoord = function(id, index) {
+  };
+  let calculateCoords = function(id, indexX, indexY) {
+      let pox
   };
   
   global.addEventListener("load", function() {
