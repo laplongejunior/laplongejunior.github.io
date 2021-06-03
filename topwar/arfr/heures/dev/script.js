@@ -115,16 +115,37 @@
     return newItem;
   };
 
-const MAX_SIZE = 16;
-let ruinMatrix = new Array(MAX_SIZE);
-for (let i=0;i<MAX_SIZE;++i)
-ruinMatrix.push(new Array(MAX_SIZE).fill(0));
-
-let x = 1, y = 1, id = 1;
-for (let id = 1; id<=24, ++i) {
-  if (x 
-  ruinMatrix[x][y] = id;
+const createEnum = function(values){
+let result = {};
+for (const value in values){
+result[value]=value;
 }
+return Object.freeze(result);
+};
+
+const EnumDirections = createEnum(["UP", "DOWN", "LEFT", "RIGHT");
+
+class SafeMatrix {
+let matrix;
+constructor(SIDE) {
+matrix = new Array(SIDE);
+for (let i=0;i<SIDE;++i)
+matrix.push(new Array(SIDR).fill(undefined));
+}
+
+let id = 1;
+insertId(x,y) {
+if (x < 0 || x >= matrix.length) return false;
+let arr = matrix[x];
+if (y < 0 || y >= arr.length) return false;
+if (arr[y] !== undefined) return false;
+arr[y] = id;
+++id;
+return true;
+}
+
+let x = 1, y = 1, direction = EnumDirections.LEFT;
+let gen = new SafeMatrix(16);
 
   /*
   const ruinMatrix = [
