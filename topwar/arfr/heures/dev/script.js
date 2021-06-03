@@ -114,7 +114,19 @@
     li.insertChild(ruin.createUI());
     return newItem;
   };
-  
+
+const MAX_SIZE = 16;
+let ruinMatrix = new Array(MAX_SIZE);
+for (let i=0;i<MAX_SIZE;++i)
+ruinMatrix.push(new Array(MAX_SIZE).fill(0));
+
+let x = 1, y = 1, id = 1;
+for (let id = 1; id<=24, ++i) {
+  if (x 
+  ruinMatrix[x][y] = id;
+}
+
+  /*
   const ruinMatrix = [
     [1,2,3],
     [12,13,14,4],
@@ -142,6 +154,7 @@
   let calculateCoords = function(id, indexX, indexY) {
       let pox
   };
+*/
   
   global.addEventListener("load", function() {
     let doc = global.document;
