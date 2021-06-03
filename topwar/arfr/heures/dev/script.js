@@ -1,6 +1,7 @@
 (function(global){
   "use strict";
   
+// UI view
   let addError = function(arr, err){
     if (err != null) arr.push(err);
   };
@@ -115,6 +116,7 @@
     return newItem;
   };
 
+// Coords mapping
 class SafeMatrix {
 let matrix;
 constructor(SIDE) {
@@ -139,20 +141,22 @@ arr[y] = id;
 return true;
 }
 
-const BASE = 2;
-const Directions = {
-UP:{next:Directions.RIGHT, onX:function(x){}}, 
-DOWN:{next:Directions.LEFT},
-LEFT:{next:Directions.UP}, 
-RIGHT:{next:Directions.DOWN}
-};
-const SIDE = 16, BASE = 2;
+const BASE = 2, ADJUST = 1;
+const SIDE = 16;
 let gen = new SafeMatrix(SIDE);
 const MIDDLE = SIZE/2;
-const UPPER=MIDDLE+1, LOWER=MIDDLE-1;
 const inMiddle = function(index) {
-return index >= UPPER && index <= LOWER;
+return index >= MIDDLE+ADJUST && index <= MIDDLE+ADJUST;
 }
+
+const Directions = {
+UP:{next:Directions.RIGHT, coords:function(x,y,adjust){return [x-adjust,y]};} 
+DOWN:{next:Directions.LEFT, coords:function(x,y,adjust){return [x+adjust,y]};} 
+LEFT:{next:Directions.UP, coords:function(x,y,adjust){return [x,y-adjust]};} 
+RIGHT:{next:Directions.DOWN, coords:function(x,y,adjust){return [x,y+adjust]};} 
+};
+
+
 let x = 1, y = 3, direction = EnumDirections.RIGHT;
 
 while (gen.tries < 4) {
@@ -160,12 +164,11 @@ if (inMiddle(x)) x = MIDDLE;
 if (inMiddle(y)) y = MIDDLE;
 if (!gen.insertId(x,y)) direction = direction.next;
 
-switch (direction) {
-case EnumDirections.UP:
-
-break;
-}
-
+let move = BASE;
+if (isMiddle(x) || isMiddle(y)) move+=ADJUST+1;
+let arr = direction.coords(x,y,move);
+x = arr[0];
+y = arr[1];
 }
 
   /*
