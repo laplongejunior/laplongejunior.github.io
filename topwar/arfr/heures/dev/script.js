@@ -130,6 +130,8 @@ class SafeMatrix {
     let result = _insertId(x,y);
     if (result) this.tries = 0;
     else ++this.tries;
+    if (result) console.log(gen.id-1+":"+tempX+";"+tempY);
+    return result;
   }
   _insertId(x,y) {
     if (x < 0 || x >= this.matrix.length) return false;
@@ -160,7 +162,7 @@ Directions.LEFT.coords=function(x,y,adjust){return [x,y-adjust];};
 Directions.RIGHT.next=Directions.DOWN;
 Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];}; 
 
-let x = 1, y = 3-BASE, direction = EnumDirections.RIGHT;
+let x = 1, y = 3-BASE, direction = Directions.RIGHT;
 while (gen.tries < 4) {
   let arr = direction.coords(x,y,BASE);
   let tempX = arr[0];
@@ -171,7 +173,6 @@ while (gen.tries < 4) {
 
   let result = gen.insertId(tempX,tempY);
   if (!result) direction = direction.next;
-  else console.log(gen.id-1+":"+tempX+";"+tempY);
   
   arr = direction.coords(tempX,tempY,BASE);
   if (isMiddle(tempX) || isMiddle(tempY))
