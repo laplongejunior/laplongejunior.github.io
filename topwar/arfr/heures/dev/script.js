@@ -118,29 +118,30 @@
 
 // Coords mapping
 class SafeMatrix {
-constructor(SIDE) {
-this.id = 1;
-  this.tries = 0;
-this.matrix = new Array(SIDE);
-for (let i=0;i<SIDE;++i)
-this.matrix.push(new Array(SIDE).fill(undefined));
-}
+  constructor(SIDE) {
+    this.id = 1;
+    this.tries = 0;
+    this.matrix = new Array(SIDE);
+    for (let i=0;i<SIDE;++i)
+      this.matrix.push(new Array(SIDE));
+  }
 
-insertId(x,y) {
-let result = _insertId(x,y);
-if (result) this.tries = 0;
-else ++this.tries;
+  insertId(x,y) {
+    let result = _insertId(x,y);
+    if (result) this.tries = 0;
+    else ++this.tries;
+  }
+  _insertId(x,y) {
+    if (x < 0 || x >= this.matrix.length) return false;
+    let arr = this.matrix[x];
+    if (y < 0 || y >= arr.length) return false;
+    if (arr[y] !== undefined) return false;
+    arr[y] = this.id;
+    ++this.id;
+    return true;
+  }
 }
-_insertId(x,y) {
-if (x < 0 || x >= this.matrix.length) return false;
-let arr = this.matrix[x];
-if (y < 0 || y >= arr.length) return false;
-if (arr[y] !== undefined) return false;
-arr[y] = this.id;
-++this.id;
-return true;
-}
-
+  
 const BASE = 2, ADJUST = 1;
 const SIDE = 16;
 let gen = new SafeMatrix(SIDE);
