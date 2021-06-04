@@ -118,11 +118,10 @@
 
 // Coords mapping
 class SafeMatrix {
-let matrix;
 constructor(SIDE) {
-matrix = new Array(SIDE);
+this.matrix = new Array(SIDE);
 for (let i=0;i<SIDE;++i)
-matrix.push(new Array(SIDE).fill(undefined));
+this.matrix.push(new Array(SIDE).fill(undefined));
 }
 
 let id = 1, tries = 0;
@@ -132,8 +131,8 @@ if (result) tries = 0;
 else ++tries;
 }
 _insertId(x,y) {
-if (x < 0 || x >= matrix.length) return false;
-let arr = matrix[x];
+if (x < 0 || x >= this.matrix.length) return false;
+let arr = this.matrix[x];
 if (y < 0 || y >= arr.length) return false;
 if (arr[y] !== undefined) return false;
 arr[y] = id;
