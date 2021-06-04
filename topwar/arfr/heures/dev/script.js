@@ -150,12 +150,11 @@ const inMiddle = function(index) {
   return index >= MIDDLE+ADJUST && index <= MIDDLE+ADJUST;
 }
 
-const Directions = {
-  UP:{next:Directions.RIGHT, coords:function(x,y,adjust){return [x-adjust,y];}},
-  DOWN:{next:Directions.LEFT, coords:function(x,y,adjust){return [x+adjust,y];}}, 
-  LEFT:{next:Directions.UP, coords:function(x,y,adjust){return [x,y-adjust];}},
-  RIGHT:{next:Directions.DOWN, coords:function(x,y,adjust){return [x,y+adjust];}} 
-};
+const Directions = {UP:{},DOWN:{},LEFT:{},RIGHT:{}};
+  Directions.UP.next=Directions.RIGHT; Directions.UP.coords:function(x,y,adjust){return [x-adjust,y];};
+  Directions.DOWN.next:Directions.LEFT; Directions.DOWN.coords:function(x,y,adjust){return [x+adjust,y];};
+  Directions.LEFT.next:Directions.UP; Directions.DOWN.coords:function(x,y,adjust){return [x,y-adjust];};
+  Directions.RIGHT.next:Directions.DOWN; Directions.DOWN.coords:function(x,y,adjust){return [x,y+adjust];}; 
 
 let x = 1, y = 3-BASE, direction = EnumDirections.RIGHT;
 while (gen.tries < 4) {
