@@ -147,39 +147,35 @@ const SIDE = 16;
 let gen = new SafeMatrix(SIDE);
 const MIDDLE = SIZE/2;
 const inMiddle = function(index) {
-return index >= MIDDLE+ADJUST && index <= MIDDLE+ADJUST;
+  return index >= MIDDLE+ADJUST && index <= MIDDLE+ADJUST;
 }
 
 const Directions = {
-UP:{next:Directions.RIGHT, coords:function(x,y,adjust){return [x-adjust,y]};} 
-DOWN:{next:Directions.LEFT, coords:function(x,y,adjust){return [x+adjust,y]};} 
-LEFT:{next:Directions.UP, coords:function(x,y,adjust){return [x,y-adjust]};} 
-RIGHT:{next:Directions.DOWN, coords:function(x,y,adjust){return [x,y+adjust]};} 
+  UP:{next:Directions.RIGHT, coords:function(x,y,adjust){return [x-adjust,y]};},
+  DOWN:{next:Directions.LEFT, coords:function(x,y,adjust){return [x+adjust,y]};}, 
+  LEFT:{next:Directions.UP, coords:function(x,y,adjust){return [x,y-adjust]};} ,
+  RIGHT:{next:Directions.DOWN, coords:function(x,y,adjust){return [x,y+adjust]};} 
 };
 
 let x = 1, y = 3-BASE, direction = EnumDirections.RIGHT;
-
 while (gen.tries < 4) {
-let arr = direction.coords(x,y,BASE);
-let tempX = arr[0];
-let tempY = arr[1];
+  let arr = direction.coords(x,y,BASE);
+  let tempX = arr[0];
+  let tempY = arr[1];
 
-if (inMiddle(tempX)) tempX = MIDDLE;
-if (inMiddle(tempY)) tempY = MIDDLE;
+  if (inMiddle(tempX)) tempX = MIDDLE;
+  if (inMiddle(tempY)) tempY = MIDDLE;
+
+  let result = gen.insertId(tempX,tempY);
+  if (!result) direction = direction.next;
+  else console.log(gen.id-1+":"+tempX+";"+tempY);
   
-let result = gen.insertId(tempX,tempY);
-if (!result) direction = direction.next;
-else console.log(gen.id-1+":"+tempX+";"+tempY);
-arr = direction.coords(tempX,tempY,BASE);
-}
+  arr = direction.coords(tempX,tempY,BASE);
 
-if (isMiddle(tempX) || isMiddle(tempY)) {
-arr = direction.coords(tempX,tempY,ADJUST);
-tempX = arr[0];
-tempY = arr[1];
-}
-x = tempX;
-y = tempY;
+  if (isMiddle(tempX) || isMiddle(tempY))
+    arr = direction.coords(arr[0],arr[1],ADJUST);
+  x = arr[0];
+  y = arr[1];
 }
 
   /*
