@@ -165,7 +165,7 @@
     let gen = new SafeMatrix(SIDE);
     const MIDDLE = SIDE/2;
     const inMiddle = function(index) {
-      return index >= MIDDLE+ADJUST && index <= MIDDLE+ADJUST;
+      return index >= MIDDLE-ADJUST && index <= MIDDLE+ADJUST;
     }
 
     const Directions = {UP:{},DOWN:{},LEFT:{},RIGHT:{}};
