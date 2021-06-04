@@ -138,7 +138,6 @@
         let m = new Array(SIDE);
         for (let i=0;i<SIDE;++i)
           m[i] = new Array(SIDE);
-        console.log(m);
         this.matrix = m;
       }
 
@@ -146,13 +145,13 @@
         let result = this._insertId(x,y);
         if (result) this.tries = 0;
         else this.tries++;
-        if (result) console.log(gen.id-1+":"+x+";"+y);
+        let status = result ? gen.id-1 : "FAIL";
+        console.log(status+":"+x+";"+y);
         return result;
       }
       _insertId(x,y) {
         if (x < 0 || x >= this.matrix.length) return false;
         let arr = this.matrix[x];
-        console.log(x+":"+arr);
         if (y < 0 || y >= arr.length) return false;
         if (arr[y] !== undefined) return false;
         arr[y] = this.id;
