@@ -179,7 +179,7 @@
       if (!result) direction = direction.next;
 
       arr = direction.coords(tempX,tempY,BASE);
-      if (isMiddle(tempX) || isMiddle(tempY))
+      if (inMiddle(tempX) || inMiddle(tempY))
         arr = direction.coords(arr[0],arr[1],ADJUST);
       x = arr[0];
       y = arr[1];
