@@ -10,6 +10,7 @@
     for (let arr of matrix) {
       let line = "";
       for (let item of arr) {
+        if (item === undefined) item = 0;
         line+=item+",";
       }
       console.log(line.substring(line.length-1));
