@@ -151,10 +151,10 @@ const inMiddle = function(index) {
 }
 
 const Directions = {
-  UP:{next:Directions.RIGHT, coords:function(x,y,adjust){return [x-adjust,y]};},
-  DOWN:{next:Directions.LEFT, coords:function(x,y,adjust){return [x+adjust,y]};}, 
-  LEFT:{next:Directions.UP, coords:function(x,y,adjust){return [x,y-adjust]};} ,
-  RIGHT:{next:Directions.DOWN, coords:function(x,y,adjust){return [x,y+adjust]};} 
+  UP:{next:Directions.RIGHT, coords:function(x,y,adjust){return [x-adjust,y];}},
+  DOWN:{next:Directions.LEFT, coords:function(x,y,adjust){return [x+adjust,y];}}, 
+  LEFT:{next:Directions.UP, coords:function(x,y,adjust){return [x,y-adjust];}},
+  RIGHT:{next:Directions.DOWN, coords:function(x,y,adjust){return [x,y+adjust];}} 
 };
 
 let x = 1, y = 3-BASE, direction = EnumDirections.RIGHT;
@@ -171,7 +171,6 @@ while (gen.tries < 4) {
   else console.log(gen.id-1+":"+tempX+";"+tempY);
   
   arr = direction.coords(tempX,tempY,BASE);
-
   if (isMiddle(tempX) || isMiddle(tempY))
     arr = direction.coords(arr[0],arr[1],ADJUST);
   x = arr[0];
