@@ -196,6 +196,7 @@
       x = arr[0];
       y = arr[1];
     }
+    return gen.matrix;
   })();
   debugMatrix(ruinMatrix);
 
