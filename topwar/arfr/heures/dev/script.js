@@ -5,6 +5,17 @@
   let addError = function(arr, err){
     if (err != null) arr.push(err);
   };
+  let debugMatrix = function(matrix) {
+    console.log("=====START=====");
+    for (let arr of matrix) {
+      let line = "";
+      for (let item of arr) {
+        line+=item+",";
+      }
+      console.log(line.substring(line.length-1));
+    }
+    console.log("======END======");
+  };
   
   class Observer {
     fire(subject) {}
@@ -185,7 +196,7 @@
       y = arr[1];
     }
   })();
-  console.log(ruinMatrix);
+  debugMatrix(ruinMatrix);
 
   /*
   const ruinMatrix = [
