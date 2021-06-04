@@ -161,7 +161,7 @@
     }
 
     const BASE = 2, ADJUST = 1;
-    const SIDE = 16;
+    const SIDE = 14;
     let gen = new SafeMatrix(SIDE);
     const MIDDLE = SIDE/2;
     const inMiddle = function(index) {
@@ -178,7 +178,7 @@
     Directions.RIGHT.next=Directions.DOWN;
     Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];}; 
 
-    let x = 1, y = 3-BASE, direction = Directions.RIGHT;
+    let x = 0, y = 0, direction = Directions.RIGHT;
     while (gen.tries < 4) {
       let arr = direction.coords(x,y,BASE);
       let tempX = arr[0];
