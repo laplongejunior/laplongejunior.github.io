@@ -188,7 +188,11 @@
       if (inMiddle(tempY)) tempY = MIDDLE;
 
       let result = gen.insertId(tempX,tempY);
-      if (!result) direction = direction.next;
+      if (!result) {
+        direction = direction.next;
+        tempX = x;
+        tempY = y;
+      }
 
       arr = direction.coords(tempX,tempY,BASE);
       if (inMiddle(tempX) || inMiddle(tempY))
