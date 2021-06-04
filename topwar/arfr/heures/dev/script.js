@@ -161,7 +161,7 @@
     }
 
     const BASE = 2, ADJUST = 1;
-    const SIDE = 14;
+    const SIDE = 15;
     let gen = new SafeMatrix(SIDE);
     const MIDDLE = SIDE/2;
     const inMiddle = function(index) {
