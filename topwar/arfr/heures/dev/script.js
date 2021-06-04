@@ -145,7 +145,7 @@ class SafeMatrix {
 const BASE = 2, ADJUST = 1;
 const SIDE = 16;
 let gen = new SafeMatrix(SIDE);
-const MIDDLE = SIZE/2;
+const MIDDLE = SIDE/2;
 const inMiddle = function(index) {
   return index >= MIDDLE+ADJUST && index <= MIDDLE+ADJUST;
 }
