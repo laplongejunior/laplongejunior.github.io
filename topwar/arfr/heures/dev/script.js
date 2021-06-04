@@ -14,6 +14,7 @@
         line+=item+",";
       }
       console.log(line.substring(0,line.length-1));
+      console;log(".");
     }
     console.log("======END======");
   };
