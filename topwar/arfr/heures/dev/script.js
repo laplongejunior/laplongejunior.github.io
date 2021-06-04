@@ -121,10 +121,11 @@
     constructor(SIDE) {
       this.id = 1;
       this.tries = 0;
-      this.matrix = new Array(SIDE);
+      let m = new Array(SIDE);
       for (let i=0;i<SIDE;++i)
-        this.matrix.push(new Array(SIDE));
-      console.log(this.matrix);
+        m.push(new Array(SIDE));
+      console.log(m);
+      this.matrix = m;
     }
 
     insertId(x,y) {
