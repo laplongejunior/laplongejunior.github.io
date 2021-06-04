@@ -127,7 +127,7 @@ class SafeMatrix {
   }
 
   insertId(x,y) {
-    let result = _insertId(x,y);
+    let result = this._insertId(x,y);
     if (result) this.tries = 0;
     else ++this.tries;
     if (result) console.log(gen.id-1+":"+tempX+";"+tempY);
