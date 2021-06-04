@@ -123,7 +123,7 @@
       this.tries = 0;
       let m = new Array(SIDE);
       for (let i=0;i<SIDE;++i)
-        m.push(new Array(SIDE));
+        m[i] = new Array(SIDE);
       console.log(m);
       this.matrix = m;
     }
