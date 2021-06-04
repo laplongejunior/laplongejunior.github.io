@@ -1,7 +1,7 @@
 (function(global){
   "use strict";
   
-// UI view
+  // UI view
   let addError = function(arr, err){
     if (err != null) arr.push(err);
   };
@@ -141,7 +141,7 @@ arr[y] = id;
 return true;
 }
 
-const BASE = 4, ADJUST = 1;
+const BASE = 2, ADJUST = 1;
 const SIDE = 16;
 let gen = new SafeMatrix(SIDE);
 const MIDDLE = SIZE/2;
@@ -165,9 +165,10 @@ let tempY = arr[1];
 
 if (inMiddle(tempX)) tempX = MIDDLE;
 if (inMiddle(tempY)) tempY = MIDDLE;
-if (!gen.insertId(tempX,tempY)) {
-direction = direction.next;
-continue;
+  
+let result = gen.insertId(tempX,tempY);
+if (!result) direction = direction.next;
+arr = direction.coords(tempX,tempY,BASE);
 }
 
 if (isMiddle(tempX) || isMiddle(tempY)) {
