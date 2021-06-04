@@ -133,7 +133,7 @@
         let result = this._insertId(x,y);
         if (result) this.tries = 0;
         else this.tries++;
-        if (result) console.log(gen.id-1+":"+tempX+";"+tempY);
+        if (result) console.log(gen.id-1+":"+x+";"+y);
         return result;
       }
       _insertId(x,y) {
