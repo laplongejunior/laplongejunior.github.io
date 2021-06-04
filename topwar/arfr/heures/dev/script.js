@@ -168,6 +168,7 @@ if (inMiddle(tempY)) tempY = MIDDLE;
   
 let result = gen.insertId(tempX,tempY);
 if (!result) direction = direction.next;
+else console.log(gen.id-1+":"+tempX+";"+tempY);
 arr = direction.coords(tempX,tempY,BASE);
 }
 
