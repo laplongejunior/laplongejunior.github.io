@@ -122,7 +122,7 @@ let matrix;
 constructor(SIDE) {
 matrix = new Array(SIDE);
 for (let i=0;i<SIDE;++i)
-matrix.push(new Array(SIDR).fill(undefined));
+matrix.push(new Array(SIDE).fill(undefined));
 }
 
 let id = 1, tries = 0;
@@ -141,7 +141,7 @@ arr[y] = id;
 return true;
 }
 
-const BASE = 2, ADJUST = 1;
+const BASE = 4, ADJUST = 1;
 const SIDE = 16;
 let gen = new SafeMatrix(SIDE);
 const MIDDLE = SIZE/2;
@@ -156,19 +156,27 @@ LEFT:{next:Directions.UP, coords:function(x,y,adjust){return [x,y-adjust]};}
 RIGHT:{next:Directions.DOWN, coords:function(x,y,adjust){return [x,y+adjust]};} 
 };
 
-
-let x = 1, y = 3, direction = EnumDirections.RIGHT;
+let x = 1, y = 3-BASE, direction = EnumDirections.RIGHT;
 
 while (gen.tries < 4) {
-if (inMiddle(x)) x = MIDDLE;
-if (inMiddle(y)) y = MIDDLE;
-if (!gen.insertId(x,y)) direction = direction.next;
+let arr = direction.coords(x,y,BASE);
+let tempX = arr[0];
+let tempY = arr[1];
 
-let move = BASE;
-if (isMiddle(x) || isMiddle(y)) move+=ADJUST+1;
-let arr = direction.coords(x,y,move);
-x = arr[0];
-y = arr[1];
+if (inMiddle(tempX)) tempX = MIDDLE;
+if (inMiddle(tempY)) tempY = MIDDLE;
+if (!gen.insertId(tempX,tempY)) {
+direction = direction.next;
+continue;
+}
+
+if (isMiddle(tempX) || isMiddle(tempY)) {
+arr = direction.coords(tempX,tempY,ADJUST);
+tempX = arr[0];
+tempY = arr[1];
+}
+x = tempX;
+y = tempY;
 }
 
   /*
