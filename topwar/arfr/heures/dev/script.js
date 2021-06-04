@@ -13,7 +13,7 @@
         if (item === undefined) item = 0;
         line+=item+",";
       }
-      console.log(line.substring(line.length-1));
+      console.log(line.substring(0,line.length-1));
     }
     console.log("======END======");
   };
