@@ -116,70 +116,71 @@
     return newItem;
   };
 
-// Coords mapping
-class SafeMatrix {
-  constructor(SIDE) {
-    this.id = 1;
-    this.tries = 0;
-    this.matrix = new Array(SIDE);
-    for (let i=0;i<SIDE;++i)
-      this.matrix.push(new Array(SIDE));
+  // Coords mapping
+  class SafeMatrix {
+    constructor(SIDE) {
+      this.id = 1;
+      this.tries = 0;
+      this.matrix = new Array(SIDE);
+      for (let i=0;i<SIDE;++i)
+        this.matrix.push(new Array(SIDE));
+      console.log(this.matrix);
+    }
+
+    insertId(x,y) {
+      let result = this._insertId(x,y);
+      if (result) this.tries = 0;
+      else this.tries++;
+      if (result) console.log(gen.id-1+":"+tempX+";"+tempY);
+      return result;
+    }
+    _insertId(x,y) {
+      if (x < 0 || x >= this.matrix.length) return false;
+      let arr = this.matrix[x];
+      if (y < 0 || y >= arr.length) return false;
+      if (arr[y] !== undefined) return false;
+      arr[y] = this.id;
+      this.id++;
+      return true;
+    }
   }
 
-  insertId(x,y) {
-    let result = this._insertId(x,y);
-    if (result) this.tries = 0;
-    else ++this.tries;
-    if (result) console.log(gen.id-1+":"+tempX+";"+tempY);
-    return result;
+  const BASE = 2, ADJUST = 1;
+  const SIDE = 16;
+  let gen = new SafeMatrix(SIDE);
+  const MIDDLE = SIDE/2;
+  const inMiddle = function(index) {
+    return index >= MIDDLE+ADJUST && index <= MIDDLE+ADJUST;
   }
-  _insertId(x,y) {
-    if (x < 0 || x >= this.matrix.length) return false;
-    let arr = this.matrix[x];
-    if (y < 0 || y >= arr.length) return false;
-    if (arr[y] !== undefined) return false;
-    arr[y] = this.id;
-    ++this.id;
-    return true;
+
+  const Directions = {UP:{},DOWN:{},LEFT:{},RIGHT:{}};
+  Directions.UP.next=Directions.RIGHT;
+  Directions.UP.coords=function(x,y,adjust){return [x-adjust,y];};
+  Directions.DOWN.next=Directions.LEFT;
+  Directions.DOWN.coords=function(x,y,adjust){return [x+adjust,y];};
+  Directions.LEFT.next=Directions.UP;
+  Directions.LEFT.coords=function(x,y,adjust){return [x,y-adjust];};
+  Directions.RIGHT.next=Directions.DOWN;
+  Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];}; 
+
+  let x = 1, y = 3-BASE, direction = Directions.RIGHT;
+  while (gen.tries < 4) {
+    let arr = direction.coords(x,y,BASE);
+    let tempX = arr[0];
+    let tempY = arr[1];
+
+    if (inMiddle(tempX)) tempX = MIDDLE;
+    if (inMiddle(tempY)) tempY = MIDDLE;
+
+    let result = gen.insertId(tempX,tempY);
+    if (!result) direction = direction.next;
+
+    arr = direction.coords(tempX,tempY,BASE);
+    if (isMiddle(tempX) || isMiddle(tempY))
+      arr = direction.coords(arr[0],arr[1],ADJUST);
+    x = arr[0];
+    y = arr[1];
   }
-}
-  
-const BASE = 2, ADJUST = 1;
-const SIDE = 16;
-let gen = new SafeMatrix(SIDE);
-const MIDDLE = SIDE/2;
-const inMiddle = function(index) {
-  return index >= MIDDLE+ADJUST && index <= MIDDLE+ADJUST;
-}
-
-const Directions = {UP:{},DOWN:{},LEFT:{},RIGHT:{}};
-Directions.UP.next=Directions.RIGHT;
-Directions.UP.coords=function(x,y,adjust){return [x-adjust,y];};
-Directions.DOWN.next=Directions.LEFT;
-Directions.DOWN.coords=function(x,y,adjust){return [x+adjust,y];};
-Directions.LEFT.next=Directions.UP;
-Directions.LEFT.coords=function(x,y,adjust){return [x,y-adjust];};
-Directions.RIGHT.next=Directions.DOWN;
-Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];}; 
-
-let x = 1, y = 3-BASE, direction = Directions.RIGHT;
-while (gen.tries < 4) {
-  let arr = direction.coords(x,y,BASE);
-  let tempX = arr[0];
-  let tempY = arr[1];
-
-  if (inMiddle(tempX)) tempX = MIDDLE;
-  if (inMiddle(tempY)) tempY = MIDDLE;
-
-  let result = gen.insertId(tempX,tempY);
-  if (!result) direction = direction.next;
-  
-  arr = direction.coords(tempX,tempY,BASE);
-  if (isMiddle(tempX) || isMiddle(tempY))
-    arr = direction.coords(arr[0],arr[1],ADJUST);
-  x = arr[0];
-  y = arr[1];
-}
 
   /*
   const ruinMatrix = [
