@@ -141,10 +141,10 @@
         this.matrix = m;
       }
 
-      insertId(x,y) {
-        if (x < 0 || x >= this.matrix.length) return false;
+      insertId(x,y,margin) {
+        if (x < margin || x+margin >= this.matrix.length) return false;
         let arr = this.matrix[x];
-        if (y < 0 || y >= arr.length) return false;
+        if (y < margin || y+margin >= arr.length) return false;
         if (arr[y] !== undefined) return false;
         arr[y] = this.id;
         this.id++;
@@ -170,7 +170,7 @@
     Directions.RIGHT.next=Directions.DOWN;
     Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];}; 
 
-    let x = 0, y = -BASE, direction = Directions.RIGHT;
+    let x = 0, y = -BASE, direction = Directions.RIGHT, margin = 0;
     while (true) {
       console.log("Start "+gen.id+" "+x+";"+y+";"+direction.name);
       let arr = direction.coords(x,y,BASE*2);
@@ -182,9 +182,9 @@
       let move = BASE;
       console.log("Attempt "+gen.id+" "+tempX+";"+tempY+";"+direction.name);
 
-      let result = gen.insertId(tempX,tempY);
-      if (!result) {
+      if (!gen.insertId(tempX,tempY, margin*BASE)) {
         if (direction === Directions.UP) {
+          margin++;
           direction = direction.next;
           arr = direction.coords(x,y,BASE*2);
         }
