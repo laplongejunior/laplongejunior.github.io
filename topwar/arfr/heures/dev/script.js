@@ -197,11 +197,11 @@
 
       tempX = adjustMiddle(tempX, tempY, direction);
       if (tempX === null) {
-        tempX = direction.coords(MIDDLE,tempY,BASE+ADJUST);
+        tempX = direction.coords(MIDDLE,tempY,BASE+ADJUST)[0];
       } else {
         tempY = adjustMiddle(tempY, tempX, direction);
         if (tempY === null)
-          tempY = direction.coords(tempX,MIDDLE,BASE+ADJUST);
+          tempY = direction.coords(tempX,MIDDLE,BASE+ADJUST)[1];
       }
       console.log(tempX+":"+tempY);
       
