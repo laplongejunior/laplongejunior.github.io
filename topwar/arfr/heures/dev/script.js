@@ -180,7 +180,7 @@
     const MIDDLE = ((SIDE+1)/2)-1;
     const adjustMiddle = function(pos, other) {
       if (pos < MIDDLE-ADJUST || pos > MIDDLE+ADJUST) return pos;
-      if (getCycle(pos,other)%2 == 0) return MIDDLE;
+      if (getCycle(pos,other)%2 === 0) return MIDDLE;
       return null;
     };
     let gen = new SafeMatrix(SIDE);
@@ -191,9 +191,11 @@
       let arr = direction.coords(x,y,BASE*2);
       let tempX = arr[0];
       let tempY = arr[1];
+      console.log(arr);
 
       tempX = adjustMiddle(tempX, tempY, direction);
       tempY = adjustMiddle(tempY, tempX, direction);
+      console.log(tempX+":"+tempY);
       if (tempX === null) {
         if (tempY === null) break;
         tempX = direction.coords(MIDDLE,tempY,BASE+ADJUST);
