@@ -6,6 +6,7 @@
     if (err != null) arr.push(err);
   };
   let debugMatrix = function(matrix) {
+    return;
     console.log("=====START=====");
     for (let arr of matrix) {
       let line = "";
