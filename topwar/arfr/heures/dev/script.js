@@ -198,10 +198,11 @@
         if (gen.id === 2+1) console.log("!!!"+tempX+"!!!"+tempY);
         if (tempX === MIDDLE || tempY === MIDDLE)
           move+=ADJUST;
-        arr = direction.coords(arr[0],arr[1],move);
+        arr = direction.coords(tempX,tempY,move);
       }
       x = arr[0];
       y = arr[1];
+        if (gen.id === 2+1) console.log("!!!"+x+"!!!"+y);
     }
     return gen.matrix;
   })();
