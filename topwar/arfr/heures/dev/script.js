@@ -11,7 +11,8 @@
     for (let arr of matrix) {
       let line = "";
       for (let item of arr) {
-        if (item === undefined) item = 0;
+        if (item === undefined) item = "--";
+        else item = item.toString().padStart(2);
         line+=item+",";
       }
       console.log(++index+") "+line.substring(0,line.length-1));
