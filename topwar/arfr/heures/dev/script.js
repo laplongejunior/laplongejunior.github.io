@@ -194,15 +194,14 @@
       console.log(arr);
 
       tempX = adjustMiddle(tempX, tempY, direction);
-      tempY = adjustMiddle(tempY, tempX, direction);
-      console.log(tempX+":"+tempY);
       if (tempX === null) {
-        if (tempY === null) break;
         tempX = direction.coords(MIDDLE,tempY,BASE+ADJUST);
+      } else {
+        tempY = adjustMiddle(tempY, tempX, direction);
+        if (tempY === null)
+          tempY = direction.coords(tempX,MIDDLE,BASE+ADJUST);
       }
-      if (tempY === null) {
-        tempY = direction.coords(tempX,MIDDLE,BASE+ADJUST);
-      }
+      console.log(tempX+":"+tempY);
       
       let move = BASE;
       console.log("Attempt "+gen.id+" "+tempX+";"+tempY+";"+direction.name);
