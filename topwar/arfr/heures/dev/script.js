@@ -162,13 +162,6 @@
         return true;
       }
     }
-
-    let gen = new SafeMatrix(SIDE);
-    const MIDDLE = ((SIDE+1)/2)-1;
-    const inMiddle = function(index) {
-      return index >= MIDDLE-ADJUST && index <= MIDDLE+ADJUST;
-    }
-
     const Directions = {UP:{name:"UP"},DOWN:{name:"DOWN"},LEFT:{name:"LEFT"},RIGHT:{name:"RIGHT"}};
     Directions.UP.next=Directions.RIGHT;
     Directions.UP.coords=function(x,y,adjust){return [x-adjust,y];};
@@ -179,11 +172,13 @@
     Directions.RIGHT.next=Directions.DOWN;
     Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];};
     
+    const MIDDLE = ((SIDE+1)/2)-1;
     const adjustMiddle = function(pos, other) {
-      if (!inMiddle(pos)) return pos;
+      if (pos < MIDDLE-ADJUST || pos > MIDDLE+ADJUST) return pos;
       if (getCycle(pos,other)%2 == 0) return MIDDLE;
       return null;
     };
+    let gen = new SafeMatrix(SIDE);
 
     let x = 0, y = -BASE, direction = Directions.RIGHT;
     while (true) {
