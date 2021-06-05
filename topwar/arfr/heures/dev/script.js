@@ -163,6 +163,7 @@
         if (y < margin || y+margin >= arr.length) return false;
         if (arr[y] !== undefined) return false;
         arr[y] = this.id;
+        if (this.id === 14) console.log("==="+x+":"+y+"===");
         this.id++;
         return true;
       }
