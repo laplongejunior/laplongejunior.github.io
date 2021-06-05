@@ -6,6 +6,7 @@
     if (err != null) arr.push(err);
   };
   let debugMatrix = function(matrix) {
+    return;
     console.log("=====START=====");
     for (let arr of matrix) {
       let line = "";
@@ -178,9 +179,11 @@
 
     let x = 0, y = 0, direction = Directions.RIGHT;
     while (gen.tries < 4) {
+      if (gen.id === 4) console.log("!!!"+x+":"+y);
       let arr = direction.coords(x,y,BASE);
       let tempX = arr[0];
       let tempY = arr[1];
+      if (gen.id === 4) console.log("!!!"+tempX+":"+tempY);
 
       if (inMiddle(tempX)) tempX = MIDDLE;
       if (inMiddle(tempY)) tempY = MIDDLE;
