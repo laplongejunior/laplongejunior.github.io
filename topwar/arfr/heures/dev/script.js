@@ -157,6 +157,7 @@
         if (margin < 0) return false;
         if (x < margin || x+margin >= this.matrix.length) return false;
         let arr = this.matrix[x];
+        if (arr === undefined) console.log("!!!"+x);
         if (y < margin || y+margin >= arr.length) return false;
         if (arr[y] !== undefined) return false;
         arr[y] = this.id;
