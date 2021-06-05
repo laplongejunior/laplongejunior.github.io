@@ -180,6 +180,7 @@
     
     const MIDDLE = ((SIDE+1)/2)-1;
     const adjustMiddle = function(pos, other) {
+      if (gen.id === 14) debugger;
       if (pos < MIDDLE-ADJUST || pos > MIDDLE+ADJUST) return pos;
       if (getCycle(pos,other)%2 === 0) return MIDDLE;
       return null;
