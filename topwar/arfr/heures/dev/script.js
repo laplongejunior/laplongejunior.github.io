@@ -170,7 +170,7 @@
     Directions.UP.next=Directions.RIGHT;
     Directions.UP.coords=function(x,y,adjust){return [x-adjust,y];};
     Directions.DOWN.next=Directions.LEFT;
-    Directions.DOWN.coords=function(x,y,adjust){return [x+adjust,y];};
+    Directions.DOWN.coords=function(x,y,adjust){console.log(x+":"+y+":"+adjust);return [x+adjust,y];};
     Directions.LEFT.next=Directions.UP;
     Directions.LEFT.coords=function(x,y,adjust){return [x,y-adjust];};
     Directions.RIGHT.next=Directions.DOWN;
