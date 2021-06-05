@@ -188,14 +188,14 @@
 
       let result = gen.insertId(tempX,tempY);
       if (!result) {
+        if (gen.id === 4)
+          console.log(tempX+":"+tempY+"/"+x+":"+y);
         tempX = x;
         tempY = y;
       }
       arr = direction.coords(tempX,tempY,BASE);
       if (!result) {
         direction = direction.next;
-        if (gen.id === 4)
-          console.log("Turning for 4!"+arr[0]+":"+arr[1]+ " will give "+direction.coords(arr[0],arr[1],BASE));
       }
       else if (inMiddle(tempX) || inMiddle(tempY))
         arr = direction.coords(arr[0],arr[1],ADJUST);
