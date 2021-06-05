@@ -154,6 +154,7 @@
       }
 
       insertId(x,y,margin) {
+        if (margin < 0) return false;
         if (x < margin || x+margin >= this.matrix.length) return false;
         let arr = this.matrix[x];
         if (y < margin || y+margin >= arr.length) return false;
