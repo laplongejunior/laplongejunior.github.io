@@ -169,10 +169,10 @@
     Directions.RIGHT.next=Directions.DOWN;
     Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];}; 
 
-    let x = 0, y = 0, direction = Directions.RIGHT;
+    let x = -BASE, y = 0, direction = Directions.RIGHT;
     while (true) {
       console.log("Start "+gen.id+" "+x+";"+y+";"+direction.name);
-      let arr = direction.coords(x,y,BASE);
+      let arr = direction.coords(x,y,BASE*2);
       let tempX = arr[0];
       let tempY = arr[1];
 
@@ -183,20 +183,16 @@
 
       let result = gen.insertId(tempX,tempY);
       if (!result) {
-        if (direction === Directions.UP) {
-          tempX = x;
-          tempY = y;
-        }
-        direction = direction.next;
         arr = direction.coords(x,y,BASE);
+        direction = direction.next;
+        arr = direction.coords(arr[0],arr[1],BASE);
         tempX = arr[0];
         tempY = arr[1];
         if (!gen.insertId(tempX,tempY)) break;
       }
       
         if (tempX === MIDDLE || tempY === MIDDLE)
-          move+=ADJUST;
-        arr = direction.coords(tempX,tempY,move);
+          arr = direction.coords(tempX,tempY,ADJUST);
         x = arr[0];
         y = arr[1];
     }
