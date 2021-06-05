@@ -161,7 +161,6 @@
         if (arr[y] !== undefined) return false;
         arr[y] = this.id;
         this.id++;
-        debugMatrix(this.matrix);
         return true;
       }
     }
