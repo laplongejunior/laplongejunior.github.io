@@ -192,18 +192,16 @@
       if (!result) {
         direction = direction.next;
         arr = direction.coords(x,y,BASE);
-        x = arr[0];
-        y = arr[1];
-        if (gen.insertId(x,y)) continue;
-        break;
+        tempX = arr[0];
+        tempY = arr[1];
+        if (!gen.insertId(tempX,tempY)) break;
       }
-      else {
+      
         if (tempX === MIDDLE || tempY === MIDDLE)
           move+=ADJUST;
         arr = direction.coords(tempX,tempY,move);
         x = arr[0];
         y = arr[1];
-      }
     }
     return gen.matrix;
   })();
