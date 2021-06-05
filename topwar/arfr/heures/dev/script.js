@@ -189,14 +189,13 @@
 
       let result = gen.insertId(tempX,tempY);
       if (!result) {
-        direction = direction.next;
         tempX = x;
         tempY = y;
       }
-
       arr = direction.coords(tempX,tempY,BASE);
-      
-      if (inMiddle(tempX) || inMiddle(tempY))
+      if (!result)
+        direction = direction.next;
+      else if (inMiddle(tempX) || inMiddle(tempY))
         arr = direction.coords(arr[0],arr[1],ADJUST);
       x = arr[0];
       y = arr[1];
