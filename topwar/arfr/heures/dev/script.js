@@ -220,10 +220,13 @@
         if (!gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) break;
       }
       
-        if (tempX === MIDDLE || tempY === MIDDLE)
+        if (tempX === MIDDLE || tempY === MIDDLE) {
           arr = direction.coords(tempX,tempY,ADJUST);
-        x = arr[0];
-        y = arr[1];
+          tempX = arr[0];
+          tempY = arr[1];
+        }
+        x = tempX;
+        y = tempY;
     }
     return gen.matrix;
   })();
