@@ -183,7 +183,7 @@
 
       let result = gen.insertId(tempX,tempY);
       if (!result) {
-        if (direction === Direction.UP) {
+        if (direction === Directions.UP) {
           direction = direction.next;
           arr = direction.coords(x,y,BASE*2);
         }
