@@ -197,7 +197,7 @@
 
     let x = 0, y = -BASE, direction = Directions.RIGHT;
     while (true) {
-      if (gen.id === 21) debugger;
+      if (gen.id === 25) debugger;
       console.log("Start "+gen.id+" "+x+";"+y+";"+direction.name);
       let arr = direction.coords(x,y,BASE*2);
       let tempX = arr[0];
