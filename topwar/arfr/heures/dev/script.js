@@ -196,7 +196,6 @@
 
       arr = direction.coords(tempX,tempY,BASE);
       
-      if (!result) alert(tempX+":"+tempY);
       if (inMiddle(tempX) || inMiddle(tempY))
         arr = direction.coords(arr[0],arr[1],ADJUST);
       x = arr[0];
