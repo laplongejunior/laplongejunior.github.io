@@ -145,8 +145,6 @@
         let result = this._insertId(x,y);
         if (result) this.tries = 0;
         else this.tries++;
-        let status = result ? gen.id-1 : "FAIL";
-        console.log(status+":"+x+";"+y);
         return result;
       }
       _insertId(x,y) {
@@ -193,8 +191,10 @@
         tempY = y;
       }
       arr = direction.coords(tempX,tempY,BASE);
-      if (!result)
+      if (!result) {
         direction = direction.next;
+        console.log(gen.id+":"+x+":"+y);
+      }
       else if (inMiddle(tempX) || inMiddle(tempY))
         arr = direction.coords(arr[0],arr[1],ADJUST);
       x = arr[0];
