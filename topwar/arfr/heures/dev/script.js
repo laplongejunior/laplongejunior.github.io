@@ -168,23 +168,44 @@
     Directions.LEFT.next=Directions.UP;
     Directions.LEFT.coords=function(x,y,adjust){return [x,y-adjust];};
     Directions.RIGHT.next=Directions.DOWN;
-    Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];}; 
+    Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];};
+    
+    const getCycle = function(x,y) {
+      x = Math.min(x,SIDE-x);
+      y = Math.min(y,SIDE-y);
+      let result = Math.min(x/BASE,y/BASE);
+      console.log(x+";"+y+ " => cycle "+result);
+      return result;
+    };
+    const adjustMiddle = function(pos, other) {
+      if (!inMiddle(pos)) return pos;
+      if (getCycle(pos,other)%2 == 0) return MIDDLE;
+      return null;
+    };
 
-    let x = 0, y = -BASE, direction = Directions.RIGHT, margin = 0;
+    let x = 0, y = -BASE, direction = Directions.RIGHT;
     while (true) {
       console.log("Start "+gen.id+" "+x+";"+y+";"+direction.name);
       let arr = direction.coords(x,y,BASE*2);
       let tempX = arr[0];
       let tempY = arr[1];
 
-      if (inMiddle(tempX)) tempX = MIDDLE;
-      if (inMiddle(tempY)) tempY = MIDDLE;
+      tempX = adjustMiddle(tempX, tempY, direction);
+      tempY = adjustMiddle(tempY, tempX, direction);
+      if (tempX is null && 
+      if (tempX is null) {
+        if (tempY is null) break;
+        tempX = direction.coords(MIDDLE,tempY,BASE+ADJUST);
+      }
+      if (tempY is null) {
+        tempY = direction.coords(tempX,MIDDLE,BASE+ADJUST);
+      }
+      
       let move = BASE;
       console.log("Attempt "+gen.id+" "+tempX+";"+tempY+";"+direction.name);
 
-      if (!gen.insertId(tempX,tempY, margin*BASE)) {
+      if (!gen.insertId(tempX,tempY, getCycle(tempX,tempY)) {
         if (direction === Directions.UP) {
-          margin++;
           direction = direction.next;
           arr = direction.coords(x,y,BASE*2);
         }
