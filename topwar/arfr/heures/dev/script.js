@@ -139,9 +139,7 @@
       if (y < 0 || y > SIDE) return -1;
       x = Math.min(x,SIDE-x);
       y = Math.min(y,SIDE-y);
-      let result = Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
-      console.log(x+";"+y+ " => cycle "+result);
-      return result;
+      return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
     };
  
   const ruinMatrix = (function(){  
@@ -197,8 +195,6 @@
     insertId(MIDDLE,MIDDLE);
     let x = 0, y = -BASE, direction = Directions.RIGHT;
     while (true) {
-      if (gen.id === 25) debugger;
-      console.log("Start "+gen.id+" "+x+";"+y+";"+direction.name);
       let arr = direction.coords(x,y,BASE*2);
       let tempX = arr[0];
       let tempY = arr[1];
@@ -209,7 +205,6 @@
       tempY = correct[1];
       
       let move = BASE;
-      console.log("Attempt "+gen.id+" "+tempX+";"+tempY+";"+direction.name);
 
       if (!gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) {
         debugMatrix(gen.matrix);
