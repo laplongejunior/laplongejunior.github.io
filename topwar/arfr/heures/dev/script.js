@@ -7,14 +7,14 @@
   };
   let debugMatrix = function(matrix) {
     console.log("=====START=====");
+    let index = 0;
     for (let arr of matrix) {
       let line = "";
       for (let item of arr) {
         if (item === undefined) item = 0;
         line+=item+",";
       }
-      console.log(line.substring(0,line.length-1));
-      console.log(".");
+      console.log(++index+") "+line.substring(0,line.length-1));
     }
     console.log("======END======");
   };
@@ -178,7 +178,7 @@
 
     let x = 0, y = 0, direction = Directions.RIGHT;
     while (gen.tries < 4) {
-      console.log("Attempt "+gen.id+" "+x+";"+y+";"+direction.name);
+      console.log("Start "+gen.id+" "+x+";"+y+";"+direction.name);
       let arr = direction.coords(x,y,BASE);
       let tempX = arr[0];
       let tempY = arr[1];
@@ -186,6 +186,7 @@
       if (inMiddle(tempX)) tempX = MIDDLE;
       if (inMiddle(tempY)) tempY = MIDDLE;
       let move = BASE;
+      console.log("Attempt "+gen.id+" "+x+";"+y+";"+direction.name);
 
       let result = gen.insertId(tempX,tempY);
       if (!result) {
