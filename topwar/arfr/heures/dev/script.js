@@ -192,7 +192,7 @@
       return [x,y];
     };
 
-    insertId(MIDDLE,MIDDLE);
+    gen.insertId(MIDDLE,MIDDLE); // Capital
     let x = 0, y = -BASE, direction = Directions.RIGHT;
     while (true) {
       let arr = direction.coords(x,y,BASE*2);
