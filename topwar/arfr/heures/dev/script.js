@@ -187,11 +187,10 @@
       x = adjustMiddle(x, y, direction);
       if (x === null) {
         x = direction.coords(MIDDLE,y,BASE+ADJUST)[0];
-      } else {
-        y = adjustMiddle(y, x, direction);
-        if (y === null)
-          y = direction.coords(x,MIDDLE,BASE+ADJUST)[1];
       }
+      y = adjustMiddle(y, x, direction);
+      if (y === null)
+        y = direction.coords(x,MIDDLE,BASE+ADJUST)[1];
       return [x,y];
     };
 
@@ -203,7 +202,8 @@
       let tempX = arr[0];
       let tempY = arr[1];
 
-      let correct = middleCorrect(tempX,tempY,direction);
+      let correct = 
+          (tempX,tempY,direction);
       tempX = correct[0];
       tempY = correct[1];
       
@@ -225,7 +225,7 @@
         correct = middleCorrect(arr[0],arr[1],direction);
         tempX = correct[0];
         tempY = correct[1];
-        if (!gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) break;
+        if ((tempX === MIDDLE && tempY === MIDDLE) || !gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) break;
       }
       
         if (tempX === MIDDLE || tempY === MIDDLE) {
