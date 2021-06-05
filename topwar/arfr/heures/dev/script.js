@@ -133,9 +133,10 @@
   // Coords mapping
   
     const getCycle = function(x,y) {
+      if (x < 0 || x > SIDE) return -1;
+      if (y < 0 || y > SIDE) return -1;
       x = Math.min(x,SIDE-x);
       y = Math.min(y,SIDE-y);
-      if (x < 0 || y < 0) return -1;
       let result = Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
       console.log(x+";"+y+ " => cycle "+result);
       return result;
