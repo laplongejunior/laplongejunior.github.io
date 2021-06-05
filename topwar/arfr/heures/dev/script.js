@@ -199,8 +199,7 @@
       let tempX = arr[0];
       let tempY = arr[1];
 
-      let correct = 
-          (tempX,tempY,direction);
+      let correct = middleCorrect(tempX,tempY,direction);
       tempX = correct[0];
       tempY = correct[1];
       
