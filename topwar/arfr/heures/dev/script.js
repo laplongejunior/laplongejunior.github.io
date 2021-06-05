@@ -192,11 +192,11 @@
 
       tempX = adjustMiddle(tempX, tempY, direction);
       tempY = adjustMiddle(tempY, tempX, direction);
-      if (tempX is null) {
-        if (tempY is null) break;
+      if (tempX === null) {
+        if (tempY === null) break;
         tempX = direction.coords(MIDDLE,tempY,BASE+ADJUST);
       }
-      if (tempY is null) {
+      if (tempY === null) {
         tempY = direction.coords(tempX,MIDDLE,BASE+ADJUST);
       }
       
