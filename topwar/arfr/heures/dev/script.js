@@ -139,7 +139,9 @@
       console.log(x+";"+y+ " => cycle "+result);
       return result;
     };
-  
+
+  const BASE = 2, ADJUST = 1;
+  const SIDE = 15;  
   const ruinMatrix = (function(){  
     class SafeMatrix {
       constructor(SIDE) {
@@ -161,10 +163,8 @@
       }
     }
 
-    const BASE = 2, ADJUST = 1;
-    const SIDE = 15;
     let gen = new SafeMatrix(SIDE);
-    const MIDDLE = 7;//SIDE/2;
+    const MIDDLE = ((SIDE+1)/2)-1;
     const inMiddle = function(index) {
       return index >= MIDDLE-ADJUST && index <= MIDDLE+ADJUST;
     }
