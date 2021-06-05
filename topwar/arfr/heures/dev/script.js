@@ -187,22 +187,21 @@
 
       let result = gen.insertId(tempX,tempY);
       if (!result) {
-        if (gen.id === 4)
-          console.log(tempX+":"+tempY+"/"+x+":"+y);
-      }
-      if (!result) {
         direction = direction.next;
+        if (gen.id === 4) {
+          console.log(tempX+":"+tempY+"/"+x+":"+y);
+          let debug = direction.coords(x,y,BASE);
+          console.log(debug[0]+":"+debug[1]);
+        }
       }
       else {
         let move = BASE;
-        if (gen.id === 2+1) console.log("!!!"+tempX+"!!!"+tempY);
         if (tempX === MIDDLE || tempY === MIDDLE)
           move+=ADJUST;
         arr = direction.coords(tempX,tempY,move);
       }
       x = arr[0];
       y = arr[1];
-        if (gen.id === 2+1) console.log("!!!"+x+"!!!"+y);
     }
     return gen.matrix;
   })();
