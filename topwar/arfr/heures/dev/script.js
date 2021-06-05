@@ -134,20 +134,13 @@
     class SafeMatrix {
       constructor(SIDE) {
         this.id = 1;
-        this.tries = 0;
         let m = new Array(SIDE);
         for (let i=0;i<SIDE;++i)
           m[i] = new Array(SIDE);
         this.matrix = m;
       }
 
-      insertId(x,y) {
-        let result = this._insertId(x,y);
-        if (result) this.tries = 0;
-        else this.tries++;
-        return result;
-      }
-      _insertId(x,y) {
+      insertId(x,y) 
         if (x < 0 || x >= this.matrix.length) return false;
         let arr = this.matrix[x];
         if (y < 0 || y >= arr.length) return false;
@@ -190,6 +183,10 @@
 
       let result = gen.insertId(tempX,tempY);
       if (!result) {
+        if (direction === Directions.UP) {
+          tempX = x;
+          tempY = y;
+        }
         direction = direction.next;
         arr = direction.coords(x,y,BASE);
         tempX = arr[0];
