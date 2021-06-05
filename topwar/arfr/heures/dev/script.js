@@ -133,6 +133,7 @@
   // Coords mapping
   
     const getCycle = function(x,y) {
+      console.log("?"+x+";"+y);
       if (x < 0 || x > SIDE) return -1;
       if (y < 0 || y > SIDE) return -1;
       x = Math.min(x,SIDE-x);
