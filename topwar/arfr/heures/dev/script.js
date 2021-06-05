@@ -195,7 +195,7 @@
       if (!result) {
         direction = direction.next;
         if (gen.id === 4)
-          console.log("Turning for 4!"+x+":"+y+ " will give "+direction.coords(x,y,BASE));
+          console.log("Turning for 4!"+arr[0]+":"+arr[1]+ " will give "+direction.coords(arr[0],arr[1],BASE));
       }
       else if (inMiddle(tempX) || inMiddle(tempY))
         arr = direction.coords(arr[0],arr[1],ADJUST);
