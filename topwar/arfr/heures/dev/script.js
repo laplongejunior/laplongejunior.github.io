@@ -132,8 +132,9 @@
 
   // Coords mapping
   
+  const BASE = 2, ADJUST = 1;
+  const SIDE = 15; 
     const getCycle = function(x,y) {
-      console.log("?"+x+";"+y);
       if (x < 0 || x > SIDE) return -1;
       if (y < 0 || y > SIDE) return -1;
       x = Math.min(x,SIDE-x);
@@ -142,9 +143,7 @@
       console.log(x+";"+y+ " => cycle "+result);
       return result;
     };
-
-  const BASE = 2, ADJUST = 1;
-  const SIDE = 15;  
+ 
   const ruinMatrix = (function(){  
     class SafeMatrix {
       constructor(SIDE) {
@@ -163,7 +162,6 @@
         if (y < margin || y+margin >= arr.length) return false;
         if (arr[y] !== undefined) return false;
         arr[y] = this.id;
-        if (this.id === 14) console.log("==="+x+":"+y+"===");
         this.id++;
         return true;
       }
@@ -180,7 +178,6 @@
     
     const MIDDLE = ((SIDE+1)/2)-1;
     const adjustMiddle = function(pos, other) {
-      if (gen.id === 14) debugger;
       if (pos < MIDDLE-ADJUST || pos > MIDDLE+ADJUST) return pos;
       if (getCycle(pos,other)%2 === 0) return MIDDLE;
       return null;
@@ -193,7 +190,6 @@
       let arr = direction.coords(x,y,BASE*2);
       let tempX = arr[0];
       let tempY = arr[1];
-      console.log(arr);
 
       tempX = adjustMiddle(tempX, tempY, direction);
       if (tempX === null) {
@@ -203,12 +199,11 @@
         if (tempY === null)
           tempY = direction.coords(tempX,MIDDLE,BASE+ADJUST)[1];
       }
-      console.log(tempX+":"+tempY);
       
       let move = BASE;
       console.log("Attempt "+gen.id+" "+tempX+";"+tempY+";"+direction.name);
 
-      if (!gen.insertId(tempX,tempY, getCycle(tempX,tempY))) {
+      if (!gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) {
         debugMatrix(gen.matrix);
         if (direction === Directions.UP) {
           direction = direction.next;
@@ -221,7 +216,7 @@
         }
         tempX = arr[0];
         tempY = arr[1];
-        if (!gen.insertId(tempX,tempY)) break;
+        if (!gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) break;
       }
       
         if (tempX === MIDDLE || tempY === MIDDLE)
