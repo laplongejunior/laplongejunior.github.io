@@ -191,7 +191,7 @@
       let result = gen.insertId(tempX,tempY);
       if (!result) {
         direction = direction.next;
-        arr = direction.coords(tempX,tempY,BASE);
+        arr = direction.coords(x,y,BASE);
         x = arr[0];
         y = arr[1];
         if (gen.insertId(x,y)) continue;
