@@ -183,9 +183,15 @@
 
       let result = gen.insertId(tempX,tempY);
       if (!result) {
-        arr = direction.coords(x,y,BASE);
-        direction = direction.next;
-        arr = direction.coords(arr[0],arr[1],BASE);
+        if (direction === Direction.UP) {
+          direction = direction.next;
+          arr = direction.coords(x,y,BASE*2);
+        }
+        else {
+          arr = direction.coords(x,y,BASE);
+          direction = direction.next;
+          arr = direction.coords(arr[0],arr[1],BASE);
+        }
         tempX = arr[0];
         tempY = arr[1];
         if (!gen.insertId(tempX,tempY)) break;
