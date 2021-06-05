@@ -207,7 +207,6 @@
       let move = BASE;
 
       if (!gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) {
-        debugMatrix(gen.matrix);
         if (direction === Directions.UP) {
           direction = direction.next;
           arr = direction.coords(x,y,BASE*2);
