@@ -190,15 +190,16 @@
       if (!result) {
         if (gen.id === 4)
           console.log(tempX+":"+tempY+"/"+x+":"+y);
-        tempX = x;
-        tempY = y;
       }
-      arr = direction.coords(tempX,tempY,BASE);
       if (!result) {
         direction = direction.next;
       }
-      else if (inMiddle(tempX) || inMiddle(tempY))
-        arr = direction.coords(arr[0],arr[1],ADJUST);
+      else {
+        let move = BASE;
+        if (inMiddle(tempX) || inMiddle(tempY))
+          move+=ADJUST;
+        arr = direction.coords(arr[0],arr[1],move);
+      }
       x = arr[0];
       y = arr[1];
     }
