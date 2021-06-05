@@ -147,7 +147,7 @@
   const ruinMatrix = (function(){  
     class SafeMatrix {
       constructor(SIDE) {
-        this.id = 1;
+        this.id = 0; // 0 is capital
         let m = new Array(SIDE);
         for (let i=0;i<SIDE;++i)
           m[i] = new Array(SIDE);
@@ -194,6 +194,7 @@
       return [x,y];
     };
 
+    insertId(MIDDLE,MIDDLE);
     let x = 0, y = -BASE, direction = Directions.RIGHT;
     while (true) {
       if (gen.id === 25) debugger;
@@ -225,7 +226,7 @@
         correct = middleCorrect(arr[0],arr[1],direction);
         tempX = correct[0];
         tempY = correct[1];
-        if ((tempX === MIDDLE && tempY === MIDDLE) || !gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) break;
+        if (!gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) break;
       }
       
         if (tempX === MIDDLE || tempY === MIDDLE) {
