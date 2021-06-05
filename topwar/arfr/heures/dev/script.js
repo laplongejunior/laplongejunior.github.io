@@ -177,7 +177,7 @@
     Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];}; 
 
     let x = 0, y = 0, direction = Directions.RIGHT;
-    while (gen.tries < 4) {
+    while (true) {
       console.log("Start "+gen.id+" "+x+";"+y+";"+direction.name);
       let arr = direction.coords(x,y,BASE);
       let tempX = arr[0];
@@ -191,8 +191,11 @@
       let result = gen.insertId(tempX,tempY);
       if (!result) {
         direction = direction.next;
-        x = tempX;
-        y = tempY;
+        arr = direction.coords(tempX,tempY,BASE);
+        x = arr[0];
+        y = arr[1];
+        if (gen.insertId(x,y)) continue;
+        break;
       }
       else {
         if (tempX === MIDDLE || tempY === MIDDLE)
