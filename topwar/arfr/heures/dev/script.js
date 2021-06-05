@@ -140,7 +140,7 @@
         this.matrix = m;
       }
 
-      insertId(x,y) 
+      insertId(x,y) {
         if (x < 0 || x >= this.matrix.length) return false;
         let arr = this.matrix[x];
         if (y < 0 || y >= arr.length) return false;
