@@ -186,21 +186,21 @@
       if (inMiddle(tempX)) tempX = MIDDLE;
       if (inMiddle(tempY)) tempY = MIDDLE;
       let move = BASE;
-      console.log("Attempt "+gen.id+" "+x+";"+y+";"+direction.name);
+      console.log("Attempt "+gen.id+" "+tempX+";"+tempY+";"+direction.name);
 
       let result = gen.insertId(tempX,tempY);
       if (!result) {
         direction = direction.next;
-        tempX = x;
-        tempY = y;
+        x = tempX;
+        y = tempY;
       }
       else {
         if (tempX === MIDDLE || tempY === MIDDLE)
           move+=ADJUST;
+        arr = direction.coords(tempX,tempY,move);
+        x = arr[0];
+        y = arr[1];
       }
-      arr = direction.coords(tempX,tempY,move);
-      x = arr[0];
-      y = arr[1];
     }
     return gen.matrix;
   })();
