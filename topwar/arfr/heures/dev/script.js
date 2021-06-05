@@ -131,7 +131,16 @@
   };
 
   // Coords mapping
-  let ruinMatrix = (function(){  
+  
+    const getCycle = function(x,y) {
+      x = Math.min(x,SIDE-x);
+      y = Math.min(y,SIDE-y);
+      let result = Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
+      console.log(x+";"+y+ " => cycle "+result);
+      return result;
+    };
+  
+  const ruinMatrix = (function(){  
     class SafeMatrix {
       constructor(SIDE) {
         this.id = 1;
@@ -170,13 +179,6 @@
     Directions.RIGHT.next=Directions.DOWN;
     Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];};
     
-    const getCycle = function(x,y) {
-      x = Math.min(x,SIDE-x);
-      y = Math.min(y,SIDE-y);
-      let result = Math.min(x/BASE,y/BASE);
-      console.log(x+";"+y+ " => cycle "+result);
-      return result;
-    };
     const adjustMiddle = function(pos, other) {
       if (!inMiddle(pos)) return pos;
       if (getCycle(pos,other)%2 == 0) return MIDDLE;
@@ -228,15 +230,6 @@
   debugMatrix(ruinMatrix);
 
   /*
-  const ruinMatrix = [
-    [1,2,3],
-    [12,13,14,4],
-    [20,21,15],
-    [11,24,22,5],
-    [19,23,16],
-    [10,18,17,6],
-    [9,8,7]
-  ];
   let ruinCoords = function(id) {
     for (let i = 0; i < ruinMatrix.length; ++i) {
       let array = ruinMatrix[i];
