@@ -195,7 +195,7 @@
       }
       else {
         let move = BASE;
-        if (inMiddle(tempX) || inMiddle(tempY))
+        if (tempX === MIDDLE || tempY === MIDDLE)
           move+=ADJUST;
         arr = direction.coords(arr[0],arr[1],move);
       }
