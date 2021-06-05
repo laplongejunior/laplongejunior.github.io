@@ -195,7 +195,7 @@
       }
       else {
         let move = BASE;
-        if (gen.id === 2) console.log("!!!"+tempX+"!!!"+tempY);
+        if (gen.id === 2+1) console.log("!!!"+tempX+"!!!"+tempY);
         if (tempX === MIDDLE || tempY === MIDDLE)
           move+=ADJUST;
         arr = direction.coords(arr[0],arr[1],move);
