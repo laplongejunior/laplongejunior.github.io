@@ -166,7 +166,7 @@
       return index >= MIDDLE-ADJUST && index <= MIDDLE+ADJUST;
     }
 
-    const Directions = {UP:{},DOWN:{},LEFT:{},RIGHT:{}};
+    const Directions = {UP:{name:"UP"},DOWN:{name:"DOWN"},LEFT:{name:"LEFT"},RIGHT:{name:"RIGHT"}};
     Directions.UP.next=Directions.RIGHT;
     Directions.UP.coords=function(x,y,adjust){return [x-adjust,y];};
     Directions.DOWN.next=Directions.LEFT;
@@ -179,6 +179,7 @@
     let x = 0, y = 0, direction = Directions.RIGHT;
     while (gen.tries < 4) {
       let arr = direction.coords(x,y,BASE);
+      console.log("Attempt "+gen.id+" "+x+";"+y+";"+direction.name);
       let tempX = arr[0];
       let tempY = arr[1];
 
@@ -188,11 +189,6 @@
       let result = gen.insertId(tempX,tempY);
       if (!result) {
         direction = direction.next;
-        if (gen.id === 4) {
-          console.log(tempX+":"+tempY+"/"+x+":"+y);
-          let debug = direction.coords(x,y,BASE);
-          console.log(debug[0]+":"+debug[1]);
-        }
       }
       else {
         let move = BASE;
