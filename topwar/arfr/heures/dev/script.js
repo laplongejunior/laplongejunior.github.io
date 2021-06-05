@@ -169,7 +169,7 @@
     Directions.RIGHT.next=Directions.DOWN;
     Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];}; 
 
-    let x = -BASE, y = 0, direction = Directions.RIGHT;
+    let x = 0, y = -BASE, direction = Directions.RIGHT;
     while (true) {
       console.log("Start "+gen.id+" "+x+";"+y+";"+direction.name);
       let arr = direction.coords(x,y,BASE*2);
