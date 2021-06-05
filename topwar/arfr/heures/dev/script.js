@@ -203,7 +203,7 @@
       let move = BASE;
       console.log("Attempt "+gen.id+" "+tempX+";"+tempY+";"+direction.name);
 
-      if (!gen.insertId(tempX,tempY, getCycle(tempX,tempY)) {
+      if (!gen.insertId(tempX,tempY, getCycle(tempX,tempY))) {
         if (direction === Directions.UP) {
           direction = direction.next;
           arr = direction.coords(x,y,BASE*2);
