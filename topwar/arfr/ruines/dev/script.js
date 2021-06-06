@@ -315,7 +315,6 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     let createRuinView = function(ruin) {
       let newItem = doc.createElement("li");
       newItem.classList.add("list-group-item"); // Bootstrap
-      console.log(ruin);
       newItem.insertChild(ruin.createUI());
       return newItem;
     };
@@ -324,7 +323,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     let ruinList = new Array();
     const reloadList = function() {
       let inputList = doc.getElementById(listId);
-      for (const ruin in ruinList) {
+      for (const ruin of ruinList) {
         inputList.addChild(createRuinView(ruin));
       }
     };
