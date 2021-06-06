@@ -271,6 +271,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
 
       createUI() {
         let ui = global.document.createElement("span");
+        ui.appendChild(ui.createElement(this.h+":"+this.m+":"+this.s));
         return ui;
       }
     };
@@ -307,10 +308,16 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
 
       createUI() {
         let ui = global.document.createElement("div");
+        ui.appendChild("Id: #"+this.id);
+        ui.appendChild("<br/>");
         ui.appendChild(this.spoil.createUI());
+        ui.appendChild("<br/>");
+        ui.appendChild("Possédé par: "+this.owner);
         return ui;
       }
     };
+    
+    const onUpdate = function() { reloadList(); };
 
     let createRuinView = function(ruin) {
       let newItem = doc.createElement("li");
