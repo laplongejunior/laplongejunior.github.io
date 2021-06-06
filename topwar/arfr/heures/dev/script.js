@@ -175,8 +175,11 @@
     Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];};
     
     const MIDDLE = ((SIDE+1)/2)-1;
+const inMiddle = function(pos) {
+ return (pos >= MIDDLE-ADJUST && pos < MIDDLE+ADJUST) ;
+}; 
     const adjustMiddle = function(pos, other) {
-      if (pos < MIDDLE-ADJUST || pos > MIDDLE+ADJUST) return pos;
+      if (!inMiddle(pos)) return pos;
       if (getCycle(pos,other)%2 === 0) return MIDDLE;
       return null;
     };
