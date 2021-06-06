@@ -314,21 +314,24 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
 
     let createRuinView = function(ruin) {
       let newItem = doc.createElement("li");
-      li.addClass("list-group-item"); // Bootstrap
-      li.insertChild(ruin.createUI());
+      newItem.addClass("list-group-item"); // Bootstrap
+      newItem.insertChild(ruin.createUI());
       return newItem;
     };
     
     const reloadList = function() {
-    
+      let inputList = doc.getElementById(listId);
+      for (const ruin in ruinList) {
+        inputList.addChild(createRuinView(ruin));
+      }
     };
    
+    let ruinList
     let doc = global.document;
-    let ruinList = doc.getElementById(listId);
     let addRuinButton = doc.getElementById("arfr-add-ruin");
     addRuinButton.addEventListener("click", function() {
-      ruinList.addChild(createRuinView(new Ruin()));
-      console.log(ruinList);
+      ruinList.put(new Ruin());
+      reloadList();
     });
     
   })(this);
