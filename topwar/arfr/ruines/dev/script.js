@@ -315,7 +315,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     let createRuinView = function(ruin) {
       let newItem = doc.createElement("li");
       newItem.classList.add("list-group-item"); // Bootstrap
-      newItem.insertChild(ruin.createUI());
+      newItem.appendChild(ruin.createUI());
       return newItem;
     };
     
