@@ -242,36 +242,36 @@ LEVEL1:{
 title:"Ruines",
 cycle:1,
 rewards:{
-GOLD,
-ATK,
-COLL,
-WALK,
-PV,
-SHOT
+GOLD:{},
+ATK:{},
+COLL:{},
+WALK:{},
+PV:{},
+SHOT:{}
 }
 },
 LEVEL2:{
-title:"Ruines Anciennes",
-cycle:2,
-rewards:{
-RELIC,
-UNIT,
-ITEM
-}
-},
-LEVEL2BIS:{
 title:"Ruines Antiques",
 cycle:2,
 rewards:{
-QUEST
+QUEST:{}
+}
+},
+LEVEL2BIS:{
+title:"Ruines Anciennes",
+cycle:2,
+rewards:{
+RELIC:{},
+UNIT:{},
+ITEM:{}
 },
 },
 LEVEL3:{
 title:"Ruines de l'Empereur",
 cycle:3,
 rewards:{
-GUARD,
-RES
+GUARD:{},
+RES:{}
 }
 }
 };
