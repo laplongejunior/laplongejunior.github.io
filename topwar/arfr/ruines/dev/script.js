@@ -342,6 +342,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
     });
     doc.getElementById(sortId).addEventListener("click", function() {
       ruinList.sort((a,b)=>a.spoil.getDate()<b.spoil.getDate() ? -1 : 1);
+      reloadList();
     });
     
   })(this);
