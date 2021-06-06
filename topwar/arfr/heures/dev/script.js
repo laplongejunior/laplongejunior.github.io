@@ -198,7 +198,7 @@ const inMiddle = function(pos) {
     gen.insertId(MIDDLE,MIDDLE); // Capital
     let x = 0, y = -BASE, direction = Directions.RIGHT;
     while (true) {
-      if (gen.id === 10) debugger;
+      if (gen.id === 7) debugger;
       let arr = direction.coords(x,y,BASE*2);
       let tempX = arr[0];
       let tempY = arr[1];
