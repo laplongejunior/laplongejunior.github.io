@@ -15,7 +15,7 @@
         else item = item.toString().padStart(2,"0");
         line+=item+",";
       }
-      console.log(++index+") "+line.substring(0,line.length-1));
+      console.log((++index).toString().padStart(2,"0")+") "+line.substring(0,line.length-1));
     }
     console.log("======END======");
   };
