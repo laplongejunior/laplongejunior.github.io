@@ -191,6 +191,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
   };
   class RuinData {
    constructor(id, x, y, reward) {
+      super();
       this.id = id;
       this.x = x;
       this.y = y;
@@ -229,6 +230,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
 
     class Diff extends Subject {
       constructor() {
+        super();
         this.h = 0;
         this.m = 0;
         this.s = 0;
