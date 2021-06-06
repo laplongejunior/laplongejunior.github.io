@@ -1,4 +1,6 @@
-function _load() {
+this._load = function(loadId,listId,buttonId,outputId,saveId) {
+  delete this._load;
+  console.log(this);
   (function(global){
     "use strict";
 
@@ -315,7 +317,7 @@ function _load() {
   */
 
       let doc = global.document;
-      let ruinList = doc.getElementById("arfr-ruin-list");
+      let ruinList = doc.getElementById(listId);
       let addRuinButton = doc.getElementById("arfr-add-ruin");
       addRuinButton.addEventListener("click", function() {
         ruinList.addChild(createRuinView(new Ruin()));
