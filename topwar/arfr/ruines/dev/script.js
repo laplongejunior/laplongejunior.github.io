@@ -44,96 +44,6 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
 
     };
 
-    class Diff extends Subject {
-      constructor() {
-        this.h = 0;
-        this.m = 0;
-        this.s = 0;
-      }
-
-      setHour(h) {
-        if (h < 0) return "Heure négative";
-        this.h = h;
-        onUpdate();
-        return null;
-      }
-      setMin(m) {
-        if (m < 0) return "Minutes négatives";
-        if (m >= 60) return "Minutes trop élevées";
-        this.m = m;
-        onUpdate();
-        return null;
-      }
-      setSec(s) {
-        if (s < 0) return "Secondes négatives";
-        if (s >= 60) return "Secondes trop élevées";
-        this.s = s;
-        onUpdate();
-        return null;
-      }
-      setTimestamp(timestamp) {
-        let errors = new Array();
-        let arr = timestamp.split(':');
-        addError(errors, setHour(parseInt(arr[0])));
-        addError(errors, setMin(parseInt(arr[1])));
-        addError(errors, setSec(parseInt(arr[2])));
-        return errors;
-      }
-
-      getTime() {
-        let time = new Date();
-        return new Date(time.getTime()+ ((((h*60)+m*60)+s)*1000) );
-      }
-
-      createUI() {
-        let ui = global.document.createElement("span");
-        return ui;
-      }
-    };
-
-    class Ruin extends Subject {
-      constructor() {
-        this.id = 0;
-        this.spoil = new Date();
-        this.owner = "";
-      }
-
-      setId(id) {
-        if (id < 0) return "Id négatif";
-        this.id = id;
-        onUpdate();
-        return null;
-      }
-      setSpoil(spoil) {
-        this.spoil = spoil;
-        onUpdate();
-        return null;
-      }
-      setOwner(spoil) {
-        this.spoil = spoil;
-        onUpdate();
-        return null;
-      }
-      setCountdown(diff) {
-        this.spoil = diff.getTime();
-        onUpdate();
-        return null;
-      }
-
-      createUI() {
-        let ui = global.document.createElement("div");
-        ui.insertChild(this.spoil.createUI());
-        return ui;
-      }
-    };
-
-    let createRuinView = function(ruin) {
-      let newItem = doc.createElement("li");
-      li.addClass("list-group-item"); // Bootstrap
-      li.insertChild(ruin.createUI());
-      return newItem;
-    };
-
     // Coords mapping
 
     const BASE = 2, ADJUST = 1;
@@ -315,12 +225,109 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
         let pox
     };
   */
+    
 
-      let doc = global.document;
-      let ruinList = doc.getElementById(listId);
-      let addRuinButton = doc.getElementById("arfr-add-ruin");
-      addRuinButton.addEventListener("click", function() {
-        ruinList.addChild(createRuinView(new Ruin()));
-      });
+    class Diff extends Subject {
+      constructor() {
+        this.h = 0;
+        this.m = 0;
+        this.s = 0;
+      }
+
+      setHour(h) {
+        if (h < 0) return "Heure négative";
+        this.h = h;
+        onUpdate();
+        return null;
+      }
+      setMin(m) {
+        if (m < 0) return "Minutes négatives";
+        if (m >= 60) return "Minutes trop élevées";
+        this.m = m;
+        onUpdate();
+        return null;
+      }
+      setSec(s) {
+        if (s < 0) return "Secondes négatives";
+        if (s >= 60) return "Secondes trop élevées";
+        this.s = s;
+        onUpdate();
+        return null;
+      }
+      setTimestamp(timestamp) {
+        let errors = new Array();
+        let arr = timestamp.split(':');
+        addError(errors, setHour(parseInt(arr[0])));
+        addError(errors, setMin(parseInt(arr[1])));
+        addError(errors, setSec(parseInt(arr[2])));
+        return errors;
+      }
+
+      getTime() {
+        let time = new Date();
+        return new Date(time.getTime()+ ((((h*60)+m*60)+s)*1000) );
+      }
+
+      createUI() {
+        let ui = global.document.createElement("span");
+        return ui;
+      }
+    };
+
+    class Ruin extends Subject {
+      constructor() {
+        this.id = 0;
+        this.spoil = new Date();
+        this.owner = "";
+      }
+
+      setId(id) {
+        if (id < 0) return "Id négatif";
+        this.id = id;
+        onUpdate();
+        return null;
+      }
+      setSpoil(spoil) {
+        this.spoil = spoil;
+        onUpdate();
+        return null;
+      }
+      setOwner(spoil) {
+        this.spoil = spoil;
+        onUpdate();
+        return null;
+      }
+      setCountdown(diff) {
+        this.spoil = diff.getTime();
+        onUpdate();
+        return null;
+      }
+
+      createUI() {
+        let ui = global.document.createElement("div");
+        ui.insertChild(this.spoil.createUI());
+        return ui;
+      }
+    };
+
+    let createRuinView = function(ruin) {
+      let newItem = doc.createElement("li");
+      li.addClass("list-group-item"); // Bootstrap
+      li.insertChild(ruin.createUI());
+      return newItem;
+    };
+    
+    const reloadList = function() {
+    
+    };
+   
+    let doc = global.document;
+    let ruinList = doc.getElementById(listId);
+    let addRuinButton = doc.getElementById("arfr-add-ruin");
+    addRuinButton.addEventListener("click", function() {
+      ruinList.addChild(createRuinView(new Ruin()));
+      console.log(ruinList);
+    });
+    
   })(this);
 }
