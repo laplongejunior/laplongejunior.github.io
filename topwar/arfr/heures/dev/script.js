@@ -176,7 +176,7 @@
     
     const MIDDLE = ((SIDE+1)/2)-1;
 const inMiddle = function(pos) {
- return (pos >= MIDDLE-ADJUST && pos < MIDDLE+ADJUST);
+ return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
 }; 
     const adjustMiddle = function(pos, other) {
       if (!inMiddle(pos)) return pos;
