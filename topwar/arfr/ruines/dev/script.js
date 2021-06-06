@@ -279,7 +279,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
       constructor() {
         super();
         this.id = 0;
-        this.spoil = new Date();
+        this.spoil = new Diff();
         this.owner = "";
       }
 
