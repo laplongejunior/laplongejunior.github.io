@@ -1,4 +1,4 @@
-function _onLoad() {
+function _load() {
   (function(global){
     "use strict";
 
