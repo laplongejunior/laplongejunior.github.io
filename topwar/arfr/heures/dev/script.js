@@ -236,13 +236,27 @@
 
 const RuinDifficulty = {
 LEVEL1:{
-title:""
+title:"Ruines",
+cycle:1,
+rewards:{}
 },
 LEVEL2:{
-title:""
+title:"Ruines Antiques",
+cycle:2,
+rewards:{}
 },
 LEVEL3:{
-title:""
+title:"Ruines de l'Empereur",
+cycle:3,
+rewards:{}
+}
+};
+class RuinData {
+ constructor(id, x, y, reward) {
+    this.id = id;
+    this.x = x;
+this.y = y;
+    this.reward = reward;
 }
 };
 
