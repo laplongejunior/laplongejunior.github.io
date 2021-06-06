@@ -276,6 +276,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
 
     class Ruin extends Subject {
       constructor() {
+        super();
         this.id = 0;
         this.spoil = new Date();
         this.owner = "";
