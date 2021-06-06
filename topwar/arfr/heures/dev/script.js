@@ -240,56 +240,57 @@ function _load() {
     debugMatrix(ruinMatrix);
 
   const RuinDifficulty = {
-  LEVEL1:{
-  title:"Ruines",
-  cycle:1,
-  rewards:{
-  GOLD:{},
-  ATK:{},
-  COLL:{},
-  WALK:{},
-  PV:{},
-  SHOT:{}
-  }
-  },
-  LEVEL2:{
-  title:"Ruines Antiques",
-  cycle:2,
-  rewards:{
-  QUEST:{}
-  }
-  },
-  LEVEL2BIS:{
-  title:"Ruines Anciennes",
-  cycle:2,
-  rewards:{
-  RELIC:{},
-  UNIT:{},
-  ITEM:{}
-  },
-  },
-  LEVEL3:{
-  title:"Ruines de l'Empereur",
-  cycle:3,
-  rewards:{
-  GUARD:{},
-  RES:{}
-  }
-  }
+    LEVEL1:{
+      title:"Ruines",
+      cycle:1,
+      rewards:{
+        GOLD:{},
+        ATK:{},
+        COLL:{},
+        WALK:{},
+        PV:{},
+        SHOT:{}
+      }
+    },
+    LEVEL2:{
+      title:"Ruines Antiques",
+      cycle:2,
+      rewards:{
+        QUEST:{}
+      }
+    },
+    LEVEL2BIS:{
+      title:"Ruines Anciennes",
+      cycle:2,
+      rewards:{
+        RELIC:{},
+        UNIT:{},
+        ITEM:{}
+      }
+    },
+    LEVEL3:{
+      title:"Ruines de l'Empereur",
+      cycle:3,
+      rewards:{
+        GUARD:{},
+        RES:{}
+      }
+    }
   };
   class RuinData {
    constructor(id, x, y, reward) {
       this.id = id;
       this.x = x;
-  this.y = y;
+      this.y = y;
       this.reward = reward;
-  }
+    }
   };
 
   for (let i = 0; i < ruinMatrix.length; ++i) {
-  const arr = ruinMatrix[i];
-  for (let j = 0; j < arr.length; ++j) {
-  }
+    const arr = ruinMatrix[i];
+    for (let j = 0; j < arr.length; ++j) {
+       // todo
+    }
   }
 
     /*
@@ -313,13 +314,11 @@ function _load() {
     };
   */
 
-    global.addEventListener("load", function() {
       let doc = global.document;
       let ruinList = doc.getElementById("arfr-ruin-list");
       let addRuinButton = doc.getElementById("arfr-add-ruin");
       addRuinButton.addEventListener("click", function() {
         ruinList.addChild(createRuinView(new Ruin()));
       });
-    });
   })(this);
 }
