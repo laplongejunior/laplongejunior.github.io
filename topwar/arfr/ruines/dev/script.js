@@ -307,7 +307,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
 
       createUI() {
         let ui = global.document.createElement("div");
-        ui.insertChild(this.spoil.createUI());
+        ui.appendChild(this.spoil.createUI());
         return ui;
       }
     };
