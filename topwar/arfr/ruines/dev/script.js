@@ -341,7 +341,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
       reloadList();
     });
     doc.getElementById(sortId).addEventListener("click", function() {
-      ruinList.sort((a,b)=>a.spoil.getDate()<b.spoil.getDate() ? -1 : 1);
+      ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
       reloadList();
     });
     
