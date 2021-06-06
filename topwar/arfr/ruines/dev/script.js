@@ -191,7 +191,6 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     };
     class RuinData {
      constructor(id, x, y, reward) {
-        super();
         this.id = id;
         this.x = x;
         this.y = y;
