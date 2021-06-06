@@ -238,17 +238,38 @@ const RuinDifficulty = {
 LEVEL1:{
 title:"Ruines",
 cycle:1,
-rewards:{}
+rewards:{
+GOLD,
+ATK,
+COLL,
+WALK,
+PV,
+SHOT
+}
 },
 LEVEL2:{
+title:"Ruines Anciennes",
+cycle:2,
+rewards:{
+RELIC,
+UNIT,
+ITEM
+}
+},
+LEVEL2BIS:{
 title:"Ruines Antiques",
 cycle:2,
-rewards:{}
+rewards:{
+QUEST
+},
 },
 LEVEL3:{
 title:"Ruines de l'Empereur",
 cycle:3,
-rewards:{}
+rewards:{
+GUARD,
+RES
+}
 }
 };
 class RuinData {
