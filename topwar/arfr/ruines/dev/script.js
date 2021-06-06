@@ -29,7 +29,6 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     };
     class Subject {
       constructor() {
-        super();
         this.observers = new Array();
       }
       subscribe(obs) {
@@ -60,7 +59,6 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     const ruinMatrix = (function(){  
       class SafeMatrix {
         constructor(SIDE) {
-          super();
           this.id = 0; // 0 is capital
           let m = new Array(SIDE);
           for (let i=0;i<SIDE;++i)
