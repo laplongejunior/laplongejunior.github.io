@@ -1,5 +1,5 @@
 // Avoids relying on the global space, despite the loading call that provides html-defined ids
-this._load = function(loadId,listId,buttonId,outputId,saveId) {
+this._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
   delete this._load;
   console.log(this);
   (function(global){
@@ -336,10 +336,12 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     };
    
     let doc = global.document;
-    let addRuinButton = doc.getElementById(buttonId);
-    addRuinButton.addEventListener("click", function() {
+    doc.getElementById(buttonId).addEventListener("click", function() {
       ruinList.push(new Ruin());
       reloadList();
+    });
+    doc.getElementById(sortId).addEventListener("click", function() {
+      ruinList.sort((a,b)=>a.spoil.getDate()<b.spoil.getDate() ? -1 : 1);
     });
     
   })(this);
