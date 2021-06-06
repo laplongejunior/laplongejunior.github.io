@@ -324,7 +324,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     const reloadList = function() {
       let inputList = doc.getElementById(listId);
       for (const ruin of ruinList) {
-        inputList.addChild(createRuinView(ruin));
+        inputList.appendChild(createRuinView(ruin));
       }
     };
    
