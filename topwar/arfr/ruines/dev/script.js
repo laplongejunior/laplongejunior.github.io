@@ -319,6 +319,8 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
       return newItem;
     };
     
+    
+    let ruinList = new Array();
     const reloadList = function() {
       let inputList = doc.getElementById(listId);
       for (const ruin in ruinList) {
@@ -326,9 +328,8 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
       }
     };
    
-    let ruinList
     let doc = global.document;
-    let addRuinButton = doc.getElementById("arfr-add-ruin");
+    let addRuinButton = doc.getElementById(buttonId);
     addRuinButton.addEventListener("click", function() {
       ruinList.put(new Ruin());
       reloadList();
