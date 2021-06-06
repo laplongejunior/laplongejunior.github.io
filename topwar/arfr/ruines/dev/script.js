@@ -29,6 +29,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     };
     class Subject {
       constructor() {
+        super();
         this.observers = new Array();
       }
       subscribe(obs) {
@@ -59,6 +60,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     const ruinMatrix = (function(){  
       class SafeMatrix {
         constructor(SIDE) {
+          super();
           this.id = 0; // 0 is capital
           let m = new Array(SIDE);
           for (let i=0;i<SIDE;++i)
@@ -89,9 +91,9 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
       Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];};
 
       const MIDDLE = ((SIDE+1)/2)-1;
-  const inMiddle = function(pos) {
-   return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
-  }; 
+      const inMiddle = function(pos) {
+       return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
+      }; 
       const adjustMiddle = function(pos, other) {
         if (!inMiddle(pos)) return pos;
         if (getCycle(pos,other)%2 === 0) return MIDDLE;
@@ -151,60 +153,60 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     })();
     debugMatrix(ruinMatrix);
 
-  const RuinDifficulty = {
-    LEVEL1:{
-      title:"Ruines",
-      cycle:1,
-      rewards:{
-        GOLD:{},
-        ATK:{},
-        COLL:{},
-        WALK:{},
-        PV:{},
-        SHOT:{}
+    const RuinDifficulty = {
+      LEVEL1:{
+        title:"Ruines",
+        cycle:1,
+        rewards:{
+          GOLD:{},
+          ATK:{},
+          COLL:{},
+          WALK:{},
+          PV:{},
+          SHOT:{}
+        }
+      },
+      LEVEL2:{
+        title:"Ruines Antiques",
+        cycle:2,
+        rewards:{
+          QUEST:{}
+        }
+      },
+      LEVEL2BIS:{
+        title:"Ruines Anciennes",
+        cycle:2,
+        rewards:{
+          RELIC:{},
+          UNIT:{},
+          ITEM:{}
+        }
+      },
+      LEVEL3:{
+        title:"Ruines de l'Empereur",
+        cycle:3,
+        rewards:{
+          GUARD:{},
+          RES:{}
+        }
       }
-    },
-    LEVEL2:{
-      title:"Ruines Antiques",
-      cycle:2,
-      rewards:{
-        QUEST:{}
+    };
+    class RuinData {
+     constructor(id, x, y, reward) {
+        super();
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.reward = reward;
       }
-    },
-    LEVEL2BIS:{
-      title:"Ruines Anciennes",
-      cycle:2,
-      rewards:{
-        RELIC:{},
-        UNIT:{},
-        ITEM:{}
-      }
-    },
-    LEVEL3:{
-      title:"Ruines de l'Empereur",
-      cycle:3,
-      rewards:{
-        GUARD:{},
-        RES:{}
-      }
-    }
-  };
-  class RuinData {
-   constructor(id, x, y, reward) {
-      super();
-      this.id = id;
-      this.x = x;
-      this.y = y;
-      this.reward = reward;
-    }
-  };
+    };
 
-  for (let i = 0; i < ruinMatrix.length; ++i) {
-    const arr = ruinMatrix[i];
-    for (let j = 0; j < arr.length; ++j) {
-       // todo
+    for (let i = 0; i < ruinMatrix.length; ++i) {
+      const arr = ruinMatrix[i];
+      for (let j = 0; j < arr.length; ++j) {
+         // todo
+      }
     }
-  }
 
     /*
     let ruinCoords = function(id) {
