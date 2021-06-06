@@ -331,7 +331,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId) {
     let doc = global.document;
     let addRuinButton = doc.getElementById(buttonId);
     addRuinButton.addEventListener("click", function() {
-      ruinList.put(new Ruin());
+      ruinList.push(new Ruin());
       reloadList();
     });
     
