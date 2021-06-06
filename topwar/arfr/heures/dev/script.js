@@ -234,6 +234,24 @@
   })();
   debugMatrix(ruinMatrix);
 
+const RuinDifficulty = {
+LEVEL1:{
+title:""
+},
+LEVEL2:{
+title:""
+},
+LEVEL3:{
+title:""
+}
+};
+
+for (let i = 0; i < ruinMatrix.length; ++i) {
+const arr = ruinMatrix[i];
+for (let j = 0; j < arr.length; ++j) {
+}
+}
+
   /*
   let ruinCoords = function(id) {
     for (let i = 0; i < ruinMatrix.length; ++i) {
