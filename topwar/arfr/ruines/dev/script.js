@@ -308,7 +308,18 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
 
       createUI() {
         let ui = global.document.createElement("div");
+        
         ui.appendChild(global.document.createTextNode("Id: #"+this.id));
+        let inputID = global.document.createElement("input");
+        inputID.type = 'number';
+        
+        inputID.addEventListener("change", function(event) {
+          console.log(event.target);
+          console.log(event.target.value);
+          console.log(event.value);
+        });
+        ui.appendChild(inputID);
+        
         ui.appendChild(global.document.createElement("br"));
         ui.appendChild(this.spoil.createUI());
         ui.appendChild(global.document.createElement("br"));
