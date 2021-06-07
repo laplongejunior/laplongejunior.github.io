@@ -308,11 +308,11 @@ this._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
 
       createUI() {
         let ui = global.document.createElement("div");
-        ui.appendChild("Id: #"+this.id);
-        ui.appendChild("<br/>");
+        ui.appendChild(ui.createTextNode("Id: #"+this.id));
+        ui.appendChild(ui.createElement("br"));
         ui.appendChild(this.spoil.createUI());
-        ui.appendChild("<br/>");
-        ui.appendChild("Possédé par: "+this.owner);
+        ui.appendChild(ui.createElement("br"));
+        ui.appendChild(ui.createTextNode("Possédé par: "+this.owner));
         return ui;
       }
     };
