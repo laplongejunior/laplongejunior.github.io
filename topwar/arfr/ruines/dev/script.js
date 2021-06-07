@@ -1,8 +1,8 @@
-// Avoids relying on the global space, despite the loading call that provides html-defined ids
-this._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
-  delete this._load;
-  console.log(this);
-  (function(global){
+// Avoids relying on the global space, except the loading call that provides html-defined ids
+let global = this;
+global._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
+  delete global._load;
+  (function(){
     "use strict";
 
     // UI view
@@ -317,33 +317,30 @@ this._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
       }
     };
     
-    const onUpdate = function() { reloadList(); };
+    let ruinList = new Array();
+    const onUpdate = function() { 
+      let inputList = doc.getElementById(listId);
+      for (const ruin of ruinList) {
+        inputList.appendChild(createRuinView(ruin));
+      }
+    };
 
     let createRuinView = function(ruin) {
       let newItem = doc.createElement("li");
       newItem.classList.add("list-group-item"); // Bootstrap
       newItem.appendChild(ruin.createUI());
       return newItem;
-    };
-    
-    
-    let ruinList = new Array();
-    const reloadList = function() {
-      let inputList = doc.getElementById(listId);
-      for (const ruin of ruinList) {
-        inputList.appendChild(createRuinView(ruin));
-      }
-    };
+    };  
    
     let doc = global.document;
     doc.getElementById(buttonId).addEventListener("click", function() {
       ruinList.push(new Ruin());
-      reloadList();
+      onUpdate();
     });
     doc.getElementById(sortId).addEventListener("click", function() {
       ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
-      reloadList();
+      onUpdate();
     });
     
-  })(this);
+  })();
 }
