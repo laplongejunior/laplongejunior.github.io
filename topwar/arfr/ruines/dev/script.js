@@ -271,7 +271,7 @@ this._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
 
       createUI() {
         let ui = global.document.createElement("span");
-        ui.appendChild(ui.createElement(this.h+":"+this.m+":"+this.s));
+        ui.appendChild(global.document.createElement(this.h+":"+this.m+":"+this.s));
         return ui;
       }
     };
