@@ -314,9 +314,13 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
         inputID.type = 'number';
         
         inputID.addEventListener("change", function(event) {
-          console.log(event.target);
-          console.log(event.target.value);
-          console.log(event.value);
+          let val = event.source.value;
+          if (val < 0) return false;
+          console.log(this);
+          let error = this.setId(val);
+          console.log(error);
+          if (error != null)
+            ui.appendChild(global.document.createTextNode("Error: "+error));
         });
         ui.appendChild(inputID);
         
