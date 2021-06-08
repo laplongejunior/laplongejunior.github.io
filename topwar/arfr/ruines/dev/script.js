@@ -37,14 +37,14 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         this.observers.push(obs);
       }
       unsubscribe(obs) {
-        this.onbservers.remove(obs);
+        this.onservers.remove(obs);
       }
       onUpdate(valName, newValue, oldValue) {
-        for (const obs of observers)
+        for (const obs of this.observers)
           obs.onUpdate(this, newValue, oldValue);
       }
       onError(valName, msg, newValue, oldValue) {
-        for (const obs of observers)
+        for (const obs of this.observers)
           obs.onError(this, msg, newValue, oldValue);
       }
     };
