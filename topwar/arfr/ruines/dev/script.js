@@ -4,6 +4,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
   delete global._load;
   (function(){
     "use strict";
+    let doc = global.document;
 
     // UI view
     let addError = function(arr, err){
@@ -347,10 +348,6 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
     
     let ruinList = new Array();
     const onUpdate = function() { 
-      let inputList = doc.getElementById(listId);
-      for (const ruin of ruinList) {
-        inputList.appendChild(createRuinView(ruin));
-      }
     };
 
     let createRuinView = function(ruin) {
@@ -360,13 +357,19 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       return newItem;
     };  
    
-    let doc = global.document;
+    let inputList = doc.getElementById(listId);
     doc.getElementById(buttonId).addEventListener("click", function() {
-      ruinList.push(new Ruin());
+      let newItem = new Ruin();
+      ruinList.push(newItem);
+      inputList.appendChild(createRuinView(newItem));
       onUpdate();
     });
     doc.getElementById(sortId).addEventListener("click", function() {
       ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
+      inputList.innerHTML = '';
+      for (const ruin of ruinList) {
+        inputList.appendChild(createRuinView(ruin));
+      }
       onUpdate();
     });
     
