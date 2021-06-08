@@ -309,32 +309,40 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       createUI() {
         let ui = global.document.createElement("div");
         
-        ui.appendChild(global.document.createTextNode("Id: #"+this.id));
-        let inputID = global.document.createElement("input");
-        inputID.type = 'number';
-        
-        inputID.addEventListener("change", function(event) {
-          let val = event.source.value;
-          if (val < 0) return false;
-          console.log(this);
-          let error = this.setId(val);
-          console.log(error);
-          if (error != null)
-            ui.getElementsByClassName(errorClass).innerHTML = "Error : "+error;
+        addInputSection(ui, (section,error)=>{
+          let text = global.document.createTextNode("Id: #"+this.id));
+          section.appendChild(text);
+          let inputID = global.document.createElement("input");
+          inputID.type = 'number';
+
+          inputID.addEventListener("change", function(event) {
+            let val = event.source.value;
+            if (val < 0) return false;
+            console.log(this);
+            let errorMsg = this.setId(val);
+            console.log(errorMsg);
+            if (errorMsg != null)
+              error.innerHTML = "Error : "+errorMsg;
+          });
+          return inputID;
         });
-        ui.appendChild(inputID);
         
+        let doc = global.document;
         ui.appendChild(global.document.createElement("br"));
-        ui.appendChild(this.spoil.createUI());
-        ui.appendChild(global.document.createElement("br"));
-        ui.appendChild(global.document.createTextNode("Possédé par: "+this.owner));
-        ui.appendChild(global.document.createElement("br"));
-        
-        let errorSection = global.document.createElement("span");
-        errorSection.classList.add(errorClass);
-        up.appendChild(errorSection);
+        addInputSection(ui, ()=>{return this.spoil.createUI();});
+        addInputSection(ui, ()=>{return doc.createTextNode("Possédé par: "+this.owner);});        
         return ui;
       }
+    };
+    
+    const addInputSection = function(parent, callback) {
+        let section = global.document.createElement("div");
+        let error = global.document.createElement("span");
+        error.classList.add(errorClass);
+        section.appendChild(error);
+        section.appendChild(callback(section, error));
+        parent.appendChild(section);
+        return section;
     };
     
     let ruinList = new Array();
