@@ -376,6 +376,11 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
     };
     
     const updateOutput = function() {
+      let output = "";
+      for (const ruin in ruinList) {
+        output += ruin.serialize();
+      }
+      doc.getElementById(saveId).textContent = output;
       console.log("testUpdate");
     };
     
