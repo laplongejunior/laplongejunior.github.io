@@ -316,7 +316,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
           inputID.type = 'number';
 
           inputID.addEventListener("change", function(event) {
-            let val = event.source.value;
+            let val = event.target.value;
             if (val < 0) return false;
             console.log(this);
             let errorMsg = this.setId(val);
