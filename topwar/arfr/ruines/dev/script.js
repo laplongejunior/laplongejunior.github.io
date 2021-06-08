@@ -275,7 +275,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
 
       serialize() {
         let time = this.getTime();
-        return time.getFullYear()+""+(time.getMonth()+1)+""+time.getDay()+""+time.getHour()+""+time.getMinutes();
+        return time.getFullYear()+""+(time.getMonth()+1)+""+time.getDay()+""+time.getHours()+""+time.getMinutes();
       }
       unserialize() {
       }
