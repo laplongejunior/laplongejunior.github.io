@@ -312,25 +312,22 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       unserialize() {
       }
       createUI() {
-        let ui = global.document.createElement("div");
+        let ui = doc.createElement("div");
         let self = this;
         
         const errorId = addInputSection(ui, (section,error)=>{
-          section.appendChild(global.document.createTextNode("Id: #"+this.id));
-          let inputID = global.document.createElement("input");
+          section.appendChild(doc.createTextNode("Id: #"+this.id));
+          let inputID = doc.createElement("input");
           inputID.type = 'number';
           inputID.addEventListener("change", function(event) {self.setId(event.target.value);});
           return inputID;
         });
         
-        let doc = global.document;
-        ui.appendChild(global.document.createElement("br"));
+        ui.appendChild(doc.createElement("br"));
         const errorSpoil = addInputSection(ui, ()=>{return this.spoil.createUI();});
         const errorOwner = addInputSection(ui, ()=>{return doc.createTextNode("Possédé par: "+this.owner);});
         
-        const ERROR_OBSERVER = new Observer() {
-            constructor() {
-            }
+        class ErrorObserver extends Observer() {
             onError(ruin, valName, err, newValue, oldValue) {
               let section;
               if (valName === "id") section = errorId;
@@ -339,7 +336,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
               error.innerHTML = "Error : "+err;
             };
         };
-        this.subscribe(ERROR_OBSERVER);
+        this.subscribe(new ErrorObserver());
         
         return ui;
       }
