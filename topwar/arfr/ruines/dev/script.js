@@ -365,9 +365,13 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       return newItem;
     };
     
+    const updateOutput = function() {
+      console.log("testUpdate");
+    };
+    
     class ChangeObserver extends Observer {
       onUpdate(ruin, valName, newValue, oldValue) {
-        console.log("test");
+        updateOutput();
       };
     }
     const changeObs = new ChangeObserver();
@@ -378,7 +382,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       newItem.subscribe(changeObs);
       ruinList.push(newItem);
       inputList.appendChild(createRuinView(newItem));
-      onUpdate();
+      updateOutput();
     });
     doc.getElementById(sortId).addEventListener("click", function() {
       ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
@@ -386,7 +390,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       for (const ruin of ruinList) {
         inputList.appendChild(createRuinView(ruin));
       }
-      onUpdate();
+      updateOutput();
     });
     
   })();
