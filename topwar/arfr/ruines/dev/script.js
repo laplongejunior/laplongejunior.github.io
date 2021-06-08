@@ -26,7 +26,8 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
     };
 
     class Observer {
-      fire(subject) {}
+      onUpdate(subject, valName, newValue, oldValue) {}
+      onError(subject, valName, msg, newValue, oldValue) {}
     };
     class Subject {
       constructor() {
@@ -38,11 +39,14 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       unsubscribe(obs) {
         this.onbservers.remove(obs);
       }
-      onUpdate() {
-        for (obs of observers)
-          obs.fire(this);
+      onUpdate(valName, newValue, oldValue) {
+        for (const obs of observers)
+          obs.onUpdate(this, newValue, oldValue);
       }
-
+      onError(valName, msg, newValue, oldValue) {
+        for (const obs of observers)
+          obs.onError(this, msg, newValue, oldValue);
+      }
     };
 
     // Coords mapping
@@ -239,21 +243,21 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       setHour(h) {
         if (h < 0) return "Heure négative";
         this.h = h;
-        onUpdate();
+        this.onUpdate();
         return null;
       }
       setMin(m) {
         if (m < 0) return "Minutes négatives";
         if (m >= 60) return "Minutes trop élevées";
         this.m = m;
-        onUpdate();
+        this.onUpdate();
         return null;
       }
       setSec(s) {
         if (s < 0) return "Secondes négatives";
         if (s >= 60) return "Secondes trop élevées";
         this.s = s;
-        onUpdate();
+        this.onUpdate();
         return null;
       }
       setTimestamp(timestamp) {
@@ -286,50 +290,57 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       }
 
       setId(id) {
-        if (id < 0) return "Id négatif";
+        if (id < 0) return this.onError("id", "Id négatif");
         this.id = id;
-        onUpdate();
-        return null;
+        return this.onUpdate("id");
       }
       setSpoil(spoil) {
         this.spoil = spoil;
-        onUpdate();
-        return null;
+        return this.onUpdate("spoil");
       }
       setOwner(spoil) {
         this.spoil = spoil;
-        onUpdate();
-        return null;
+        return this.onUpdate("owner");
       }
       setCountdown(diff) {
         this.spoil = diff.getTime();
-        onUpdate();
-        return null;
+        return this.onUpdate();
       }
 
+      serialize() {
+      }
+      unserialize() {
+      }
       createUI() {
         let ui = global.document.createElement("div");
         let self = this;
         
-        addInputSection(ui, (section,error)=>{
-          let text = global.document.createTextNode("Id: #"+this.id);
-          section.appendChild(text);
+        const errorId = addInputSection(ui, (section,error)=>{
+          section.appendChild(global.document.createTextNode("Id: #"+this.id));
           let inputID = global.document.createElement("input");
           inputID.type = 'number';
-
-          inputID.addEventListener("change", function(event) {
-            let errorMsg = self.setId(event.target.value);
-            console.log(errorMsg);
-            if (errorMsg != null)
-              error.innerHTML = "Error : "+errorMsg;
-          });
+          inputID.addEventListener("change", function(event) {self.setId(event.target.value);});
           return inputID;
         });
         
         let doc = global.document;
         ui.appendChild(global.document.createElement("br"));
-        addInputSection(ui, ()=>{return this.spoil.createUI();});
-        addInputSection(ui, ()=>{return doc.createTextNode("Possédé par: "+this.owner);});        
+        const errorSpoil = addInputSection(ui, ()=>{return this.spoil.createUI();});
+        const errorOwner = addInputSection(ui, ()=>{return doc.createTextNode("Possédé par: "+this.owner);});
+        
+        const ERROR_OBSERVER = new Observer() {
+            constructor() {
+            }
+            onError(ruin, valName, err, newValue, oldValue) {
+              let section;
+              if (valName === "id") section = errorId;
+              else if (valName === "spoil") section = errorSpoil;
+              else section = errorOwner;
+              error.innerHTML = "Error : "+err;
+            };
+        };
+        this.subscribe(ERROR_OBSERVER);
+        
         return ui;
       }
     };
@@ -341,23 +352,29 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         section.appendChild(callback(section, error));
         section.appendChild(error);
         parent.appendChild(section);
-        return section;
+        return error;
     };
     
     let ruinList = new Array();
-    const onUpdate = function() { 
-    };
 
     let createRuinView = function(ruin) {
       let newItem = doc.createElement("li");
       newItem.classList.add("list-group-item"); // Bootstrap
       newItem.appendChild(ruin.createUI());
       return newItem;
-    };  
+    };
+    
+    const CHANGE_OBSERVER = new Observer() {
+      onUpdate(ruin) {
+        super.onUpdate(ruin);
+        console.log("test");
+      };
+    }
    
     let inputList = doc.getElementById(listId);
     doc.getElementById(buttonId).addEventListener("click", function() {
       let newItem = new Ruin();
+      newItem.subscribe(CHANGE_OBSERVER);
       ruinList.push(newItem);
       inputList.appendChild(createRuinView(newItem));
       onUpdate();
