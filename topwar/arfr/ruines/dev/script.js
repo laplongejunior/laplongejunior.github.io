@@ -1,6 +1,6 @@
 // Avoids relying on the global space, except the loading call that provides html-defined ids
 let global = this;
-global._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
+global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass) {
   delete global._load;
   (function(){
     "use strict";
@@ -320,7 +320,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
           let error = this.setId(val);
           console.log(error);
           if (error != null)
-            ui.appendChild(global.document.createTextNode("Error: "+error));
+            ui.getElementsByClassName(errorClass).innerHTML = "Error : "+error;
         });
         ui.appendChild(inputID);
         
@@ -328,6 +328,11 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId) {
         ui.appendChild(this.spoil.createUI());
         ui.appendChild(global.document.createElement("br"));
         ui.appendChild(global.document.createTextNode("Possédé par: "+this.owner));
+        ui.appendChild(global.document.createElement("br"));
+        
+        let errorSection = global.document.createElement("span");
+        errorSection.classList.add(errorClass);
+        up.appendChild(errorSection);
         return ui;
       }
     };
