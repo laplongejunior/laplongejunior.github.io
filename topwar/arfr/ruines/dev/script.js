@@ -347,7 +347,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
               if (valName === "id") section = errorId;
               else if (valName === "spoil") section = errorSpoil;
               else section = errorOwner;
-              error.innerHTML = "Error : "+err;
+              section.innerHTML = "Error : "+err;
             }
         };
         this.subscribe(new ErrorObserver());
