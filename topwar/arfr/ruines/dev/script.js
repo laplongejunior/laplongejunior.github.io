@@ -309,6 +309,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
 
       createUI() {
         let ui = global.document.createElement("div");
+        let self = this;
         
         addInputSection(ui, (section,error)=>{
           let text = global.document.createTextNode("Id: #"+this.id);
@@ -317,10 +318,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
           inputID.type = 'number';
 
           inputID.addEventListener("change", function(event) {
-            let val = event.target.value;
-            if (val < 0) return false;
-            console.log(this);
-            let errorMsg = this.setId(val);
+            let errorMsg = self.setId(event.target.value);
             console.log(errorMsg);
             if (errorMsg != null)
               error.innerHTML = "Error : "+errorMsg;
