@@ -231,7 +231,6 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
     };
   */
     
-
     class Diff extends Subject {
       constructor() {
         super();
@@ -275,6 +274,8 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       }
 
       serialize() {
+        let time = this.getTime();
+        return time.getFullYear()+""+(time.getMonth()+1)+""+time.getDay()+""+time.getHour()+""+time.getMinutes();
       }
       unserialize() {
       }
@@ -302,8 +303,9 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         this.spoil = spoil;
         return this.onUpdate("spoil");
       }
-      setOwner(spoil) {
-        this.spoil = spoil;
+      setOwner(owner) {
+        if (owner.length > 9) return this.onError("owner", "9 lettres max");
+        this.owner = owner;
         return this.onUpdate("owner");
       }
       setCountdown(diff) {
@@ -312,8 +314,16 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       }
 
       serialize() {
+        return this.id.toString().padStart(2,"0")+this.spoil.serialize()+this.owner.length+this.owner;
       }
-      unserialize() {
+      unserialize(data) {
+        this.setId(parseInt(data.substring(0,2)));
+        data = data.substring(2);
+        this.setSpoil(parseInt(data.substring(0,12)));
+        data = data.substring(12);
+        let length = parseInt(data.substring(0,1));
+        owner = data.substring(0,1+length);
+        return data.substring(1+length);
       }
       createUI() {
         let ui = doc.createElement("div");
