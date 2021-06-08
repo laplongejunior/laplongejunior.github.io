@@ -279,7 +279,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       unserialize() {
       }
       createUI() {
-        let ui = doc.document.createElement("span");
+        let ui = doc.createElement("span");
         ui.appendChild(doc.createTextNode(this.h+":"+this.m+":"+this.s));
         return ui;
       }
