@@ -365,17 +365,17 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       return newItem;
     };
     
-    const CHANGE_OBSERVER = new Observer() {
-      onUpdate(ruin) {
-        super.onUpdate(ruin);
+    class ChangeObserver extends Observer {
+      onUpdate(ruin, valName, newValue, oldValue) {
         console.log("test");
       };
     }
+    const changeObs = new ChangeObserver();
    
     let inputList = doc.getElementById(listId);
     doc.getElementById(buttonId).addEventListener("click", function() {
       let newItem = new Ruin();
-      newItem.subscribe(CHANGE_OBSERVER);
+      newItem.subscribe(changeObs);
       ruinList.push(newItem);
       inputList.appendChild(createRuinView(newItem));
       onUpdate();
