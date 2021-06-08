@@ -310,7 +310,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         let ui = global.document.createElement("div");
         
         addInputSection(ui, (section,error)=>{
-          let text = global.document.createTextNode("Id: #"+this.id));
+          let text = global.document.createTextNode("Id: #"+this.id);
           section.appendChild(text);
           let inputID = global.document.createElement("input");
           inputID.type = 'number';
@@ -339,8 +339,8 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         let section = global.document.createElement("div");
         let error = global.document.createElement("span");
         error.classList.add(errorClass);
-        section.appendChild(error);
         section.appendChild(callback(section, error));
+        section.appendChild(error);
         parent.appendChild(section);
         return section;
     };
