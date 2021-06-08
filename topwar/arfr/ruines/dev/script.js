@@ -274,6 +274,10 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         return new Date(time.getTime()+ ((((h*60)+m*60)+s)*1000) );
       }
 
+      serialize() {
+      }
+      unserialize() {
+      }
       createUI() {
         let ui = doc.document.createElement("span");
         ui.appendChild(doc.createTextNode(this.h+":"+this.m+":"+this.s));
@@ -327,14 +331,14 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         const errorSpoil = addInputSection(ui, ()=>{return this.spoil.createUI();});
         const errorOwner = addInputSection(ui, ()=>{return doc.createTextNode("Possédé par: "+this.owner);});
         
-        class ErrorObserver extends Observer() {
+        class ErrorObserver extends Observer {
             onError(ruin, valName, err, newValue, oldValue) {
               let section;
               if (valName === "id") section = errorId;
               else if (valName === "spoil") section = errorSpoil;
               else section = errorOwner;
               error.innerHTML = "Error : "+err;
-            };
+            }
         };
         this.subscribe(new ErrorObserver());
         
