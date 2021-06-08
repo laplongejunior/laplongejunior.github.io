@@ -270,7 +270,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
 
       getTime() {
         let time = new Date();
-        return new Date(time.getTime()+ ((((h*60)+m*60)+s)*1000) );
+        return new Date(time.getTime()+ ((((this.h*60)+this.m*60)+this.s)*1000) );
       }
 
       serialize() {
