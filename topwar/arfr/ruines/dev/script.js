@@ -263,9 +263,9 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       setTimestamp(timestamp) {
         let errors = new Array();
         let arr = timestamp.split(':');
-        addError(errors, setHour(parseInt(arr[0])));
-        addError(errors, setMin(parseInt(arr[1])));
-        addError(errors, setSec(parseInt(arr[2])));
+        addError(errors, this.setHour(parseInt(arr[0])));
+        addError(errors, this.setMin(parseInt(arr[1])));
+        addError(errors, this.setSec(parseInt(arr[2])));
         return errors;
       }
 
@@ -275,8 +275,8 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       }
 
       createUI() {
-        let ui = global.document.createElement("span");
-        ui.appendChild(global.document.createTextNode(this.h+":"+this.m+":"+this.s));
+        let ui = doc.document.createElement("span");
+        ui.appendChild(doc.createTextNode(this.h+":"+this.m+":"+this.s));
         return ui;
       }
     };
