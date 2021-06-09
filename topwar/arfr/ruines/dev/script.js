@@ -1,6 +1,6 @@
 // Avoids relying on the global space, except the loading call that provides html-defined ids
 let global = this;
-global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass) {
+global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,errorClass) {
   delete global._load;
   (function(){
     "use strict";
@@ -402,20 +402,25 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
     const changeObs = new ChangeObserver();
    
     let inputList = doc.getElementById(listId);
-    doc.getElementById(buttonId).addEventListener("click", function() {
+    doc.getElementById(buttonId).addEventListener('click', function() {
       let newItem = new Ruin();
       newItem.subscribe(changeObs);
       ruinList.push(newItem);
       inputList.appendChild(createRuinView(newItem));
       updateOutput();
     });
-    doc.getElementById(sortId).addEventListener("click", function() {
+    doc.getElementById(sortId).addEventListener('click', function() {
       ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
       inputList.innerHTML = '';
       for (const ruin of ruinList) {
         inputList.appendChild(createRuinView(ruin));
       }
       updateOutput();
+    });
+    
+    
+    doc.getElementById(loadId).addEventListener('click', function() {
+      console.log(doc.getElementById(loadInput).value);
     });
     
   })();
