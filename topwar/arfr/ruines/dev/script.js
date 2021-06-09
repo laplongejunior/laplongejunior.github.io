@@ -358,7 +358,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
               if (valName === "id") section = errorId;
               else if (valName === "spoil") section = errorSpoil;
               else section = errorOwner;
-              section.innerHTML = "Error : "+err;
+              section.innerHTML = (err == null) ? "" : "Error : "+err;
             }
         };
         this.subscribe(new ErrorObserver());
@@ -368,8 +368,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
     
     const addInputSection = function(parent, callback) {
-        let section = global.document.createElement("div");
-        let error = global.document.createElement("span");
+        let section = global.document.createElement('div');
+        let error = global.document.createElement('span');
         error.classList.add(errorClass);
         section.appendChild(callback(section, error));
         section.appendChild(error);
@@ -380,8 +380,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     let ruinList = new Array();
 
     let createRuinView = function(ruin) {
-      let newItem = doc.createElement("li");
-      newItem.classList.add("list-group-item"); // Bootstrap
+      let newItem = doc.createElement('li');
+      newItem.classList.add('list-group-item'); // Bootstrap
       newItem.appendChild(ruin.createUI());
       return newItem;
     };
