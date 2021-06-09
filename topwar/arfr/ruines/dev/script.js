@@ -20,7 +20,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           else item = item.toString().padStart(2,"0");
           line+=item+",";
         }
-        console.log(twoCharStr(++index))+") "+line.substring(0,line.length-1));
+        console.log(twoCharStr(++index)+") "+line.substring(0,line.length-1));
       }
       console.log("======END======");
     };
