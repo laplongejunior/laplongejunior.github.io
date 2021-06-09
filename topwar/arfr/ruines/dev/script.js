@@ -344,7 +344,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
           section.appendChild(doc.createTextNode("Possédé par: "));
           let inputID = doc.createElement("input");
           input.classList.add("arfr-ruin-owner");
-          inputID.type = 'text
+          inputID.type = "text";
           inputID.addEventListener("change", function(event) {self.setOwner(event.target.value);});
           return input;
         });
