@@ -391,8 +391,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       for (const ruin of ruinList) {
         output += ruin.serialize();
       }
-      console.log("testUpdate:"+output);
-      doc.getElementById(saveId).textContent = output;
+      doc.getElementById(saveId).value = output;
     };
     
     class ChangeObserver extends Observer {
