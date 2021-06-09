@@ -343,7 +343,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         const errorOwner = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Possédé par: "));
           let inputID = doc.createElement("input");
-          input.classList.add("arfr-ruin-owner");
+          inputID.classList.add("arfr-ruin-owner");
           inputID.type = "text";
           inputID.addEventListener("change", function(event) {self.setOwner(event.target.value);});
           return input;
