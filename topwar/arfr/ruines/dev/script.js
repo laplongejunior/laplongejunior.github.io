@@ -271,15 +271,32 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
 
       getTime() {
-        let today = new Date();
-        return new Date( today.getTime()+ ((((this.h*60)+this.m*60)+this.s)*1000) );
+        let today = new Date().getTime();
+        return new Date( today+ ((((this.h*60)+this.m*60)+this.s)*1000) );
+      }
+      setTime(time) {
+        let diff = new Date().getTime()-time.getTime();
+        console.log(diff);
       }
 
       serialize() {
         let time = this.getTime();
         return twoCharStr(time.getUTCFullYear())+twoCharStr(time.getUTCMonth())+twoCharStr(time.getUTCDate())+twoCharStr(time.getUTCHours())+twoCharStr(time.getUTCMinutes());
       }
-      unserialize() {
+      unserialize(data) {
+        let year = parseInt(data.substring(0,4));
+        data = data.substring(4);
+        let month = parseInt(data.substring(0,2));
+        data = data.substring(2);
+        let day = parseInt(data.substring(0,2));
+        data = data.substring(2);
+        let hour = parseInt(data.substring(0,2));
+        data = data.substring(2);       
+        let min = parseInt(data.substring(0,2));
+        data = data.substring(2);
+        
+        this.setTime(new Date(Date.UTC(year, month, day, hour, min)));        
+        return data;
       }
       createUI() {
         let ui = doc.createElement("span");
@@ -322,7 +339,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       unserialize(data) {
         this.setId(parseInt(data.substring(0,2)));
         data = data.substring(2);
-        this.setSpoil(parseInt(data.substring(0,12)));
+        let spoil = new Spoil();
+        data = spoil.unserialize(data);
+        this.setSpoil(spoil);
         data = data.substring(12);
         let length = parseInt(data.substring(0,1));
         owner = data.substring(0,1+length);
