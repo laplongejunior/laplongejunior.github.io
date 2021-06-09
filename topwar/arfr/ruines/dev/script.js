@@ -40,8 +40,10 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         this.onservers.remove(obs);
       }
       onUpdate(valName, newValue, oldValue) {
-        for (const obs of this.observers)
+        for (const obs of this.observers) {
           obs.onUpdate(this, valName, newValue, oldValue);
+          obs.onError(this, valName, null, newValue, oldValue);
+        }
       }
       onError(valName, msg, newValue, oldValue) {
         for (const obs of this.observers)
