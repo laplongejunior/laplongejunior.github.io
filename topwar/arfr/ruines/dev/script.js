@@ -7,10 +7,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     let doc = global.document;
 
     // UI view
-    let addError = function(arr, err){
+    const addError = function(arr, err){
       if (err != null) arr.push(err);
     };
-    let debugMatrix = function(matrix) {
+    const debugMatrix = function(matrix) {
       console.log("=====START=====");
       let index = 0;
       for (let arr of matrix) {
@@ -23,6 +23,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         console.log((++index).toString().padStart(2,"0")+") "+line.substring(0,line.length-1));
       }
       console.log("======END======");
+    };
+    const dateToUTC = function(date) {
+       var date = new Date(); 
+       var now_utc =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+          date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+       return new Date(now_utc);
     };
 
     class Observer {
@@ -242,24 +248,21 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
 
       setHour(h) {
-        if (h < 0) return "Heure négative";
+        if (h < 0) return this.onError("hour","Heure négative");
         this.h = h;
-        this.onUpdate();
-        return null;
+        return this.onUpdate("hour");
       }
       setMin(m) {
-        if (m < 0) return "Minutes négatives";
-        if (m >= 60) return "Minutes trop élevées";
+        if (m < 0) return this.onError("min","Minutes négatives");
+        if (m >= 60) return this.onError("min","Minutes trop élevées");
         this.m = m;
-        this.onUpdate();
-        return null;
+        return this.onUpdate("min");
       }
       setSec(s) {
-        if (s < 0) return "Secondes négatives";
-        if (s >= 60) return "Secondes trop élevées";
+        if (s < 0) return this.onError("sec","Secondes négatives");
+        if (s >= 60) return this.onError("sec","Secondes trop élevées");
         this.s = s;
-        this.onUpdate();
-        return null;
+        return this.onUpdate();
       }
       setTimestamp(timestamp) {
         let errors = new Array();
@@ -271,8 +274,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
 
       getTime() {
-        let time = new Date();
-        return new Date(time.getTime()+ ((((this.h*60)+this.m*60)+this.s)*1000) );
+        let today = new Date();
+        return dateToUTC(new Date( today.getTime()+ ((((this.h*60)+this.m*60)+this.s)*1000) ));
       }
 
       serialize() {
