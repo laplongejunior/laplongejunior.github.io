@@ -335,7 +335,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
           input.classList.add("arfr-ruin-id");
           input.type='number';
           input.addEventListener('change', function(event) {self.setId(event.target.value);});
-          return inputID;
+          return input;
         });
         
         const errorSpoil = addInputSection(ui, ()=>{return this.spoil.createUI();});
