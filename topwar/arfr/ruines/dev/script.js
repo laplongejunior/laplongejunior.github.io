@@ -274,7 +274,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
       serialize() {
         let time = this.getTime();
-        return time.getUTCFullYear()+""+(time.getUTCMonth()+1)+""+time.getUTCDate()+""+time.getUTCHours()+""+time.getUTCMinutes();
+        return time.getUTCFullYear().startPad(2,"0")+time.getUTCMonth().startPad(2,"0")+time.getUTCDate().startPad(2,"0")+time.getUTCHours().startPad(2,"0")+time.getUTCMinutes().startPad(2,"0");
       }
       unserialize() {
       }
