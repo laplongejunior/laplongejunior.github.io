@@ -41,11 +41,11 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       }
       onUpdate(valName, newValue, oldValue) {
         for (const obs of this.observers)
-          obs.onUpdate(this, newValue, oldValue);
+          obs.onUpdate(this, valName, newValue, oldValue);
       }
       onError(valName, msg, newValue, oldValue) {
         for (const obs of this.observers)
-          obs.onError(this, msg, newValue, oldValue);
+          obs.onError(this, valName, msg, newValue, oldValue);
       }
     };
 
