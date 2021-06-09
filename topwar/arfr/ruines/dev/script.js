@@ -334,7 +334,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
           let input = doc.createElement("input");
           input.classList.add("arfr-ruin-id");
           input.type='number';
-          input.addEventListener('change', function(event) {self.setId(event.target.value);});
+          input.addEventListener('input', function(event) {self.setId(event.target.value);});
           return input;
         });
         
@@ -345,7 +345,7 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
           let input = doc.createElement("input");
           input.classList.add("arfr-ruin-owner");
           input.type='text';
-          input.addEventListener('change', function(event) {self.setOwner(event.target.value);});
+          input.addEventListener('input', function(event) {self.setOwner(event.target.value);});
           return input;
         });
         
