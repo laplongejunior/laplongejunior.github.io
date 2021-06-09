@@ -7,9 +7,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     let doc = global.document;
 
     // UI view
-    const addError = function(arr, err){
-      if (err != null) arr.push(err);
-    };
     const debugMatrix = function(matrix) {
       console.log("=====START=====");
       let index = 0;
@@ -23,12 +20,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         console.log((++index).toString().padStart(2,"0")+") "+line.substring(0,line.length-1));
       }
       console.log("======END======");
-    };
-    const dateToUTC = function(date) {
-       var date = new Date(); 
-       var now_utc =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
-          date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
-       return new Date(now_utc);
     };
 
     class Observer {
@@ -239,6 +230,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
   */
     
+    const addError = function(arr, err){
+      if (err != null) arr.push(err);
+    };
     class Diff extends Subject {
       constructor() {
         super();
@@ -275,12 +269,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
       getTime() {
         let today = new Date();
-        return dateToUTC(new Date( today.getTime()+ ((((this.h*60)+this.m*60)+this.s)*1000) ));
+        return new Date( today.getTime()+ ((((this.h*60)+this.m*60)+this.s)*1000) );
       }
 
       serialize() {
         let time = this.getTime();
-        return time.getFullYear()+""+(time.getMonth()+1)+""+time.getDay()+""+time.getHours()+""+time.getMinutes();
+        return time.getUTCFullYear()+""+(time.getUTCMonth()+1)+""+time.getUTCDate()+""+time.getUTCHours()+""+time.getUTCMinutes();
       }
       unserialize() {
       }
@@ -301,6 +295,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
       setId(id) {
         if (id < 0) return this.onError("id", "Id négatif");
+        if (id > 99) return this.onError("id", "Id trop grand");
         this.id = id;
         return this.onUpdate("id");
       }
@@ -315,7 +310,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       setCountdown(diff) {
         this.spoil = diff.getTime();
-        return this.onUpdate();
+        return this.onUpdate("spoil");
       }
 
       serialize() {
