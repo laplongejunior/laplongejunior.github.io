@@ -330,20 +330,29 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         let self = this;
         
         const errorId = addInputSection(ui, (section,error)=>{
-          section.appendChild(doc.createTextNode("Id: #"+this.id));
+          section.appendChild(doc.createTextNode("Id: #"));
           let inputID = doc.createElement("input");
+          input.classList.add("arfr-ruin-id");
           inputID.type = 'number';
           inputID.addEventListener("change", function(event) {self.setId(event.target.value);});
           return inputID;
         });
         
-        ui.appendChild(doc.createElement("br"));
         const errorSpoil = addInputSection(ui, ()=>{return this.spoil.createUI();});
-        const errorOwner = addInputSection(ui, ()=>{return doc.createTextNode("Possédé par: "+this.owner);});
+        
+        const errorOwner = addInputSection(ui, (section,error)=>{
+          section.appendChild(doc.createTextNode("Possédé par: "));
+          let inputID = doc.createElement("input");
+          input.classList.add("arfr-ruin-owner");
+          inputID.type = 'text
+          inputID.addEventListener("change", function(event) {self.setOwner(event.target.value);});
+          return input;
+        });
         
         class ErrorObserver extends Observer {
             onError(ruin, valName, err, newValue, oldValue) {
               let section;
+              console.log(valName);
               if (valName === "id") section = errorId;
               else if (valName === "spoil") section = errorSpoil;
               else section = errorOwner;
@@ -380,8 +389,8 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
       for (const ruin of ruinList) {
         output += ruin.serialize();
       }
+      console.log("testUpdate:"+output);
       doc.getElementById(saveId).textContent = output;
-      console.log("testUpdate");
     };
     
     class ChangeObserver extends Observer {
