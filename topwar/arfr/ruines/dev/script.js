@@ -331,10 +331,10 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         
         const errorId = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Id: #"));
-          let inputID = doc.createElement("input");
+          let input = doc.createElement("input");
           input.classList.add("arfr-ruin-id");
-          inputID.type = 'number';
-          inputID.addEventListener("change", function(event) {self.setId(event.target.value);});
+          input.type='number';
+          input.addEventListener('change', function(event) {self.setId(event.target.value);});
           return inputID;
         });
         
@@ -342,10 +342,10 @@ global._load = function(loadId,listId,buttonId,outputId,saveId,sortId,errorClass
         
         const errorOwner = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Possédé par: "));
-          let inputID = doc.createElement("input");
-          inputID.classList.add("arfr-ruin-owner");
-          inputID.type = "text";
-          inputID.addEventListener("change", function(event) {self.setOwner(event.target.value);});
+          let input = doc.createElement("input");
+          input.classList.add("arfr-ruin-owner");
+          input.type='text';
+          input.addEventListener('change', function(event) {self.setOwner(event.target.value);});
           return input;
         });
         
