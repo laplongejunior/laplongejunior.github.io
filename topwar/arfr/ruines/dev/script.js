@@ -7,6 +7,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     let doc = global.document;
 
     // UI view
+    const twoCharStr = function(nbr) {
+      return nbr.toString().padStart(2,"0");
+    };
     const debugMatrix = function(matrix) {
       console.log("=====START=====");
       let index = 0;
@@ -17,7 +20,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           else item = item.toString().padStart(2,"0");
           line+=item+",";
         }
-        console.log((++index).toString().padStart(2,"0")+") "+line.substring(0,line.length-1));
+        console.log(twoCharStr(++index))+") "+line.substring(0,line.length-1));
       }
       console.log("======END======");
     };
@@ -274,7 +277,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
       serialize() {
         let time = this.getTime();
-        return time.getUTCFullYear().startPad(2,"0")+time.getUTCMonth().startPad(2,"0")+time.getUTCDate().startPad(2,"0")+time.getUTCHours().startPad(2,"0")+time.getUTCMinutes().startPad(2,"0");
+        return twoCharStr(time.getUTCFullYear())+twoCharStr(time.getUTCMonth())+twoCharStr(time.getUTCDate())+twoCharStr(time.getUTCHours())+twoCharStr(time.getUTCMinutes());
       }
       unserialize() {
       }
@@ -314,7 +317,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
 
       serialize() {
-        return this.id.toString().padStart(2,"0")+this.spoil.serialize()+this.owner.length+this.owner;
+        return twoCharStr(this.id)+this.spoil.serialize()+this.owner.length+this.owner;
       }
       unserialize(data) {
         this.setId(parseInt(data.substring(0,2)));
