@@ -423,7 +423,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       
       deleteButton.addEventListener('click', function(event) {
         ruinList = ruinList.filter(item=>item!==ruin);
-        inputList.removeChild(newItem);
+        newItem.remove();
         for (const obs of ruin.observers)
           ruin.unsubscribe(obs);
         updateOutput();
@@ -452,7 +452,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       // TODO: Fix this call
       //inputList.innerHTML = '';
       for (const node of inputList.childNodes) {
-        inputList.removeNode(node);
+        node.remove();
       }
     };
     
