@@ -451,7 +451,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     });
     
     const clearList = function() {
-      while (inputList.firstChild) inputList.removeChildNode(inputList.firstChild);
+      while (inputList.firstChild) inputList.removeChild(inputList.firstChild);
     };
     
     doc.getElementById(sortId).addEventListener('click', function() {
