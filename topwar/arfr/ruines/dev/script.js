@@ -392,6 +392,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let error = doc.createElement('span');
         error.classList.add(errorClass);
         section.appendChild(callback(section, error));
+        section.appendChild(doc.createElement('br'));
         section.appendChild(error);
         parent.appendChild(section);
         return error;
