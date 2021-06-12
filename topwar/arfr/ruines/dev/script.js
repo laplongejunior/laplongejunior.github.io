@@ -475,6 +475,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         addRuinView(ruin);
       }
       ruinList = loaded;
+      updateOutput();
     });
     
   })();
