@@ -405,9 +405,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       let backup = "", output = "";
       const NEW_LINE = '\r\n', NL_LEN = 2;
       for (const ruin of ruinList) {
-        backup += NEW_LINE + ruin.serialize();
+        backup += ruin.serialize();
         let spoilTime = ruin.spoil.getTime();
-        output += "#"+ruin.id + NEW_LINE + spoilTime.getDate() + " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes();     
+        output += NEW_LINE + "#"+ruin.id + NEW_LINE + spoilTime.getDate() + " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes();     
       }
       doc.getElementById(saveId).value = backup;
       doc.getElementById(outputId).value = output.substring(NL_LEN);
@@ -451,9 +451,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     });
     
     const clearList = function() {
-      for (const node of new Array(inputList.childNodes)) {
-        node.remove();
-      }
+      while (inputList.firstChild) inputList.removeChildNode(inputList.firstChild);
     };
     
     doc.getElementById(sortId).addEventListener('click', function() {
