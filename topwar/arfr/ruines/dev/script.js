@@ -342,10 +342,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let spoil = new Diff();
         data = spoil.unserialize(data);
         this.setSpoil(spoil);
-        console.log(data);
         let length = parseInt(data.substring(0,1));
-        let owner = data.substring(1,1+length);
-        console.log(data.substring(1+length));
+        this.setSpoil(data.substring(1,1+length));
         return data.substring(1+length);
       }
       createUI() {
