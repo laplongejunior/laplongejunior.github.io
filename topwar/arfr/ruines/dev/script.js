@@ -451,7 +451,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     });
     
     const clearList = function() {
-      for (const node of inputList.childNodes) {
+      for (const node of new Array(inputList.childNodes)) {
         node.remove();
       }
     };
