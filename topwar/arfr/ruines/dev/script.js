@@ -406,7 +406,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (const ruin of ruinList) {
         backup += ruin.serialize();
         let spoilTime = ruin.spoil.getTime();
-        output += "#"+ruin.id + '\r\n' + spoilTime.getDay() ¨+ " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes();       
+        output += "#"+ruin.id + '\r\n' + spoilTime.getDay() + " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes();       
       }
       doc.getElementById(saveId).value = backup;
       doc.getElementById(outputId).value = output;
