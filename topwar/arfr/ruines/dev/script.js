@@ -339,7 +339,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       unserialize(data) {
         this.setId(parseInt(data.substring(0,2)));
         data = data.substring(2);
-        let spoil = new Spoil();
+        let spoil = new Diff();
         data = spoil.unserialize(data);
         this.setSpoil(spoil);
         data = data.substring(12);
