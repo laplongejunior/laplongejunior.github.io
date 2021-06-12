@@ -343,7 +343,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         data = spoil.unserialize(data);
         this.setSpoil(spoil);
         let length = parseInt(data.substring(0,1));
-        this.setSpoil(data.substring(1,1+length));
+        this.setOwner(data.substring(1,1+length));
         return data.substring(1+length);
       }
       createUI() {
