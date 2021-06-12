@@ -420,7 +420,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       deleteButton.classList.add("btn-danger");
       
       deleteButton.addEventListener('click', function(event) {
-        ruinList.remove(ruin);
+        console.log(ruinList);
+        ruinList = ruinList.filter(item=>item!==ruin);
+        console.log(ruinList);
         inputList.removeChild(newItem);
         for (const obs of ruinList.observers)
           ruin.unsubscribe(obs);
