@@ -407,7 +407,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (const ruin of ruinList) {
         backup += ruin.serialize();
         let spoilTime = ruin.spoil.getTime();
-        output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes();     
+        output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes() + NEW_LINE + "Possédé par " + ruin.owner;     
       }
       doc.getElementById(saveId).value = backup;
       doc.getElementById(outputId).value = output.substring(NL_LEN);
