@@ -403,13 +403,14 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     
     const updateOutput = function() {
       let backup = "", output = "";
+      const NEW_LINE = '\r\n', NL_LEN = 2;
       for (const ruin of ruinList) {
-        backup += ruin.serialize();
+        backup += NEW_LINE + ruin.serialize();
         let spoilTime = ruin.spoil.getTime();
-        output += "#"+ruin.id + '\r\n' + spoilTime.getDate() + " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes();       
+        output += "#"+ruin.id + NEW_LINE + spoilTime.getDate() + " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes();     
       }
       doc.getElementById(saveId).value = backup;
-      doc.getElementById(outputId).value = output;
+      doc.getElementById(outputId).value = output.substring(NL_LEN);
     };
     
     let addRuinView = function(ruin) {
