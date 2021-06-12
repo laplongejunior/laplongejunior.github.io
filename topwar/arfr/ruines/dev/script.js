@@ -17,7 +17,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let line = "";
         for (let item of arr) {
           if (item === undefined) item = "--";
-          else item = item.toString().padStart(2,"0");
+          else item = item[0].toString().padStart(2,"0");
           line+=item+",";
         }
         console.log(twoCharStr(++index)+") "+line.substring(0,line.length-1));
@@ -80,7 +80,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           if (arr === undefined) console.log("!!!"+x);
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
-          arr[y] = this.id;
+          arr[y] = [ this.id, {} ];
           this.id++;
           return true;
         }
