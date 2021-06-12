@@ -284,6 +284,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return twoCharStr(time.getUTCFullYear())+twoCharStr(time.getUTCMonth()+1)+twoCharStr(time.getUTCDate())+twoCharStr(time.getUTCHours())+twoCharStr(time.getUTCMinutes());
       }
       unserialize(data) {
+        console.log(data);
         let year = parseInt(data.substring(0,4));
         data = data.substring(4);
         let month = parseInt(data.substring(0,2));
@@ -295,7 +296,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let min = parseInt(data.substring(0,2));
         data = data.substring(2);
         
-        this.setTime(new Date(Date.UTC(year, month-1, day, hour, min)));        
+        this.setTime(new Date(Date.UTC(year, month-1, day, hour, min)));
+        console.log(data);
         return data;
       }
       createUI() {
