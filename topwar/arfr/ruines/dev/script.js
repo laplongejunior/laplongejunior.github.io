@@ -448,8 +448,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     });
     
     const clearList = function() {
-      // TODO: Fix this call
-      //inputList.innerHTML = '';
       for (const node of inputList.childNodes) {
         node.remove();
       }
@@ -471,6 +469,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       let loaded = new Array();
       while (val.length > 0) {
         let ruin = new Ruin();
+        ruin.subscribe(changeObs);
         val = ruin.unserialize(val);
         loaded.push(ruin);
         addRuinView(ruin);
