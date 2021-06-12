@@ -344,7 +344,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.setSpoil(spoil);
         data = data.substring(12);
         let length = parseInt(data.substring(0,1));
-        owner = data.substring(0,1+length);
+        let owner = data.substring(0,1+length);
         return data.substring(1+length);
       }
       createUI() {
