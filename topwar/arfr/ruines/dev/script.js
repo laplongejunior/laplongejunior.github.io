@@ -446,7 +446,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
       inputList.innerHTML = '';
       for (const ruin of ruinList) {
-        addRuinView(ruin));
+        addRuinView(ruin);
       }
       updateOutput();
     });
