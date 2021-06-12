@@ -356,6 +356,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           let input = doc.createElement("input");
           //input.classList.add("arfr-ruin-id");
           input.type='number';
+          input.value = self.id;
           input.addEventListener('input', function(event) {self.setId(event.target.value);});
           return input;
         });
@@ -367,6 +368,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           let input = doc.createElement("input");
           //input.classList.add("arfr-ruin-owner");
           input.type='text';
+          input.value = self.owner;
           input.addEventListener('input', function(event) {self.setOwner(event.target.value);});
           return input;
         });
@@ -448,7 +450,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     
     const clearList = function() {
       // TODO: Fix this call
-      inputList.innerHTML = '';
+      //inputList.innerHTML = '';
+      for (const node of inputList.childNodes) {
+        inputList.removeNode(node);
+      }
     };
     
     doc.getElementById(sortId).addEventListener('click', function() {
