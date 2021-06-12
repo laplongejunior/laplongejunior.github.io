@@ -354,7 +354,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         const errorId = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Id: #"));
           let input = doc.createElement("input");
-          input.classList.add("arfr-ruin-id");
+          //input.classList.add("arfr-ruin-id");
           input.type='number';
           input.addEventListener('input', function(event) {self.setId(event.target.value);});
           return input;
@@ -365,7 +365,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         const errorOwner = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Possédé par: "));
           let input = doc.createElement("input");
-          input.classList.add("arfr-ruin-owner");
+          //input.classList.add("arfr-ruin-owner");
           input.type='text';
           input.addEventListener('input', function(event) {self.setOwner(event.target.value);});
           return input;
@@ -388,8 +388,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
     
     const addInputSection = function(parent, callback) {
-        let section = global.document.createElement('div');
-        let error = global.document.createElement('span');
+        let section = doc.createElement('div');
+        let error = doc.createElement('span');
         error.classList.add(errorClass);
         section.appendChild(callback(section, error));
         section.appendChild(error);
@@ -398,13 +398,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
     
     let ruinList = new Array();
-
-    let createRuinView = function(ruin) {
-      let newItem = doc.createElement('li');
-      newItem.classList.add('list-group-item'); // Bootstrap
-      newItem.appendChild(ruin.createUI());
-      return newItem;
-    };
+    let inputList = doc.getElementById(listId);
     
     const updateOutput = function() {
       let output = "";
@@ -414,6 +408,26 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       doc.getElementById(saveId).value = output;
     };
     
+    let addRuinView = function(ruin) {
+      let newItem = doc.createElement('li');
+      newItem.classList.add('list-group-item'); // Bootstrap
+      newItem.appendChild(ruin.createUI());
+        
+      const deleteButton = doc.createElement("button");
+      deleteButton.classList.add("btn");
+      deleteButton.classList.add("btn-danger");
+      deleteButton.addEventListener('click', function(event) {
+        ruinList.delete(ruin);
+        inputList.removeChild(newItem);
+        for (const obs of ruinList.observers)
+          ruin.unsubscribe(obs);
+        updateOutput();
+      });
+      inputList.appendChild(deleteButton);
+      
+      inputList.appendChild(newItem);
+    };
+    
     class ChangeObserver extends Observer {
       onUpdate(ruin, valName, newValue, oldValue) {
         updateOutput();
@@ -421,19 +435,18 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     }
     const changeObs = new ChangeObserver();
    
-    let inputList = doc.getElementById(listId);
     doc.getElementById(buttonId).addEventListener('click', function() {
       let newItem = new Ruin();
       newItem.subscribe(changeObs);
       ruinList.push(newItem);
-      inputList.appendChild(createRuinView(newItem));
+      addRuinView(newItem);
       updateOutput();
     });
     doc.getElementById(sortId).addEventListener('click', function() {
       ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
       inputList.innerHTML = '';
       for (const ruin of ruinList) {
-        inputList.appendChild(createRuinView(ruin));
+        addRuinView(ruin));
       }
       updateOutput();
     });
