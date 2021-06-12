@@ -368,7 +368,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           section.appendChild(doc.createTextNode("Possédé par: "));
           let input = doc.createElement("input");
           //input.classList.add("arfr-ruin-owner");
-          input.type='text';
+          input.type = 'text';
+          console.log(self.owner);
           input.value = self.owner;
           input.addEventListener('input', function(event) {self.setOwner(event.target.value);});
           return input;
@@ -377,7 +378,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         class ErrorObserver extends Observer {
             onError(ruin, valName, err, newValue, oldValue) {
               let section;
-              console.log(valName);
               if (valName === "id") section = errorId;
               else if (valName === "spoil") section = errorSpoil;
               else section = errorOwner;
