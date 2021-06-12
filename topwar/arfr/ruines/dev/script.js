@@ -367,7 +367,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           let input = doc.createElement("input");
           //input.classList.add("arfr-ruin-owner");
           input.type = 'text';
-          console.log(self.owner);
           input.value = self.owner;
           input.addEventListener('input', function(event) {self.setOwner(event.target.value);});
           return input;
@@ -403,11 +402,14 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     let inputList = doc.getElementById(listId);
     
     const updateOutput = function() {
-      let output = "";
+      let backup = "", output = "";
       for (const ruin of ruinList) {
-        output += ruin.serialize();
+        backup += ruin.serialize();
+        let spoilTime = ruin.spoil.getTime();
+        output += "#"+ruin.id + '\r\n' + spoilTime.getDay() ¨+ " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes();       
       }
-      doc.getElementById(saveId).value = output;
+      doc.getElementById(saveId).value = backup;
+      doc.getElementById(outputId).value = output;
     };
     
     let addRuinView = function(ruin) {
