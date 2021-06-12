@@ -415,9 +415,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       newItem.appendChild(ruin.createUI());
         
       const deleteButton = doc.createElement("button");
-      deleteButton.text = "Supprimer";
+      deleteButton.appendChild(doc.createTextNode("Supprimer"));
       deleteButton.classList.add("btn");
       deleteButton.classList.add("btn-danger");
+      
       deleteButton.addEventListener('click', function(event) {
         ruinList.delete(ruin);
         inputList.removeChild(newItem);
@@ -446,6 +447,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     });
     doc.getElementById(sortId).addEventListener('click', function() {
       ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
+      // TODO: Fix this call
       inputList.innerHTML = '';
       for (const ruin of ruinList) {
         addRuinView(ruin);
