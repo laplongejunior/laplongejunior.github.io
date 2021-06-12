@@ -415,6 +415,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       newItem.appendChild(ruin.createUI());
         
       const deleteButton = doc.createElement("button");
+      deleteButton.text = "Supprimer";
       deleteButton.classList.add("btn");
       deleteButton.classList.add("btn-danger");
       deleteButton.addEventListener('click', function(event) {
@@ -424,7 +425,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           ruin.unsubscribe(obs);
         updateOutput();
       });
-      inputList.appendChild(deleteButton);
+      newItem.appendChild(deleteButton);
       
       inputList.appendChild(newItem);
     };
