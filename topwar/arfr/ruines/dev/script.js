@@ -445,19 +445,33 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       addRuinView(newItem);
       updateOutput();
     });
-    doc.getElementById(sortId).addEventListener('click', function() {
-      ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
+    
+    const clearList = function() {
       // TODO: Fix this call
       inputList.innerHTML = '';
+    };
+    
+    doc.getElementById(sortId).addEventListener('click', function() {
+      ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
+      clearList();
       for (const ruin of ruinList) {
         addRuinView(ruin);
       }
       updateOutput();
     });
     
-    
     doc.getElementById(loadId).addEventListener('click', function() {
-      console.log(doc.getElementById(loadInput).value);
+      let val = doc.getElementById(loadInput).value;
+      clearList();
+      
+      let loaded = new Array();
+      while (val.length > 0) {
+        let ruin = new Ruin();
+        val = ruin.unserialize(val);
+        loaded.push(ruin);
+        addRuinView(ruin);
+      }
+      ruinList = loaded;
     });
     
   })();
