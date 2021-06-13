@@ -274,13 +274,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       setDate(date) {
         this.expiration = date;
-        let diff = this.expiration.getTime()-new Date().getTime();
-        let s = Math.floor(diff/1000);
-        this.setSec(Math.floor(s%60));
-        let m = Math.floor(s/60);
-        this.setMin(Math.floor(m%60));
-        let h = Math.floor(m/60);
-        this.setHour(Math.floor(h));
       }
 
       serialize() {
@@ -300,6 +293,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         data = data.substring(2);
         
         this.setDate(new Date(Date.UTC(year, month-1, day, hour, min)));
+        
+        let diff = this.expiration.getTime()-new Date().getTime();
+        let s = Math.floor(diff/1000);
+        this.setSec(Math.floor(s%60));
+        let m = Math.floor(s/60);
+        this.setMin(Math.floor(m%60));
+        let h = Math.floor(m/60);
+        this.setHour(Math.floor(h));
+        
         return data;
       }
       createUI() {
