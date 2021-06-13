@@ -233,6 +233,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
   */
     
+    const createNumberField = function(getter, setter) {
+      let input = doc.createElement("input");
+      input.type = 'number';
+      input.value = getter();
+      input.addEventListener('input', event=>setter(parseInt(event.target.value)) );
+    };
+    
     const addError = function(arr, err){
       if (err != null) arr.push(err);
     };
@@ -300,7 +307,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       createUI() {
         let ui = doc.createElement("span");
-        ui.appendChild(doc.createTextNode(this.h+":"+this.m+":"+this.s));
+        ui.appendChild(createNumberField(()=>this.h,value=>this.setHour(value)));
+        ui.appendChild(doc.createTextNode(":"));
+        ui.appendChild(createNumberField(()=>this.m,value=>this.setMin(value)));
+        ui.appendChild(doc.createTextNode(":"));
+        ui.appendChild(createNumberField(()=>this.s,value=>this.setSec(value)));
         return ui;
       }
     };
@@ -352,12 +363,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         
         const errorId = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Id: #"));
-          let input = doc.createElement("input");
+          //let input = doc.createElement("input");
+          //input.type='number';
+          //input.value = self.id;
+          //input.addEventListener('input', function(event) {self.setId(event.target.value);});
+          return createNumberField(()=>self.id,value=>self.setId(value));
           //input.classList.add("arfr-ruin-id");
-          input.type='number';
-          input.value = self.id;
-          input.addEventListener('input', function(event) {self.setId(event.target.value);});
-          return input;
         });
         
         const errorSpoil = addInputSection(ui, ()=>{return this.spoil.createUI();});
@@ -407,7 +418,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (const ruin of ruinList) {
         backup += ruin.serialize();
         let spoilTime = ruin.spoil.getTime();
-        output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + spoilTime.getHours() + ":" + spoilTime.getMinutes() + NEW_LINE + "Possédé par " + ruin.owner;     
+        output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes()) + NEW_LINE + "Possédé par " + ruin.owner;     
       }
       doc.getElementById(saveId).value = backup;
       doc.getElementById(outputId).value = output.substring(NL_LEN);
