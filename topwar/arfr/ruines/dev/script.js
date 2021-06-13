@@ -255,7 +255,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let today = new Date();
         let offset = today.getTime()-this.timestamp.getTime();
         this.timestamp = today;
+        console.log(this.expiration);
+        console.log(offset+":"+diff);
         this.expiration = new Date(offset+this.expiration.getTime()+diff);
+        console.log(this.expiration);
       }
       setHour(h) {
         if (h < 0) return this.onError("hour","Heure négative");
