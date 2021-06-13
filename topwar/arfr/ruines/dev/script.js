@@ -273,15 +273,14 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return this.expiration;
       }
       setDate(date) {
-        console.log(date);
         this.expiration = date;
-//         let diff = this.expiration.getTime()-new Date().getTime();
-//         let s = Math.floor(diff/1000);
-//         this.setSec(Math.floor(s%60));
-//         let m = Math.floor(s/60);
-//         this.setMin(Math.floor(m%60));
-//         let h = Math.floor(m/60);
-//         this.setHour(Math.floor(h));
+        let diff = this.expiration.getTime()-new Date().getTime();
+        let s = Math.floor(diff/1000);
+        this.setSec(Math.floor(s%60));
+        let m = Math.floor(s/60);
+        this.setMin(Math.floor(m%60));
+        let h = Math.floor(m/60);
+        this.setHour(Math.floor(h));
       }
 
       serialize() {
@@ -308,7 +307,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let hourField, minField, secField;
         let self = this;
         const updateDate = function() {
-          self.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField )*1000) );
+          self.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField.value )*1000) );
         };
         
         hourField = createNumberField(()=>this.h,(value)=>{updateDate(); self.setHour(value);});
