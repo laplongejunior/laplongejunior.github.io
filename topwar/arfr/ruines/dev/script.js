@@ -56,13 +56,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
     const BASE = 2, ADJUST = 1;
     const SIDE = 15; 
-      const getCycle = function(x,y) {
-        if (x < 0 || x > SIDE) return -1;
-        if (y < 0 || y > SIDE) return -1;
-        x = Math.min(x,SIDE-x);
-        y = Math.min(y,SIDE-y);
-        return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
-      };
+    const getCycle = function(x,y) {
+      if (x < 0 || x > SIDE) return -1;
+      if (y < 0 || y > SIDE) return -1;
+      x = Math.min(x,SIDE-x);
+      y = Math.min(y,SIDE-y);
+      return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
+    };
 
     const ruinMatrix = (function(){  
       class SafeMatrix {
@@ -247,36 +247,24 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     class Diff extends Subject {
       constructor() {
         super();
-        this.expiration = this.timestamp = new Date();
+        this.expiration = new Date();
         this.h = this.m = this.s = 0;
       }
-
-      setDiff(diff) {
-        let today = new Date();
-        let offset = today.getTime()-this.timestamp.getTime();
-        this.timestamp = today;
-        console.log(this.expiration);
-        console.log(offset+":"+diff);
-        this.expiration = new Date(offset+this.expiration.getTime()+diff);
-        console.log(this.expiration);
-      }
+      
       setHour(h) {
         if (h < 0) return this.onError("hour","Heure négative");
-        this.setDiff((h-this.h)*3600);
         this.h = h;
         return this.onUpdate("hour");
       }
       setMin(m) {
         if (m < 0) return this.onError("min","Minutes négatives");
         if (m >= 60) return this.onError("min","Minutes trop élevées");
-        this.setDiff((m-this.m)*60);
         this.m = m;
         return this.onUpdate("min");
       }
       setSec(s) {
         if (s < 0) return this.onError("sec","Secondes négatives");
         if (s >= 60) return this.onError("sec","Secondes trop élevées");
-        this.setDiff(s-this.s);
         this.s = s;
         return this.onUpdate("sec");
       }
@@ -285,8 +273,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return this.expiration;
       }
       setDate(time) {
-        this.expiration = this.timestamp = new Date();
-        let diff = time.getTime()-new Date().getTime();
+        this.expiration = new Date();
+        let diff = this.expiration.getTime()-new Date().getTime();
         let s = Math.floor(diff/1000);
         this.setSec(Math.floor(s%60));
         let m = Math.floor(s/60);
@@ -316,11 +304,20 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       createUI() {
         let ui = doc.createElement("span");
-        ui.appendChild(createNumberField(()=>this.h,value=>this.setHour(value)));
+        let hourField, minField, secField;
+        const updateDate = function() {
+          this.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField )*1000);
+        };
+        
+        hourField = createNumberField(()=>this.h,updateDate);
+        minField = createNumberField(()=>this.m,updateDate);
+        secField = createNumberField(()=>this.s,updateDate);
+        
+        ui.appendChild(hourField);
         ui.appendChild(doc.createTextNode(":"));
-        ui.appendChild(createNumberField(()=>this.m,value=>this.setMin(value)));
+        ui.appendChild(minField);
         ui.appendChild(doc.createTextNode(":"));
-        ui.appendChild(createNumberField(()=>this.s,value=>this.setSec(value)));
+        ui.appendChild(secField);
         return ui;
       }
     };
@@ -383,10 +380,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         
         const errorId = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Id: #"));
-          //let input = doc.createElement("input");
-          //input.type='number';
-          //input.value = self.id;
-          //input.addEventListener('input', function(event) {self.setId(event.target.value);});
           return createNumberField(()=>self.id,value=>self.setId(value));
           //input.classList.add("arfr-ruin-id");
         });
