@@ -257,23 +257,25 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       setHour(h) {
         if (h < 0) return this.onError("hour","Heure négative");
         this.h = h;
+        return this.onUpdate("expirationHour");
       }
       setMin(m) {
         if (m < 0) return this.onError("min","Minutes négatives");
         if (m >= 60) return this.onError("min","Minutes trop élevées");
         this.m = m;
+        return this.onUpdate("expirationMin");
       }
       setSec(s) {
         if (s < 0) return this.onError("sec","Secondes négatives");
         if (s >= 60) return this.onError("sec","Secondes trop élevées");
         this.s = s;
+        return this.onUpdate("expirationSec");
       }
 
       getDate() {
         return this.expiration;
       }
       setDate(date) {
-        console.log(date);
         this.expiration = date;
         let diff = this.expiration.getTime()-new Date().getTime();
         let s = Math.floor(diff/1000);
@@ -312,9 +314,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           self.setDate(new Date(new Date().getTime()+( ( (parseInt(hourField.value*60)) +parseInt(minField.value) )*60+parseInt(secField.value) )*1000) );
         };
         
-        hourField = createNumberField(()=>this.h,(value)=>{updateDate(); /*this.setHour(value);*/});
-        minField = createNumberField(()=>this.m,(value)=>{debugger; updateDate(); /*this.setMin(value);*/});
-        secField = createNumberField(()=>this.s,(value)=>{updateDate(); /*this.setSec(value);*/});
+        hourField = createNumberField(()=>this.h,(value)=>{updateDate(); this.setHour(value);});
+        minField = createNumberField(()=>this.m,(value)=>{updateDate(); this.setMin(value);});
+        secField = createNumberField(()=>this.s,(value)=>{updateDate(); this.setSec(value);});
         
         ui.appendChild(hourField);
         ui.appendChild(doc.createTextNode(":"));
