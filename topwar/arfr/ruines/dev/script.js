@@ -279,10 +279,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return this.onUpdate("sec");
       }
 
-      getTime() {
-        return this.expiration.getTime();
+      getDate() {
+        return this.expiration;
       }
-      setTime(time) {
+      setDate(time) {
         this.expiration = this.timestamp = new Date();
         let diff = time.getTime()-new Date().getTime();
         let s = Math.floor(diff/1000);
@@ -294,7 +294,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
 
       serialize() {
-        let time = this.getTime();
+        let time = this.getDate();
         return twoCharStr(time.getUTCFullYear())+twoCharStr(time.getUTCMonth()+1)+twoCharStr(time.getUTCDate())+twoCharStr(time.getUTCHours())+twoCharStr(time.getUTCMinutes());
       }
       unserialize(data) {
@@ -309,7 +309,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let min = parseInt(data.substring(0,2));
         data = data.substring(2);
         
-        this.setTime(new Date(Date.UTC(year, month-1, day, hour, min)));
+        this.setDate(new Date(Date.UTC(year, month-1, day, hour, min)));
         return data;
       }
       createUI() {
