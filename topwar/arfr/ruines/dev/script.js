@@ -379,7 +379,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       createUI() {
         let ui = doc.createElement("div");
-        let self = this;
         
         const errorId = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Id: #"));
@@ -396,15 +395,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           //input.classList.add("arfr-ruin-id");
         });
         
-        const errorSpoil = addInputSection(ui, ()=>{return this.spoil.createUI();});
+        const errorSpoil = addInputSection(ui, ()=>this.spoil.createUI());
         
         const errorOwner = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Possédé par: "));
           let input = doc.createElement("input");
           //input.classList.add("arfr-ruin-owner");
           input.type = 'text';
-          input.value = self.owner;
-          input.addEventListener('input', event=>{self.setOwner(event.target.value);});
+          input.value = this.owner;
+          input.addEventListener('input', event=>this.setOwner(event.target.value));
           return input;
         });
         
@@ -436,7 +435,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     
     let ruinList = new Array();
     const sortRuins = function() {
-      return ruinList.sort((a,b)=>a.spoil.getDate().getTime()-b.spoil.getDate().getTime());
+      return ruinList.sort((a,b)=>{
+          return a.spoil.getDate().getTime()-b.spoil.getDate().getTime();
+        });
     };
     let inputList = doc.getElementById(listId);
     const clearList = function() {
