@@ -64,7 +64,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
     };
 
-    const ruinMatrix = (function(){  
+    const TOPWAR_DATA = (function(){  
       class SafeMatrix {
         constructor(SIDE) {
           this.id = 0; // 0 is capital
@@ -155,6 +155,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       return { matrix:gen.matrix ids:};
     })();
+    
+    const ruinMatrix = TOPWAR_DATA.matrix;
+    const ruinIds = TOPWAR_DATA.ids;
     debugMatrix(ruinMatrix);
 
     const RuinDifficulty = {
