@@ -273,7 +273,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return this.expiration;
       }
       setDate(date) {
-        console.log(this.expiration);
+        console.log(date);
         this.expiration = date;
 //         let diff = this.expiration.getTime()-new Date().getTime();
 //         let s = Math.floor(diff/1000);
