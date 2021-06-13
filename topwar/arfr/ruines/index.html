@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Automatisation du Repérage des Faiblesses de Ruines</title>
+  <meta name="referrer" content="never" />
+  <meta name="referrer" content="no-referrer" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://github.com/favicon.ico">
+  <meta http-equiv='cache-control' content='no-cache'> 
+  <meta http-equiv='expires' content='0'> 
+  <meta http-equiv='pragma' content='no-cache'>
+  <style>
+    .nojs {visibility:hidden;}
+    .yesjs {visibility:show;}
+  </style>
+  <noscript>
+    <style>
+    .nojs {visibility:show;}
+    .yesjs {visibility:hidden;}
+    </style>
+  </noscript>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <script src="script.js"></script>
+</head>
+<body class="content" onload="_load('arfr-load-input','arfr-load-button','arfr-ruin-list','arfr-add-ruin','arfr-human-output','arfr-save-output','arfr-sort','arfr-error')">
+  Chargement
+  <br/>
+  <input type="text" id="arfr-load-input"></input>
+  <br/>
+  <button class="btn btn-primary" id="arfr-load-button">Charger</button>
+  <br/>
+  <br/>
+  <br/>
+  Liste des ruines
+  <ul id="arfr-ruin-list" class="list-group">
+  </ul>
+  <button id="arfr-add-ruin" class="btn btn-primary">Nouvelle ruine</button>
+  <button id="arfr-sort" class="btn btn-secondary">Reclasser</button>
+  <br/>
+  Liste lisible
+  <br/>
+  <textarea id="arfr-human-output"></textarea>
+  <br/>
+  Données de sauvegarde
+  <br/>
+  <input type="text" id="arfr-save-output" readonly=true></input>
+</body>
+</html>
