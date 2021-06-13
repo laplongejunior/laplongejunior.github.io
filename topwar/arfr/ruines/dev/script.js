@@ -273,14 +273,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return this.expiration;
       }
       setDate(date) {
+        console.log(this.expiration);
         this.expiration = date;
-        let diff = this.expiration.getTime()-new Date().getTime();
-        let s = Math.floor(diff/1000);
-        this.setSec(Math.floor(s%60));
-        let m = Math.floor(s/60);
-        this.setMin(Math.floor(m%60));
-        let h = Math.floor(m/60);
-        this.setHour(Math.floor(h));
+//         let diff = this.expiration.getTime()-new Date().getTime();
+//         let s = Math.floor(diff/1000);
+//         this.setSec(Math.floor(s%60));
+//         let m = Math.floor(s/60);
+//         this.setMin(Math.floor(m%60));
+//         let h = Math.floor(m/60);
+//         this.setHour(Math.floor(h));
       }
 
       serialize() {
