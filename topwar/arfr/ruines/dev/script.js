@@ -248,34 +248,42 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     class Diff extends Subject {
       constructor() {
         super();
-        this.h = 0;
-        this.m = 0;
-        this.s = 0;
+        this.expiration = this.timestamp = new Date();
+        this.h = this.m = this.s = 0;
       }
 
+      setDiff(diff) {
+        let today = new Date();
+        let offset = today-this.timestamp;
+        this.timestamp = today;
+        this.expiration = offset+this.expiration+diff;
+      }
       setHour(h) {
         if (h < 0) return this.onError("hour","Heure négative");
+        this.setDiff((h-this.h)*3600);
         this.h = h;
         return this.onUpdate("hour");
       }
       setMin(m) {
         if (m < 0) return this.onError("min","Minutes négatives");
         if (m >= 60) return this.onError("min","Minutes trop élevées");
+        this.setDiff((m-this.m)*60);
         this.m = m;
         return this.onUpdate("min");
       }
       setSec(s) {
         if (s < 0) return this.onError("sec","Secondes négatives");
         if (s >= 60) return this.onError("sec","Secondes trop élevées");
+        this.setDiff(s-this.s);
         this.s = s;
         return this.onUpdate("sec");
       }
 
       getTime() {
-        let today = new Date().getTime();
-        return new Date( today+ (((((this.h*60)+this.m)*60)+this.s)*1000) );
+        return this.expiration.getTime();
       }
       setTime(time) {
+        this.expiration = this.timestamp = new Date();
         let diff = time.getTime()-new Date().getTime();
         let s = Math.floor(diff/1000);
         this.setSec(s%60);
