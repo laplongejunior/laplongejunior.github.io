@@ -309,12 +309,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let hourField, minField, secField;
         let self = this;
         const updateDate = function() {
-          self.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField.value )*100) );
+          self.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField.value )*1000) );
         };
         
-        hourField = createNumberField(()=>this.h,(value)=>{updateDate(); self.setHour(value);});
-        minField = createNumberField(()=>this.m,(value)=>{updateDate(); self.setMin(value);});
-        secField = createNumberField(()=>this.s,(value)=>{updateDate(); self.setSec(value);});
+        hourField = createNumberField(()=>this.h,(value)=>{debugger;updateDate(); self.setHour(value);});
+        minField = createNumberField(()=>this.m,(value)=>{debugger;updateDate(); self.setMin(value);});
+        secField = createNumberField(()=>this.s,(value)=>{debugger;updateDate(); self.setSec(value);});
         
         ui.appendChild(hourField);
         ui.appendChild(doc.createTextNode(":"));
