@@ -437,7 +437,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     
     let ruinList = new Array();
     const sortRuins = function() {
-      return ruinList.sort((a,b)=>b.spoil.getDate().getTime()-a.spoil.getDate().getTime());
+      return ruinList.sort((a,b)=>a.spoil.getDate().getTime()-b.spoil.getDate().getTime());
     };
     let inputList = doc.getElementById(listId);
     const clearList = function() {
