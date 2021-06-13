@@ -399,7 +399,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
               if (valName === "id") section = errorId;
               else if (valName === "spoil") section = errorSpoil;
               else section = errorOwner;
-              section.innerHTML = (err == null) ? "" : "Error : "+err;
+              section.innerHTML = (err == null) ? "" : "Erreur : "+err;
             }
         };
         this.subscribe(new ErrorObserver());
