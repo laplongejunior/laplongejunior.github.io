@@ -64,7 +64,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
     };
 
-    const TOPWAR_DATA = (function(){  
+    const ruinMatrix = (function(){  
       class SafeMatrix {
         constructor(SIDE) {
           this.id = 0; // 0 is capital
@@ -153,11 +153,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           x = tempX;
           y = tempY;
       }
-      return { matrix:gen.matrix ids:};
+      return gen.matrix;
     })();
-    
-    const ruinMatrix = TOPWAR_DATA.matrix;
-    const ruinIds = TOPWAR_DATA.ids;
     debugMatrix(ruinMatrix);
 
     const RuinDifficulty = {
@@ -207,12 +204,16 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     };
 
+    let ruinIds = new Array();
     for (let i = 0; i < ruinMatrix.length; ++i) {
       const arr = ruinMatrix[i];
       for (let j = 0; j < arr.length; ++j) {
-         // todo
+        const data = arr[j];
+        if (data === undefined || data.length === 0) continue;
+        ruinIds.push(data[0]);
       }
     }
+    ruinIds = ruinIds.sort();
 
     /*
     let ruinCoords = function(id) {
@@ -275,11 +276,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.expiration = date;
         let diff = this.expiration.getTime()-new Date().getTime();
         let s = Math.floor(diff/1000);
-        this.setSec(Math.floor(s%60));
+        this.s = Math.floor(s%60);
         let m = Math.floor(s/60);
-        this.setMin(Math.floor(m%60));
+        this.m = Math.floor(m%60);
         let h = Math.floor(m/60);
-        this.setHour(Math.floor(h));
+        this.h = Math.floor(h);
         return this.onUpdate("expiration");
       }
 
@@ -381,7 +382,16 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         
         const errorId = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Id: #"));
-          return createNumberField(()=>self.id,value=>self.setId(value));
+          let field = doc.createElement('select');
+          for (const id of ruinIds) {
+            let option = doc.createElement('option');
+            option.textContent = option.value = id;
+            field.appendChild(option);
+          }
+          
+          field.value = this.id;
+          field.addEventListener('input', event=>this.setId(parseInt(event.target.value)) );
+          return field;
           //input.classList.add("arfr-ruin-id");
         });
         
