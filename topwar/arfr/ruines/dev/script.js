@@ -16,7 +16,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (let arr of matrix) {
         let line = "";
         for (let item of arr) {
-          if (item === undefined) item = "--";
+          if (item === undefined || item.length == 0) item = "--";
           else item = item[0].toString().padStart(2,"0");
           line+=item+",";
         }
@@ -80,8 +80,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           let arr = this.matrix[x];
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
-          arr[y] = [ this.id, {} ];
-          this.id++;
+          arr[y] = [ ++this.id, {} ];
           return true;
         }
       }
@@ -116,7 +115,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return [x,y];
       };
 
-      gen.insertId(MIDDLE,MIDDLE); // Capital
+      gen.matrix[MIDDLE][MIDDLE] = []; // Capital
       let x = 0, y = -BASE, direction = Directions.RIGHT;
       while (true) {
         let arr = direction.coords(x,y,BASE*2);
@@ -154,7 +153,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           x = tempX;
           y = tempY;
       }
-      return gen.matrix;
+      return { matrix:gen.matrix ids:};
     })();
     debugMatrix(ruinMatrix);
 
@@ -254,28 +253,31 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       setHour(h) {
         if (h < 0) return this.onError("hour","Heure négative");
         this.h = h;
-        return this.onUpdate("hour");
       }
       setMin(m) {
-        debugger;
         if (m < 0) return this.onError("min","Minutes négatives");
         if (m >= 60) return this.onError("min","Minutes trop élevées");
         this.m = m;
-        return this.onUpdate("min");
       }
       setSec(s) {
         if (s < 0) return this.onError("sec","Secondes négatives");
         if (s >= 60) return this.onError("sec","Secondes trop élevées");
         this.s = s;
-        return this.onUpdate("sec");
       }
 
       getDate() {
         return this.expiration;
       }
       setDate(date) {
-         debugger;
         this.expiration = date;
+        let diff = this.expiration.getTime()-new Date().getTime();
+        let s = Math.floor(diff/1000);
+        this.setSec(Math.floor(s%60));
+        let m = Math.floor(s/60);
+        this.setMin(Math.floor(m%60));
+        let h = Math.floor(m/60);
+        this.setHour(Math.floor(h));
+        return this.onUpdate("expiration");
       }
 
       serialize() {
@@ -294,16 +296,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let min = parseInt(data.substring(0,2));
         data = data.substring(2);
         
-        this.setDate(new Date(Date.UTC(year, month-1, day, hour, min)));
-        
-        let diff = this.expiration.getTime()-new Date().getTime();
-        let s = Math.floor(diff/1000);
-        this.setSec(Math.floor(s%60));
-        let m = Math.floor(s/60);
-        this.setMin(Math.floor(m%60));
-        let h = Math.floor(m/60);
-        this.setHour(Math.floor(h));
-        
+        this.setDate(new Date(Date.UTC(year, month-1, day, hour, min)));        
         return data;
       }
       createUI() {
