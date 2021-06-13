@@ -310,9 +310,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           self.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField )*1000) );
         };
         
-        hourField = createNumberField(()=>this.h,updateDate);
-        minField = createNumberField(()=>this.m,updateDate);
-        secField = createNumberField(()=>this.s,updateDate);
+        hourField = createNumberField(()=>this.h,(event)=>{updateDate(); self.setHour(event.target.value);});
+        minField = createNumberField(()=>this.m,(event)=>{updateDate(); self.setMin(event.target.value);});
+        secField = createNumberField(()=>this.s,(event)=>{updateDate(); self.setSec(event.target.value);});
         
         ui.appendChild(hourField);
         ui.appendChild(doc.createTextNode(":"));
