@@ -434,7 +434,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       const NEW_LINE = '\r\n', NL_LEN = 2;
       for (const ruin of ruinList) {
         backup += ruin.serialize();
-        let spoilTime = ruin.spoil.getTime();
+        let spoilTime = ruin.spoil.getDate();
         output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes()) + NEW_LINE + "Possédé par " + ruin.owner;     
       }
       doc.getElementById(saveId).value = backup;
