@@ -436,12 +436,18 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
     
     let ruinList = new Array();
+    const sortRuins = function() {
+      return ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
+    };
     let inputList = doc.getElementById(listId);
+    const clearList = function() {
+      while (inputList.firstChild) inputList.removeChild(inputList.firstChild);
+    };
     
     const updateOutput = function() {
       let backup = "", output = "";
       const NEW_LINE = '\r\n', NL_LEN = 2;
-      for (const ruin of ruinList) {
+      for (const ruin of sortRuins()) {
         backup += ruin.serialize();
         let spoilTime = ruin.spoil.getDate();
         output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
@@ -489,12 +495,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       updateOutput();
     });
     
-    const clearList = function() {
-      while (inputList.firstChild) inputList.removeChild(inputList.firstChild);
-    };
-    
     doc.getElementById(sortId).addEventListener('click', function() {
-      ruinList.sort((a,b)=>b.spoil.getDate()-a.spoil.getDate());
+      ruinList = sortRuins();
       clearList();
       for (const ruin of ruinList) {
         addRuinView(ruin);
