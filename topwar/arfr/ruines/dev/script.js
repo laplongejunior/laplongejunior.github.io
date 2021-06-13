@@ -436,6 +436,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     let ruinList = new Array();
     const sortRuins = function() {
       return ruinList.sort((a,b)=>{
+          // TODO: Change when there's a dropdown
+          const A = (a.owner === "ARFR"), B = (b.owner === "ARFR");
+          if (A !== B) return A ? -1 : 1;
           return a.spoil.getDate().getTime()-b.spoil.getDate().getTime();
         });
     };
