@@ -272,8 +272,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       getDate() {
         return this.expiration;
       }
-      setDate(time) {
-        this.expiration = new Date();
+      setDate(date) {
+        this.expiration = date;
         let diff = this.expiration.getTime()-new Date().getTime();
         let s = Math.floor(diff/1000);
         this.setSec(Math.floor(s%60));
