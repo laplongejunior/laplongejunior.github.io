@@ -324,12 +324,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       
       subscribe(obs) {
-        super.subscribe(obs);
         this.spoil.subscribe(obs);
+        super.subscribe(obs);
       }
       unsubscribe(obs) {
-        super.unsubscribe(obs);
         this.spoil.unsubscribe(obs);
+        super.unsubscribe(obs);
       }
 
       setId(id) {
@@ -339,9 +339,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return this.onUpdate("id");
       }
       setSpoil(spoil) {
+        for (const obs of this.spoil.observers)
+          spoil.subscribe(obs);
         this.spoil = spoil;
-        for (const obs of spoil.observers)
-          this.spoil.subscribe(obs);
         return this.onUpdate("spoil");
       }
       setOwner(owner) {
