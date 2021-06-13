@@ -273,7 +273,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
       getTime() {
         let today = new Date().getTime();
-        return new Date( today+ ((((this.h*60)+this.m*60)+this.s)*1000) );
+        return new Date( today+ (((((this.h*60)+this.m)*60)+this.s)*1000) );
       }
       setTime(time) {
         let diff = time.getTime()-new Date().getTime();
