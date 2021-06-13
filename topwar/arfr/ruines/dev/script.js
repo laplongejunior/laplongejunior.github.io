@@ -309,7 +309,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let hourField, minField, secField;
         let self = this;
         const updateDate = function() {
-          self.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField.value )*1000) );
+          self.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField.value )*100) );
         };
         
         hourField = createNumberField(()=>this.h,(value)=>{updateDate(); self.setHour(value);});
