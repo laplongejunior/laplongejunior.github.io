@@ -234,10 +234,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
   */
     
     const createNumberField = function(getter, setter) {
-      let input = doc.createElement("input");
-      input.type = 'number';
-      input.value = getter();
-      input.addEventListener('input', event=>setter(parseInt(event.target.value)) );
+      let field = doc.createElement("input");
+      field.type = 'number';
+      field.value = getter();
+      field.addEventListener('input', event=>setter(parseInt(event.target.value)) );
+      return field;
     };
     
     const addError = function(arr, err){
