@@ -56,7 +56,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
     const BASE = 2, ADJUST = 1;
     const SIDE = 15; 
-    const getCycle = function(x,y) {
+    const getCycle = (x,y)=>{
       if (x < 0 || x > SIDE) return -1;
       if (y < 0 || y > SIDE) return -1;
       x = Math.min(x,SIDE-x);
@@ -86,13 +86,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       const Directions = {UP:{name:"UP"},DOWN:{name:"DOWN"},LEFT:{name:"LEFT"},RIGHT:{name:"RIGHT"}};
       Directions.UP.next=Directions.RIGHT;
-      Directions.UP.coords=function(x,y,adjust){return [x-adjust,y];};
+      Directions.UP.coords=(x,y,adjust)=>{return [x-adjust,y];};
       Directions.DOWN.next=Directions.LEFT;
-      Directions.DOWN.coords=function(x,y,adjust){return [x+adjust,y];};
+      Directions.DOWN.coords=(x,y,adjust)=>{return [x+adjust,y];};
       Directions.LEFT.next=Directions.UP;
-      Directions.LEFT.coords=function(x,y,adjust){return [x,y-adjust];};
+      Directions.LEFT.coords=(x,y,adjust)=>{return [x,y-adjust];};
       Directions.RIGHT.next=Directions.DOWN;
-      Directions.RIGHT.coords=function(x,y,adjust){return [x,y+adjust];};
+      Directions.RIGHT.coords=(x,y,adjust)=>{return [x,y+adjust];};
 
       const MIDDLE = ((SIDE+1)/2)-1;
       const inMiddle = function(pos) {
@@ -308,14 +308,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       createUI() {
         let ui = doc.createElement("span");
         let hourField, minField, secField;
-        let self = this;
-        const updateDate = function() {
-          self.setDate(new Date(new Date().getTime()+( ( (parseInt(hourField.value*60)) +parseInt(minField.value) )*60+parseInt(secField.value) )*1000) );
+        const updateDate = ()=>{
+          this.setDate(new Date(new Date().getTime()+( ( (parseInt(hourField.value*60)) +parseInt(minField.value) )*60+parseInt(secField.value) )*1000) );
         };
         
-        hourField = createNumberField(()=>this.h,(value)=>{updateDate(); this.setHour(value);});
-        minField = createNumberField(()=>this.m,(value)=>{updateDate(); this.setMin(value);});
-        secField = createNumberField(()=>this.s,(value)=>{updateDate(); this.setSec(value);});
+        hourField = createNumberField(()=>this.h,value=>{updateDate(); this.setHour(value);});
+        minField = createNumberField(()=>this.m,value=>{updateDate(); this.setMin(value);});
+        secField = createNumberField(()=>this.s,value=>{updateDate(); this.setSec(value);});
         
         ui.appendChild(hourField);
         ui.appendChild(doc.createTextNode(":"));
@@ -405,7 +404,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           //input.classList.add("arfr-ruin-owner");
           input.type = 'text';
           input.value = self.owner;
-          input.addEventListener('input', function(event) {self.setOwner(event.target.value);});
+          input.addEventListener('input', event=>{self.setOwner(event.target.value);});
           return input;
         });
         
@@ -468,7 +467,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       deleteButton.classList.add("btn");
       deleteButton.classList.add("btn-danger");
       
-      deleteButton.addEventListener('click', function(event) {
+      deleteButton.addEventListener('click', event=>{
         ruinList = ruinList.filter(item=>item!==ruin);
         newItem.remove();
         for (const obs of ruin.observers)
@@ -487,7 +486,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     }
     const changeObs = new ChangeObserver();
    
-    doc.getElementById(buttonId).addEventListener('click', function() {
+    doc.getElementById(buttonId).addEventListener('click', ()=>{
       let newItem = new Ruin();
       newItem.subscribe(changeObs);
       ruinList.push(newItem);
@@ -495,7 +494,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       updateOutput();
     });
     
-    doc.getElementById(sortId).addEventListener('click', function() {
+    doc.getElementById(sortId).addEventListener('click', ()=>{
       ruinList = sortRuins();
       clearList();
       for (const ruin of ruinList) {
@@ -504,7 +503,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       updateOutput();
     });
     
-    doc.getElementById(loadId).addEventListener('click', function() {
+    doc.getElementById(loadId).addEventListener('click', ()=>{
       let val = doc.getElementById(loadInput).value;
       clearList();
       
