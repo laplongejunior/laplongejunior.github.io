@@ -210,7 +210,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (let j = 0; j < arr.length; ++j) {
         const data = arr[j];
         if (data === undefined || data.length === 0) continue;
-        ruinIds.push(data[0]);
+        ruinIds.push(twoCharStr(data[0]));
       }
     }
     ruinIds = ruinIds.sort();
