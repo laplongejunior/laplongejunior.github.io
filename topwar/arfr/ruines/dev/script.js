@@ -305,8 +305,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       createUI() {
         let ui = doc.createElement("span");
         let hourField, minField, secField;
+        let self = this;
         const updateDate = function() {
-          this.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField )*1000) );
+          self.setDate(new Date(new Date().getTime()+( ( (hourField.value*60) +minField.value )*60+secField )*1000) );
         };
         
         hourField = createNumberField(()=>this.h,updateDate);
