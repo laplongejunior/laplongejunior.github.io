@@ -78,7 +78,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           if (margin < 0) return false;
           if (x < margin || x+margin >= this.matrix.length) return false;
           let arr = this.matrix[x];
-          if (arr === undefined) console.log("!!!"+x);
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
           arr[y] = [ this.id, {} ];
@@ -286,11 +285,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.expiration = this.timestamp = new Date();
         let diff = time.getTime()-new Date().getTime();
         let s = Math.floor(diff/1000);
-        this.setSec(s%60);
+        this.setSec(Math.floor(s%60));
         let m = Math.floor(s/60);
-        this.setMin(m%60);
+        this.setMin(Math.floor(m%60));
         let h = Math.floor(m/60);
-        this.setHour(h);
+        this.setHour(Math.floor(h));
       }
 
       serialize() {
