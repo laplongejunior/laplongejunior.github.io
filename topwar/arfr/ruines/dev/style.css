@@ -1,3 +1,6 @@
 .content {
 	text-align: center;
 }
+input[type="number"] {
+  width: 2.5em;
+}
