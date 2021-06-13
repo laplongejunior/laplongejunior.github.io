@@ -285,7 +285,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       setTime(time) {
         let diff = new Date().getTime()-time.getTime();
-        console.log(diff);
+        let s = diff/1000;
+        this.setSec(s%60);
+        let m = s/60;
+        this.setMin(m%60);
+        let h = m/60;
+        this.setHour(h);
       }
 
       serialize() {
