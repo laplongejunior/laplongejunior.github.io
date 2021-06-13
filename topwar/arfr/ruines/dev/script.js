@@ -268,15 +268,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         if (s < 0) return this.onError("sec","Secondes négatives");
         if (s >= 60) return this.onError("sec","Secondes trop élevées");
         this.s = s;
-        return this.onUpdate();
-      }
-      setTimestamp(timestamp) {
-        let errors = new Array();
-        let arr = timestamp.split(':');
-        addError(errors, this.setHour(parseInt(arr[0])));
-        addError(errors, this.setMin(parseInt(arr[1])));
-        addError(errors, this.setSec(parseInt(arr[2])));
-        return errors;
+        return this.onUpdate("sec");
       }
 
       getTime() {
