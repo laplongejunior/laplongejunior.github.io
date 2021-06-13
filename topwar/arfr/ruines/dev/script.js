@@ -259,7 +259,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       setHour(h) {
         if (h < 0) return this.onError("hour","Heure négative");
+        console.log(this.expiration);
         this.setDiff((h-this.h)*3600);
+        console.log(this.expiration);
         this.h = h;
         return this.onUpdate("hour");
       }
