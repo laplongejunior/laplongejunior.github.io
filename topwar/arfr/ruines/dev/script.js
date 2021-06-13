@@ -254,9 +254,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
       setDiff(diff) {
         let today = new Date();
-        let offset = today-this.timestamp;
+        let offset = today.getTime()-this.timestamp.getTime();
         this.timestamp = today;
-        this.expiration = offset+this.expiration+diff;
+        this.expiration = new Date(offset+this.expiration.getTime()+diff);
       }
       setHour(h) {
         if (h < 0) return this.onError("hour","Heure négative");
