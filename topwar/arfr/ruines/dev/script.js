@@ -284,7 +284,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return new Date( today+ ((((this.h*60)+this.m*60)+this.s)*1000) );
       }
       setTime(time) {
-        let diff = new Date().getTime()-time.getTime();
+        let diff = time.getTime()-new Date().getTime();
         let s = diff/1000;
         this.setSec(s%60);
         let m = s/60;
