@@ -313,7 +313,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         };
         
         hourField = createNumberField(()=>this.h,(value)=>{updateDate(); /*this.setHour(value);*/});
-        minField = createNumberField(()=>this.m,(value)=>{updateDate(); /*this.setMin(value);*/});
+        minField = createNumberField(()=>this.m,(value)=>{debugger; updateDate(); /*this.setMin(value);*/});
         secField = createNumberField(()=>this.s,(value)=>{updateDate(); /*this.setSec(value);*/});
         
         ui.appendChild(hourField);
