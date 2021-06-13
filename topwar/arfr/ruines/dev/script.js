@@ -34,7 +34,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.observers = new Array();
       }
       subscribe(obs) {
-        this.observers.push(obs);
+        if (!this.observers.includes(obs))
+          this.observers.push(obs);
       }
       unsubscribe(obs) {
         this.onservers.remove(obs);
@@ -324,6 +325,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.spoil = new Diff();
         this.owner = "";
       }
+      
+      subscribe(obs) {
+        super.subscribe(obs);
+        this.spoil.subscribe(obs);
+      }
+      unsubscribe(obs) {
+        super.unsubscribe(obs);
+        this.spoil.unsubscribe(obs);
+      }
 
       setId(id) {
         if (id < 0) return this.onError("id", "Id négatif");
@@ -333,6 +343,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       setSpoil(spoil) {
         this.spoil = spoil;
+        for (const obs of spoil.observers)
+          this.spoil.subscribe(obs);
         return this.onUpdate("spoil");
       }
       setOwner(owner) {
@@ -341,7 +353,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return this.onUpdate("owner");
       }
       setCountdown(diff) {
-        this.spoil = diff.getTime();
+        this.setSpoil(diff.getTime());
         return this.onUpdate("spoil");
       }
 
