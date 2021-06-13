@@ -16,7 +16,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (let arr of matrix) {
         let line = "";
         for (let item of arr) {
-          if (item === undefined) item = "--";
+          if (item === undefined || item.length == 0) item = "--";
           else item = item[0].toString().padStart(2,"0");
           line+=item+",";
         }
@@ -56,13 +56,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
     const BASE = 2, ADJUST = 1;
     const SIDE = 15; 
-      const getCycle = function(x,y) {
-        if (x < 0 || x > SIDE) return -1;
-        if (y < 0 || y > SIDE) return -1;
-        x = Math.min(x,SIDE-x);
-        y = Math.min(y,SIDE-y);
-        return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
-      };
+    const getCycle = function(x,y) {
+      if (x < 0 || x > SIDE) return -1;
+      if (y < 0 || y > SIDE) return -1;
+      x = Math.min(x,SIDE-x);
+      y = Math.min(y,SIDE-y);
+      return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
+    };
 
     const ruinMatrix = (function(){  
       class SafeMatrix {
@@ -78,11 +78,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           if (margin < 0) return false;
           if (x < margin || x+margin >= this.matrix.length) return false;
           let arr = this.matrix[x];
-          if (arr === undefined) console.log("!!!"+x);
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
-          arr[y] = [ this.id, {} ];
-          this.id++;
+          arr[y] = [ ++this.id, {} ];
           return true;
         }
       }
@@ -117,7 +115,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return [x,y];
       };
 
-      gen.insertId(MIDDLE,MIDDLE); // Capital
+      gen.matrix[MIDDLE][MIDDLE] = []; // Capital
       let x = 0, y = -BASE, direction = Directions.RIGHT;
       while (true) {
         let arr = direction.coords(x,y,BASE*2);
@@ -206,12 +204,16 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     };
 
+    let ruinIds = new Array();
     for (let i = 0; i < ruinMatrix.length; ++i) {
       const arr = ruinMatrix[i];
       for (let j = 0; j < arr.length; ++j) {
-         // todo
+        const data = arr[j];
+        if (data === undefined || data.length === 0) continue;
+        ruinIds.push(twoCharStr(data[0]));
       }
     }
+    ruinIds = ruinIds.sort();
 
     /*
     let ruinCoords = function(id) {
@@ -226,7 +228,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
     };
-
     let calculateCoord = function(id, index) {
     };
     let calculateCoords = function(id, indexX, indexY) {
@@ -248,45 +249,45 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     class Diff extends Subject {
       constructor() {
         super();
-        this.h = 0;
-        this.m = 0;
-        this.s = 0;
+        this.expiration = new Date();
+        this.h = this.m = this.s = 0;
       }
-
+      
       setHour(h) {
         if (h < 0) return this.onError("hour","Heure négative");
         this.h = h;
-        return this.onUpdate("hour");
+        return this.onUpdate("expirationHour");
       }
       setMin(m) {
         if (m < 0) return this.onError("min","Minutes négatives");
         if (m >= 60) return this.onError("min","Minutes trop élevées");
         this.m = m;
-        return this.onUpdate("min");
+        return this.onUpdate("expirationMin");
       }
       setSec(s) {
         if (s < 0) return this.onError("sec","Secondes négatives");
         if (s >= 60) return this.onError("sec","Secondes trop élevées");
         this.s = s;
-        return this.onUpdate("sec");
+        return this.onUpdate("expirationSec");
       }
 
-      getTime() {
-        let today = new Date().getTime();
-        return new Date( today+ (((((this.h*60)+this.m)*60)+this.s)*1000) );
+      getDate() {
+        return this.expiration;
       }
-      setTime(time) {
-        let diff = time.getTime()-new Date().getTime();
+      setDate(date) {
+        this.expiration = date;
+        let diff = this.expiration.getTime()-new Date().getTime();
         let s = Math.floor(diff/1000);
-        this.setSec(s%60);
+        this.s = Math.floor(s%60);
         let m = Math.floor(s/60);
-        this.setMin(m%60);
+        this.m = Math.floor(m%60);
         let h = Math.floor(m/60);
-        this.setHour(h);
+        this.h = Math.floor(h);
+        return this.onUpdate("expiration");
       }
 
       serialize() {
-        let time = this.getTime();
+        let time = this.getDate();
         return twoCharStr(time.getUTCFullYear())+twoCharStr(time.getUTCMonth()+1)+twoCharStr(time.getUTCDate())+twoCharStr(time.getUTCHours())+twoCharStr(time.getUTCMinutes());
       }
       unserialize(data) {
@@ -301,16 +302,26 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let min = parseInt(data.substring(0,2));
         data = data.substring(2);
         
-        this.setTime(new Date(Date.UTC(year, month-1, day, hour, min)));
+        this.setDate(new Date(Date.UTC(year, month-1, day, hour, min)));        
         return data;
       }
       createUI() {
         let ui = doc.createElement("span");
-        ui.appendChild(createNumberField(()=>this.h,value=>this.setHour(value)));
+        let hourField, minField, secField;
+        let self = this;
+        const updateDate = function() {
+          self.setDate(new Date(new Date().getTime()+( ( (parseInt(hourField.value*60)) +parseInt(minField.value) )*60+parseInt(secField.value) )*1000) );
+        };
+        
+        hourField = createNumberField(()=>this.h,(value)=>{updateDate(); this.setHour(value);});
+        minField = createNumberField(()=>this.m,(value)=>{updateDate(); this.setMin(value);});
+        secField = createNumberField(()=>this.s,(value)=>{updateDate(); this.setSec(value);});
+        
+        ui.appendChild(hourField);
         ui.appendChild(doc.createTextNode(":"));
-        ui.appendChild(createNumberField(()=>this.m,value=>this.setMin(value)));
+        ui.appendChild(minField);
         ui.appendChild(doc.createTextNode(":"));
-        ui.appendChild(createNumberField(()=>this.s,value=>this.setSec(value)));
+        ui.appendChild(secField);
         return ui;
       }
     };
@@ -373,11 +384,16 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         
         const errorId = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Id: #"));
-          //let input = doc.createElement("input");
-          //input.type='number';
-          //input.value = self.id;
-          //input.addEventListener('input', function(event) {self.setId(event.target.value);});
-          return createNumberField(()=>self.id,value=>self.setId(value));
+          let field = doc.createElement('select');
+          for (const id of ruinIds) {
+            let option = doc.createElement('option');
+            option.textContent = option.value = id;
+            field.appendChild(option);
+          }
+          
+          field.value = this.id;
+          field.addEventListener('input', event=>this.setId(parseInt(event.target.value)) );
+          return field;
           //input.classList.add("arfr-ruin-id");
         });
         
@@ -427,7 +443,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       const NEW_LINE = '\r\n', NL_LEN = 2;
       for (const ruin of ruinList) {
         backup += ruin.serialize();
-        let spoilTime = ruin.spoil.getTime();
+        let spoilTime = ruin.spoil.getDate();
         output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes()) + NEW_LINE + "Possédé par " + ruin.owner;     
       }
       doc.getElementById(saveId).value = backup;
