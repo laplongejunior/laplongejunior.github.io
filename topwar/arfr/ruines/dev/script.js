@@ -465,7 +465,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           textField.addEventListener('input', event=>this.setOwner(event.target.value));
           const DEF_STYLE = textField.style.display;
           
-          const switchTextField = function(){       
+          const switchTextField = ()=>{       
             textField.style.display = (this.owner === UNKNOWN) ? DEF_STYLE : 'none';
           };
           switchTextField();
