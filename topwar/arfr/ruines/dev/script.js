@@ -417,6 +417,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             let result = doc.createElement("option");
             result.text = text;
             result.value = value;
+            return result;
           };
           for (const alli of ALLIS) 
             input.appendChild(createOption(alli[0],alli[1]));
