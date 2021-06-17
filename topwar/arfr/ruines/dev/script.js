@@ -60,8 +60,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       unsubscribe(obs) {
         this.onservers.remove(obs);
       }
-      onUpdate(valName, newValue, oldValue) {       
-        this.onError(this, valName, null, newValue, oldValue);
+      onUpdate(valName, newValue, oldValue) {
+        this.onError(valName, null, newValue, oldValue);
         for (const obs of this.observers)
           obs.onUpdate(this, valName, newValue, oldValue);
       }
@@ -354,8 +354,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.owner = "";
       }
       otherError(exclName) {
-        console.log(this.spoil.errors);
-        console.log(this.errors);
         let temp = this.spoil.otherError(exclName);
         if (temp != null) return temp;
         return super.otherError(exclName);
