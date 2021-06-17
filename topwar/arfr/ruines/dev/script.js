@@ -447,12 +447,19 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             result.value = value;
             return result;
           };
-          for (const alli of ALLIS) 
-            input.appendChild(createOption(alli[0],alli[0]));
+ 
           const UNKNOWN = "";
           let special = createOption("Autre",UNKNOWN);
-          special.selected = 'selected';
+          let selected = special;
+          for (const alli of ALLIS) {
+            let newOption = createOption(alli[0],alli[0]);
+            if (alli[0] === this.owner) newOption.selected = 'selected';
+            input.appendChild(newOption);              
+          }
           input.appendChild(special);
+          
+          
+          special.selected = 'selected';
           
           let textField = doc.createElement('input');
           textField.type = 'text';
