@@ -465,10 +465,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           textField.addEventListener('input', event=>this.setOwner(event.target.value));
           const DEF_STYLE = textField.style.display;
           
+          const switchTextField = function(){       
+            textField.style.display = (this.owner === UNKNOWN) ? DEF_STYLE : 'none';
+          };
+          switchTextField();
+          
           input.addEventListener('change', event=>{
             const val = event.target.value;
             this.setOwner(val);
-            textField.style.display = (val === UNKNOWN) ? DEF_STYLE : 'none';
+            switchTextField();
           });
           section.appendChild(input);
           
