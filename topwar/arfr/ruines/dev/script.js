@@ -453,13 +453,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           let selected = special;
           for (const alli of ALLIS) {
             let newOption = createOption(alli[0],alli[0]);
-            if (alli[0] === this.owner) newOption.selected = 'selected';
+            if (alli[0] === this.owner) selected = newOption;
             input.appendChild(newOption);              
           }
-          input.appendChild(special);
-          
-          
-          special.selected = 'selected';
+          input.appendChild(special);        
+          selected.selected = 'selected';
           
           let textField = doc.createElement('input');
           textField.type = 'text';
