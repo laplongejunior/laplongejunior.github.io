@@ -28,8 +28,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (let arr of matrix) {
         let line = "";
         for (let item of arr) {
-          if (item === undefined || item.length == 0) item = "--";
-          else item = item[0].toString().padStart(2,"0");
+          if (item === undefined) item = "--";
+          else item = item.toString().padStart(2,"0");
           line+=item+",";
         }
         console.log(twoCharStr(++index)+") "+line.substring(0,line.length-1));
@@ -90,7 +90,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
      return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
     }; 
 
-    const ruinMatrix = (function(){  
+    const ruinData = (function(){  
       class SafeMatrix {
         constructor(SIDE) {
           this.id = 0; // 0 is capital
@@ -175,9 +175,43 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         x = tempX;
         y = tempY;
       }
-      return gen.matrix;
+      const ruinMatrix = gen.matrix;
+      debugMatrix(ruinMatrix);
+      
+      let result = new Map();
+      const calculateCoord = function(main,sec) {
+            let result = (main+1)*32;
+            // If main is in middle
+             console.log(sec);
+             console.log(getCycle(main,sec));
+             console.log(inMiddle(sec));
+            if (getCycle(main,sec) === 3 && inMiddle(sec)) {
+              result-=2;
+              if (main < MIDDLE) result -= 2;
+            }
+            return result;
+          };
+          const calculateCoords = function(x,y) {
+            let posX = calculateCoord(x,y);
+            let posY = calculateCoord(y,x);
+            return [posX, 2*posY];
+          };
+          
+          let i, j, data;
+          for (i = 0; i < ruinMatrix.length; ++i) {
+            let row = ruinMatrix[i];
+            for (j = 0; j < row.length; ++j) {
+              data = row[j] || [];
+              if (data.length > 0) {
+                const temp = calculateCoords(i,j);
+                let posX = temp[0];
+                let posY = temp[1];
+                result.set(data[0],{x:posY,y:posY});
+              }
+            }
+          }
+      return result;
     })();
-    debugMatrix(ruinMatrix);
 
     const RuinDifficulty = {
       LEVEL1:{
@@ -258,57 +292,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     };
     */
-    
-    const ruinData = ()=>{
-      let result = new Map();
-      const calculateCoord = function(main,sec) {
-            let result = (main+1)*32;
-            // If main is in middle
-             console.log(sec);
-             console.log(getCycle(main,sec));
-             console.log(inMiddle(sec));
-            if (getCycle(main,sec) === 3 && inMiddle(sec)) {
-              result-=2;
-              if (main < MIDDLE) result -= 2;
-            }
-            return result;
-          };
-          const calculateCoords = function(x,y) {
-            let posX = calculateCoord(x,y);
-            let posY = calculateCoord(y,x);
-            return [posX, 2*posY];
-          };
-          
-          let i, j, data;
-          for (i = 0; i < ruinMatrix.length; ++i) {
-            let row = ruinMatrix[i];
-            for (j = 0; j < row.length; ++j) {
-              data = row[j] || [];
-              if (data.length > 0) {
-                const temp = calculateCoords(i,j);
-                let posX = temp[0];
-                let posY = temp[1];
-                result.set(data[0],{x:posY,y:posY});
-              }
-            }
-          }
-      return result;
-    };
-    console.log(ruinMatrix);
     for (const [id,debug] of ruinData) {
       console.log(id+":"+debug.x+":"+debug.y);
     }
 
-    let ruinIds = new Array();
-    for (let i = 0; i < ruinMatrix.length; ++i) {
-      const arr = ruinMatrix[i];
-      for (let j = 0; j < arr.length; ++j) {
-        const data = arr[j];
-        if (data !== undefined && data.length !== 0)
-          ruinIds.push(twoCharStr(data[0]));
-      }
-    }
-    ruinIds = ruinIds.sort();
+    let ruinIds = ruinData.keys().sort();
 
     /*
     let ruinCoords = function(id) {
