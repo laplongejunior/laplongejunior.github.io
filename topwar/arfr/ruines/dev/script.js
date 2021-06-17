@@ -10,8 +10,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const ALLIS = (function(){
         let output = [];
         let index = 0;
-        for (let alli of [null,null,"ArFR","SHxH","B4F","DUTC"])
-          output.push(alli == null ? TOP[index++] : alli);
+        for (let alli of [[null,""],[null,""],["ArFR",""],["SHxH",""],["B4F",""],["DUTC",""]]) {
+          if (alli[0] == null) alli[0] = TOP[index++];
+          output.push(alli);
+        }
         return output;
       })();
 
@@ -416,8 +418,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             result.text = text;
             result.value = value;
           };
-          for (const code of ALLIS) 
-            input.appendChild(createOption(code,code));
+          for (const alli of ALLIS) 
+            input.appendChild(createOption(alli[0],alli[1]));
           const UNKNOWN = "";
           input.appendChild(createOption("Autre",UNKNOWN));
           
@@ -425,15 +427,16 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           textField.type = 'text';
           textField.value = '';
           textField.addEventListener('input', event=>this.setOwner(event.target.value));
+          const DEF_STYLE = textField.style.display;
           
           input.addEventListener('input', event=>{
             const val = event.target.value;
             this.setOwner(val);
-            if (val === UNKNOWN) section.appendChild(textField);
-            textField.remove();
+            textField.style.display = (val === UNKNWOWN) ? 'none' : DEF_STYLE;
           });
+          section.appendChild(input);
           
-          return input;
+          return textField;
         });
         
         class ErrorObserver extends Observer {
