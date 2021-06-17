@@ -536,7 +536,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           own = alli[1];
           break;
         }
-        output += NEW_LINE + "Possédé par " + ruin.owner;     
+        output += NEW_LINE + "Possédé par " + own;     
       }
       doc.getElementById(saveId).value = backup;
       doc.getElementById(outputId).value = output.substring(NL_LEN);
