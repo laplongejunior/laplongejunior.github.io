@@ -540,6 +540,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       };
     }
     const changeObs = new ChangeObserver();
+    updateOutput();
    
     doc.getElementById(buttonId).addEventListener('click', ()=>{
       let newItem = new Ruin();
