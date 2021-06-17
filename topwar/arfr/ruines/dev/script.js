@@ -251,7 +251,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       return result;
     })();
     
-    let ruinIds = Array.from(ruinData.keys()).sort();
+    let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
     for (const id of ruinIds) {
       const debug = ruinData.get(id);
       console.log(id+":"+debug.x+":"+debug.y);
