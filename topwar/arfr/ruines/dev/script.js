@@ -9,14 +9,14 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const HOME = "ArFR";
     const TOP = ["~OX~","D_K."];
     const ALLIS = (function(){
-        let output = [];
-        let index = 0;
-        for (let alli of [[HOME,"ArmeeFr"],[null,"OmegaX"],[null,"DeathKnights"],["SHxH","SFairyTail"],["DUTC","Dutch69"],["B4F","B4F"]]) {
-          if (alli[0] == null) alli[0] = TOP[index++];
-          output.push(alli);
-        }
-        return output;
-      })();
+      let output = [];
+      let index = 0;
+      for (let alli of [[HOME,"ArmeeFr"],[null,"OmegaX"],[null,"DeathKnights"],["SHxH","SFairyTail"],["DUTC","Dutch69"],["B4F","B4F"]]) {
+        if (alli[0] == null) alli[0] = TOP[index++];
+        output.push(alli);
+      }
+      return output;
+    })();
 
     // UI view
     const twoCharStr = function(nbr) {
@@ -28,7 +28,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (let arr of matrix) {
         let line = "";
         for (let item of arr) {
-          if (item === undefined) item = "--";
+          if (item === undefined || isNaN(item)) item = "--";
           else item = item.toString().padStart(2,"0");
           line+=item+",";
         }
@@ -74,6 +74,46 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
 
     // Coords mapping
+    
+    const RuinDifficulty = {
+      LEVEL1:{
+        title:"Ruines",
+        cycle:1,
+        rewards:{
+          GOLD:{},
+          ATK:{},
+          COLL:{},
+          WALK:{},
+          PV:{},
+          SHOT:{}
+        }
+      },
+      LEVEL2:{
+        title:"Ruines Antiques",
+        cycle:2,
+        rewards:{
+          QUEST:{}
+        }
+      },
+      LEVEL2BIS:{
+        title:"Ruines Anciennes",
+        cycle:2,
+        rewards:{
+          RELIC:{},
+          UNIT:{},
+          ITEM:{}
+        }
+      },
+      LEVEL3:{
+        title:"Ruines de l'Empereur",
+        cycle:3,
+        rewards:{
+          GUARD:{},
+          RES:{}
+        }
+      }
+    };
+    
     const ruinData = (function(){  
       class SafeMatrix {
         constructor(SIDE) {
@@ -179,77 +219,38 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       
       let result = new Map();
       const calculateCoord = function(main,sec) {
-            let result = (main+1)*32;
-            // If main is in middle
-             console.log(sec);
-             console.log(getCycle(main,sec));
-             console.log(inMiddle(sec));
-            if (getCycle(main,sec) === 3 && inMiddle(sec)) {
-              result-=2;
-              if (main < MIDDLE) result -= 2;
-            }
-            return result;
-          };
-          const calculateCoords = function(x,y) {
-            let posX = calculateCoord(x,y);
-            let posY = calculateCoord(y,x);
-            return [posX, 2*posY];
-          };
+        let result = (main+1)*32;
+        // If main is in middle
+        console.log(sec);
+        console.log(getCycle(main,sec));
+        console.log(inMiddle(sec));
+        if (getCycle(main,sec) === 3 && inMiddle(sec)) {
+          result-=2;
+          if (main < MIDDLE) result -= 2;
+        }
+        return result;
+      };
+      const calculateCoords = function(x,y) {
+        let posX = calculateCoord(x,y);
+        let posY = calculateCoord(y,x);
+        return [posX, 2*posY];
+      };
           
-          let i, j, data;
-          for (i = 0; i < ruinMatrix.length; ++i) {
-            let row = ruinMatrix[i];
-            for (j = 0; j < row.length; ++j) {
-              data = row[j];
-              if (data && !isNaN(data)) {
-                const temp = calculateCoords(i,j);
-                let posX = temp[0];
-                let posY = temp[1];
-                result.set(data,{x:posY,y:posY});
-              }
-            }
+      let i, j, data;
+      for (i = 0; i < ruinMatrix.length; ++i) {
+        let row = ruinMatrix[i];
+        for (j = 0; j < row.length; ++j) {
+          data = row[j];
+          if (data && !isNaN(data)) {
+            const temp = calculateCoords(i,j);
+            let posX = temp[0];
+            let posY = temp[1];
+            result.set(data,{x:posY,y:posY});
           }
-      return result;
-    })();
-
-    const RuinDifficulty = {
-      LEVEL1:{
-        title:"Ruines",
-        cycle:1,
-        rewards:{
-          GOLD:{},
-          ATK:{},
-          COLL:{},
-          WALK:{},
-          PV:{},
-          SHOT:{}
-        }
-      },
-      LEVEL2:{
-        title:"Ruines Antiques",
-        cycle:2,
-        rewards:{
-          QUEST:{}
-        }
-      },
-      LEVEL2BIS:{
-        title:"Ruines Anciennes",
-        cycle:2,
-        rewards:{
-          RELIC:{},
-          UNIT:{},
-          ITEM:{}
-        }
-      },
-      LEVEL3:{
-        title:"Ruines de l'Empereur",
-        cycle:3,
-        rewards:{
-          GUARD:{},
-          RES:{}
         }
       }
-    };
+      return result;
+    })();
     
     /*
     class RuinData {
@@ -291,32 +292,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     };
     */
-    for (const [id,debug] of ruinData) {
+    let ruinIds = Array.from(ruinData.keys()).sort();
+    for (const id of ruinIds) {
+      const debug = ruinData.get(id);
       console.log(id+":"+debug.x+":"+debug.y);
     }
 
-    let ruinIds = Array.from(ruinData.keys()).sort();
-
-    /*
-    let ruinCoords = function(id) {
-      for (let i = 0; i < ruinMatrix.length; ++i) {
-        let array = ruinMatrix[i];
-        for (let j = 0; j < array.length; ++j) {
-          let value = array[j];
-          if (id === value) {
-            let posX = i*2+1;
-            if
-          }
-        }
-      }
-    };
-    let calculateCoord = function(id, index) {
-    };
-    let calculateCoords = function(id, indexX, indexY) {
-        let pox
-    };
-  */
-    
+    // UI handling    
     const createNumberField = function(getter, setter) {
       let field = doc.createElement("input");
       field.type = 'number';
