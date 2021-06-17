@@ -202,7 +202,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             let row = ruinMatrix[i];
             for (j = 0; j < row.length; ++j) {
               data = row[j];
-              if (!isNaN(data)) {
+              if (data && !isNaN(data)) {
                 const temp = calculateCoords(i,j);
                 let posX = temp[0];
                 let posY = temp[1];
