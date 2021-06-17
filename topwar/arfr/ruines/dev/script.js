@@ -218,14 +218,18 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     };
     
+    /*
     class RuinData {
      constructor(id) {
-        this.id = id;
+        //this.id = id;
         // Required to exit from a double-nested loop
         (()=>{
            const calculateCoord = function(main,sec) {
             let result = (main+1)*32;
             // If main is in middle
+             console.log(sec);
+             console.log(getCycle(main,sec));
+             console.log(inMiddle(sec));
             if (getCycle(main,sec) === 3 && inMiddle(sec)) {
               result-=2;
               if (main < MIDDLE) result -= 2;
@@ -247,17 +251,51 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
                 const temp = calculateCoords(i,j);
                 this.x = temp[0];
                 this.y = temp[1];
-                return;
+                return this;
               }
             }
           }
-        })();
       }
     };
-    for (let _i = 0; _i <= 24; ++_i)
-    {
-      const debug = new RuinData(_i);
-      console.log(debug.id+":"+debug.x+":"+debug.y);
+    */
+    
+    const ruinData = ()=>{
+      let result = new Set();
+      const calculateCoord = function(main,sec) {
+            let result = (main+1)*32;
+            // If main is in middle
+             console.log(sec);
+             console.log(getCycle(main,sec));
+             console.log(inMiddle(sec));
+            if (getCycle(main,sec) === 3 && inMiddle(sec)) {
+              result-=2;
+              if (main < MIDDLE) result -= 2;
+            }
+            return result;
+          };
+          const calculateCoords = function(x,y) {
+            let posX = calculateCoord(x,y);
+            let posY = calculateCoord(y,x);
+            return [posX, 2*posY];
+          };
+          
+          let i, j, data;
+          for (i = 0; i < ruinMatrix.length; ++i) {
+            let row = ruinMatrix[i];
+            for (j = 0; j < row.length; ++j) {
+              data = row[j] || [];
+              if (data.length > 0) {
+                const temp = calculateCoords(i,j);
+                let posX = temp[0];
+                let posY = temp[1];
+                result.add({x:posY,y:posY});
+              }
+            }
+          }
+      return result;
+    };
+    for (const [id,debug] of ruinData) {
+      console.log(id+":"+debug.x+":"+debug.y);
     }
 
     let ruinIds = new Array();
