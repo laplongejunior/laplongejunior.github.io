@@ -249,13 +249,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
       return result;
-    })();
-    
+    })();    
     let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
-    for (const id of ruinIds) {
+    
+    const id = 24;//for (const id of ruinIds) {
       const debug = ruinData.get(id);
       console.log(id+":"+debug.x+":"+debug.y);
-    }
+    //}
 
     // UI handling    
     const createNumberField = function(getter, setter) {
