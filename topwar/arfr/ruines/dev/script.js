@@ -5,6 +5,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
   (function(){
     "use strict";
     let doc = global.document;
+    
+    const TOP = ["~OX~","D_K."];
+    const ALLIS = (function(){
+        let output = [];
+        let index = 0;
+        for (let alli of [null,null,"ArFR","SHxH","B4F","DUTC"])
+          output.push(alli == null ? TOP[index++] : alli);
+        return output;
+      })();
 
     // UI view
     const twoCharStr = function(nbr) {
@@ -400,10 +409,30 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         const errorOwner = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Possédé par: "));
           let input = doc.createElement("input");
-          //input.classList.add("arfr-ruin-owner");
-          input.type = 'text';
-          input.value = this.owner;
-          input.addEventListener('input', event=>this.setOwner(event.target.value));
+          input.type = 'combobox';
+          
+          const createOption = function(text, value) {
+            let result = doc.createElement("option");
+            result.text = text;
+            result.value = value;
+          };
+          for (const code of ALLIS) 
+            input.appendChild(createOption(code,code));
+          const UNKNOWN = "";
+          input.appendChild(createOption("Autre",UNKNOWN));
+          
+          let textField = doc.createElement('input');
+          textField.type = 'text';
+          textField.value = '';
+          textField.addEventListener('input', event=>this.setOwner(event.target.value));
+          
+          input.addEventListener('input', event=>{
+            const val = event.target.value;
+            this.setOwner(val);
+            if (val === UNKNOWN) section.appendChild(textField);
+            textField.remove();
+          });
+          
           return input;
         });
         
@@ -461,7 +490,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       doc.getElementById(outputId).value = output.substring(NL_LEN);
     };
     
-    let addRuinView = function(ruin) {
+    const addRuinView = function(ruin) {
       let newItem = doc.createElement('li');
       newItem.classList.add('list-group-item'); // Bootstrap
       newItem.appendChild(ruin.createUI());
