@@ -231,22 +231,21 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     class RuinData {
      constructor(id) {
         this.id = id;
-        let i, j, data;
-        for (i = 0; i < ruinMatrix.length; ++i) {
-          let row = ruinMatrix[i];
-          for (j = 0; j < row.length; ++j) {
-            data = row[j] || [];
-            console.log(data);
-            console.log(data[0]);
-            if (data.length > 0 && data[0] === id) break;
+        (()=>{
+          let i, j, data;
+          for (i = 0; i < ruinMatrix.length; ++i) {
+            let row = ruinMatrix[i];
+            for (j = 0; j < row.length; ++j) {
+              data = row[j] || [];
+              if (data.length > 0 && data[0] === id) {
+                const temp = calculateCoords(i,j);
+                this.x = temp[0];
+                this.y = temp[1];
+                return;
+              }
+            }
           }
-        }
-       
-        if (data.length > 0) {
-          this.x = calculateCoord(i);
-          this.y = calculateCoord(j)*2;
-          //this.reward = reward;
-        }
+        })();
       }
     };
     for (let _i = 0; _i <= 24; ++_i)
