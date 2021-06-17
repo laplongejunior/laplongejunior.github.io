@@ -248,11 +248,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         })();
       }
     };
-    for (let _i = 0; _i <= 24; ++_i)
-    {
+    let _i = 1;//for (let _i = 0; _i <= 24; ++_i)
+    //{
       const debug = new RuinData(_i);
       console.log(debug.id+":"+debug.x+":"+debug.y);
-    }
+    //}
 
     let ruinIds = new Array();
     for (let i = 0; i < ruinMatrix.length; ++i) {
