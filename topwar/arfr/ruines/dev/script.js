@@ -43,7 +43,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     class Subject {
       constructor() {
         this.observers = new Array();
-        this.errored = false;
+        this.errors = new Map();
       }
       subscribe(obs) {
         if (!this.observers.includes(obs))
@@ -59,9 +59,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
       onError(valName, msg, newValue, oldValue) {
-        this.errored = (msg != null);
         for (const obs of this.observers)
           obs.onError(this, valName, msg, newValue, oldValue);
+        if (msg == null) this.errors.delete(valName);
+        else this.errors.set(valName,msg);
       }
     };
 
@@ -369,6 +370,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       setOwner(owner) {
         if (owner.length > 9) return this.onError("owner", "9 lettres max");
+        if (TOP.includes(owner)) return this.onError("owner", "Alliance hors-limite!");
         this.owner = owner;
         return this.onUpdate("owner");
       }
@@ -485,7 +487,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       let backup = "", output = "";
       const NEW_LINE = '\r\n', NL_LEN = 2;
       for (const ruin of sortRuins()) {
-        if (ruin.errored) continue;
+        if (ruin.errors.size() > 0) continue;
         backup += ruin.serialize();
         let spoilTime = ruin.spoil.getDate();
         output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
