@@ -479,6 +479,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
               
               let errMsg = (err == null) ? ruin.otherError(valName) : err;
               section.innerHTML = (errMsg == null) ? "" : "Erreur : "+errMsg;
+              if (err != null) refreshOutput();
             }
         };
         this.subscribe(new ErrorObserver());
