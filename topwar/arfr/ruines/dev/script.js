@@ -6,11 +6,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     "use strict";
     let doc = global.document;
     
+    const HOME = "ArFR";
     const TOP = ["~OX~","D_K."];
     const ALLIS = (function(){
         let output = [];
         let index = 0;
-        for (let alli of [[null,""],[null,""],["ArFR",""],["SHxH",""],["B4F",""],["DUTC",""]]) {
+        for (let alli of [[null,""],[null,""],[HOME,""],["SHxH",""],["B4F",""],["DUTC",""]]) {
           if (alli[0] == null) alli[0] = TOP[index++];
           output.push(alli);
         }
@@ -44,6 +45,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       constructor() {
         this.observers = new Array();
         this.errors = new Map();
+      }
+      otherError(exclName) {
+        for (const [key,value] of this.errors)
+          if (key != exclName)
+            return value;
+        return null;
       }
       subscribe(obs) {
         if (!this.observers.includes(obs))
@@ -346,6 +353,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.spoil = new Diff();
         this.owner = "";
       }
+      otherError(exclName) {
+        let temp = this.spoil.otherError(exclName);
+        if (temp != null) return temp;
+        return super.otherError(exclName);
+      }
       
       subscribe(obs) {
         this.spoil.subscribe(obs);
@@ -449,7 +461,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
               if (valName === "id") section = errorId;
               else if (valName === "spoil") section = errorSpoil;
               else section = errorOwner;
-              section.innerHTML = (err == null) ? "" : "Erreur : "+err;
+              let errMsg = (err == null) ? ruin.otherError(valName) : err;
+              section.innerHTML = (errMsg == null) ? "" : "Erreur : "+errMsg;
             }
         };
         this.subscribe(new ErrorObserver());
@@ -472,8 +485,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     let ruinList = new Array();
     const sortRuins = function() {
       return ruinList.sort((a,b)=>{
-          // TODO: Change when there's a dropdown
-          const A = (a.owner === "ARFR"), B = (b.owner === "ARFR");
+          const A = (a.owner === HOME), B = (b.owner === HOME);
           if (A !== B) return A ? -1 : 1;
           return a.spoil.getDate().getTime()-b.spoil.getDate().getTime();
         });
