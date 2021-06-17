@@ -106,7 +106,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           let arr = this.matrix[x];
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
-          arr[y] = [ ++this.id, {} ];
+          arr[y] = ++this.id;
           return true;
         }
       }
