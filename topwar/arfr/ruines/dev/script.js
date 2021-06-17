@@ -409,7 +409,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         data = spoil.unserialize(data);
         this.setSpoil(spoil);
         
-        let pos = parseInt(data.substring(0,1));;
+        let pos = parseInt(data.substring(0,1))-1;
         data = data.substring(1);
         let length = parseInt(data.substring(0,1));
         let own = data.substring(1,1+length);
