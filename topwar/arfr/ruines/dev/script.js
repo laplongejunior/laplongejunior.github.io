@@ -403,15 +403,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           field.value = this.id;
           field.addEventListener('input', event=>this.setId(parseInt(event.target.value)) );
           return field;
-          //input.classList.add("arfr-ruin-id");
         });
         
         const errorSpoil = addInputSection(ui, ()=>this.spoil.createUI());
         
         const errorOwner = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Possédé par: "));
-          let input = doc.createElement("input");
-          input.type = 'combobox';
+          let input = doc.createElement("select");
           
           const createOption = function(text, value) {
             let result = doc.createElement("option");
