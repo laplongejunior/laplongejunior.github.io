@@ -47,7 +47,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.errors = new Map();
       }
       otherError(exclName) {
-        console.log(this.errors);
         for (const [key,value] of this.errors)
           if (key !== exclName)
             return value;
@@ -252,46 +251,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       return result;
     })();
     
-    /*
-    class RuinData {
-     constructor(id) {
-        //this.id = id;
-        // Required to exit from a double-nested loop
-        (()=>{
-           const calculateCoord = function(main,sec) {
-            let result = (main+1)*32;
-            // If main is in middle
-             console.log(sec);
-             console.log(getCycle(main,sec));
-             console.log(inMiddle(sec));
-            if (getCycle(main,sec) === 3 && inMiddle(sec)) {
-              result-=2;
-              if (main < MIDDLE) result -= 2;
-            }
-            return result;
-          };
-          const calculateCoords = function(x,y) {
-            let posX = calculateCoord(x,y);
-            let posY = calculateCoord(y,x);
-            return [posX, 2*posY];
-          };
-          
-          let i, j, data;
-          for (i = 0; i < ruinMatrix.length; ++i) {
-            let row = ruinMatrix[i];
-            for (j = 0; j < row.length; ++j) {
-              data = row[j] || [];
-              if (data.length > 0 && data[0] === id) {
-                const temp = calculateCoords(i,j);
-                this.x = temp[0];
-                this.y = temp[1];
-                return this;
-              }
-            }
-          }
-      }
-    };
-    */
     let ruinIds = Array.from(ruinData.keys()).sort();
     for (const id of ruinIds) {
       const debug = ruinData.get(id);
