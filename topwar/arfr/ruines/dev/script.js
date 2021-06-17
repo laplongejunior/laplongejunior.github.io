@@ -43,6 +43,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     class Subject {
       constructor() {
         this.observers = new Array();
+        this.errored = false;
       }
       subscribe(obs) {
         if (!this.observers.includes(obs))
@@ -58,6 +59,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
       onError(valName, msg, newValue, oldValue) {
+        this.errored = (msg != null);
         for (const obs of this.observers)
           obs.onError(this, valName, msg, newValue, oldValue);
       }
@@ -482,6 +484,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       let backup = "", output = "";
       const NEW_LINE = '\r\n', NL_LEN = 2;
       for (const ruin of sortRuins()) {
+        if (ruin.errored) continue;
         backup += ruin.serialize();
         let spoilTime = ruin.spoil.getDate();
         output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
