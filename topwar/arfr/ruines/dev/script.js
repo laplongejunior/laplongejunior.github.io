@@ -525,8 +525,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         backup += ruin.serialize();
         let spoilTime = ruin.spoil.getDate();
         output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
-        if (ruin.owner.length > 0)
-          output += NEW_LINE + "Possédé par " + ruin.owner;     
+        
+        let own = ruin.owner;
+        if (own.length === 0) continue;
+        for (const alli of ALLIS) {
+          if (alli[0] !== own) continue;
+          own = alli[1];
+          break;
+        }
+        output += NEW_LINE + "Possédé par " + ruin.owner;     
       }
       doc.getElementById(saveId).value = backup;
       doc.getElementById(outputId).value = output.substring(NL_LEN);
