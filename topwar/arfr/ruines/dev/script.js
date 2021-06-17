@@ -216,6 +216,18 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
     };
+    
+    const calculateCoord = function(main,sec) {
+      let result = (main+1)*32;
+      const cycle = getCycle(main,sec);
+      if (cycle === 3)
+      return result;
+    };    
+    const calculateCoords = function(x,y) {
+      let posX = calculateCoord(x,y);
+      let posY = calculateCoord(y,x);
+      return [posX, 2*posY];
+    };
     class RuinData {
      constructor(id) {
         this.id = id;
@@ -225,13 +237,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           for (j = 0; j < row.length; ++j) {
             data = row[j];
             console.log(data);
-            if (data != undefined && data.length > 0 && data[0] === id) break;
+            console.log(data[0]);
+            if (data != null && data.length > 0 && data[0] === id) break;
           }
         }
        
-        const calculateCoord = function(pos) {
-          return (pos+1)*32;
-        };
         if (data.length > 0) {
           this.x = calculateCoord(i);
           this.y = calculateCoord(j)*2;
