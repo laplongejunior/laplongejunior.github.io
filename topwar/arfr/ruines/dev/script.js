@@ -416,6 +416,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         
         if (pos > 0) own = ALLIS[pos][0];
         this.setOwner(own);
+        console.log(this);
         return data.substring(1+length);
       }
       createUI() {
@@ -448,6 +449,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             return result;
           };
  
+          console.log("test");
+          console.log(this);
           const UNKNOWN = "";
           let special = createOption("Autre",UNKNOWN);
           let selected = special;
