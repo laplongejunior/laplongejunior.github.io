@@ -447,7 +447,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           const DEF_STYLE = textField.style.display;
           textField.style.display = 'none';
           
+          console.log("TEST");
           input.addEventListener('change', event=>{
+            console.log("OK");
             const val = event.target.value;
             this.setOwner(val);
             textField.style.display = (val === UNKNOWN) ? 'none' : DEF_STYLE;
