@@ -235,10 +235,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         for (i = 0; i < ruinMatrix.length; ++i) {
           let row = ruinMatrix[i];
           for (j = 0; j < row.length; ++j) {
-            data = row[j];
+            data = row[j] || [];
             console.log(data);
             console.log(data[0]);
-            if (data != null && data.length > 0 && data[0] === id) break;
+            if (data.length > 0 && data[0] === id) break;
           }
         }
        
@@ -260,8 +260,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       const arr = ruinMatrix[i];
       for (let j = 0; j < arr.length; ++j) {
         const data = arr[j];
-        if (data === undefined || data.length === 0) continue;
-        ruinIds.push(twoCharStr(data[0]));
+        if (data !== undefined && data.length !== 0)
+          ruinIds.push(twoCharStr(data[0]));
       }
     }
     ruinIds = ruinIds.sort();
