@@ -260,7 +260,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     */
     
     const ruinData = ()=>{
-      let result = new Set();
+      let result = new Map();
       const calculateCoord = function(main,sec) {
             let result = (main+1)*32;
             // If main is in middle
@@ -288,12 +288,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
                 const temp = calculateCoords(i,j);
                 let posX = temp[0];
                 let posY = temp[1];
-                result.add({x:posY,y:posY});
+                result.set(data[0],{x:posY,y:posY});
               }
             }
           }
       return result;
     };
+    console.log(ruinMatrix);
     for (const [id,debug] of ruinData) {
       console.log(id+":"+debug.x+":"+debug.y);
     }
