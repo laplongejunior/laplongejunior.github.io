@@ -74,22 +74,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
 
     // Coords mapping
-
-    const BASE = 2, ADJUST = 1;
-    const SIDE = 15; 
-    const getCycle = (x,y)=>{
-      if (x < 0 || x > SIDE) return -1;
-      if (y < 0 || y > SIDE) return -1;
-      x = Math.min(x,SIDE-x);
-      y = Math.min(y,SIDE-y);
-      return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
-    };
-    
-    const MIDDLE = ((SIDE+1)/2)-1;
-    const inMiddle = function(pos) {
-     return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
-    }; 
-
     const ruinData = (function(){  
       class SafeMatrix {
         constructor(SIDE) {
@@ -119,6 +103,21 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       Directions.LEFT.coords=(x,y,adjust)=>{return [x,y-adjust];};
       Directions.RIGHT.next=Directions.DOWN;
       Directions.RIGHT.coords=(x,y,adjust)=>{return [x,y+adjust];};
+        
+      const BASE = 2, ADJUST = 1;
+      const SIDE = 15; 
+      const getCycle = (x,y)=>{
+        if (x < 0 || x > SIDE) return -1;
+        if (y < 0 || y > SIDE) return -1;
+        x = Math.min(x,SIDE-x);
+        y = Math.min(y,SIDE-y);
+        return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
+      };
+
+      const MIDDLE = ((SIDE+1)/2)-1;
+      const inMiddle = function(pos) {
+       return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
+      }; 
 
       const adjustMiddle = function(pos, other) {
         if (!inMiddle(pos)) return pos;
