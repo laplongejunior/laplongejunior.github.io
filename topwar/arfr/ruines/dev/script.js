@@ -238,7 +238,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
     };
-    for (let _i = 0; i <= 24; ++i)
+    for (let _i = 0; _i <= 24; ++_i)
     {
       const debug = new RuinData(_i);
       console.log(debug.id+":"+debug.x+":"+debug.y);
