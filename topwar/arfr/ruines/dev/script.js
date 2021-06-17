@@ -448,7 +448,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             return result;
           };
           for (const alli of ALLIS) 
-            input.appendChild(createOption(alli[0],alli[1]));
+            input.appendChild(createOption(alli[0],alli[0]));
           const UNKNOWN = "";
           let special = createOption("Autre",UNKNOWN);
           special.selected = 'selected';
