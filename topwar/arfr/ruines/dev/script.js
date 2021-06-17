@@ -448,8 +448,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             return result;
           };
  
-          console.log("test");
-          console.log(this);
           const UNKNOWN = "";
           let special = createOption("Autre",UNKNOWN);
           let selected = special;
