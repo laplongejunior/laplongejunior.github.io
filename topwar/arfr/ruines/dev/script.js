@@ -84,6 +84,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       y = Math.min(y,SIDE-y);
       return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
     };
+    
+    const MIDDLE = ((SIDE+1)/2)-1;
+    const inMiddle = function(pos) {
+     return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
+    }; 
 
     const ruinMatrix = (function(){  
       class SafeMatrix {
@@ -115,10 +120,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       Directions.RIGHT.next=Directions.DOWN;
       Directions.RIGHT.coords=(x,y,adjust)=>{return [x,y+adjust];};
 
-      const MIDDLE = ((SIDE+1)/2)-1;
-      const inMiddle = function(pos) {
-       return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
-      }; 
       const adjustMiddle = function(pos, other) {
         if (!inMiddle(pos)) return pos;
         if (getCycle(pos,other)%2 === 0) return MIDDLE;
@@ -166,13 +167,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           if (!gen.insertId(tempX,tempY,getCycle(tempX,tempY)*BASE)) break;
         }
 
-          if (tempX === MIDDLE || tempY === MIDDLE) {
-            arr = direction.coords(tempX,tempY,ADJUST);
-            tempX = arr[0];
-            tempY = arr[1];
-          }
-          x = tempX;
-          y = tempY;
+        if (tempX === MIDDLE || tempY === MIDDLE) {
+          arr = direction.coords(tempX,tempY,ADJUST);
+          tempX = arr[0];
+          tempY = arr[1];
+        }
+        x = tempX;
+        y = tempY;
       }
       return gen.matrix;
     })();
@@ -217,20 +218,26 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     };
     
-    const calculateCoord = function(main,sec) {
-      let result = (main+1)*32;
-      const cycle = getCycle(main,sec);
-      return result;
-    };    
-    const calculateCoords = function(x,y) {
-      let posX = calculateCoord(x,y);
-      let posY = calculateCoord(y,x);
-      return [posX, 2*posY];
-    };
     class RuinData {
      constructor(id) {
         this.id = id;
+        // Required to exit from a double-nested loop
         (()=>{
+           const calculateCoord = function(main,sec) {
+            let result = (main+1)*32;
+            // If main is in middle
+            if (getCycle(main,sec) === 3 && inMiddle(sec)) {
+              result-=2;
+              if (main < MIDDLE) result -= 2;
+            }
+            return result;
+          };
+          const calculateCoords = function(x,y) {
+            let posX = calculateCoord(x,y);
+            let posY = calculateCoord(y,x);
+            return [posX, 2*posY];
+          };
+          
           let i, j, data;
           for (i = 0; i < ruinMatrix.length; ++i) {
             let row = ruinMatrix[i];
@@ -249,11 +256,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         })();
       }
     };
-    let _i = 1;//for (let _i = 0; _i <= 24; ++_i)
-    //{
+    for (let _i = 0; _i <= 24; ++_i)
+    {
       const debug = new RuinData(_i);
       console.log(debug.id+":"+debug.x+":"+debug.y);
-    //}
+    }
 
     let ruinIds = new Array();
     for (let i = 0; i < ruinMatrix.length; ++i) {
