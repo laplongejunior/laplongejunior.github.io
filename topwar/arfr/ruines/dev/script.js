@@ -11,7 +11,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const ALLIS = (function(){
         let output = [];
         let index = 0;
-        for (let alli of [[null,"OmegaX"],[null,"DeathKnights"],["SHxH","SFairyTail"],[HOME,"ArmeeFr"],["DUTC","Dutch69"],["B4F","B4F"]]) {
+        for (let alli of [[HOME,"ArmeeFr"],[null,"OmegaX"],[null,"DeathKnights"],["SHxH","SFairyTail"],["DUTC","Dutch69"],["B4F","B4F"]]) {
           if (alli[0] == null) alli[0] = TOP[index++];
           output.push(alli);
         }
