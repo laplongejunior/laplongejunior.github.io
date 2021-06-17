@@ -137,7 +137,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return [x,y];
       };
 
-      gen.matrix[MIDDLE][MIDDLE] = []; // Capital
+      gen.matrix[MIDDLE][MIDDLE] = NaN; // Capital
       let x = 0, y = -BASE, direction = Directions.RIGHT;
       while (true) {
         let arr = direction.coords(x,y,BASE*2);
@@ -201,12 +201,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           for (i = 0; i < ruinMatrix.length; ++i) {
             let row = ruinMatrix[i];
             for (j = 0; j < row.length; ++j) {
-              data = row[j] || [];
-              if (data.length > 0) {
+              data = row[j];
+              if (!isNaN(data)) {
                 const temp = calculateCoords(i,j);
                 let posX = temp[0];
                 let posY = temp[1];
-                result.set(data[0],{x:posY,y:posY});
+                result.set(data,{x:posY,y:posY});
               }
             }
           }
