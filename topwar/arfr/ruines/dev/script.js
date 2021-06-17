@@ -47,6 +47,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.errors = new Map();
       }
       otherError(exclName) {
+        console.log(this.errors);
         for (const [key,value] of this.errors)
           if (key != exclName)
             return value;
