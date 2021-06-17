@@ -11,7 +11,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const ALLIS = (function(){
         let output = [];
         let index = 0;
-        for (let alli of [[null,""],[null,""],[HOME,""],["SHxH",""],["B4F",""],["DUTC",""]]) {
+        for (let alli of [[null,"OmegaX"],[null,"DeathKnights"],["SHxH","SFairyTail"],[HOME,"ArmeeFr"],["DUTC","Dutch69"],["B4F","B4F"]]) {
           if (alli[0] == null) alli[0] = TOP[index++];
           output.push(alli);
         }
@@ -392,7 +392,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
 
       serialize() {
-        return twoCharStr(this.id)+this.spoil.serialize()+this.owner.length+this.owner;
+        let pos = 0;
+        for (let index = 0; index < ALLIS.length; ++index)
+          if (ALLIS[index][0] === this.owner) {
+            pos = index+1;
+            break;
+          }
+        
+        let own = (pos === 0) ? this.owner : "";
+        return twoCharStr(this.id)+this.spoil.serialize()+pos+own.length+own;
       }
       unserialize(data) {
         this.setId(parseInt(data.substring(0,2)));
@@ -400,9 +408,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let spoil = new Diff();
         data = spoil.unserialize(data);
         this.setSpoil(spoil);
+        
+        let pos = parseInt(data.substring(0,1));;
+        data = data.substring(1);
         let length = parseInt(data.substring(0,1));
-        this.setOwner(data.substring(1,1+length));
-        return data.substring(1+length);
+        let own = data.substring(1,1+length);
+        data = data.substring(1+length);
+        
+        this.setOwner((pos === 0) ? own : ALLIS[pos][0]);
+        return data;
       }
       createUI() {
         let ui = doc.createElement("div");
