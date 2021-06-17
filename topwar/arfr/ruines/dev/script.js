@@ -460,7 +460,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           textField.value = '';
           textField.addEventListener('input', event=>this.setOwner(event.target.value));
           const DEF_STYLE = textField.style.display;
-          textField.style.display = 'none';
           
           input.addEventListener('change', event=>{
             const val = event.target.value;
