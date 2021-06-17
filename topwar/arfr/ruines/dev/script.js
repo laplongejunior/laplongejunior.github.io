@@ -223,8 +223,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         for (i = 0; i < ruinMatrix.length; ++i) {
           let row = ruinMatrix[i];
           for (j = 0; j < row.length; ++j) {
-            data = row[j] || [];
-            if (data.length > 0 && data[0] === id) break;
+            data = row[j];
+            console.log(data);
+            if (data != undefined && data.length > 0 && data[0] === id) break;
           }
         }
        
