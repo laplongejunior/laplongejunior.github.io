@@ -217,13 +217,32 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     };
     class RuinData {
-     constructor(id, x, y, reward) {
+     constructor(id) {
         this.id = id;
-        this.x = x;
-        this.y = y;
-        this.reward = reward;
+        let i, j, data;
+        for (i = 0; i < ruinMatrix.length; ++i) {
+          let row = ruinMatrix[i];
+          for (j = 0; j < row.length; ++j) {
+            data = row[j] || [];
+            if (data.length > 0 && data[0] === id) break;
+          }
+        }
+       
+        const calculateCoord = function(pos) {
+          return (pos+1)*32;
+        };
+        if (data.length > 0) {
+          this.x = calculateCoord(i);
+          this.y = calculateCoord(j)*2;
+          //this.reward = reward;
+        }
       }
     };
+    for (let _i = 0; i <= 24; ++i)
+    {
+      const debug = new RuinData(_i);
+      console.log(debug.id+":"+debug.x+":"+debug.y);
+    }
 
     let ruinIds = new Array();
     for (let i = 0; i < ruinMatrix.length; ++i) {
