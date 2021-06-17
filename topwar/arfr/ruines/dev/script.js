@@ -354,6 +354,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         this.owner = "";
       }
       otherError(exclName) {
+        console.log(this.spoil.errors);
+        console.log(this.errors);
         let temp = this.spoil.otherError(exclName);
         if (temp != null) return temp;
         return super.otherError(exclName);
@@ -476,6 +478,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
               if (valName === "id") section = errorId;
               else if (valName === "spoil") section = errorSpoil;
               else section = errorOwner;
+              
               let errMsg = (err == null) ? ruin.otherError(valName) : err;
               section.innerHTML = (errMsg == null) ? "" : "Erreur : "+errMsg;
             }
