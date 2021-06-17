@@ -217,12 +217,15 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       debugMatrix(ruinMatrix);
       
       let result = new Map();
+      let DEBUG_LOGS = false;
       const calculateCoord = function(main,sec) {
         let result = (main+1)*32;
         // If main is in middle
-        console.log(sec);
-        console.log(getCycle(main,sec));
-        console.log(inMiddle(sec));
+        if (DEBUG_LOGS) {
+          console.log(sec);
+          console.log(getCycle(main,sec));
+          console.log(inMiddle(sec));
+        }
         if (getCycle(main,sec) === 3 && inMiddle(sec)) {
           result-=2;
           if (main < MIDDLE) result -= 2;
@@ -241,7 +244,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         for (j = 0; j < row.length; ++j) {
           data = row[j];
           if (data && !isNaN(data)) {
+            DEBUG_LOGS = (data === 24);
             const temp = calculateCoords(i,j);
+            DEBUG_LOGS = false;
+            
             let posX = temp[0];
             let posY = temp[1];
             result.set(data,{x:posY,y:posY});
