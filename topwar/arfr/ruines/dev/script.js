@@ -413,10 +413,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         data = data.substring(1);
         let length = parseInt(data.substring(0,1));
         let own = data.substring(1,1+length);
-        data = data.substring(1+length);
         
-        this.setOwner((pos === 0) ? own : ALLIS[pos][0]);
-        return data;
+        if (pos > 0) own = ALLIS[pos][0];
+        this.setOwner(own);
+        return data.substring(1+length);
       }
       createUI() {
         let ui = doc.createElement("div");
