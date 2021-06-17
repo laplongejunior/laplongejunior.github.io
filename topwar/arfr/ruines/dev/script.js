@@ -49,7 +49,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       otherError(exclName) {
         console.log(this.errors);
         for (const [key,value] of this.errors)
-          if (key != exclName)
+          if (key !== exclName)
             return value;
         return null;
       }
