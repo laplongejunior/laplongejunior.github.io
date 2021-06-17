@@ -296,7 +296,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       console.log(id+":"+debug.x+":"+debug.y);
     }
 
-    let ruinIds = ruinData.keys().sort();
+    let ruinIds = Array.from(ruinData.keys()).sort();
 
     /*
     let ruinCoords = function(id) {
