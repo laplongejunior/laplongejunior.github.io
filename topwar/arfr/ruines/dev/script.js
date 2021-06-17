@@ -436,7 +436,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           for (const alli of ALLIS) 
             input.appendChild(createOption(alli[0],alli[1]));
           const UNKNOWN = "";
-          input.appendChild(createOption("Autre",UNKNOWN));
+          let special = createOption("Autre",UNKNOWN);
+          special.selected = 'selected';
+          input.appendChild(special);
           
           let textField = doc.createElement('input');
           textField.type = 'text';
