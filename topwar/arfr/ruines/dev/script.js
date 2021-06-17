@@ -451,6 +451,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           input.addEventListener('change', event=>{
             console.log("OK");
             const val = event.target.value;
+            console.log(val);
             this.setOwner(val);
             textField.style.display = (val === UNKNOWN) ? 'none' : DEF_STYLE;
           });
