@@ -220,7 +220,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const calculateCoord = function(main,sec) {
       let result = (main+1)*32;
       const cycle = getCycle(main,sec);
-      if (cycle === 3)
       return result;
     };    
     const calculateCoords = function(x,y) {
@@ -237,9 +236,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             let row = ruinMatrix[i];
             for (j = 0; j < row.length; ++j) {
               data = row[j] || [];
-              console.log(data);
               console.log(data[0]+":"+id);
               if (data.length > 0 && data[0] === id) {
+                console.log(data);
                 const temp = calculateCoords(i,j);
                 this.x = temp[0];
                 this.y = temp[1];
