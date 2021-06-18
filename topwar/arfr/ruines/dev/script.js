@@ -219,7 +219,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       let result = new Map();
       let DEBUG_LOGS = false;
       
-      const CENTER = getCycle(SIZE/2,SIZE/2);
+      const CENTER = getCycle(SIDE/2,SIDE/2);
       const calculateCoord = function(main,sec) {
         let result = (main+1)*32;
         // If main is in middle
