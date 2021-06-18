@@ -186,6 +186,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       Directions.LEFT.coords=(x,y,adjust)=>{return [x,y-adjust];};
       Directions.RIGHT.next=Directions.DOWN;
       Directions.RIGHT.coords=(x,y,adjust)=>{return [x,y+adjust];};
+	    debugger;
 
       const adjustMiddle = function(pos, other) {
         if (!inMiddle(pos)) return pos;
