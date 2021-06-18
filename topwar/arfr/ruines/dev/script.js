@@ -105,10 +105,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
     };
+    // Can't set a cyclical reference during initialisation
     for (const lvl in RuinDifficulty) {
       const level = RuinDifficulty[lvl];
-      for (const reward in level.rewards) {
-        level[reward].category = level;
+      const rewards = level.rewards;
+      for (const reward in rewards) {
+        rewards[reward].category = level;
       }
     }
     
