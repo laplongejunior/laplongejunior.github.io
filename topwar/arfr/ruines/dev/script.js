@@ -421,16 +421,27 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       createUI() {
         let ui = doc.createElement("div");
         
+        const createOption = function(value, text) {
+          if (!text) text = value.toString();
+          let result = doc.createElement("option");
+          result.text = text;
+          result.value = value;
+          return result;
+        };
+        
         const errorId = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Id: #"));
-          let field = doc.createElement('select');
+          const field = doc.createElement('select');
+          const noID = createOption(0);
+          let selected = noID;
           for (const id of ruinIds) {
             let option = doc.createElement('option');
             option.textContent = option.value = id;
+            if (id === this.id) selected = option;
             field.appendChild(option);
           }
-          
-          field.value = this.id;
+          field.appendChild(noID);
+          selected.selected = 'selected';
           field.addEventListener('input', event=>this.setId(parseInt(event.target.value)) );
           return field;
         });
@@ -440,19 +451,12 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         const errorOwner = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Possédé par: "));
           let input = doc.createElement("select");
-          
-          const createOption = function(text, value) {
-            let result = doc.createElement("option");
-            result.text = text;
-            result.value = value;
-            return result;
-          };
  
           const UNKNOWN = "";
-          let special = createOption("Autre",UNKNOWN);
+          let special = createOption(UNKNOWN,"Autre");
           let selected = special;
           for (const alli of ALLIS) {
-            let newOption = createOption(alli[0],alli[0]);
+            let newOption = createOption(alli[0]);
             if (alli[0] === this.owner) selected = newOption;
             input.appendChild(newOption);              
           }
