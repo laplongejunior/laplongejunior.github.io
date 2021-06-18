@@ -105,9 +105,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
     };
-    for (const level in RuinDifficulty) {
+    for (const lvl in RuinDifficulty) {
+      const level = RuinDifficulty[lvl];
       for (const reward in level.rewards) {
-        reward.category = level;
+        level[reward].category = level;
       }
     }
     
