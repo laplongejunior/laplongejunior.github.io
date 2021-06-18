@@ -106,8 +106,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
     };
-    for (const enumeration of RuinDifficulty) {
-      for (const reward of enumeration.rewards) {
+    for (const enumeration in RuinDifficulty) {
+      for (const reward in enumeration.rewards) {
         reward.category = enumeration;
       }
     }
