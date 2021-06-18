@@ -113,8 +113,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         rewards[reward].category = level;
       }
     }
-    
-    
+
     const SIDE = 15, BASE = 2, ADJUST = 1;
     const getCycle = (x,y)=>{
       if (x < 0 || x > SIDE) return -1;
@@ -128,8 +127,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const inMiddle = function(pos) {
      return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
     }; 
-    
-    const ruinData = (function(){  
+	
+const ruinData = (function(){  
       class SafeMatrix {
         constructor() {
           this.id = 0;
@@ -138,7 +137,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             m[i] = new Array(SIDE);
           m[MIDDLE][MIDDLE] = NaN; // Capital
           this.matrix = m;
-          this.ruinData = new Map();
+          this.data = new Map();
         }
 
         insertId(x,y,margin) {
@@ -147,7 +146,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           let arr = this.matrix[x];
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
-          
+
           const CENTER = getCycle(SIDE/2,SIDE/2);
           const calculateCoord = function(main,sec,cycle) {
             if (!cycle) cycle = getCycle(main,sec);
@@ -157,8 +156,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
               if (main < MIDDLE) result -= 2;
             }
             return result;
-          };          
-          
+          };
+
           let i = this.id, difficulty = {};
           for (const level in RuinDifficulty) {
             const rewards = RuinDifficulty[level].rewards;
@@ -169,11 +168,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             difficulty = rewards[keys[i]];
             break;
           }
-          
+
           arr[y] = ++this.id;
           const cycle = getCycle(x,y);
-          this.ruinData.set(this.id,{x:calculateCoord(x,y,cycle),y:2*calculateCoord(y,x,cycle),reward:difficulty});
-          
+          this.data.set(this.id,{x:calculateCoord(x,y,cycle),y:2*calculateCoord(y,x,cycle),reward:difficulty});
+
           return true;
         }
       }
@@ -241,9 +240,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         x = tempX;
         y = tempY;
       }
-      
+
       //debugMatrix(gen.matrix);
-      return gen.ruinData;
+      return gen.data;
     })();
     
     let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
