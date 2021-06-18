@@ -22,20 +22,20 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const twoCharStr = function(nbr) {
       return nbr.toString().padStart(2,"0");
     };
-    const debugMatrix = function(matrix) {
-      console.log("=====START=====");
-      let index = 0;
-      for (let arr of matrix) {
-        let line = "";
-        for (let item of arr) {
-          if (item === undefined || item.length === 0) item = "--";
-          else item = item[0].toString().padStart(2,"0");
-          line+=item+",";
-        }
-        console.log(twoCharStr(++index)+") "+line.substring(0,line.length-1));
-      }
-      console.log("======END======");
-    };
+//    const debugMatrix = function(matrix) {
+//      console.log("=====START=====");
+//      let index = 0;
+//      for (let arr of matrix) {
+//        let line = "";
+//        for (let item of arr) {
+//          if (item === undefined || item.length === 0) item = "--";
+//          else item = item[0].toString().padStart(2,"0");
+//          line+=item+",";
+//        }
+//        console.log(twoCharStr(++index)+") "+line.substring(0,line.length-1));
+//      }
+//      console.log("======END======");
+//    };
 
     class Observer {
       onUpdate(subject, valName, newValue, oldValue) {}
@@ -72,8 +72,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     };
 
-    // Coords mapping
-    
+    // Coords mapping   
     const RuinDifficulty = {
       LEVEL1:{
         title:"Ruines",
@@ -136,7 +135,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             if (i >= size) i-= size;
             if (i >= size) { i-= size; continue; }
             reward = RuinDifficulty[level].rewards[keys[i]];
-            console.log(reward);
             break;
           }
           
@@ -225,7 +223,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         y = tempY;
       }
       const ruinMatrix = gen.matrix;
-      debugMatrix(ruinMatrix);
+      //debugMatrix(ruinMatrix);
       
       let result = new Map();
       
@@ -263,7 +261,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
     for (const id of ruinIds) {
       const debug = ruinData.get(id);
-      console.log(id+":"+debug.x+":"+debug.y);
+      //console.log(id+":"+debug.x+":"+debug.y);
     }
 
     // UI handling    
