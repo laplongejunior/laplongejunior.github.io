@@ -171,7 +171,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
           arr[y] = ++this.id;
           const cycle = getCycle(x,y);
-          this.data.set(this.id,{x:calculateCoord(x,y,cycle),y:2*calculateCoord(y,x,cycle),reward:difficulty});
+	  const _x = calculateCoord(x,y,cycle), _y = 2*calculateCoord(y,x,cycle);
+          this.data.set(this.id,{x:_x,y:_y,reward:difficulty});
 
           return true;
         }
