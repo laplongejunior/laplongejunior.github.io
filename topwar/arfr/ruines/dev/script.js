@@ -107,9 +107,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     };
     for (const level in RuinDifficulty) {
-      console.log(level);
       for (const reward in level.rewards) {
         reward.category = level;
+        console.log(reward);
       }
     }
     
@@ -130,18 +130,19 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
           
-          let i = this.id;
+          let i = this.id, reward = {};
           for (const level in RuinDifficulty) {
-            console.log(level);
-            const keys = Object.keys(level.rewards);
+            console.log(RuinDifficulty[level]);
+            const keys = Object.keys(RuinDifficulty[level].rewards);
             const size = keys.length;
             if (i > size) i-= size;
             if (i > size) { i-= size; continue; }
-            const reward = level.rewards[keys[i]];
+            reward = RuinDifficulty[level].rewards[keys[i]];
+            console.log(reward);
             break;
           }
           
-          arr[y] = [++this.id,{}];
+          arr[y] = [++this.id,reward];
           console.log(arr[y]);
           return true;
         }
