@@ -1,6 +1,6 @@
 // Avoids relying on the global space, except the loading call that provides html-defined ids
 let global = this;
-global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,errorClass) {
+global._load = (loadInput,loadId,listId,buttonId,outputId,saveId,sortId,errorClass)=>{
   delete global._load;
   (function(){
     "use strict";
@@ -19,10 +19,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     })();
 
     // UI view
-    const twoCharStr = function(nbr) {
+    const twoCharStr = (nbr)=>{
       return nbr.toString().padStart(2,"0");
     };
-//    const debugMatrix = function(matrix) {
+//    const debugMatrix = (matrix)=>{
 //      console.log("=====START=====");
 //      let index = 0;
 //      for (let arr of matrix) {
@@ -124,7 +124,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
 
     const MIDDLE = ((SIDE+1)/2)-1;
-    const inMiddle = function(pos) {
+    const inMiddle = (pos)=>{
       return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
     }; 
 	
@@ -153,7 +153,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             let result = (main+1)*32;
             if (cycle === CENTER-1 && inMiddle(sec)) {
               result-=2;
-              if (main < MIDDLE) result -= 2;
+              if (main < MIDDLE) result-=2;
             }
             return result;
           };
@@ -172,9 +172,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           arr[y] = ++this.id;
 		
           const cycle = getCycle(x,y);
-	  const _x = calculateCoord(x,y,cycle), _y = 2*calculateCoord(y,x,cycle);
-          this.data.set(this.id,{x:_x,y:_y,reward:difficulty});
-
+          this.data.set(this.id,{x:calculateCoord(x,y,cycle),y:2*calculateCoord(y,x,cycle),reward:difficulty});
           return true;
         }
       }
@@ -188,13 +186,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       Directions.RIGHT.next=Directions.DOWN;
       Directions.RIGHT.coords=(x,y,adjust)=>{return [x,y+adjust];};
 
-      const adjustMiddle = function(pos, other) {
+      const adjustMiddle = (pos, other)=>{
         if (!inMiddle(pos)) return pos;
         if (getCycle(pos,other)%2 === 0) return MIDDLE;
         return null;
       };
       let gen = new SafeMatrix();
-      const middleCorrect = function(x,y,direction) {
+      const middleCorrect = (x,y,direction)=>{
         x = adjustMiddle(x, y, direction);
         if (x === null) {
           x = direction.coords(MIDDLE,y,BASE+ADJUST)[0];
@@ -254,7 +252,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     }*/
 
     // UI handling    
-    const createNumberField = function(getter, setter) {
+    const createNumberField = (getter, setter)=>{
       let field = doc.createElement("input");
       field.type = 'number';
       field.value = getter();
@@ -417,7 +415,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       createUI() {
         let ui = doc.createElement("div");
         
-        const createOption = function(value, text) {
+        const createOption = (value, text)=>{
           if (!text) text = value.toString();
           let result = doc.createElement("option");
           result.text = text;
@@ -510,7 +508,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     };
     
     let ruinList = new Array();
-    const sortRuins = function() {
+    const sortRuins = ()=>{
       return ruinList.sort((a,b)=>{
           const A = (a.owner === HOME), B = (b.owner === HOME);
           if (A !== B) return A ? -1 : 1;
@@ -518,11 +516,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         });
     };
     let inputList = doc.getElementById(listId);
-    const clearList = function() {
+    const clearList = ()=>{
       while (inputList.firstChild) inputList.removeChild(inputList.firstChild);
     };
     
-    const updateOutput = function() {
+    const updateOutput = ()=>{
       let backup = "", output = "";
       const NEW_LINE = '\r\n', NL_LEN = 2;
       for (const ruin of sortRuins()) {
@@ -553,7 +551,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       doc.getElementById(outputId).value = output.substring(NL_LEN);
     };
     
-    const addRuinView = function(ruin) {
+    const addRuinView = (ruin)=>{
       let newItem = doc.createElement('li');
       newItem.classList.add('list-group-item'); // Bootstrap
       newItem.appendChild(ruin.createUI());
