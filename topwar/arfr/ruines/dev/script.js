@@ -130,11 +130,18 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
           
+          let i = this.id;
           for (const level in RuinDifficulty) {
-            
+            const keys = Object.keys(level.rewards);
+            const size = keys.length;
+            if (i > size) i-= size;
+            if (i > size) { i-= size; continue; }
+            const reward = level.rewards[keys[i]];
+            break;
           }
           
           arr[y] = [++this.id,{}];
+          console.log(arr[y]);
           return true;
         }
       }
