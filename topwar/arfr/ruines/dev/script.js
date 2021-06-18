@@ -260,9 +260,6 @@ global._load = (loadInput,loadId,listId,buttonId,outputId,saveId,sortId,errorCla
       return field;
     };
     
-    const addError = function(arr, err){
-      if (err != null) arr.push(err);
-    };
     class Diff extends Subject {
       constructor() {
         super();
