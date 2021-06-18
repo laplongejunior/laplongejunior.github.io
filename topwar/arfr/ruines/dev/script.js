@@ -219,9 +219,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       let result = new Map();
       
       const CENTER = getCycle(SIDE/2,SIDE/2);
-      const calculateCoord = function(main,sec) {
+      const calculateCoord = function(main,sec,cycle) {
+        if (!cycle) cycle = getCycle(main,sec);
         let result = (main+1)*32;
-        if (getCycle(main,sec) === CENTER-1 && inMiddle(sec)) {
+        if (cycle === CENTER-1 && inMiddle(sec)) {
           console.log(result);
           result-=2;
           if (main < MIDDLE) result -= 2;
@@ -230,8 +231,9 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return result;
       };
       const calculateCoords = function(x,y) {
-        let posX = calculateCoord(x,y);
-        let posY = calculateCoord(y,x);
+        const cycle = getCycle(x,y);
+        let posX = calculateCoord(x,y,cycle);
+        let posY = calculateCoord(y,x,cycle);
         return [posX, 2*posY];
       };
           
@@ -242,10 +244,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           data = row[j];
           if (data && !isNaN(data)) {
             const temp = calculateCoords(i,j);
-            
-            let posX = temp[0];
-            let posY = temp[1];
-            result.set(data,{x:posY,y:posY});
+            result.set(data,{x:temp[0],y:temp[1]});
           }
         }
       }
