@@ -193,6 +193,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       */
 	    debugger;
 
+	    /*
       const adjustMiddle = function(pos, other) {
         if (!inMiddle(pos)) return pos;
         if (getCycle(pos,other)%2 === 0) return MIDDLE;
@@ -209,7 +210,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           y = direction.coords(x,MIDDLE,BASE+ADJUST)[1];
         return [x,y];
       };
-
+*/
 	    /*
       let x = 0, y = -BASE, direction = Directions.RIGHT;
       while (true) {
@@ -251,7 +252,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 */
 
       //debugMatrix(gen.matrix);
-      return gen.data;
+      return new Set();//gen.data;
     })();
     
     let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
