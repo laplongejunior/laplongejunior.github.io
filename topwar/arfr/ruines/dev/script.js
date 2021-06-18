@@ -128,7 +128,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
     }; 
 	
-    //const ruinData = (function(){
+    const ruinData = (function(){
       class SafeMatrix {
         constructor() {
           this.id = 0;
@@ -147,7 +147,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
 
-		/*
           const CENTER = getCycle(SIDE/2,SIDE/2);
           const calculateCoord = function(main,sec,cycle) {
             if (!cycle) cycle = getCycle(main,sec);
@@ -169,19 +168,17 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             difficulty = rewards[keys[i]];
             break;
           }
-*/
+	  
           arr[y] = ++this.id;
-		/*
+		
           const cycle = getCycle(x,y);
 	  const _x = calculateCoord(x,y,cycle), _y = 2*calculateCoord(y,x,cycle);
           this.data.set(this.id,{x:_x,y:_y,reward:difficulty});
-	  */
 
           return true;
         }
       }
       const Directions = {UP:{/*name:"UP"*/},DOWN:{/*name:"DOWN"*/},LEFT:{/*name:"LEFT"*/},RIGHT:{/*name:"RIGHT"*/}};
-	    /*
       Directions.UP.next=Directions.RIGHT;
       Directions.UP.coords=(x,y,adjust)=>{return [x-adjust,y];};
       Directions.DOWN.next=Directions.LEFT;
@@ -190,10 +187,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       Directions.LEFT.coords=(x,y,adjust)=>{return [x,y-adjust];};
       Directions.RIGHT.next=Directions.DOWN;
       Directions.RIGHT.coords=(x,y,adjust)=>{return [x,y+adjust];};
-      */
-	    debugger;
 
-	    /*
       const adjustMiddle = function(pos, other) {
         if (!inMiddle(pos)) return pos;
         if (getCycle(pos,other)%2 === 0) return MIDDLE;
@@ -210,8 +204,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           y = direction.coords(x,MIDDLE,BASE+ADJUST)[1];
         return [x,y];
       };
-*/
-	    /*
+      
       let x = 0, y = -BASE, direction = Directions.RIGHT;
       while (true) {
         let arr = direction.coords(x,y,BASE*2);
@@ -249,17 +242,16 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         x = tempX;
         y = tempY;
       }
-*/
 
       //debugMatrix(gen.matrix);
-    const  ruinData = new Set();//gen.data;
-    //})();
+      return gen.data;
+    })();
     
     let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
     /*for (const id of ruinIds) {
       const debug = ruinData.get(id);
       console.log(id+":"+debug.x+":"+debug.y);
-    */}
+    }*/
 
     // UI handling    
     const createNumberField = function(getter, setter) {
