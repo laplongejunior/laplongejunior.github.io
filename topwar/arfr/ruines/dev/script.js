@@ -218,15 +218,18 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       
       let result = new Map();
       let DEBUG_LOGS = false;
+      
+      const CENTER = getCycle(SIZE/2,SIZE/2);
       const calculateCoord = function(main,sec) {
         let result = (main+1)*32;
         // If main is in middle
         if (DEBUG_LOGS) {
+          console.log(CENTER);
           console.log(sec);
           console.log(getCycle(main,sec));
           console.log(inMiddle(sec));
         }
-        if (getCycle(main,sec) === 3 && inMiddle(sec)) {
+        if (getCycle(main,sec) === CENTER-1 && inMiddle(sec)) {
           result-=2;
           if (main < MIDDLE) result -= 2;
         }
