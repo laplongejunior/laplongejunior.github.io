@@ -287,21 +287,21 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
       
       setHour(h) {
-        if (h < 0) return this.onError("hour","Heure négative");
+        if (h < 0) return this.onError("expiration.hour","Heure négative");
         this.h = h;
-        return this.onUpdate("expirationHour");
+        return this.onUpdate("expiration.hour");
       }
       setMin(m) {
-        if (m < 0) return this.onError("min","Minutes négatives");
-        if (m >= 60) return this.onError("min","Minutes trop élevées");
+        if (m < 0) return this.onError("expiration.min","Minutes négatives");
+        if (m >= 60) return this.onError("expiration.min","Minutes trop élevées");
         this.m = m;
-        return this.onUpdate("expirationMin");
+        return this.onUpdate("expiration.min");
       }
       setSec(s) {
-        if (s < 0) return this.onError("sec","Secondes négatives");
-        if (s >= 60) return this.onError("sec","Secondes trop élevées");
+        if (s < 0) return this.onError("expiration.sec","Secondes négatives");
+        if (s >= 60) return this.onError("expiration.sec","Secondes trop élevées");
         this.s = s;
-        return this.onUpdate("expirationSec");
+        return this.onUpdate("expiration.sec");
       }
 
       getDate() {
