@@ -181,6 +181,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
       const Directions = {UP:{/*name:"UP"*/},DOWN:{/*name:"DOWN"*/},LEFT:{/*name:"LEFT"*/},RIGHT:{/*name:"RIGHT"*/}};
+	    /*
       Directions.UP.next=Directions.RIGHT;
       Directions.UP.coords=(x,y,adjust)=>{return [x-adjust,y];};
       Directions.DOWN.next=Directions.LEFT;
@@ -189,6 +190,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       Directions.LEFT.coords=(x,y,adjust)=>{return [x,y-adjust];};
       Directions.RIGHT.next=Directions.DOWN;
       Directions.RIGHT.coords=(x,y,adjust)=>{return [x,y+adjust];};
+      */
 	    debugger;
 
       const adjustMiddle = function(pos, other) {
