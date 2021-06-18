@@ -432,7 +432,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         const errorId = addInputSection(ui, (section,error)=>{
           section.appendChild(doc.createTextNode("Id: #"));
           const field = doc.createElement('select');
-          const noID = createOption(0);
+          const noID = createOption(0,"??");
           let selected = noID;
           for (const id of ruinIds) {
             let option = doc.createElement('option');
@@ -532,8 +532,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (const ruin of sortRuins()) {
         if (ruin.errors.size > 0) continue;
         backup += ruin.serialize();
+        
+        let id = ruin.id;
+        output += NEW_LINE + "#" + (id === 0 ? "??" : twoCharStr(id));
+        let data = ruinData.get(id);
+        if (data) output += " ("+data.x+","+data.y+")";
         let spoilTime = ruin.spoil.getDate();
-        output += NEW_LINE + "#"+ruin.id + NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
+        output += NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
         
         let own = ruin.owner;
         if (own.length === 0) continue;
