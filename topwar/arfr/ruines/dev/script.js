@@ -549,7 +549,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         if (data) {
           output += " ("+data.x+","+data.y+")";
           const reward = data.reward;
-          output += NEW_LINE + (reward.mistranslation ? reward.mistranslation : reward.level.title) + " - " + reward.name;
+          output += NEW_LINE + (reward.mistranslation ? reward.mistranslation : reward.category.title) + " - " + reward.name;
         }
         
         let spoilTime = ruin.spoil.getDate();
