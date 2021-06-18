@@ -77,7 +77,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const RuinDifficulty = {
       LEVEL1:{
         title:"Ruines",
-        cycle:0,
+        //cycle:0,
         rewards:{
           GOLD:{name:"Or"},
           ATK:{name:"ATQ toutes unités"},
@@ -89,7 +89,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       },
       LEVEL2:{
         title:"Ruines Anciennes",
-        cycle:1,
+        //cycle:1,
         rewards:{
           QUEST:{name:"Quete",mistranslation:"Ruines Antiques"},
           RELIC:{name:"Reliques"},
@@ -99,7 +99,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       },
       LEVEL3:{
         title:"Ruines de l'Empereur",
-        cycle:2,
+        //cycle:2,
         rewards:{
           GUARD:{name:"Garde"},
           RES:{name:"Ressource"}
@@ -116,7 +116,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const ruinData = (function(){  
       class SafeMatrix {
         constructor(SIDE) {
-          this.id = 0; // 0 is capital
+          this.id = 0;
           let m = new Array(SIDE);
           for (let i=0;i<SIDE;++i)
             m[i] = new Array(SIDE);
