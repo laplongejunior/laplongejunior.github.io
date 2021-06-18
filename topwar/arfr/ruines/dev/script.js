@@ -109,7 +109,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     for (const level in RuinDifficulty) {
       for (const reward in level.rewards) {
         reward.category = level;
-        console.log(reward);
       }
     }
     
@@ -132,7 +131,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           
           let i = this.id, reward = {};
           for (const level in RuinDifficulty) {
-            console.log(RuinDifficulty[level]);
             const keys = Object.keys(RuinDifficulty[level].rewards);
             const size = keys.length;
             if (i > size) i-= size;
