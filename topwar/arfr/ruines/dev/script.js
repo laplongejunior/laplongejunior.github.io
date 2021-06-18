@@ -225,11 +225,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         // If main is in middle
         if (DEBUG_LOGS) {
           console.log(CENTER);
-          console.log(sec);
           console.log(getCycle(main,sec));
-          console.log(inMiddle(sec));
         }
         if (getCycle(main,sec) === CENTER-1 && inMiddle(sec)) {
+          console.log("OK");
           result-=2;
           if (main < MIDDLE) result -= 2;
         }
