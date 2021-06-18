@@ -147,6 +147,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
 
+		/*
           const CENTER = getCycle(SIDE/2,SIDE/2);
           const calculateCoord = function(main,sec,cycle) {
             if (!cycle) cycle = getCycle(main,sec);
@@ -168,11 +169,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
             difficulty = rewards[keys[i]];
             break;
           }
-
+*/
           arr[y] = ++this.id;
+		/*
           const cycle = getCycle(x,y);
 	  const _x = calculateCoord(x,y,cycle), _y = 2*calculateCoord(y,x,cycle);
           this.data.set(this.id,{x:_x,y:_y,reward:difficulty});
+	  */
 
           return true;
         }
