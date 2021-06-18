@@ -210,6 +210,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return [x,y];
       };
 
+	    /*
       let x = 0, y = -BASE, direction = Directions.RIGHT;
       while (true) {
         let arr = direction.coords(x,y,BASE*2);
@@ -247,6 +248,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         x = tempX;
         y = tempY;
       }
+*/
 
       //debugMatrix(gen.matrix);
       return gen.data;
