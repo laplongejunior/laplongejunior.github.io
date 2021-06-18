@@ -141,7 +141,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           }
           
           arr[y] = [++this.id,reward];
-          console.log(arr[y]);
           return true;
         }
       }
