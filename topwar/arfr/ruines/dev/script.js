@@ -106,9 +106,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         }
       }
     };
-    for (const enumeration in RuinDifficulty) {
-      for (const reward in enumeration.rewards) {
-        reward.category = enumeration;
+    for (const level in RuinDifficulty) {
+      console.log(level);
+      for (const reward in level.rewards) {
+        reward.category = level;
       }
     }
     
@@ -128,6 +129,11 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           let arr = this.matrix[x];
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
+          
+          for (const level in RuinDifficulty) {
+            
+          }
+          
           arr[y] = [++this.id,{}];
           return true;
         }
