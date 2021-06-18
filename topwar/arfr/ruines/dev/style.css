@@ -4,3 +4,7 @@
 input[type="number"] {
 	width: 3em;
 }
+textarea {
+  width: 90%;
+  height: 300px;
+}
