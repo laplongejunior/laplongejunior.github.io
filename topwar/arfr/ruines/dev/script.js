@@ -28,8 +28,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 //      for (let arr of matrix) {
 //        let line = "";
 //        for (let item of arr) {
-//          if (item === undefined || item.length === 0) item = "--";
-//          else item = item[0].toString().padStart(2,"0");
+//          if (item === undefined || isNaN(item)) item = "--";
+//          else item = item.toString().padStart(2,"0");
 //          line+=item+",";
 //        }
 //        console.log(twoCharStr(++index)+") "+line.substring(0,line.length-1));
@@ -114,14 +114,31 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       }
     }
     
+    
+    const SIDE = 15, BASE = 2, ADJUST = 1;
+    const getCycle = (x,y)=>{
+      if (x < 0 || x > SIDE) return -1;
+      if (y < 0 || y > SIDE) return -1;
+      x = Math.min(x,SIDE-x);
+      y = Math.min(y,SIDE-y);
+      return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
+    };
+
+    const MIDDLE = ((SIDE+1)/2)-1;
+    const inMiddle = function(pos) {
+     return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
+    }; 
+    
     const ruinData = (function(){  
       class SafeMatrix {
-        constructor(SIDE) {
+        constructor() {
           this.id = 0;
           let m = new Array(SIDE);
           for (let i=0;i<SIDE;++i)
             m[i] = new Array(SIDE);
+          m[MIDDLE][MIDDLE] = NaN; // Capital
           this.matrix = m;
+          this.ruinData = new Map();
         }
 
         insertId(x,y,margin) {
@@ -131,21 +148,36 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
           
-          let i = this.id, reward = {};
+          const CENTER = getCycle(SIDE/2,SIDE/2);
+          const calculateCoord = function(main,sec,cycle) {
+            if (!cycle) cycle = getCycle(main,sec);
+            let result = (main+1)*32;
+            if (cycle === CENTER-1 && inMiddle(sec)) {
+              result-=2;
+              if (main < MIDDLE) result -= 2;
+            }
+            return result;
+          };          
+          
+          let i = this.id, difficulty = {};
           for (const level in RuinDifficulty) {
-            const keys = Object.keys(RuinDifficulty[level].rewards);
+            const rewards = RuinDifficulty[level].rewards;
+            const keys = Object.keys(rewards);
             const size = keys.length;
             if (i >= size) i-= size;
             if (i >= size) { i-= size; continue; }
-            reward = RuinDifficulty[level].rewards[keys[i]];
+            difficulty = rewards[keys[i]];
             break;
           }
           
-          arr[y] = [++this.id,reward];
+          arr[y] = ++this.id;
+          const cycle = getCycle(x,y);
+          this.ruinData.set(this.id,{x:calculateCoord(x,y,cycle),y:2*calculateCoord(y,x,cycle),reward:difficulty});
+          
           return true;
         }
       }
-      const Directions = {UP:{name:"UP"},DOWN:{name:"DOWN"},LEFT:{name:"LEFT"},RIGHT:{name:"RIGHT"}};
+      const Directions = {UP:{/*name:"UP"*/},DOWN:{/*name:"DOWN"*/},LEFT:{/*name:"LEFT"*/},RIGHT:{/*name:"RIGHT"*/}};
       Directions.UP.next=Directions.RIGHT;
       Directions.UP.coords=(x,y,adjust)=>{return [x-adjust,y];};
       Directions.DOWN.next=Directions.LEFT;
@@ -154,21 +186,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       Directions.LEFT.coords=(x,y,adjust)=>{return [x,y-adjust];};
       Directions.RIGHT.next=Directions.DOWN;
       Directions.RIGHT.coords=(x,y,adjust)=>{return [x,y+adjust];};
-        
-      const BASE = 2, ADJUST = 1;
-      const SIDE = 15; 
-      const getCycle = (x,y)=>{
-        if (x < 0 || x > SIDE) return -1;
-        if (y < 0 || y > SIDE) return -1;
-        x = Math.min(x,SIDE-x);
-        y = Math.min(y,SIDE-y);
-        return Math.min(Math.floor(x/BASE),Math.floor(y/BASE));
-      };
-
-      const MIDDLE = ((SIDE+1)/2)-1;
-      const inMiddle = function(pos) {
-       return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
-      }; 
 
       const adjustMiddle = function(pos, other) {
         if (!inMiddle(pos)) return pos;
@@ -187,7 +204,6 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return [x,y];
       };
 
-      gen.matrix[MIDDLE][MIDDLE] = []; // Capital
       let x = 0, y = -BASE, direction = Directions.RIGHT;
       while (true) {
         let arr = direction.coords(x,y,BASE*2);
@@ -225,47 +241,16 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         x = tempX;
         y = tempY;
       }
-      const ruinMatrix = gen.matrix;
-      //debugMatrix(ruinMatrix);
       
-      let result = new Map();
-      
-      const CENTER = getCycle(SIDE/2,SIDE/2);
-      const calculateCoord = function(main,sec,cycle) {
-        if (!cycle) cycle = getCycle(main,sec);
-        let result = (main+1)*32;
-        if (cycle === CENTER-1 && inMiddle(sec)) {
-          result-=2;
-          if (main < MIDDLE) result -= 2;
-        }
-        return result;
-      };
-      const calculateCoords = function(x,y) {
-        const cycle = getCycle(x,y);
-        let posX = calculateCoord(x,y,cycle);
-        let posY = calculateCoord(y,x,cycle);
-        return [posX, 2*posY];
-      };
-          
-      let i, j, data;
-      for (i = 0; i < ruinMatrix.length; ++i) {
-        let row = ruinMatrix[i];
-        for (j = 0; j < row.length; ++j) {
-          data = row[j];
-          if (data != undefined && data.length > 0) {
-            const temp = calculateCoords(i,j);
-            result.set(data[0],{x:temp[0],y:temp[1],reward:data[1]});
-          }
-        }
-      }
-      return result;
+      //debugMatrix(gen.matrix);
+      return gen.ruinData;
     })();
     
     let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
-    for (const id of ruinIds) {
+    /*for (const id of ruinIds) {
       const debug = ruinData.get(id);
-      //console.log(id+":"+debug.x+":"+debug.y);
-    }
+      console.log(id+":"+debug.x+":"+debug.y);
+    */}
 
     // UI handling    
     const createNumberField = function(getter, setter) {
