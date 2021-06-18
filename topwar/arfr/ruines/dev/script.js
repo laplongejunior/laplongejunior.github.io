@@ -128,7 +128,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
     }; 
 	
-    const ruinData = (function(){
+    //const ruinData = (function(){
       class SafeMatrix {
         constructor() {
           this.id = 0;
@@ -252,8 +252,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 */
 
       //debugMatrix(gen.matrix);
-      return new Set();//gen.data;
-    })();
+    const  ruinData = new Set();//gen.data;
+    //})();
     
     let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
     /*for (const id of ruinIds) {
