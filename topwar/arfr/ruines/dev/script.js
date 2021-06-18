@@ -547,10 +547,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           output += " ("+data.x+","+data.y+")";
           const reward = data.reward;
           output += NEW_LINE + reward.mistranslation ? reward.mistranslation : reward.level.title + " - " + reward.name;
-          let spoilTime = ruin.spoil.getDate();
-          output += NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
         }
         
+        let spoilTime = ruin.spoil.getDate();
+        output += NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
         let own = ruin.owner;
         if (own.length === 0) continue;
         for (const alli of ALLIS) {
