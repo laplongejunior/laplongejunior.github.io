@@ -125,10 +125,10 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
 
     const MIDDLE = ((SIDE+1)/2)-1;
     const inMiddle = function(pos) {
-     return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
+      return (pos >= MIDDLE-ADJUST && pos <= MIDDLE+ADJUST);
     }; 
 	
-const ruinData = (function(){  
+    const ruinData = (function(){
       class SafeMatrix {
         constructor() {
           this.id = 0;
@@ -191,7 +191,7 @@ const ruinData = (function(){
         if (getCycle(pos,other)%2 === 0) return MIDDLE;
         return null;
       };
-      let gen = new SafeMatrix(SIDE);
+      let gen = new SafeMatrix();
       const middleCorrect = function(x,y,direction) {
         x = adjustMiddle(x, y, direction);
         if (x === null) {
