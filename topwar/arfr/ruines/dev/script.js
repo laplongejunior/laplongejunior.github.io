@@ -28,8 +28,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
       for (let arr of matrix) {
         let line = "";
         for (let item of arr) {
-          if (item === undefined || isNaN(item)) item = "--";
-          else item = item.toString().padStart(2,"0");
+          if (item === undefined || item.length === 0) item = "--";
+          else item = item[0].toString().padStart(2,"0");
           line+=item+",";
         }
         console.log(twoCharStr(++index)+") "+line.substring(0,line.length-1));
@@ -77,41 +77,40 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
     const RuinDifficulty = {
       LEVEL1:{
         title:"Ruines",
-        cycle:1,
+        cycle:0,
         rewards:{
-          GOLD:{},
-          ATK:{},
-          COLL:{},
-          WALK:{},
-          PV:{},
-          SHOT:{}
+          GOLD:{name:"Or"},
+          ATK:{name:"ATQ toutes unités"},
+          COLL:{name:"Collecte"},
+          WALK:{name:"Poursuite"},
+          PV:{name:"PV toutes unités"},
+          SHOT:{name:"Tirs Croisés"}
         }
       },
       LEVEL2:{
-        title:"Ruines Antiques",
-        cycle:2,
-        rewards:{
-          QUEST:{}
-        }
-      },
-      LEVEL2BIS:{
         title:"Ruines Anciennes",
-        cycle:2,
+        cycle:1,
         rewards:{
-          RELIC:{},
-          UNIT:{},
-          ITEM:{}
+          QUEST:{name:"Quete",mistranslation:"Ruines Antiques"},
+          RELIC:{name:"Reliques"},
+          UNIT:{name:"Unités"},
+          ITEM:{name:"Objets"}
         }
       },
       LEVEL3:{
         title:"Ruines de l'Empereur",
-        cycle:3,
+        cycle:2,
         rewards:{
-          GUARD:{},
-          RES:{}
+          GUARD:{name:"Garde"},
+          RES:{name:"Ressource"}
         }
       }
     };
+    for (const enumeration of RuinDifficulty) {
+      for (const reward of enumeration.rewards) {
+        reward.category = enumeration;
+      }
+    }
     
     const ruinData = (function(){  
       class SafeMatrix {
@@ -129,7 +128,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           let arr = this.matrix[x];
           if (y < margin || y+margin >= arr.length) return false;
           if (arr[y] !== undefined) return false;
-          arr[y] = ++this.id;
+          arr[y] = [++this.id,{}];
           return true;
         }
       }
@@ -175,7 +174,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         return [x,y];
       };
 
-      gen.matrix[MIDDLE][MIDDLE] = NaN; // Capital
+      gen.matrix[MIDDLE][MIDDLE] = []; // Capital
       let x = 0, y = -BASE, direction = Directions.RIGHT;
       while (true) {
         let arr = direction.coords(x,y,BASE*2);
@@ -223,10 +222,8 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         if (!cycle) cycle = getCycle(main,sec);
         let result = (main+1)*32;
         if (cycle === CENTER-1 && inMiddle(sec)) {
-          console.log(result);
           result-=2;
           if (main < MIDDLE) result -= 2;
-          console.log(result);
         }
         return result;
       };
@@ -242,16 +239,16 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let row = ruinMatrix[i];
         for (j = 0; j < row.length; ++j) {
           data = row[j];
-          if (data && !isNaN(data)) {
+          if (data != undefined && data.length > 0) {
             const temp = calculateCoords(i,j);
-            result.set(data,{x:temp[0],y:temp[1]});
+            result.set(data[0],{x:temp[0],y:temp[1],reward:data[1]});
           }
         }
       }
       return result;
-    })();    
-    let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
+    })();
     
+    let ruinIds = Array.from(ruinData.keys()).sort((a,b)=>a-b);
     for (const id of ruinIds) {
       const debug = ruinData.get(id);
       console.log(id+":"+debug.x+":"+debug.y);
