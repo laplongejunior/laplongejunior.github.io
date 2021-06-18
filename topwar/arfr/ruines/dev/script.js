@@ -537,6 +537,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         output += NEW_LINE + "#" + (id === 0 ? "??" : twoCharStr(id));
         let data = ruinData.get(id);
         if (data) output += " ("+data.x+","+data.y+")";
+        output += NEW_LINE + "Ruine inconnue";
         let spoilTime = ruin.spoil.getDate();
         output += NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
         
