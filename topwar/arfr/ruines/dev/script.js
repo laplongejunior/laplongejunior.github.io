@@ -543,12 +543,13 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
         let id = ruin.id;
         output += NEW_LINE + "#" + (id === 0 ? "??" : twoCharStr(id));
         let data = ruinData.get(id);
-        if (data) output += " ("+data.x+","+data.y+")";
-        const reward = data.reward;
-        
-        output += NEW_LINE + reward.mistranslation ? reward.mistranslation : reward.level.title + " - " + reward.name;
-        let spoilTime = ruin.spoil.getDate();
-        output += NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
+        if (data) {
+          output += " ("+data.x+","+data.y+")";
+          const reward = data.reward;
+          output += NEW_LINE + reward.mistranslation ? reward.mistranslation : reward.level.title + " - " + reward.name;
+          let spoilTime = ruin.spoil.getDate();
+          output += NEW_LINE + "Le " + spoilTime.getDate() + " à " + twoCharStr(spoilTime.getHours()) + ":" + twoCharStr(spoilTime.getMinutes());
+        }
         
         let own = ruin.owner;
         if (own.length === 0) continue;
