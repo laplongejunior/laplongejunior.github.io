@@ -132,6 +132,7 @@ global._load = function(loadInput,loadId,listId,buttonId,outputId,saveId,sortId,
           
           let i = this.id;
           for (const level in RuinDifficulty) {
+            console.log(level);
             const keys = Object.keys(level.rewards);
             const size = keys.length;
             if (i > size) i-= size;
