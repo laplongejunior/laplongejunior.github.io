@@ -29,7 +29,7 @@
 		var params = schedule.shift();
 		const player = players[nextID];
 		_singleCallEvent(player,"onStateChange",()=>loadNext(false));
-		loadSegment(player, params[0], params[1], params[2], true);
+		loadSegment(player, params[0], params[1], params[2], AUTO_PLAY);
 	}
 	
 	var last = false;
@@ -38,7 +38,7 @@
 		
 		var params = schedule.shift();		
 		if (!params) last = true;
-		if (play) playSegment(players[nextID], !last);
+		if (play) playSegment(players[nextID], !last, true);
 		if (last) return;
 		
 		nextID++;
@@ -50,13 +50,7 @@
 	// Global code
 	function loadSegment(player, id, start, end, play) {
 		_singleCallEvent(player, "onStateChange", e=>{
-			if (play) {
-				playSegment(player, schedule.size > 1);
-			}
-			else {
-				player.playVideo();
-				player.pauseVideo();
-			}
+			playSegment(player, true, play);
 		});
 		
 		player.cueVideoById({
@@ -65,16 +59,28 @@
             'endSeconds': end,
             'suggestedQuality': 'large'});
 	}
-	function playSegment(player, next) {
-		player.playVideo();
-		player.getIframe().style.display = 'initial';
+	
+	function playSegment(player, next, autoPlay) {
+		player.playVideo();	
+		// Trigger buffering
+		if (autoPlay)
+			player.getIframe().style.display = 'initial';
+		else
+			_singleCallEvent(player,"onStateChange",()=>{player.pauseVideo();});
+		
+		var temp = false;
+		// TODO : This listener runs even for the last telement!
 		const listener = e=>{
 				if (e.data !== PlayerState.STOPPED) return;
+				if (temp) return;
+				temp = true;
+				// Remove doesn't work on YoutubePlayer objects???
 				player.removeEventListener("onStateChange", listener);
 				loadNext(true);
 				e.target.getIframe().style.display = 'none';
 			};
-		player.addEventListener("onStateChange", listener);
+		if (next)
+			player.addEventListener("onStateChange", listener);
 	}
 	
 	function _singleCallEvent(object, listenerName, func) {
