@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>Titre</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="referrer" content="never" />
+	<meta name="referrer" content="no-referrer" />
+</head>
+<body>
+	<span id="ytContainer">
+	</span>
+<script>
+	"strict mode";
+	const AUTO_PLAY = true;
+	
+	const playerID = "ytContainer";
+	var players = new Array();
+	
+	var schedule = new Array();
+	schedule.push(['fLeY_UF1puE',0,4]);
+	schedule.push(['jmHK4vIvWLE',10,15]);
+	// TODO: Put this in first place
+	schedule.push(['jmHK4vIvWLE',60,75]);
+	
+	// Only optimized for two players
+	const PLAYER_CACHE = 2;
+	var nextID = 0;
+	function initMulti() {
+		var params = schedule.shift();
+		const player = players[nextID];
+		_singleCallEvent(player,"onStateChange",()=>loadNext(false));
+		loadSegment(player, params[0], params[1], params[2], true);
+	}
+	
+	var last = false;
+	function loadNext(play) {
+		if (last) return;
+		
+		var params = schedule.shift();		
+		if (!params) last = true;
+		if (play) playSegment(players[nextID], !last);
+		if (last) return;
+		
+		nextID++;
+		if (nextID === PLAYER_CACHE) nextID = 0;
+		var player = players[nextID];
+		loadSegment(player, params[0], params[1], params[2], false);
+	}
+	
+	// Global code
+	function loadSegment(player, id, start, end, play) {
+		_singleCallEvent(player, "onStateChange", e=>{
+			if (play) {
+				playSegment(player, schedule.size > 1);
+			}
+			else {
+				player.playVideo();
+				player.pauseVideo();
+			}
+		});
+		
+		player.cueVideoById({
+			'videoId': id,
+            'startSeconds': start,
+            'endSeconds': end,
+            'suggestedQuality': 'large'});
+	}
+	function playSegment(player, next) {
+		player.playVideo();
+		player.getIframe().style.display = 'initial';
+		const listener = e=>{
+				if (e.data !== PlayerState.STOPPED) return;
+				player.removeEventListener("onStateChange", listener);
+				loadNext(true);
+				e.target.getIframe().style.display = 'none';
+			};
+		player.addEventListener("onStateChange", listener);
+	}
+	
+	function _singleCallEvent(object, listenerName, func) {
+		var temp = false;
+		var callback = event=>{
+			if (temp) return;
+			temp = true;
+			// Remove doesn't work on YoutubePlayer objects???
+			object.removeEventListener(listenerName, callback);
+			return func(event);
+		};
+		object.addEventListener(listenerName,callback);
+	}
+	
+	function _async() {
+		var tagName = arguments[0];
+		var tag = document.createElement(tagName);
+		var length = arguments.length;
+		for (var i = 1; i+1 < length; i+=2)
+			tag[arguments[i]] = arguments[i+1];
+		var first = document.getElementsByTagName(tagName)[0];
+		first.parentNode.insertBefore(tag, first);
+		return tag;
+	}
+	
+	const PlayerState = {
+		NOT_STARTED:-1,
+		STOPPED:0,
+		RUNNING:1,
+		PAUSED:2,
+		BUFFERING:3,
+		WAITING:5
+	};
+
+	// Global object name reserved by YT api
+	window.onYouTubeIframeAPIReady = function() {
+		window.onYouTubeIframeAPIReady = undefined;
+		
+		var container = document.getElementById(playerID);
+		const PREFIX = "ytPlayer";
+		for (var i=0; i<PLAYER_CACHE; ++i) {
+			const id = PREFIX+i;
+			
+			var mask = document.createElement("span");
+			container.appendChild(mask);
+			mask.style.display = 'none';
+			
+			var player = document.createElement("div");
+			player.id = id;
+			mask.appendChild(player);
+			
+			var ready = 0;
+			const readyCheck = ()=>{
+				if (++ready === PLAYER_CACHE)
+					initMulti();
+			};
+			
+			players.push(new YT.Player(id, {events: {
+				'onReady': e=>{				
+					readyCheck();
+					const element = e.target.getIframe();
+					element.style.display = (element.id === "ytPlayer"+0) ? 'initial':'none';
+					// Moving the video breaks loading
+					//document.getElementById(playerID).replaceChild(element,element.parentNode);
+					element.parentNode.style.display = 'initial';
+				}
+			}}));
+		}
+	}
+		
+	_async('script','src',"https://www.youtube.com/iframe_api");
+</script>
+</body>
+</html>
