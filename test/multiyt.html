@@ -68,31 +68,41 @@
 		else
 			_singleCallEvent(player,"onStateChange",()=>{player.pauseVideo();});
 		
-		var temp = false;
-		// TODO : This listener runs even for the last telement!
+		// FIXME : This listener runs even for the last element!
 		const listener = e=>{
-				if (e.data !== PlayerState.STOPPED) return;
-				if (temp) return;
-				temp = true;
-				// Remove doesn't work on YoutubePlayer objects???
-				player.removeEventListener("onStateChange", listener);
+				if (e.data !== PlayerState.STOPPED) return true;
 				loadNext(true);
 				e.target.getIframe().style.display = 'none';
 			};
+		
 		if (next)
-			player.addEventListener("onStateChange", listener);
+			_singleCallEvent(player, "onStateChange", listener);
 	}
 	
+	// YT players can only use one event at a time
 	function _singleCallEvent(object, listenerName, func) {
+		if (listenerName === "onStateChange")
+			return YTeventhack(object, func);
+		
+		/*
 		var temp = false;
 		var callback = event=>{
 			if (temp) return;
 			temp = true;
 			// Remove doesn't work on YoutubePlayer objects???
-			object.removeEventListener(listenerName, callback);
-			return func(event);
+			if (!func(event))
+				object.removeEventListener(listenerName, callback);
 		};
-		object.addEventListener(listenerName,callback);
+		object.addEventListener(listenerName, callback);
+		*/
+	}
+	function YTeventhack(object, func) {
+		const HACK = object._listeners;
+		const callback = event=>{
+			if (func(event)) return;
+			HACK.splice(HACK.indexOf(callback),1);
+		};
+		HACK.push(callback);
 	}
 	
 	function _async() {
@@ -138,7 +148,7 @@
 					initMulti();
 			};
 			
-			players.push(new YT.Player(id, {events: {
+			const YTplayer = new YT.Player(id, {events: {
 				'onReady': e=>{				
 					readyCheck();
 					const element = e.target.getIframe();
@@ -146,8 +156,16 @@
 					// Moving the video breaks loading
 					//document.getElementById(playerID).replaceChild(element,element.parentNode);
 					element.parentNode.style.display = 'initial';
+				},
+				'onStateChange': e=>{
+					for (var listener of e.target._listeners) {
+						listener(e);
+					}
 				}
-			}}));
+			}});
+			players.push(YTplayer);
+			
+			YTplayer._listeners = new Array();
 		}
 	}
 		
