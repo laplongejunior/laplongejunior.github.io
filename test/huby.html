@@ -13,26 +13,31 @@
 	var playerID = "player";
 	var loaded = false;
 	var schedule = new Array();
-	schedule.push(['jmHK4vIvWLE',60,75]);
+	schedule.push(['fLeY_UF1puE',2,4]);
 	schedule.push(['jmHK4vIvWLE',10,15]);
+	// TODO: Put this in first place
+	schedule.push(['jmHK4vIvWLE',60,75]);
+	
 	
 	function playNext(player) {
 		var params = schedule.shift();
-		setVideo(player, params[0], params[1], params[2]);
+		if (params)
+			setVideo(player, params[0], params[1], params[2]);
 	}
 	function setVideo(player, id, start, end) {
-		var onState = function(event) {
-			if (event.data != 5) return;
-			var player = event.target;
-			player.removeEventHandler("onStateChange", onState);
-			player.playVideo();
-		});
-		player.addEventHandler("onStateChange", onState);
 		player.cueVideoById({
 			'videoId': id,
             'startSeconds': start,
             'endSeconds': end,
             'suggestedQuality': 'large'});
+	}
+	
+	function _singleCallEvent(object, listenerName, func) {
+		var callback = event=>{
+			object.removeEventListener(listenerName, callback);
+			return func(event);
+		};
+		object.addEventListener(listenerName,callback);
 	}
 	
 	function _async() {
@@ -45,6 +50,15 @@
 		first.parentNode.insertBefore(tag, first);
 		return tag;
 	}
+	
+	const PlayerState = {
+		NOT_STARTED:-1,
+		STOPPED:0,
+		RUNNING:1,
+		PAUSED:2,
+		BUFFERING:3,
+		WAITING:5
+	};
 
 	// Global object name reserved by YT api
 	window.onYouTubeIframeAPIReady = function() {
@@ -52,9 +66,26 @@
 			
 		new YT.Player(playerID, {events: {
 			'onReady': function(event) {
-				playNext(event.target);
+				const player = event.target;
+				const func = e=>{
+					const state = e.data;
+					if (state === PlayerState.BUFFERING
+						|| state === PlayerState.PAUSED
+						|| state === PlayerState.RUNNING)
+						return;
+						
+					if (state != PlayerState.NOT_STARTED) {
+						player.playVideo();
+					}
+					
+					if (state === PlayerState.STOPPED) {
+						playNext(player);
+					}
+				};
+				player.addEventListener("onStateChange", func);	
+				func({data:PlayerState.STOPPED});
 			}
-		}});			
+		}});
 	}
 		
 	_async('script','src',"https://www.youtube.com/iframe_api");
