@@ -29,6 +29,16 @@
 		var params = schedule.shift();
 		const player = players[nextID];
 		_singleCallEvent(player,"onStateChange",()=>loadNext(false));
+			
+			// TODO: Uncopy this
+			/*
+			alert("Hooking "+player.getIframe().id);
+			_singleCallEvent(player, "onStateChange", e=>{
+				if (e.data !== PlayerState.STOPPED) return true;
+				loadNext(true);
+				e.target.getIframe().style.display = 'none';
+			});*/
+			
 		loadSegment(player, params[0], params[1], params[2], AUTO_PLAY);
 	}
 	
@@ -38,7 +48,9 @@
 		
 		var params = schedule.shift();		
 		if (!params) last = true;
-		if (play) playSegment(players[nextID], !last, true);
+		if (play) {
+			playSegment(players[nextID], !last, true);
+		}
 		if (last) return;
 		
 		nextID++;
@@ -63,46 +75,30 @@
 	function playSegment(player, next, autoPlay) {
 		player.playVideo();	
 		// Trigger buffering
-		if (autoPlay)
+		if (autoPlay) {
 			player.getIframe().style.display = 'initial';
-		else
-			_singleCallEvent(player,"onStateChange",()=>{player.pauseVideo();});
-		
-		// FIXME : This listener runs even for the last element!
-		const listener = e=>{
-				if (e.data !== PlayerState.STOPPED) return true;
-				loadNext(true);
-				e.target.getIframe().style.display = 'none';
-			};
-		
-		if (next)
-			_singleCallEvent(player, "onStateChange", listener);
+			
+			if (next) {
+				_singleCallEvent(player, "onStateChange", e=>{
+					if (e.data !== PlayerState.STOPPED) return true;
+					loadNext(true);
+					e.target.getIframe().style.display = 'none';
+				});
+			}
+		}
+		else _singleCallEvent(player,"onStateChange",()=>{
+				player.pauseVideo();
+			});		
 	}
 	
-	// YT players can only use one event at a time
-	function _singleCallEvent(object, listenerName, func) {
-		if (listenerName === "onStateChange")
-			return YTeventhack(object, func);
-		
-		/*
+	function _singleCallEvent(object, name, func) {
 		var temp = false;
-		var callback = event=>{
-			if (temp) return;
+		const CALL = event=>{
+			if (temp || func(event)) return;
 			temp = true;
-			// Remove doesn't work on YoutubePlayer objects???
-			if (!func(event))
-				object.removeEventListener(listenerName, callback);
+			object.removeEventListener(name, CALL);
 		};
-		object.addEventListener(listenerName, callback);
-		*/
-	}
-	function YTeventhack(object, func) {
-		const HACK = object._listeners;
-		const callback = event=>{
-			if (func(event)) return;
-			HACK.splice(HACK.indexOf(callback),1);
-		};
-		HACK.push(callback);
+		object.addEventListener(name, CALL);
 	}
 	
 	function _async() {
@@ -157,15 +153,29 @@
 					//document.getElementById(playerID).replaceChild(element,element.parentNode);
 					element.parentNode.style.display = 'initial';
 				},
+				
+				// The YT override addEventListener in such a way the event is overwritten each time
+				// To avoid that, we'll store the listeners in the player and call them with the unique event
 				'onStateChange': e=>{
-					for (var listener of e.target._listeners) {
-						listener(e);
-					}
+					var listeners = e.target._listeners.get('onStateChange');
+					if (listeners) listeners.forEach(func=>func(e));
 				}
 			}});
-			players.push(YTplayer);
+
+			// List of listeners for onStateChange
+			YTplayer._listeners = new Map();
+			YTplayer.addEventListener = (name, callback) => {
+				var listeners = YTplayer._listeners.get(name);
+				if (!listeners) YTplayer._listeners.set(name, listeners = new Array());
+				listeners.push(callback);
+			};
+			YTplayer.removeEventListener = (name, callback) => {
+				var listeners = YTplayer._listeners.get(name);
+				if (listeners)
+					listeners.splice(listeners.indexOf(callback),1);
+			};
 			
-			YTplayer._listeners = new Array();
+			players.push(YTplayer);
 		}
 	}
 		
