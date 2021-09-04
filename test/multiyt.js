@@ -190,7 +190,6 @@
 	var remaining = 2;
 	const whenReady = function() {
 		if (--remaining > 0) return;
-		alert("YES");
 		isStarted = true;
 		for (var pair of initCache) {
 			const temp = pair[1];
