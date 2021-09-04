@@ -200,7 +200,7 @@
 		initCache = undefined;
 	};
 	
-	_singleCallEvent(global, "onload", function() {
+	_singleCallEvent(global, "load", function() {
 		alert("OK1");
 		whenReady();
 	});
