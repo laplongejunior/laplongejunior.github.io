@@ -19,10 +19,10 @@
 			initCache.set(node,[schedule,autoPlay]);
 	};
 	
-  /*
 	// This method's scope stare the data about specific duos of viewers
 	var lastID = 0;
 	const MultiPlayer = function(container, schedule, autoPlay) {
+  /*
 		// Only optimized for two players
 		const PLAYER_CACHE = 2;
 		var players = new Array();
@@ -57,6 +57,7 @@
 				element.parentNode.style.display = 'initial';
 			}));
 		}
+  */
 	
 		var nextID = 0;
 		// Allows to start the first YT player
@@ -93,7 +94,6 @@
 			_playSegment(player, autoPlay, next ? ()=>loadNext(true) : null);
 		}
 	}
-  */
 	
 	// Global methods not depending on the current state	
 	/**
