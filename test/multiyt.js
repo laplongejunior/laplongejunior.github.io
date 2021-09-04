@@ -187,7 +187,7 @@
 		};
 		return YTplayer;
 	}
-	/*
+	
 	// Wait until both the page and the YT api finished loading
 	var remaining = 2;
 	const whenReady = function() {
@@ -217,10 +217,10 @@
 		var length = arguments.length;
 		for (var i = 1; i+1 < length; i+=2)
 			tag[arguments[i]] = arguments[i+1];
+		console.log(document.getElementsByTagName(tagName));
 		var first = document.getElementsByTagName(tagName)[0];
 		first.parentNode.insertBefore(tag, first);
 		return tag;
 	}
 	_async('script','src',"https://www.youtube.com/iframe_api");
-  */
 })(this);
