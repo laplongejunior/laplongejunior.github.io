@@ -196,7 +196,7 @@
 		isStarted = true;
 		for (var pair of initCache) {
 			const temp = pair[1];
-			MultiPlayer(pair[0],temp[0],temp[1]);
+			//MultiPlayer(pair[0],temp[0],temp[1]);
 		}
 		initCache = undefined;
 	};
