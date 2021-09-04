@@ -200,11 +200,13 @@
 		initCache = undefined;
 	};
 	_singleCallEvent(global, "onload", function() {
+		alert("OK1");
 		whenReady();
 	});
 	// Global object name reserved by YT api
 	global.onYouTubeIframeAPIReady = function() {
 		global.onYouTubeIframeAPIReady = undefined;
+		alert("OK2");
 		whenReady();
 	}
 	
