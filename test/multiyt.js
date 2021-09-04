@@ -5,7 +5,9 @@
 // For each fragment, an array with the YT id, the start second and the end second
 // If you want to represent a *length* rather than the end, use a negative number (-3 means 3 seconds later)
 // For a Proof Of Concept, see https://github.com/laplongejunior/laplongejunior.github.io/blob/master/test/multiyt.html
-
+alert("ok");
+return;
+alert("ko");
 (function(global){
 	"strict mode";
 	
