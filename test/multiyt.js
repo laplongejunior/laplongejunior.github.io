@@ -9,16 +9,6 @@
 (function(global){
 	"strict mode";
 	
-	// Entry-point
-	var isStarted = false;
-	var initCache = new Map();
-	global.multiYT_schedulePlayer = function(node,schedule,autoPlay) {
-		if (isStarted)
-			MultiPlayer(node,schedule,autoPlay);
-		else
-			initCache.set(node,[schedule,autoPlay]);
-	};
-	
 	// This method's scope stare the data about specific duos of viewers
 	var lastID = 0;
 	const MultiPlayer = function(container, schedule, autoPlay) {
@@ -185,6 +175,16 @@
 		};
 		return YTplayer;
 	}
+	
+	// Entry-point
+	var isStarted = false;
+	var initCache = new Map();
+	global.multiYT_schedulePlayer = function(node,schedule,autoPlay) {
+		if (isStarted)
+			MultiPlayer(node,schedule,autoPlay);
+		else
+			initCache.set(node,[schedule,autoPlay]);
+	};
 	
 	// Wait until both the page and the YT api finished loading
 	var remaining = 2;
