@@ -1,4 +1,4 @@
-// Call multiYT_schedulePlayer with an existing dom node, an array of array representing the video fragments and a boolean on true if the video must start now
+	// Call multiYT_schedulePlayer with an existing dom node, an array of array representing the video fragments and a boolean on true if the video must start now
 // This script will create two YT players and will hide/show the secondary one when needed
 // That allows to show several fragments of videos in sequence as the other viewer pre-buffered the following fragment
 // Content of the fragment array : 
@@ -8,6 +8,16 @@
 
 (function(global){
 	"strict mode";
+	
+	// Entry-point
+	var isStarted = false;
+	var initCache = new Map();
+	global.multiYT_schedulePlayer = function(node,schedule,autoPlay) {
+		if (isStarted)
+			MultiPlayer(node,schedule,autoPlay);
+		else
+			initCache.set(node,[schedule,autoPlay]);
+	};
 	
 	// This method's scope stare the data about specific duos of viewers
 	var lastID = 0;
@@ -176,16 +186,6 @@
 		return YTplayer;
 	}
 	
-	// Entry-point
-	var isStarted = false;
-	var initCache = new Map();
-	global.multiYT_schedulePlayer = function(node,schedule,autoPlay) {
-		if (isStarted)
-			MultiPlayer(node,schedule,autoPlay);
-		else
-			initCache.set(node,[schedule,autoPlay]);
-	};
-	
 	// Wait until both the page and the YT api finished loading
 	var remaining = 2;
 	const whenReady = function() {
@@ -194,6 +194,7 @@
 		isStarted = true;
 		for (var pair of initCache) {
 			const temp = pair[1];
+			console.log(document);
 			MultiPlayer(pair[0],temp[0],temp[1]);
 		}
 		initCache = undefined;
