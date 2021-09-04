@@ -22,7 +22,6 @@
 	// This method's scope stare the data about specific duos of viewers
 	var lastID = 0;
 	const MultiPlayer = function(container, schedule, autoPlay) {
-  /*
 		// Only optimized for two players
 		const PLAYER_CACHE = 2;
 		var players = new Array();
@@ -57,7 +56,6 @@
 				element.parentNode.style.display = 'initial';
 			}));
 		}
-  */
 	
 		var nextID = 0;
 		// Allows to start the first YT player
