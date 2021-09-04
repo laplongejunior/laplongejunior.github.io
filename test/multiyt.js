@@ -200,11 +200,7 @@
 		initCache = undefined;
 	};
 	
-	console.log(global);
-	
-	console.log(global === window);
 	_singleCallEvent(global, "onload", function() {
-		
 		alert("OK1");
 		whenReady();
 	});
@@ -212,6 +208,7 @@
 	global.onYouTubeIframeAPIReady = function() {
 		global.onYouTubeIframeAPIReady = undefined;
 		alert("OK2");
+		console.log(window.onload);
 		whenReady();
 	}
 	
