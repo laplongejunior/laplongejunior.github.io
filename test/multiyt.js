@@ -201,14 +201,11 @@
 	};
 	
 	_singleCallEvent(global, "load", function() {
-		alert("OK1");
 		whenReady();
 	});
 	// Global object name reserved by YT api
 	global.onYouTubeIframeAPIReady = function() {
 		global.onYouTubeIframeAPIReady = undefined;
-		alert("OK2");
-		console.log(window.onload);
 		whenReady();
 	}
 	
@@ -219,7 +216,6 @@
 		var length = arguments.length;
 		for (var i = 1; i+1 < length; i+=2)
 			tag[arguments[i]] = arguments[i+1];
-		console.log(document.getElementsByTagName(tagName));
 		var first = document.getElementsByTagName(tagName)[0];
 		first.parentNode.insertBefore(tag, first);
 		return tag;
