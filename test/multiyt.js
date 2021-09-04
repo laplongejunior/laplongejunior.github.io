@@ -199,7 +199,12 @@
 		}
 		initCache = undefined;
 	};
+	
+	console.log(global);
+	
+	console.log(global === window);
 	_singleCallEvent(global, "onload", function() {
+		
 		alert("OK1");
 		whenReady();
 	});
