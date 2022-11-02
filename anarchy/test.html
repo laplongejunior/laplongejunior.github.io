@@ -20,6 +20,7 @@ html, body {
 Your rank:
 <select id="rank"></select><br/>
 Actual score: <input type="number" id="score" value="0"></input><br/>
+Deduce a fee? <input type="checkbox" id="fee" checked="true"></input><br/>
 Wins: <input type="number" id="win" value="0"></input><br/>
 Gold medals: <input type="number" id="gold" value="0"></input><br/>
 Silver medals: <input type="number" id="silver" value="0"></input><br/>
@@ -30,16 +31,13 @@ Silver medals: <input type="number" id="silver" value="0"></input><br/>
 <textarea class="text" id="output"></textarea>
 <script>
 "use strict";
-// Because all data is not correct yet
-const UNKNOWN = -1;
-
 // Same for all ranks
 const WIN_BONUS = 5;
 const GOLD_BONUS = 5;
 const SILVER_BONUS = 1;
 
-// TODO: Add C+ and S rankup
-const TIERS = [[20,UNKNOWN],[30,850],[40,1100],[50,UNKNOWN]];
+// TODO: Add S rankup
+const TIERS = [[20,600],[30,850],[40,1100],[50,1000],[null,null]];
 
 // After fusing with tiers, each rank information will be : 
 // Price to enter, score for next rank, win bonus, score for next rank-up
@@ -47,17 +45,17 @@ const TIERS = [[20,UNKNOWN],[30,850],[40,1100],[50,UNKNOWN]];
 // Before fusion, there's a zero-th value to know which tier it belongs to
 const RANKS = new Map();
 // TODO: Add all non-battle rankups
-RANKS.set('C-',[0, 0, 0]);
-RANKS.set('C',[0, 20, UNKNOWN]);
+RANKS.set('C-',[0, 0, 200]);
+RANKS.set('C',[0, 20, 400]);
 RANKS.set('C+',[0, 40, null]);
-RANKS.set('B-',[1, 55, UNKNOWN]);
-RANKS.set('B',[1, 70, UNKNOWN]);
+RANKS.set('B-',[1, 55, 350]);
+RANKS.set('B',[1, 70, 600]);
 RANKS.set('B+',[1, 85, null]);
-RANKS.set('A-',[2, 100, UNKNOWN]);
-RANKS.set('A',[2, 110, UNKNOWN]);
+RANKS.set('A-',[2, 100, 200]);
+RANKS.set('A',[2, 110, 500]);
 RANKS.set('A+',[2, 120, null]);
 RANKS.set('S',[3, 150, null]);
-RANKS.set('S+',[3, 160, null]);
+RANKS.set('S+',[4, 160, null]);
 
 const rankElement = document.getElementById('rank');
 // Fuse the data, and while we're on it let's fill the rank select combobox
@@ -84,7 +82,7 @@ document.getElementById('submit').addEventListener('click', function(){
 	const VICTORIES = parseInt(document.getElementById('win').value);
 	const RANK_DATA = RANKS.get(document.getElementById('rank').value);
 	
-	const FEE = RANK_DATA[0];
+	const FEE = document.getElementById('fee').checked ? 0 : RANK_DATA[0];
 	let NEXT = RANK_DATA[1];
 	const WIN = RANK_DATA[2];
 	const RANKUP = RANK_DATA[3];
@@ -105,10 +103,9 @@ document.getElementById('submit').addEventListener('click', function(){
 	
 	const output = document.getElementById('output');
 	output.innerHTML = "";
-	
 	const NF_CR = String.fromCharCode(13, 10);
-	if (NEXT === UNKNOWN)
-		output.innerHTML += NF_CR+"[FAILURE] That rank's requirement is not known. Wiki is not complete, sorry :(";
+	if (NEXT-expected < 0)
+		output.innerHTML += NF_CR+"Your rank can increase at the end of this series!";
 	else
 		output.innerHTML += NF_CR+"Score before next rank: "+(NEXT-expected);
 	if (IS_RANKUP)
