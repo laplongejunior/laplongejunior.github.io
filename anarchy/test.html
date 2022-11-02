@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<style>
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.text {
+	width:90%;
+	height:90%;
+}
+</style>
+<meta charset="utf-8" />
+<title>Test anarchy</title>
+</head>
+<body>
+Your rank:
+<select id="rank"></select><br/>
+Actual score: <input type="number" id="score" value="0"></input><br/>
+Wins: <input type="number" id="win" value="0"></input><br/>
+Gold medals: <input type="number" id="gold" value="0"></input><br/>
+Silver medals: <input type="number" id="silver" value="0"></input><br/>
+<button id="submit">Click here to generate</button>
+<br/>
+<label>Anarchy result</label>
+<br/>
+<textarea class="text" id="output"></textarea>
+<script>
+"use strict";
+// Because all data is not correct yet
+const UNKNOWN = -1;
+
+// Same for all ranks
+const WIN_BONUS = 5;
+const GOLD_BONUS = 5;
+const SILVER_BONUS = 1;
+
+// TODO: Add C+ and S rankup
+const TIERS = [[20,UNKNOWN],[30,850],[40,1100],[50,UNKNOWN]];
+
+// After fusing with tiers, each rank information will be : 
+// Price to enter, score for next rank, win bonus, score for next rank-up
+// If score for next rank is null, then it is the rankup
+// Before fusion, there's a zero-th value to know which tier it belongs to
+const RANKS = new Map();
+// TODO: Add all non-battle rankups
+RANKS.set('C-',[0, 0, 0]);
+RANKS.set('C',[0, 20, UNKNOWN]);
+RANKS.set('C+',[0, 40, null]);
+RANKS.set('B-',[1, 55, UNKNOWN]);
+RANKS.set('B',[1, 70, UNKNOWN]);
+RANKS.set('B+',[1, 85, null]);
+RANKS.set('A-',[2, 100, UNKNOWN]);
+RANKS.set('A',[2, 110, UNKNOWN]);
+RANKS.set('A+',[2, 120, null]);
+RANKS.set('S',[3, 150, null]);
+RANKS.set('S+',[3, 160, null]);
+
+const rankElement = document.getElementById('rank');
+// Fuse the data, and while we're on it let's fill the rank select combobox
+for (let [key, value] of RANKS.entries()) {
+	let tier = TIERS[value[0]];
+	let newValue = [value[1],value[2],tier[0],tier[1]];
+	RANKS.set(key, newValue);
+	
+	let option = document.createElement('option');
+	option.value = option.text = key;
+	if (key == "B+")
+		option.selected = true;
+	rankElement.appendChild(option);
+}
+console.log(RANKS);
+
+document.getElementById('score').addEventListener('change', function() {
+});
+
+document.getElementById('submit').addEventListener('click', function(){
+	const SCORE = parseInt(document.getElementById('score').value);
+	const GOLD = parseInt(document.getElementById('gold').value);
+	const SILVER = parseInt(document.getElementById('silver').value);
+	const VICTORIES = parseInt(document.getElementById('win').value);
+	const RANK_DATA = RANKS.get(document.getElementById('rank').value);
+	
+	const FEE = RANK_DATA[0];
+	let NEXT = RANK_DATA[1];
+	const WIN = RANK_DATA[2];
+	const RANKUP = RANK_DATA[3];
+	const IS_RANKUP = (NEXT === null);
+	if (IS_RANKUP) NEXT = RANKUP;
+	
+	// Okay, complicated part because of mathematics
+	// Each win is the previous win plus WIN_BONUS... what is the total of a 4 win spree, for example?
+	// So 0 gives 0 bonus, 1 gives 0, 2 gives 1, 3 gives 3, etc.
+	// Thanks to Quora (surprising, I know), the total number of bonuses can be calculated with "N(N-1)/2"
+	// Here's an example
+	// Mathematically, 30+35+40+45 is equivalent to 4*30 + 4*((5*3)/2)
+	// Or, more generally, the splatoon3 win bonus at B+ will be "N*(30+ (5*[N-1])/2)"
+	// N being the number of wins, 2 a mathematical constant while 30 and 5 depends on the current rank
+	
+	const bonus = VICTORIES*(WIN+((VICTORIES-1)*WIN_BONUS/2)) + GOLD*GOLD_BONUS + SILVER*SILVER_BONUS;
+	const expected = SCORE+bonus-FEE;
+	
+	const output = document.getElementById('output');
+	output.innerHTML = "";
+	
+	const NF_CR = String.fromCharCode(13, 10);
+	if (NEXT === UNKNOWN)
+		output.innerHTML += NF_CR+"[FAILURE] That rank's requirement is not known. Wiki is not complete, sorry :(";
+	else
+		output.innerHTML += NF_CR+"Score before next rank: "+(NEXT-expected);
+	if (IS_RANKUP)
+		output.innerHTML += NF_CR+"Rankup battle is required to confirm progress";
+	else
+		output.innerHTML += NF_CR+"Score before next rankup: "+(RANKUP-expected);	
+});
+</script>
+</body>
+</html>
