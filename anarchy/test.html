@@ -36,53 +36,80 @@ const WIN_BONUS = 5;
 const GOLD_BONUS = 5;
 const SILVER_BONUS = 1;
 
-// TODO: Add S rankup
-const TIERS = [[20,600],[30,850],[40,1100],[50,1000],[null,null]];
-
-// After fusing with tiers, each rank information will be : 
 // Price to enter, score for next rank, win bonus, score for next rank-up
-// If score for next rank is null, then it is the rankup
-// Before fusion, there's a zero-th value to know which tier it belongs to
+// If score for next rank is null, then the next rankup is a rank-up battle
 const RANKS = new Map();
-// TODO: Add all non-battle rankups
-RANKS.set('C-',[0, 0, 200]);
-RANKS.set('C',[0, 20, 400]);
-RANKS.set('C+',[0, 40, null]);
-RANKS.set('B-',[1, 55, 350]);
-RANKS.set('B',[1, 70, 600]);
-RANKS.set('B+',[1, 85, null]);
-RANKS.set('A-',[2, 100, 200]);
-RANKS.set('A',[2, 110, 500]);
-RANKS.set('A+',[2, 120, null]);
-RANKS.set('S',[3, 150, null]);
-RANKS.set('S+',[4, 160, null]);
 
-const rankElement = document.getElementById('rank');
-// Fuse the data, and while we're on it let's fill the rank select combobox
-for (let [key, value] of RANKS.entries()) {
-	let tier = TIERS[value[0]];
-	let newValue = [value[1],value[2],tier[0],tier[1]];
-	RANKS.set(key, newValue);
+const generateRank = function(name, start, target, win, ranks, fee, entry=0) {
+	// C starts at 10p yet its rank logic seems like it should start at 0
+	start = Math.floor(start/100) *100;
+	let rankup = start + target*ranks;
+	// "start" will now refer to the score for the next rank
+	start += target;
 	
-	let option = document.createElement('option');
+	if (ranks < 4) {
+		if (ranks > 2) {
+			RANKS.set(name+'-', [fee, start, win, rankup]);
+			start += target;
+			fee += entry;
+		}
+		let finalName = name;
+		if (ranks > 1) {
+			finalName += '+';
+			RANKS.set(name, [fee, start, win, rankup]);
+			fee += entry;
+		}
+		RANKS.set(finalName, [fee, null, win, rankup]);
+	} else {
+		for (let i = 0; i < ranks-1; ++i) {
+			let label = name+'N'+i;
+			RANKS.set(label, [fee, start, win, rankup]);
+			start += target;
+			fee += entry;
+		}
+		RANKS.set(name+'N'+(ranks-1), [fee, null, win, rankup]);
+	}
+};
+generateRank('C', 10, 200, 20, 3, 0, 20);
+generateRank('B', 100, 250, 30, 3, 55, 15);
+generateRank('A', 200, 300, 40, 3, 100, 10);
+generateRank('S', 300, 700, 50, 1, 150);
+generateRank('S+', 300, 350, 50, 10, 160);
+
+const nextRank = function(rank) {
+	let found = false;
+	for (let [key, value] of RANKS.entries()) {
+		if (found) return value;
+		if (key === rank) found = true;
+	}
+	return null;
+}
+
+const doc = document;
+const rankElement = doc.getElementById('rank');
+// Fuse the data, and while we're on it let's fill the rank select combobox
+for (let [key, value] of RANKS.entries()) {	
+	let option = doc.createElement('option');
 	option.value = option.text = key;
-	if (key == "B+")
+	if (key === 'B+')
 		option.selected = true;
 	rankElement.appendChild(option);
 }
 console.log(RANKS);
 
-document.getElementById('score').addEventListener('change', function() {
-});
-
-document.getElementById('submit').addEventListener('click', function(){
-	const SCORE = parseInt(document.getElementById('score').value);
-	const GOLD = parseInt(document.getElementById('gold').value);
-	const SILVER = parseInt(document.getElementById('silver').value);
-	const VICTORIES = parseInt(document.getElementById('win').value);
-	const RANK_DATA = RANKS.get(document.getElementById('rank').value);
+doc.getElementById('submit').addEventListener('click', function(){
+	let score = parseInt(doc.getElementById('score').value);
+	const GOLD = parseInt(doc.getElementById('gold').value);
+	const SILVER = parseInt(doc.getElementById('silver').value);
+	const VICTORIES = parseInt(doc.getElementById('win').value);
 	
-	const FEE = document.getElementById('fee').checked ? 0 : RANK_DATA[0];
+	const RANK = doc.getElementById('rank').value;
+	const RANK_DATA = RANKS.get(RANK);
+	
+	const FEE = RANK_DATA[0];
+	if (doc.getElementById('fee').checked)
+		score -= FEE;
+		
 	let NEXT = RANK_DATA[1];
 	const WIN = RANK_DATA[2];
 	const RANKUP = RANK_DATA[3];
@@ -98,20 +125,62 @@ document.getElementById('submit').addEventListener('click', function(){
 	// Or, more generally, the splatoon3 win bonus at B+ will be "N*(30+ (5*[N-1])/2)"
 	// N being the number of wins, 2 a mathematical constant while 30 and 5 depends on the current rank
 	
-	const bonus = VICTORIES*(WIN+((VICTORIES-1)*WIN_BONUS/2)) + GOLD*GOLD_BONUS + SILVER*SILVER_BONUS;
-	const expected = SCORE+bonus-FEE;
+	score += VICTORIES*(WIN+((VICTORIES-1)*WIN_BONUS/2)) + GOLD*GOLD_BONUS + SILVER*SILVER_BONUS;
 	
-	const output = document.getElementById('output');
-	output.innerHTML = "";
+	const target = ()=>NEXT-score;	
+	const analysis = function(bonus) {
+		const _target = target();
+		let extra = 0;
+		if (_target < extra)
+			return 0;
+		bonus *= 3; // Three medals per game
+			
+		for (let index = VICTORIES+1; index <= 5; ++index) {
+			extra += index*(WIN+WIN_BONUS) + bonus;
+			if (_target < extra)
+				return index-VICTORIES;
+		}
+		return -1;
+	};
+	
+	const output = doc.getElementById('output');
+	let innerHTML = "";
 	const NF_CR = String.fromCharCode(13, 10);
-	if (NEXT-expected < 0)
-		output.innerHTML += NF_CR+"Your rank can increase at the end of this series!";
-	else
-		output.innerHTML += NF_CR+"Score before next rank: "+(NEXT-expected);
+	
 	if (IS_RANKUP)
-		output.innerHTML += NF_CR+"Rankup battle is required to confirm progress";
+		innerHTML += NF_CR+"Rankup battle will be required to confirm progress";
 	else
-		output.innerHTML += NF_CR+"Score before next rankup: "+(RANKUP-expected);	
+		innerHTML += NF_CR+"Score before next rankup battle: "+(RANKUP-score);
+	
+	if (target() > 0)
+		innerHTML += NF_CR+"Score before next rank: "+target()+"p";
+	else {
+		innerHTML += NF_CR+"Your rank can increase at the end of this series!";
+		if (IS_RANKUP) {
+			NEXT += FEE;
+			innerHTML += NF_CR+"!Requirements will calculate the "+target()+"p for an extra rankup fee!";
+		} else {
+			const NEW_RANK_DATA = nextRank(RANK);
+			NEXT = NEW_RANK_DATA[1];
+			if (NEXT === null) NEXT = NEW_RANK_DATA[3];
+			innerHTML += NF_CR+"!Requirements will calculate the "+target()+"p towards the next rank!";
+		}
+	}		
+	innerHTML += NF_CR;
+	
+	const pureAnalysis = analysis(0),
+		silverAnalysis = analysis(SILVER_BONUS),
+		goldAnalysis = analysis(GOLD_BONUS);
+	innerHTML += NF_CR+"Requirement predictions:";
+	innerHTML += NF_CR+"Gold medals without a victory: "+Math.max(0,Math.ceil(target()/5));
+	
+	innerHTML += NF_CR+"Victories with 3 gold medals: "+goldAnalysis;
+	innerHTML += NF_CR+"Victories with 3 silver medals: "+silverAnalysis;
+	innerHTML += NF_CR+"Victories without medals: "+pureAnalysis;
+	if (!IS_RANKUP)
+		innerHTML += NF_CR+"Due to a non-rankup battle on the way, next tier prediction is impossible.";
+		
+	output.innerHTML = innerHTML;
 });
 </script>
 </body>
