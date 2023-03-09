@@ -61,53 +61,52 @@ iframe {
 </head>
 <body class="main">
 <!-- La chine -->
-<iframe class="fb" data-id="1534914650170465" data-link=true></iframe>
+<iframe class="fb" data-id="1534914650170465" data-link></iframe>
 <!-- Peking city -->
-<iframe class="fb" data-id="729688737058316" data-link=true></iframe>
+<iframe class="fb" data-id="729688737058316" data-link></iframe>
 <!-- Yummy -->
-<iframe class="fb" data-id="486514164698001" data-link=true></iframe>
+<iframe class="fb" data-id="486514164698001" data-link></iframe>
 	
 <!-- Della Casa -->
-<!--<iframe class="fb" data-id="105696147575324" data-link=true></iframe>-->
+<!--<iframe class="fb" data-id="105696147575324" data-link></iframe>-->
 <!-- Para Nova -->
-<iframe class="fb" data-id="106520487912837" data-link=true></iframe>
+<iframe class="fb" data-id="106520487912837" data-link></iframe>
 <!-- Il viale -->
-<!--<iframe class="fb" data-id="391876530940664" data-link=true></iframe>-->
+<!--<iframe class="fb" data-id="391876530940664" data-link></iframe>-->
 
 <!-- Foire du midi -->
-<iframe class="fb" data-id="300225590442881" data-link=true></iframe>
+<iframe class="fb" data-id="300225590442881" data-link></iframe>
 <!-- Made in Asia -->
-<!--<iframe class="fb" data-id="158248754848" data-link=true></iframe>-->
+<!--<iframe class="fb" data-id="158248754848" data-link></iframe>-->
 <!-- Japan Con -->
-<!--<iframe class="fb" data-id="1183102238487055" data-link=true></iframe>-->
+<!--<iframe class="fb" data-id="1183102238487055" data-link></iframe>-->
 <!-- Comic Con -->
-<!--<iframe class="fb" data-id="1500913783536307" data-link=true></iframe>-->
+<!--<iframe class="fb" data-id="1500913783536307" data-link></iframe>-->
 
 <!-- McDonald's -->
-<iframe class="fb" data-id="McDonaldsBelgique" data-link=true></iframe>
+<iframe class="fb" data-id="McDonaldsBelgique" data-link></iframe>
 <!-- Quick -->
-<iframe class="fb" data-id="101101084709774" data-link=true></iframe>
+<iframe class="fb" data-id="101101084709774" data-link></iframe>
 <!-- Burger King -->
-<iframe class="fb" data-id="345420055853895" data-link=true></iframe>
+<iframe class="fb" data-id="345420055853895" data-link></iframe>
 <!-- KFC -->
-<iframe class="fb" data-id="KFC.BE" data-link=true></iframe>
+<iframe class="fb" data-id="KFC.BE" data-link></iframe>
 <!-- Moods -->
-<iframe class="fb" data-id="1965984716761917" data-link=true></iframe>
+<iframe class="fb" data-id="1965984716761917" data-link></iframe>
 <!-- Mayeur burgeur-->
-<!--<iframe class="fb" data-id="112730726846337" data-link=true></iframe>-->
+<!--<iframe class="fb" data-id="112730726846337" data-link></iframe>-->
 
 <script>
 "use strict";
-window.addEventListener('load', ()=>{
+window.addEventListener('load', function(){
 	// We can add a few limitation to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
-	Arrays.from(document.getElementsByClassName('fb')).forEach(
-		(el) => el.sandbox = "allow-same-origin allow-scripts" + (el.getAttribute('data-link') ? " allow-popups" : "")
-	);
+	for (let fbElement of document.getElementsByClassName('fb'))
+		fbElement.sandbox = "allow-same-origin allow-scripts" + (fbElement.getAttribute('data-link') ? "allow-popups" : "");
 	
-	let refreshFb = ()=>{
+	let refreshFb = function() {
 		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
-		Arrays.from(document.getElementsByClassName('fb').forEach((el) => {
+		for (let fbElement of document.getElementsByClassName('fb')) {
 			let style = getComputedStyle(fbElement);
 			let width = parseInt(style['width']);
 			let height = parseInt(style['height']);
@@ -129,10 +128,10 @@ window.addEventListener('load', ()=>{
 	// Recalculate the elements size when the window is redimensionned
 	// Because reloading facebook is a rather heavy load, we wait until the user stopped changing the size
 	var m_fbTimer;
-	addEventListener('resize', ()=>{
-					if (m_fbTimer) clearTimeout(m_fbTimer);
-					m_fbTimer = setTimeout(refreshFb, 5000);
-				});
+	addEventListener('resize', function() {
+			if (m_fbTimer) clearTimeout(m_fbTimer);
+			m_fbTimer = setTimeout(refreshFb, 5000);
+		});
 });
 </script>
 </html>
