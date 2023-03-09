@@ -98,15 +98,16 @@ iframe {
 
 <script>
 "use strict";
-window.addEventListener('load', function(){
+window.addEventListener('load', ()=>{
 	// We can add a few limitation to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
-	for (let fbElement of document.getElementsByClassName('fb'))
-		fbElement.sandbox = "allow-same-origin allow-scripts" + (fbElement.getAttribute('data-link') ? "allow-popups" : "");
+	Arrays.from(document.getElementsByClassName('fb')).forEach(
+		(el) => el.sandbox = "allow-same-origin allow-scripts" + (el.getAttribute('data-link') ? " allow-popups" : "")
+	);
 	
-	let refreshFb = function() {
+	let refreshFb = ()=>{
 		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
-		for (let fbElement of document.getElementsByClassName('fb')) {
+		Arrays.from(document.getElementsByClassName('fb').forEach((el) => {
 			let style = getComputedStyle(fbElement);
 			let width = parseInt(style['width']);
 			let height = parseInt(style['height']);
@@ -128,10 +129,10 @@ window.addEventListener('load', function(){
 	// Recalculate the elements size when the window is redimensionned
 	// Because reloading facebook is a rather heavy load, we wait until the user stopped changing the size
 	var m_fbTimer;
-	addEventListener('resize', function() {
-			if (m_fbTimer) clearTimeout(m_fbTimer);
-			m_fbTimer = setTimeout(refreshFb, 5000);
-		});
+	addEventListener('resize', ()=>{
+					if (m_fbTimer) clearTimeout(m_fbTimer);
+					m_fbTimer = setTimeout(refreshFb, 5000);
+				});
 });
 </script>
 </html>
