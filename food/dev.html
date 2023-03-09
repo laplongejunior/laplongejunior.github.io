@@ -119,8 +119,8 @@ window.addEventListener('load', function(){
 			// Facebook's documentation : https://developers.facebook.com/docs/plugins/page-plugin/
 			fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"
 				+fbElement.getAttribute('data-id')
-				+"&tabs=timeline&hide_cover=true&show_facepile=false&de_cta=false&small_header=true&adapt_container_width=false&width="
-				+width + "&height="+height;
+				+"&width="+width + "&height="+height
+				+"&tabs=timeline&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false&lazy=true";
 		}
 	}
 	refreshFb();
