@@ -101,7 +101,9 @@ iframe {
 "use strict";
 addEventListener('load', ()=>{
 	// FB parameter
+	// Minification is going to optimize away the concatenation statement 
 	const LAZY_LOADING = "false";
+	
 	// Will be minified for efficiency
 	let elements = document.getElementsByClassName('fb');
 	let getAttribute = (element,name) => element.getAttribute('data-'+name);
