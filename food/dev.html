@@ -100,6 +100,8 @@ iframe {
 <script>
 "use strict";
 addEventListener('load', ()=>{
+	// FB parameter
+	const LAZY_LOADING = "false";
 	// Will be minified for efficiency
 	let elements = document.getElementsByClassName('fb');
 	let getAttribute = (element,name) => element.getAttribute('data-'+name);
@@ -117,7 +119,7 @@ addEventListener('load', ()=>{
 			let width = parseInt(style['width']);
 			let height = parseInt(style['height']);
 
-			if (fbElement.prevWidth === width && fbElement.prevWidth === height)
+			if (fbElement.prevWidth === width && fbElement.prevHeight === height)
 				return;
 			fbElement.prevWidth = width;
 			fbElement.prevHeight = height;
@@ -126,9 +128,9 @@ addEventListener('load', ()=>{
 			fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"
 				+getAttribute(fbElement,'id')
 				+"&width="+width + "&height="+height
-				+"&tabs=timeline"
-				+(fbElement.hasAttribute('data-event')?",events":"")
-				+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false&lazy=true";
+				+"&tabs=timeline"+(fbElement.hasAttribute('data-event')?",events":"")
+				+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false"
+				+"&lazy="+LAZY_LOADING;
 		}
 	};
 	
