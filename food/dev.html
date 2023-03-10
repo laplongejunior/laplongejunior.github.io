@@ -101,13 +101,13 @@ iframe {
 
 addEventListener('load', ()=>{
 	// Will be minified for efficiency
-	let getAttribute = (element,name) => element.getAttribute('data-'+name);
 	let elements = document.getElementsByClassName('fb');
+	let getAttribute = (element,name) => element.getAttribute('data-'+name);
 	
 	// We can add a few limitations to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
 	for (let fbElement of elements)
-		fbElement.sandbox = "allow-same-origin allow-scripts" + getAttribute(fbElement,'link')?" allow-popups":"");
+		fbElement.sandbox = "allow-same-origin allow-scripts" + (getAttribute(fbElement,'link')?" allow-popups":"");
 
 	let refreshFb = ()=>{
 		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
@@ -126,7 +126,7 @@ addEventListener('load', ()=>{
 				+getAttribute(fbElement,'id')
 				+"&width="+width + "&height="+height
 				+"&tabs=timeline"
-				+getAttribute(fbElement,'event')?",events":""
+				+(getAttribute(fbElement,'event')?",events":"")
 				+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false&lazy=true";
 		}
 	}
