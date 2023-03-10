@@ -107,7 +107,7 @@ addEventListener('load', ()=>{
 	// We can add a few limitations to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
 	for (let fbElement of elements)
-		fbElement.sandbox = "allow-same-origin allow-scripts" + (getAttribute(fbElement,'link')?" allow-popups":"");
+		fbElement.sandbox = "allow-same-origin allow-scripts" + (fbElement.hasAttribute('data-link')?" allow-popups":"");
 	alert(getAttribute(fbElement,'link'));
 
 	let refreshFb = ()=>{
@@ -127,7 +127,7 @@ addEventListener('load', ()=>{
 				+getAttribute(fbElement,'id')
 				+"&width="+width + "&height="+height
 				+"&tabs=timeline"
-				+(getAttribute(fbElement,'event')?",events":"")
+				+(fbElement.hasAttribute('data-event')?",events":"")
 				+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false&lazy=true";
 		}
 	};
