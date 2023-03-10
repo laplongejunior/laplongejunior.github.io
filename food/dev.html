@@ -102,7 +102,8 @@ window.addEventListener('load', function(){
 	// We can add a few limitation to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
 	for (let fbElement of document.getElementsByClassName('fb'))
-		fbElement.sandbox = "allow-same-origin allow-scripts" + (fbElement.getAttribute('data-link') ? " allow-popups" : "");
+		fbElement.sandbox = "allow-same-origin";
+		//fbElement.sandbox = "allow-same-origin allow-scripts" + (fbElement.hasAttribute('data-link') ? " allow-popups" : "");
 	
 	let refreshFb = function() {
 		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
