@@ -104,15 +104,15 @@ addEventListener('load', ()=>{
 	// Minification is going to optimize away the concatenation statement 
 	const LAZY_LOADING = "false";
 	
-	// Will be minified for efficiency
-	let elements = document.getElementsByClassName('fb');
 	let getAttribute = (element,name) => element.getAttribute('data-'+name);
+	let conditionalConcat = (element,name,value) => getAttribute(element,name)===null?"":value;
 	
 	// We can add a few limitations to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
 	for (let fbElement of elements)
-		fbElement.sandbox = "allow-same-origin allow-scripts" + (getAttribute(fbElement,'link')===null?"":" allow-popups");
+		fbElement.sandbox = "allow-same-origin allow-scripts" + conditionalConcat(fbElement,'link'," allow-popups");
 
+	const elements = document.getElementsByClassName('fb');
 	let refreshFb = ()=>{
 		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
 		for (let fbElement of elements) {
@@ -126,16 +126,17 @@ addEventListener('load', ()=>{
 			fbElement.prevHeight = height;
 
 			// Facebook's documentation : https://developers.facebook.com/docs/plugins/page-plugin/
-			fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"
+			const TARGET = "https://www.facebook.com/"
+			fbElement.src = TARGET+"plugins/page.php?href="+TARGET
 				+getAttribute(fbElement,'id')
 				+"&width="+width + "&height="+height
-				+"&tabs=timeline"+(getAttribute(fbElement,'event')===null?"":",events")
+				+"&tabs=timeline"+conditionalConcat(fbElement,'event',",events")
 				+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false"
 				+"&lazy="+LAZY_LOADING;
 		}
 	};
 	
-	refreshFb(elements);	
+	refreshFb();	
 	// Recalculate the elements size when the window is redimensionned
 	// Because reloading facebook is a rather heavy load, we wait until the user stopped changing the size
 	var m_fbTimer;
