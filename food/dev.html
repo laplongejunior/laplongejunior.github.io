@@ -99,12 +99,16 @@ iframe {
 <script>
 "use strict";
 window.addEventListener('load', function(){
+	// Will be minified for efficiency
+	let addOnAttr = (element,name,value) => ( getAttribute(element,name) ? value : "" );
+	let getAttribute = ((element,name) => element.getAttribute('data-'+name));
+	
 	// We can add a few limitation to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
 	for (let fbElement of document.getElementsByClassName('fb'))
-		fbElement.sandbox = "allow-same-origin allow-scripts" + (fbElement.hasAttribute('data-link') ? " allow-popups" : "");
+		fbElement.sandbox = "allow-same-origin allow-scripts" + addOnAttr(fbElement,'link',"" allow-popups");
 	
-	let refreshFb = function() {
+	let refreshFb = ()=>{
 		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
 		for (let fbElement of document.getElementsByClassName('fb')) {
 			let style = getComputedStyle(fbElement);
@@ -118,10 +122,10 @@ window.addEventListener('load', function(){
 			
 			// Facebook's documentation : https://developers.facebook.com/docs/plugins/page-plugin/
 			fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"
-				+fbElement.getAttribute('data-id')
+				+getAttribute(fbElement,'id')
 				+"&width="+width + "&height="+height
 				+"&tabs=timeline"
-				+(fbElement.hasAttribute('data-event') ? ",events" : "")
+				+addOnAttr(fbElement,'event',",events")
 				+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false&lazy=true";
 		}
 	}
@@ -130,7 +134,7 @@ window.addEventListener('load', function(){
 	// Recalculate the elements size when the window is redimensionned
 	// Because reloading facebook is a rather heavy load, we wait until the user stopped changing the size
 	var m_fbTimer;
-	addEventListener('resize', function() {
+	addEventListener('resize', ()=>{
 			if (m_fbTimer) clearTimeout(m_fbTimer);
 			m_fbTimer = setTimeout(refreshFb, 5000);
 		});
