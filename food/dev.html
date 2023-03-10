@@ -100,7 +100,7 @@ iframe {
 "use strict";
 window.addEventListener('load', function(){
 	// Will be minified for efficiency
-	let getAttribute = ((element,name) => element.getAttribute('data-'+name));
+	let getAttribute = ((element,name) => element.dataset[name]));
 	let addOnAttr = (element,name,value) => ( getAttribute(element,name) ? value : "" );
 	
 	// We can add a few limitations to the iframes, sadly facebook is kinda intrusive
