@@ -61,21 +61,21 @@ iframe {
 </head>
 <body class="main">
 <!-- La chine -->
-<iframe class="fb" data-id="1534914650170465" data-link></iframe>
+<iframe class="fb" data-id="1534914650170465" data-link data-event></iframe>
 <!-- Peking city -->
-<iframe class="fb" data-id="729688737058316" data-link></iframe>
+<iframe class="fb" data-id="729688737058316" data-link data-event></iframe>
 <!-- Yummy -->
-<iframe class="fb" data-id="486514164698001" data-link></iframe>
+<iframe class="fb" data-id="486514164698001" data-link data-event></iframe>
 	
 <!-- Della Casa -->
 <!--<iframe class="fb" data-id="105696147575324" data-link></iframe>-->
 <!-- Para Nova -->
-<iframe class="fb" data-id="106520487912837" data-link></iframe>
+<iframe class="fb" data-id="106520487912837" data-link data-event></iframe>
 <!-- Il viale -->
 <!--<iframe class="fb" data-id="391876530940664" data-link></iframe>-->
 
 <!-- Foire du midi -->
-<iframe class="fb" data-id="300225590442881" data-link></iframe>
+<iframe class="fb" data-id="300225590442881" data-link data-event></iframe>
 <!-- Made in Asia -->
 <!--<iframe class="fb" data-id="158248754848" data-link></iframe>-->
 <!-- Japan Con -->
@@ -92,7 +92,7 @@ iframe {
 <!-- KFC -->
 <iframe class="fb" data-id="KFC.BE" data-link></iframe>
 <!-- Moods -->
-<iframe class="fb" data-id="1965984716761917"></iframe>
+<iframe class="fb" data-id="1965984716761917" data-event></iframe>
 <!-- Mayeur burgeur-->
 <!--<iframe class="fb" data-id="112730726846337" data-link></iframe>-->
 
@@ -121,7 +121,9 @@ window.addEventListener('load', function(){
 			fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"
 				+fbElement.getAttribute('data-id')
 				+"&width="+width + "&height="+height
-				+"&tabs=timeline,events&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false&lazy=true";
+				+"&tabs=timeline"
+				+(fbElement.hasAttribute('data-event') ? ",events" : "")
+				+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false&lazy=true";
 		}
 	}
 	refreshFb();
