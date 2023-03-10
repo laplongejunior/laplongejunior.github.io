@@ -98,37 +98,38 @@ iframe {
 
 <script>
 "use strict";
-window.addEventListener('load', function(){
-	// Will be minified for efficiency
-	let getAttribute = ((element,name) => element.getAttribute('data-'+name));
-	let addOnAttr = (element,name,value) => ( getAttribute(element,name) ? value : "" );
+
+// Will be minified for efficiency
+let getAttribute = ((element,name) => element.getAttribute('data-'+name));
+let addOnAttr = (element,name,value) => ( getAttribute(element,name) ? value : "" );
 	
+let refreshFb = ()=>{
+	// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
+	for (let fbElement of document.getElementsByClassName('fb')) {
+		let style = getComputedStyle(fbElement);
+		let width = parseInt(style['width']);
+		let height = parseInt(style['height']);
+			
+		if (fbElement.prevWidth === width && fbElement.prevWidth === height)
+			return;
+		fbElement.prevWidth = width;
+		fbElement.prevHeight = height;
+		
+		// Facebook's documentation : https://developers.facebook.com/docs/plugins/page-plugin/
+		fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"
+			+getAttribute(fbElement,'id')
+			+"&width="+width + "&height="+height
+			+"&tabs=timeline"
+			+addOnAttr(fbElement,'event',",events")
+			+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false&lazy=true";
+	}
+}
+
+addEventListener('load', ()=>{
 	// We can add a few limitations to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
 	for (let fbElement of document.getElementsByClassName('fb'))
 		fbElement.sandbox = "allow-same-origin allow-scripts" + addOnAttr(fbElement,'link'," allow-popups");
-	
-	let refreshFb = ()=>{
-		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
-		for (let fbElement of document.getElementsByClassName('fb')) {
-			let style = getComputedStyle(fbElement);
-			let width = parseInt(style['width']);
-			let height = parseInt(style['height']);
-				
-			if (fbElement.prevWidth === width && fbElement.prevWidth === height)
-				return;
-			fbElement.prevWidth = width;
-			fbElement.prevHeight = height;
-			
-			// Facebook's documentation : https://developers.facebook.com/docs/plugins/page-plugin/
-			fbElement.src = "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/"
-				+getAttribute(fbElement,'id')
-				+"&width="+width + "&height="+height
-				+"&tabs=timeline"
-				+addOnAttr(fbElement,'event',",events")
-				+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false&lazy=true";
-		}
-	}
 	refreshFb();
 	
 	// Recalculate the elements size when the window is redimensionned
