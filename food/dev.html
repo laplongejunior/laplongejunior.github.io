@@ -100,10 +100,10 @@ iframe {
 "use strict";
 window.addEventListener('load', function(){
 	// Will be minified for efficiency
-	let addOnAttr = (element,name,value) => ( getAttribute(element,name) ? value : "" );
 	let getAttribute = ((element,name) => element.getAttribute('data-'+name));
+	let addOnAttr = (element,name,value) => ( getAttribute(element,name) ? value : "" );
 	
-	// We can add a few limitation to the iframes, sadly facebook is kinda intrusive
+	// We can add a few limitations to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
 	for (let fbElement of document.getElementsByClassName('fb'))
 		fbElement.sandbox = "allow-same-origin allow-scripts" + addOnAttr(fbElement,'link'," allow-popups");
