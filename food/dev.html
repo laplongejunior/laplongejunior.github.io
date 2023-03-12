@@ -102,17 +102,17 @@ addEventListener('load', ()=>{
 	// Minification is going to optimize away the concatenation statement 
 	const LAZY_LOADING = "false";
 	
-	let getAttribute = (element,name) => element.getAttribute('data-'+name);
-	let conditionalConcat = (element,name,value) => getAttribute(element,name)===null?"":value;
+	const getAttribute = (element,name) => element.getAttribute('data-'+name);
+	const conditionalConcat = (element,name,value) => getAttribute(element,name)===null?"":value;
 	
+	const elements = Array.from(document.getElementsByClassName('fb'));
 	// We can add a few limitations to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
-	const elements = Array.from(document.getElementsByClassName('fb'));
 	const SAFE=' allow-popups';
 	elements.forEach(fbElement=>fbElement.sandbox = 'allow-same-origin allow-scripts' + conditionalConcat(fbElement,'link',SAFE+'-to-escape-sandbox'+SAFE));
 
 	// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
-	let refreshFb = ()=>elements.forEach(fbElement=>{
+	const refreshFb = ()=>elements.forEach(fbElement=>{
 		let style = getComputedStyle(fbElement);
 		let width = parseInt(style['width']);
 		let height = parseInt(style['height']);
