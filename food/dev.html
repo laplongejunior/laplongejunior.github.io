@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
+<!-- IE support -->
+<meta name="referrer" content="never" />
 <meta name="referrer" content="no-referrer" />
 <!-- Refreshes the page every 5 minutes -->
 <meta http-equiv="refresh" content="600" />
@@ -105,35 +107,32 @@ addEventListener('load', ()=>{
 	
 	// We can add a few limitations to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
-	const elements = document.getElementsByClassName('fb');
+	const elements = Array.from(document.getElementsByClassName('fb'));
 	const SAFE=' allow-popups';
-	for (let fbElement of elements)
-		fbElement.sandbox = 'allow-same-origin allow-scripts' + conditionalConcat(fbElement,'link',SAFE+'-to-escape-sandbox'+SAFE);
+	elements.forEach(fbElement=>fbElement.sandbox = 'allow-same-origin allow-scripts' + conditionalConcat(fbElement,'link',SAFE+'-to-escape-sandbox'+SAFE));
 
-	let refreshFb = ()=>{
-		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
-		for (let fbElement of elements) {
-			let style = getComputedStyle(fbElement);
-			let width = parseInt(style['width']);
-			let height = parseInt(style['height']);
+	// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
+	let refreshFb = ()=>elements.forEach(fbElement=>{
+		let style = getComputedStyle(fbElement);
+		let width = parseInt(style['width']);
+		let height = parseInt(style['height']);
 
-			if (fbElement.prevWidth === width && fbElement.prevHeight === height)
-				return;
-			fbElement.prevWidth = width;
-			fbElement.prevHeight = height;
+		if (fbElement.prevWidth === width && fbElement.prevHeight === height)
+			return;
+		fbElement.prevWidth = width;
+		fbElement.prevHeight = height;
 
-			// Facebook's documentation : https://developers.facebook.com/docs/plugins/page-plugin/
-			const TARGET = "https://www.facebook.com/"
-			fbElement.src = TARGET+"plugins/page.php?href="+TARGET
-				+getAttribute(fbElement,'id')
-				+"&width="+width + "&height="+height
-				+"&tabs=timeline"+conditionalConcat(fbElement,'event',",events")
-				+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false"
-				+"&lazy="+LAZY_LOADING;
-		}
-	};
+		// Facebook's documentation : https://developers.facebook.com/docs/plugins/page-plugin/
+		const TARGET = "https://www.facebook.com/"
+		fbElement.src = TARGET+"plugins/page.php?href="+TARGET
+			+getAttribute(fbElement,'id')
+			+"&width="+width + "&height="+height
+			+"&tabs=timeline"+conditionalConcat(fbElement,'event',",events")
+			+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false"
+			+"&lazy="+LAZY_LOADING;
+	});
 	
-	refreshFb();	
+	refreshFb();
 	// Recalculate the elements size when the window is redimensionned
 	// Because reloading facebook is a rather heavy load, we wait until the user stopped changing the size
 	var m_fbTimer;
