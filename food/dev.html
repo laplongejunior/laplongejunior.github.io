@@ -23,31 +23,31 @@ iframe {
 	position:absolute;
 	display:-ms-grid;
 	display:grid;
-	grid-auto-rows: 1fr;
+	grid-auto-rows: minmax(300px, 1fr);
 	
 	-ms-grid-columns: 1fr;
 	grid-template-columns: 1fr;
-	-ms-grid-rows: 600px 600px 600px 600px 600px 600px 600px 600px 600px 600px 600px 600px;
+	-ms-grid-rows: 300px 300px 300px 300px 300px 300px 300px 300px 300px 300px 300px 300px;
 }
 @media all and (min-width: 500px) {
 	.main {
 		-ms-grid-columns: 1fr 1fr;
 		grid-template-columns: repeat(2, 1fr);
-		-ms-grid-rows: 600px 600px 600px 600px 600px 600px;
+		-ms-grid-rows: 300px 300px 300px 300px 300px 300px;
 	}
 }
 @media all and (min-width: 1000px) {
 	.main {
 		-ms-grid-columns: 1fr 1fr 1fr;
 		grid-template-columns: repeat(3, 1fr);
-		-ms-grid-rows: 600px 600px 600px 600px;
+		-ms-grid-rows: 300px 300px 300px 300px;
 	}
 }
 @media all and (min-width: 1500px) {
 	.main {
 		-ms-grid-columns: 1fr 1fr 1fr 1fr;
 		grid-template-columns: repeat(4, 1fr);
-		-ms-grid-rows: 600px 600px 600px;
+		-ms-grid-rows: 300px 300px 300px;
 	}
 }
 .fb {
@@ -76,11 +76,11 @@ iframe {
 <!-- Foire du midi -->
 <iframe class="fb" data-id="foiredumidibxl" data-link data-event></iframe>
 <!-- Made in Asia -->
-<!--<iframe class="fb" data-id="LeSalonMadeInAsia" data-link></iframe>-->
+<iframe class="fb" data-id="LeSalonMadeInAsia" data-link></iframe>
 <!-- Japan Con -->
-<!--<iframe class="fb" data-id="japancon.be" data-link></iframe>-->
+<iframe class="fb" data-id="japancon.be" data-link></iframe>
 <!-- Comic Con -->
-<!--<iframe class="fb" data-id="comicconbelgium" data-link></iframe>-->
+<iframe class="fb" data-id="comicconbelgium" data-link></iframe>
 
 <!-- McDonald's -->
 <iframe class="fb" data-id="McDonaldsBelgique" data-link></iframe>
@@ -93,7 +93,7 @@ iframe {
 <!-- Moods -->
 <iframe class="fb" data-id="moodsbxl" data-link data-event></iframe>
 <!-- Mayeur burgeur-->
-<!--<iframe class="fb" data-id="Stephane.mayeur.burger" data-link></iframe>-->
+<iframe class="fb" data-id="Stephane.mayeur.burger" data-link></iframe>
 
 <script>
 "use strict";
