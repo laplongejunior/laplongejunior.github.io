@@ -60,38 +60,38 @@ iframe {
 <!-- La chine -->
 <iframe class="fb" data-id="laChine.7090" data-link data-event></iframe>
 <!-- Peking city -->
-<iframe class="fb" data-id="729688737058316" data-link data-event></iframe>
+<iframe class="fb" data-id="jeffwu1987" data-link data-event></iframe>
 <!-- Yummy -->
-<iframe class="fb" data-id="486514164698001" data-link data-event></iframe>
+<iframe class="fb" data-id="yummy.vietnamien" data-link data-event></iframe>
 	
 <!-- Della Casa -->
-<!--<iframe class="fb" data-id="105696147575324" data-link></iframe>-->
+<!--<iframe class="fb" data-id="PizzDellaCasa" data-link></iframe>-->
 <!-- Para Nova -->
-<iframe class="fb" data-id="106520487912837" data-link data-event></iframe>
+<iframe class="fb" data-id="paranova7090" data-link data-event></iframe>
 <!-- Il viale -->
-<!--<iframe class="fb" data-id="391876530940664" data-link></iframe>-->
+<!--<iframe class="fb" data-id="Ilvialerestaurants" data-link></iframe>-->
 
 <!-- Foire du midi -->
-<iframe class="fb" data-id="300225590442881" data-event></iframe>
+<iframe class="fb" data-id="foiredumidibxl" data-link data-event></iframe>
 <!-- Made in Asia -->
-<!--<iframe class="fb" data-id="158248754848"></iframe>-->
+<!--<iframe class="fb" data-id="LeSalonMadeInAsia" data-link></iframe>-->
 <!-- Japan Con -->
-<!--<iframe class="fb" data-id="1183102238487055"></iframe>-->
+<!--<iframe class="fb" data-id="japancon.be" data-link></iframe>-->
 <!-- Comic Con -->
-<!--<iframe class="fb" data-id="1500913783536307"></iframe>-->
+<!--<iframe class="fb" data-id="comicconbelgium" data-link></iframe>-->
 
 <!-- McDonald's -->
-<iframe class="fb" data-id="McDonaldsBelgique"></iframe>
+<iframe class="fb" data-id="McDonaldsBelgique" data-link></iframe>
 <!-- Quick -->
-<iframe class="fb" data-id="101101084709774"></iframe>
+<iframe class="fb" data-id="QuickBelgique" data-link></iframe>
 <!-- Burger King -->
-<iframe class="fb" data-id="345420055853895"></iframe>
+<iframe class="fb" data-id="BurgerKingBelgique" data-link></iframe>
 <!-- KFC -->
-<iframe class="fb" data-id="KFC.BE"></iframe>
+<iframe class="fb" data-id="KFC.BE" data-link></iframe>
 <!-- Moods -->
-<iframe class="fb" data-id="1965984716761917" data-event></iframe>
+<iframe class="fb" data-id="moodsbxl" data-link data-event></iframe>
 <!-- Mayeur burgeur-->
-<!--<iframe class="fb" data-id="112730726846337" data-link></iframe>-->
+<!--<iframe class="fb" data-id="Stephane.mayeur.burger" data-link></iframe>-->
 
 <script>
 "use strict";
@@ -106,8 +106,9 @@ addEventListener('load', ()=>{
 	// We can add a few limitations to the iframes, sadly facebook is kinda intrusive
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
 	const elements = document.getElementsByClassName('fb');
+	const SAFE=' allow-popups';
 	for (let fbElement of elements)
-		fbElement.sandbox = "allow-same-origin allow-scripts" + conditionalConcat(fbElement,'link'," allow-popups allow-popups-to-escape-sandbox");
+		fbElement.sandbox = 'allow-same-origin allow-scripts' + conditionalConcat(fbElement,'link',SAFE+'-to-escape-sandbox'+SAFE);
 
 	let refreshFb = ()=>{
 		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
