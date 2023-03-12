@@ -2,8 +2,6 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8" />
-<!-- IE support -->
-<meta name="referrer" content="never" />
 <meta name="referrer" content="no-referrer" />
 <!-- Refreshes the page every 5 minutes -->
 <meta http-equiv="refresh" content="600" />
@@ -109,7 +107,7 @@ addEventListener('load', ()=>{
 	// allow-popups is not required to show the feed, but is required to be able to click on the source links
 	const elements = document.getElementsByClassName('fb');
 	for (let fbElement of elements)
-		fbElement.sandbox = "allow-same-origin allow-scripts" + conditionalConcat(fbElement,'link'," allow-popups");
+		fbElement.sandbox = "allow-same-origin allow-scripts" + conditionalConcat(fbElement,'link'," allow-popups allow-popups-to-escape-sandbox");
 
 	let refreshFb = ()=>{
 		// CSS already takes care of making correct columns, we simply need to make the contained element matches the columns
