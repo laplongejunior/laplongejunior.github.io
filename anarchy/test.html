@@ -118,7 +118,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 	
 	// Okay, complicated part because of mathematics
 	// Each win is the previous win plus WIN_BONUS... what is the total of a 4 win spree, for example?
-	// So 0 gives 0 bonus, 1 gives 0, 2 gives 1, 3 gives 3, etc.
+	// So 0 gives 0 bonus, 1 gives 0+0, 2 gives 1+0, 3 gives 2+1, etc.
 	// Thanks to Quora (surprising, I know), the total number of bonuses can be calculated with "N(N-1)/2"
 	// Here's an example
 	// Mathematically, 30+35+40+45 is equivalent to 4*30 + 4*((5*3)/2)
@@ -134,12 +134,14 @@ doc.getElementById('submit').addEventListener('click', function(){
 		if (_target < extra)
 			return 0;
 		bonus *= 3; // Three medals per game
-			
-		for (let index = VICTORIES+1; index <= 5; ++index) {
-			extra += index*(WIN+WIN_BONUS) + bonus;
-			if (_target < extra)
-				return index-VICTORIES;
-		}
+
+		// If number of wins is already beyond max, compute oncz 
+		let index = VICTORIES+1;
+		do {
+		     extra += index*(WIN+WIN_BONUS) + bonus;
+	             if (_target < extra)
+		         return index-VICTORIES;
+		} while (++index <= 5);
 		return -1;
 	};
 	
