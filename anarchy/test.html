@@ -130,6 +130,8 @@ doc.getElementById('submit').addEventListener('click', function(){
 	const storage = VICTORIES*(WIN+((VICTORIES-1)*WIN_BONUS/2)) + GOLD*GOLD_BONUS + SILVER*SILVER_BONUS;
 	let innerHTML = "Stored score is "+score+"p and "+storage+"p is already won";
 	score += storage;
+	// No backline here
+	innerHTML += " for a total of "+score+"p";
 	
 	const target = ()=>NEXT-score;	
 	const analysis = function(bonus) {
