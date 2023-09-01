@@ -127,11 +127,10 @@ doc.getElementById('submit').addEventListener('click', function(){
 	// Mathematically, 30+35+40+45 is equivalent to 4*30 + 4*((5*3)/2)
 	// Or, more generally, the splatoon3 win bonus at B+ will be "N*(30+ (5*[N-1])/2)"
 	// N being the number of wins, 2 a mathematical constant while 30 and 5 depends on the current rank
-	const storage = VICTORIES*(WIN+((VICTORIES-1)*WIN_BONUS/2)) + GOLD*GOLD_BONUS + SILVER*SILVER_BONUS;
-	let innerHTML = "Stored score is "+score+"p and "+storage+"p is already won";
+	const increase = VICTORIES*(WIN+((VICTORIES-1)*WIN_BONUS/2)) + GOLD*GOLD_BONUS + SILVER*SILVER_BONUS;
+	let innerHTML = "Starting score: "+score+"p"
+		+NL_CR+"Current reward: "+increase+"p";
 	score += storage;
-	// No backline here
-	innerHTML += " for a total of "+score+"p";
 	
 	const target = ()=>NEXT-score;	
 	const analysis = function(bonus) {
@@ -155,6 +154,8 @@ doc.getElementById('submit').addEventListener('click', function(){
 		innerHTML += NF_CR+"Rankup battle will be required to confirm progress";
 	else
 		innerHTML += NF_CR+"Score before next rankup battle: "+(RANKUP-score)+"p";
+	
+	innerHTML += NF_CR+"Current total: "+score+"p";
 	
 	if (target() > 0)
 		innerHTML += NF_CR+"Score before next rank: "+target()+"p";
