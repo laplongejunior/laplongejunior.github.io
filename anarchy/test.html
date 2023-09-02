@@ -129,7 +129,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 	// N being the number of wins, 2 a mathematical constant while 30 and 5 depends on the current rank
 	const increase = VICTORIES*(WIN+((VICTORIES-1)*WIN_BONUS/2)) + GOLD*GOLD_BONUS + SILVER*SILVER_BONUS;
 	let innerHTML = "Starting score: "+score+"p"
-		+NL_CR+"Current reward: "+increase+"p";
+		+NF_CR+"Current reward: "+increase+"p";
 	score += storage;
 	
 	const target = ()=>NEXT-score;	
