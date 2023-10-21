@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<style>
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.text {
+	width:90%;
+	height:90%;
+}
+</style>
+<meta charset="utf-8" />
+<title>Canyon rate planification</title>
+</head>
+<body>
+Expected score: <input type="number" id="requirement" value="5000"></input><br/>
+Match duration: <input type="number" id="duration" value="60"></input><br/>
+Start hour: <input type="number" id="hour" value="16"></input><br/>
+Start minutes: <input type="number" id="minute" value="5"></input><br/>
+Current score: <input type="number" id="score" value="0"></input><br/>
+<br/>
+Required rate: <label id="output"></label>
+<script>
+"use strict";
+const doc = document;
+const update = ()=>{
+	const rate = ()=>{
+		const NOW = new Date();		
+		const current = NOW.getHours()*60+NOW.getMinutes();
+		const duration = parseInt(doc.getElementById("duration").value);
+		
+		let hours = parseInt(doc.getElementById('hour').value);
+		// Fixes timezone issue where 23h is considered later than 00h
+		if (current + duration > 24*60)
+			hours += 24;
+		const start = hours*60 + parseInt(doc.getElementById('minute').value);
+		
+		if (current < start)
+			return "Didn't start yet";
+		let diff = duration+start-current;
+		if (diff < 0)
+			return "It's over!";
+		const remaining = parseInt(doc.getElementById('requirement').value)
+					- parseInt(doc.getElementById('score').value);
+		return Math.ceil(remaining/diff)+" points/min";
+	};
+	doc.getElementById('output').innerHTML = rate();
+};
+
+let currentTimeout = null;
+let currentInterval = null;
+
+const refresh = ()=>{
+	if (currentTimeout) {
+		clearTimeout(currentTimeout);
+		currentTimeout = null;
+	}
+	if (currentInterval) {
+		clearInterval(currentInterval);
+		currentInterval	= null;
+	}
+	
+	// Call it NOW
+	update();
+	// Then call it at the start of the next minute
+	const NOW = new Date();
+	const diff = 60-NOW.getSeconds();
+	currentTimeout = setTimeout(()=>{
+		currentTimeout = null;
+		// Then call it every new minute
+		update();
+		currentInterval = setInterval(update, 60);
+	}, diff);
+};
+
+refresh();
+for (let id of ['requirement', 'hour', 'minute', 'score']) {
+	doc.getElementById(id).addEventListener("input", refresh);
+}
+</script>
+</body>
+</html>
