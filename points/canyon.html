@@ -82,9 +82,8 @@ const refresh = ()=>{
 };
 
 refresh();
-for (let id of ['requirement', 'hour', 'minute', 'score']) {
-	doc.getElementById(id).addEventListener("input", refresh);
-}
+for (const element of doc.getElementsByTagName("input"))
+	element.addEventListener("input", refresh);
 </script>
 </body>
 </html>
