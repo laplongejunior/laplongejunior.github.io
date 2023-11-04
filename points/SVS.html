@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<style>
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.text {
+	width:90%;
+	height:90%;
+}
+</style>
+<meta charset="utf-8" />
+<title>SVS victory planification</title>
+</head>
+<body>
+Match duration: <input type="number" id="duration" value="60"></input><br/>
+Start hour: <input type="number" id="hour" value="16"></input><br/>
+Start minutes: <input type="number" id="minute" value="5"></input><br/>
+Current score: <input type="number" id="score" value="0"></input><br/>
+Opponent score: <input type="number" id="requirement" value="0"></input><br/>
+<br/>
+Required rate: <label id="output"></label>
+<script>
+"use strict";
+const doc = document;
+const update = ()=>{
+	const rate = ()=>{
+		const NOW = new Date();		
+		const current = NOW.getHours()*60+NOW.getMinutes();
+		const duration = parseInt(doc.getElementById("duration").value);
+		
+		let hours = parseInt(doc.getElementById('hour').value);
+		// Fixes timezone issue where 23h is considered later than 00h
+		if (current + duration > 24*60)
+			hours += 24;
+		const start = hours*60 + parseInt(doc.getElementById('minute').value);
+		
+		if (current < start)
+			return "Didn't start yet";
+		
+		let diff = duration+start-current;
+		if (diff > 0)
+			diff++;
+		else if (diff < 0)
+			return "It's over!";
+		
+		let remaining = (20+20+40+100) * diff
+							- Math.abs(doc.getElementById('score').value - doc.getElementById('requirement').value);
+		if (remaining < 0)
+			return "Result is now fixed even without agreement";
+			
+		let result = remaining+" before guaranteed fix, ";
+			
+		remaining-=100*Math.min(diff,10);
+		if (remaining < 0)
+			result += "already fixed if capital agreement";
+		else
+			result += remaining+" if agreement is followed";
+		return result;
+	};
+	doc.getElementById('output').innerHTML = rate();
+};
+
+let currentTimeout = null;
+let currentInterval = null;
+
+const refresh = ()=>{
+	if (currentTimeout) {
+		clearTimeout(currentTimeout);
+		currentTimeout = null;
+	}
+	if (currentInterval) {
+		clearInterval(currentInterval);
+		currentInterval	= null;
+	}
+	
+	// Call it NOW
+	update();
+	// Then call it at the start of the next minute
+	const NOW = new Date();
+	const diff = 60-NOW.getSeconds();
+	currentTimeout = setTimeout(()=>{
+		currentTimeout = null;
+		// Then call it every new minute
+		update();
+		currentInterval = setInterval(update, 60);
+	}, diff);
+};
+
+refresh();
+for (const element of doc.getElementsByTagName("input"))
+	element.addEventListener("input", refresh);
+</script>
+</body>
+</html>
