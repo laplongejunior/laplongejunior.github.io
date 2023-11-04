@@ -41,9 +41,13 @@ const update = ()=>{
 		
 		if (current < start)
 			return "Didn't start yet";
+		
 		let diff = duration+start-current;
-		if (diff < 0)
+		if (diff > 0)
+			diff--;
+		else if (diff < 0)
 			return "It's over!";
+		
 		const remaining = parseInt(doc.getElementById('requirement').value)
 					- parseInt(doc.getElementById('score').value);
 		return Math.ceil(remaining/diff)+" points/min";
