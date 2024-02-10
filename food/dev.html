@@ -136,9 +136,12 @@ addEventListener('load', ()=>{
 		fbElement.src = TARGET+"plugins/page.php?href="+TARGET
 			+getAttribute(fbElement,'id')
 			+"&width="+width + "&height="+height
-			+"&tabs=timeline"+conditionalConcat(fbElement,'event',",events")
+			+"&tabs=timeline"//+conditionalConcat(fbElement,'event',",events")
 			+"&hide_cover=true&show_facepile=false&hide_cta=false&small_header=true&adapt_container_width=false"
 			+"&lazy="+LAZY_LOADING;
+		
+		if (getAttribute(fbElement, 'event'))
+			fbElement.setAttibute('data-show-posts', "true");
 	});
 	
 	refreshFb();
