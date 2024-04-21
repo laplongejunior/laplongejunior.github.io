@@ -31,8 +31,11 @@ html, body {
 document/*.getElementById('run')*/.addEventListener(/*'click'*/'load', function(){
 	// Number between 0 and 4 in case cycle drifts due to complications
 	const RSS_OFFSET = 1;
+
+	const DAY_MS = 1000*60*60*24;
 	let epoch = new Date();
-	const today = new Date(epoch.getCurrentYear()+"-"+epoch.getMonth()+"-"+epoch.getDay());
+	let today = new Date(epoch.getCurrentYear()+"-"+epoch.getMonth()+"-"+epoch.getDay());
+	today = new Date(today.getTime()-DAY_MS*1)
 	console.log(today);
 	epoch = new Date("1970-01-01");
 	console.log(epoch);
@@ -42,7 +45,7 @@ document/*.getElementById('run')*/.addEventListener(/*'click'*/'load', function(
 	};
 		
 	const result = new Map();
-	const diff = (today-epoch) / (1000*60*60*24);
+	const diff = (today-epoch) / DAY_MS;
 
 	const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
 	result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
