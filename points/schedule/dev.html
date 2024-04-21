@@ -47,17 +47,17 @@ html, body {
 	// lastReset now refers to the last encountered reset time in UTC
 	lastReset = lastReset - TIME_OFFSET;
 	console.log("Server reset time in your timezone: "+new Date(lastReset));
-	
-	const result = new Map();
-	const addTask = (hours, reason)=>{
-		const instant = (UTCreset(hours*60);
-		result.set(instant, "Reset+"+hours+" for "+reason);
-		return new Date(currentTime+ minutes*60*1000);
-	};
 
 	let currentTime;
 	const UTCreset = (minutes)=>{
 		return new Date(currentTime+ minutes*60*1000);
+	};
+	
+	const result = new Map();
+	const addTask = (hours, reason)=>{
+		let visual = "Reset+"+hours;
+		if (hours > 12) visual = "Reset-"+(24-hours); 
+		result.set(UTCreset(hours*60), visual+" for "+reason);
 	};
 	
 	// Current day + 7 in the future
