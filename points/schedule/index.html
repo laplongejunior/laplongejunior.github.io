@@ -36,18 +36,18 @@ document.getElementById('run').addEventListener('click', function(){
 	epoch = new Date("1970-01-01");
 	
 	const UTCreset = (minutes)=>{
-		return new Date(today.getTime()+minutes
+		return new Date(today.getTime()+minutes*60*1000);
 	};
 		
 	const result = new Map();
 	const diff = (today-new Date("1970-01-01")) / (1000 * 60 * 60 * 24);
 
 	const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
-	result.set(new Date(), "Calculate reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
+	result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
 
 	for (let time = 4; time < 24; time +=8) {
-		reset.set(new Date(), "Calculate reset+4+"+time+" for WB flag");
-		reset.set(new Date(), "Calculate reset+4+"+time+"+1 for gather flag");
+		reset.set(TCreset(time*60, "Reset+4+"+time+" for WB flag");
+		reset.set(TCreset(time+1)*60, "Reset+4+"+time+"+1 for gathering flag");
 	}
 	
 	if (doubleDip === 0) {
