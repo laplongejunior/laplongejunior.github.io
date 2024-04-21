@@ -63,14 +63,15 @@ html, body {
 		// Establish an index based on number of days. Allows to establish self-sutenting cycles
 		const diff = (currentDay) / DAY_MS;
 	
-		const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
-		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
-	
 		for (let time = 4; time < 24; time +=8) {
 			result.set(UTCreset(time*60), "Reset+4+"+time+" for WB flag");
 			result.set(UTCreset((time+1)*60), "Reset+4+"+time+"+1 for gathering flag");
 		}
 		
+	
+		const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
+		console.log(doubleDip);
+		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
 		if (doubleDip === 0) {
 			result.set(UTCreset(-1*60), "2nd rss : " + (rssIndex===2?"Food":"Oil"));
 		}
