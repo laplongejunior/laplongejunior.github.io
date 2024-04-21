@@ -45,7 +45,7 @@ html, body {
 	// Applying this offset allows UTC-like calculations to work despite applying dayOfTheWeek rules from the devs
 	let TIME_OFFSET = lastReset%DAY_MS + UTC_OFFSET;
 	if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
-	
+	// lastReset now refers to the "offset reset time" : it is in UTC, but represents the same Instant as the dev reset time
 	lastReset = lastReset - TIME_OFFSET;
 	
 	const result = new Map();
