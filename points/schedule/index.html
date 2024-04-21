@@ -47,20 +47,20 @@ html, body {
 	
 	const today = new Date(lastReset)
 	console.log(today);
-	const EPOCH = new Date("1970-01-01");
-	console.log(epoch);
+	const EPOCH = new Date("1970-01-01").getTime()/DAY_MS;
+	console.log(EPOCH);
 	
 	const result = new Map();
 
 	// Current day + 7 in the future
 	for (let day = 0; day<8; day++) {
-		const currentDay = new Date(lastReset+ DAY_MS*day);
+		const currentDay = lastReset+ DAY_MS*day;
 		const UTCreset = (minutes)=>{
-			return new Date(currentDay.getTime()+ minutes*60*1000);
+			return new Date(currentDay+ minutes*60*1000);
 		};
 
 		// Establish an index based on number of days. Allows to establish self-sutenting cycles
-		const diff = (currentDay-EPOCH) / DAY_MS;
+		const diff = (currentDay-EPOCH.getTime()) / DAY_MS;
 	
 		const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
 		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
