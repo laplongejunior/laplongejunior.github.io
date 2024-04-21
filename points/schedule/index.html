@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<style>
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.text {
+	width:90%;
+	height:90%;
+}
+</style>
+<meta charset="utf-8" />
+<title>Test outlook</title>
+</head>
+<body>
+<input type="number" id="minYear" value="2017"></input>
+<input type="number" id="maxYear" value="2030"></input>
+<button id="outlook">Click here to generate</button>
+<br/>
+<label>Outlook code</label>
+<br/>
+<textarea class="text" id="output"></textarea>
+<script>
+"use strict";
+document.getElementById('outlook').addEventListener('click', function(){
+	// Source: https://gist.github.com/johndyer/0dffbdd98c2046f41180c051f378f343
+	var getEaster = function(year) {
+		var f = Math.floor,
+		// Golden Number - 1
+		G = year % 19,
+		C = f(year / 100),
+		// related to Epact
+		H = (C - f(C / 4) - f((8 * C + 13)/25) + 19 * G + 15) % 30,
+		// number of days from 21 March to the Paschal full moon
+		I = H - f(H/28) * (1 - f(29/(H + 1)) * f((21-G)/11)),
+		// weekday for the Paschal full moon
+		J = (year + f(year / 4) + I + 2 - C + f(C / 4)) % 7,
+		// number of days from 21 March to the Sunday on or before the Paschal full moon
+		L = I - J,
+		month = 3 + f((L + 40)/44),
+		day = L + 28 - 31 * f(month / 4);
+
+		return new Date(year, month, day+1); // Monday
+	};
+	
+	var MIN_YEAR = document.getElementById('minYear').value;
+	var MAX_YEAR = document.getElementById('maxYear').value;
+	
+	var map = new Map();
+	map.set("Jour de l'an",[1,1]);
+	map.set("Fête du travail",[5,1]);
+	map.set("Fête nationale",[7,21]);
+	map.set("Assomption",[8,15]);
+	map.set("Toussaint",[11,1]);
+	map.set("*Jour des morts",[11,2]);
+	map.set("Armistice 1918",[11,11]);
+	map.set("*Fête du roi",[11,15]);
+	map.set("Noël",[12,25]);
+	map.set("*Après-noël",[12, 6]);
+	for (var day = 27; day <= 31; day++)
+		map.set("Comp. fin d'année",[12,day]);
+	
+	var _addDays = function(date,days) {
+		var date = new Date(date.valueOf());
+		date.setDate(date.getDate() + days);
+		return date;
+	};
+		
+	var result = new Map();
+	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {	
+		for (var [name,data] of map)
+			result.set(new Date(year, data[0], data[1]), name);		
+		var easter = getEaster(year);
+		// Holy friday is included in Outlook, but is not a legal holiday
+		result.set(easter,"Lundi de Pâques");
+		result.set(_addDays(easter,39-1),"Ascension");
+		result.set(_addDays(easter,49),"Lundi de Pentecôte");
+	}
+	
+	var txt = "[Belgique] 212";
+	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];})))
+		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+	document.getElementById('output').value = txt;
+});
+</script>
+</body>
+</html>
