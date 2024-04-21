@@ -49,6 +49,11 @@ html, body {
 	console.log("Server reset time in your timezone: "+new Date(lastReset));
 	
 	const result = new Map();
+	const addTask = (hours, reason)=>{
+		const instant = (UTCreset(hours*60);
+		result.set(instant, "Reset+"+hours+" for "+reason);
+		return new Date(currentTime+ minutes*60*1000);
+	};
 
 	let currentTime;
 	const UTCreset = (minutes)=>{
@@ -67,11 +72,12 @@ html, body {
 
 		// Resources on a cycle
 		// Oil+Food, Oil, Food+Oil, Food
-		const rssIndex = (diff+RSS_OFFSET)%4, doubleDip = rssIndex%2;
-		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Oil":"Food"));
-		if (doubleDip === 0) {
-			result.set(UTCreset(23*60), "Reset+23 from 2nd rss : " + (rssIndex===2?"Oil":"Food"));
-		}
+		const rssIndex = (diff+RSS_OFFSET)%4;
+		addTask(2, 1st rss : "+ (rssIndex<2?"Oil":"Food"));
+		if (rssIndex%2 === 0)
+			addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food");
+
+		addTask(3, "Droid (requires officer)");
 		
 		// 3 WB cycles
 		for (let time = 4; time < 24; time +=8) {
@@ -83,13 +89,13 @@ html, body {
 				reason = "LQ";
 				t-=1;
 			}
-			
-			result.set(UTCreset(t*60), "Reset+"+t+" for "+reason+" damage flag");
-			result.set(UTCreset(end*60), "Reset+"+end+" for gathering flag");
+
+			addTask(t,reason+" damage flag");
+			addTask(end," gathering flag");
 		}
 	}
 	
-	let txt = "Debug example";
+	let txt = "Here's the schedule!";
 	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 		txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)+"\n"+name;
 	}
