@@ -45,7 +45,7 @@ html, body {
 	for (int day = 0; day<8; day++) {
 		const currentDay = new Date(today.getTime()+ DAY_MS*day);
 		const UTCreset = (minutes)=>{
-			return new Date(currentDay.getTime()+minutes*60*1000);
+			return new Date(currentDay.getTime()+ minutes*60*1000);
 		};
 		
 		const diff = (currentDay-epoch) / DAY_MS;
@@ -54,12 +54,12 @@ html, body {
 		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
 	
 		for (let time = 4; time < 24; time +=8) {
-			reset.set(TCreset(time*60), "Reset+4+"+time+" for WB flag");
-			reset.set(TCreset((time+1)*60), "Reset+4+"+time+"+1 for gathering flag");
+			reset.set(UTCreset(time*60), "Reset+4+"+time+" for WB flag");
+			reset.set(UTCreset((time+1)*60), "Reset+4+"+time+"+1 for gathering flag");
 		}
 		
 		if (doubleDip === 0) {
-			result.set(TCreset(-1*60), "2nd rss : " + (rssIndex===2?"Food":"Oil"));
+			result.set(UTCreset(-1*60), "2nd rss : " + (rssIndex===2?"Food":"Oil"));
 		}
 		// Food+Oil
 		// Food
