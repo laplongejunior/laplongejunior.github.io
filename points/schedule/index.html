@@ -29,11 +29,14 @@ html, body {
 <script>
 "use strict";
 document.getElementById('run').addEventListener('click', function(){
+	// Number between 0 and 4 in case cycle drifts due to complications
+	const RSS_OFFSET = 1
+		
 	const result = new Map();
 	const today = new Date();
 	const diff = (today-new Date("1970-01-01")) / (1000 * 60 * 60 * 24);
 
-	const rssIndex = (diff%4), doubleDip = (rssIndex%2);
+	const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
 	result.set(new Date(), "Insert hour of 1st rss : "+ (rssIndex<2?"Food":"Oil"));
 	if (doubleDip === 0) {
 		result.set(new Date(), "Insert hour of 2nd rss : " + (rssIndex===2?"Food":"Oil"));
