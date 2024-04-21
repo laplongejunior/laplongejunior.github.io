@@ -41,11 +41,10 @@ html, body {
 	// 8h UTC is when my server's time in settings reach 00h00
 	let lastReset = new Date().getTime();
 
-	// Offset between the dat, and the last reset time in server's timezone
-	// Applying this offset allows to calculate what UTC timestamp correspond to the server reset
+	// Offset between YOUR time, and the last reset time in server's timezone
 	let TIME_OFFSET = lastReset%DAY_MS + UTC_OFFSET;
 	if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
-	// lastReset now refers to the "offset reset time" : it is in UTC, but represents the same Instant as the last encountered reset time
+	// lastReset now refers to the last encountered reset time in UTC
 	lastReset = lastReset - TIME_OFFSET;
 	console.log("Server reset time in your timezone: "+new Date(lastReset));
 	
@@ -59,9 +58,9 @@ html, body {
 	// Current day + 7 in the future
 	for (let day = 0; day<8; day++) {
 		currentTime = lastReset+ DAY_MS*day;
-		let currentDay = new Date(currentTime).getUTCDay();
+		let currentDay = new Date(currentTime+UTC_OFFSET).getUTCDay();
 		// Treat Sunday as end of week
-		//if (currentDay < 1) currentDay += 7;
+		if (currentDay < 1) currentDay += 7;
 
 		// Establish an index based on number of days. Allows to establish self-referencing cycles
 		const diff = Math.floor(currentTime/DAY_MS);
@@ -80,7 +79,7 @@ html, body {
 			const end = t+1;
 			let reason = "WB";
 			
-			if (currentDay>=4) {
+			if (currentDay>=5) {
 				reason = "LQ";
 				t-=1;
 			}
