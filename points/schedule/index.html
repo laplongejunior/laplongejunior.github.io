@@ -20,15 +20,15 @@ html, body {
 <!--
 <input type="number" id="minYear" value="2017"></input>
 <input type="number" id="maxYear" value="2030"></input>
--->
 <button id="run">Click here to generate</button>
+-->
 <br/>
 <label>Result code</label>
 <br/>
 <textarea class="text" id="output"></textarea>
 <script>
 "use strict";
-document.getElementById('run').addEventListener('click', function(){
+document/*.getElementById('run')*/.addEventListener(/*'click'*/'load', function(){
 	// Number between 0 and 4 in case cycle drifts due to complications
 	const RSS_OFFSET = 1;
 	let epoch = new Date();
