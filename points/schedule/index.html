@@ -34,15 +34,16 @@ html, body {
 	// Number between 0 and 4 in case cycle drifts due to complications
 	const RSS_OFFSET = 0;
 	// When server time reaches 00h00
-	const UTC_OFFSET = 16*HOURS_MS;
+	const UTC_OFFSET = 8*HOURS_MS;
 
 	const pad = (obj, length)=>{ return (""+obj).padStart(length,'0'); }
 
 	// 8h UTC is when my server's time in settings reach 00h00
 	let lastReset = new Date().getTime();
 
-	// Offset between your UTC time and reset time
-	let TIME_OFFSET = lastReset%DAY_MS + 8*HOURS_MS;
+	// Compound offset between your own time in UTC, and the last reset time in server's timezone
+	// Applying this offset allows UTC-like calculations to work despite applying dayOfTheWeek rules from the devs
+	let TIME_OFFSET = lastReset%DAY_MS + UTC_OFFSET;
 	if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
 	
 	lastReset = lastReset - TIME_OFFSET;
