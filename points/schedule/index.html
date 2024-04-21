@@ -32,7 +32,7 @@ html, body {
 	const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS;
 	
 	// Number between 0 and 4 in case cycle drifts due to complications
-	const RSS_OFFSET = 1;
+	const RSS_OFFSET = 0;
 	// When server time reaches 00h00
 	const UTC_OFFSET = 16*HOURS_MS;
 
@@ -44,7 +44,7 @@ html, body {
 	let lastReset = new Date().getTime();
 
 	// Offset between your UTC time and reset time
-	let TIME_OFFSET = lastReset%DAY_MS - 16*HOURS_MS;
+	let TIME_OFFSET = lastReset%DAY_MS + 8*HOURS_MS;
 	if (TIME_OFFSET < 0) TIME_OFFSET += DAY_MS;
 	
 	lastReset = lastReset - TIME_OFFSET;
@@ -61,7 +61,7 @@ html, body {
 		currentTime = lastReset+ DAY_MS*day;
 		let currentDay = new Date(currentTime).getUTCDay();
 		// Treat Sunday as end of week
-		//if (currentDay < 1) currentDay += 7;
+		if (currentDay < 1) currentDay += 7;
 
 		// Establish an index based on number of days. Allows to establish self-referencing cycles
 		const diff = Math.floor(currentTime/DAY_MS);
