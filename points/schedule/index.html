@@ -42,7 +42,7 @@ document/*.getElementById('run')*/.addEventListener(/*'click'*/'load', function(
 	};
 		
 	const result = new Map();
-	const diff = (today-new Date("1970-01-01")) / (1000 * 60 * 60 * 24);
+	const diff = (today-epoch) / (1000 * 60 * 60 * 24);
 
 	const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
 	result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
