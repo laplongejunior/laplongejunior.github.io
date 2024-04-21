@@ -67,8 +67,8 @@ html, body {
 		const diff = (currentDay) / DAY_MS;
 	
 		for (let time = 4; time < 24; time +=8) {
-			result.set(UTCreset(time*60), "Reset+4+"+time+" for WB flag");
-			result.set(UTCreset((time+1)*60), "Reset+4+"+time+"+1 for gathering flag");
+			result.set(UTCreset(time*60), "Reset+"+time+" for WB flag");
+			result.set(UTCreset((time+1)*60), "Reset+4+"+(time+1)+" for gathering flag");
 		}
 		
 	
