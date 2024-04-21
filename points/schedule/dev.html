@@ -73,7 +73,7 @@ html, body {
 		// Resources on a cycle
 		// Oil+Food, Oil, Food+Oil, Food
 		const rssIndex = (diff+RSS_OFFSET)%4;
-		addTask(2, 1st rss : "+ (rssIndex<2?"Oil":"Food"));
+		addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
 		if (rssIndex%2 === 0)
 			addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food");
 
