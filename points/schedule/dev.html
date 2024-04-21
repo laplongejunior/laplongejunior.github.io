@@ -17,11 +17,9 @@ html, body {
 <title>Test TW schedule</title>
 </head>
 <body>
-<!--
-<input type="number" id="minYear" value="2017"></input>
-<input type="number" id="maxYear" value="2030"></input>
+<input type="number" id="minDay" value="0"></input>
+<input type="number" id="maxDay" value="7"></input>
 <button id="run">Click here to generate</button>
--->
 <br/>
 <label>Result code</label>
 <br/>
@@ -79,7 +77,7 @@ html, body {
 
 		const droidTime = 3;
 		addTask(droidTime, "Droid summon (requires officer)");
-		addTask(droidTime+12, "Droid setup (requires officer)");
+		addTask(droidTime+12, "Droid setup (requires officer) : alpha-5");
 		
 		// 3 WB cycles
 		for (let time = 4; time < 24; time +=8) {
@@ -93,7 +91,7 @@ html, body {
 			}
 
 			addTask(t,reason+" damage flag");
-			addTask(end," gathering flag");
+			addTask(end,"gathering flag");
 		}
 	}
 	
