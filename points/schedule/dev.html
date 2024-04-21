@@ -75,9 +75,11 @@ html, body {
 		const rssIndex = (diff+RSS_OFFSET)%4;
 		addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
 		if (rssIndex%2 === 0)
-			addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food");
+			addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
 
-		addTask(3, "Droid (requires officer)");
+		const droidTime = 3;
+		addTask(droidTime, "Droid summon (requires officer)");
+		addTask(droidTime+12, "Droid setup (requires officer)");
 		
 		// 3 WB cycles
 		for (let time = 4; time < 24; time +=8) {
