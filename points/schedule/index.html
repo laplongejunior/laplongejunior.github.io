@@ -61,7 +61,7 @@ html, body {
 		currentTime = lastReset+ DAY_MS*day;
 		let currentDay = new Date(currentTime).getUTCDay();
 		// Treat Sunday as end of week
-		if (currentDay < 1) currentDay += 7;
+		//if (currentDay < 1) currentDay += 7;
 
 		// Establish an index based on number of days. Allows to establish self-referencing cycles
 		const diff = Math.floor(currentTime/DAY_MS);
