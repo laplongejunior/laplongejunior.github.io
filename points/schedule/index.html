@@ -68,6 +68,8 @@ html, body {
 
 		// Resources on a cycle
 		// Oil+Food, Oil, Food+Oil, Food
+		console.log(diff+RSS_OFFSET);
+		console.log((diff+RSS_OFFSET)%4);
 		const rssIndex = mod(diff+RSS_OFFSET,4), doubleDip = mod(rssIndex,2);
 		console.log(doubleDip);
 		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Oil":"Food"));
