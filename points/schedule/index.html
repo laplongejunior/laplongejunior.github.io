@@ -95,7 +95,7 @@ html, body {
 	
 	let txt = "Debug example";
 	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
-		txt += "\n\n"+pad(date.getFullYear(),4)+"-"+paddate.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)+"\n"+name;
+		txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)+"\n"+name;
 	}
 	document.getElementById('output').value = txt;
 }/*);*/)();
