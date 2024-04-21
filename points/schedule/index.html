@@ -28,7 +28,7 @@ html, body {
 <textarea class="text" id="output"></textarea>
 <script>
 "use strict";
-document/*.getElementById('run')*/.addEventListener(/*'click'*/'load', function(){
+/*document.getElementById('run').addEventListener*'click''load', */function(){
 	// Number between 0 and 4 in case cycle drifts due to complications
 	const RSS_OFFSET = 1;
 
@@ -40,36 +40,38 @@ document/*.getElementById('run')*/.addEventListener(/*'click'*/'load', function(
 	epoch = new Date("1970-01-01");
 	console.log(epoch);
 	
-	const UTCreset = (minutes)=>{
-		return new Date(today.getTime()+minutes*60*1000);
-	};
-		
 	const result = new Map();
-	const diff = (today-epoch) / DAY_MS;
 
-	const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
-	result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
-
-	for (let time = 4; time < 24; time +=8) {
-		reset.set(TCreset(time*60), "Reset+4+"+time+" for WB flag");
-		reset.set(TCreset((time+1)*60), "Reset+4+"+time+"+1 for gathering flag");
-	}
+	for (int day = 0; day<8; day++) {
+		const currentDay = new Date(today.getTime()+ DAY_MS*day);
+		const UTCreset = (minutes)=>{
+			return new Date(currentDay.getTime()+minutes*60*1000);
+		};
+		
+		const diff = (currentDay-epoch) / DAY_MS;
 	
-	if (doubleDip === 0) {
-		result.set(TCreset(-1*60), "2nd rss : " + (rssIndex===2?"Food":"Oil"));
-	}
-	// Food+Oil
-	// Food
-	// Oil+Food
-	// Oil
-	result.set(new Date(), "Test");
+		const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
+		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
 	
+		for (let time = 4; time < 24; time +=8) {
+			reset.set(TCreset(time*60), "Reset+4+"+time+" for WB flag");
+			reset.set(TCreset((time+1)*60), "Reset+4+"+time+"+1 for gathering flag");
+		}
+		
+		if (doubleDip === 0) {
+			result.set(TCreset(-1*60), "2nd rss : " + (rssIndex===2?"Food":"Oil"));
+		}
+		// Food+Oil
+		// Food
+		// Oil+Food
+		// Oil
+	}
 	
 	let txt = "Debug example";
 	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];})))
 		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
 	document.getElementById('output').value = txt;
-});
+}/*);*/();
 </script>
 </body>
 </html>
