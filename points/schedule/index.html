@@ -60,7 +60,7 @@ html, body {
 		currentTime = lastReset+ DAY_MS*day;
 		let currentDay = new Date(currentTime).getUTCDay();
 		// Treat Sunday as end of week
-		if (currentDay < 1) currentDay += 7;
+		//if (currentDay < 1) currentDay += 7;
 
 		// Establish an index based on number of days. Allows to establish self-referencing cycles
 		const diff = currentTime / DAY_MS;
@@ -80,7 +80,7 @@ html, body {
 			const end = t+1;
 			let reason = "WB";
 			
-			if (currentDay>=5) {
+			if (currentDay>=4) {
 				reason = "LQ";
 				t-=1;
 			}
