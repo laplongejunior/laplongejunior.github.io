@@ -58,7 +58,7 @@ html, body {
 	// Current day + 7 in the future
 	for (let day = 0; day<8; day++) {
 		currentTime = lastReset+ DAY_MS*day;
-		const currentDay = new Date(currentTime).getUTCDay();
+		let currentDay = new Date(currentTime).getUTCDay();
 		// Treat Sunday as end of week
 		if (currentDay < 1) currentDay += 7;
 
