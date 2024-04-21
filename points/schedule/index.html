@@ -58,17 +58,30 @@ html, body {
 
 	// Current day + 7 in the future
 	for (let day = 0; day<8; day++) {
-		const currentDay = lastReset+ DAY_MS*day;
+		const currentTime = lastReset+ DAY_MS*day;
+		
 		const UTCreset = (minutes)=>{
-			return new Date(currentDay+ minutes*60*1000);
+			return new Date(currentTime+ minutes*60*1000);
 		};
+		const currentDay = new Date(currentTime).getUTCDay();
+		// Treat Sunday as end of week
+		if (currentDay === 0) currentDay = 7;
 
 		// Establish an index based on number of days. Allows to establish self-sutenting cycles
-		const diff = (currentDay) / DAY_MS;
+		const diff = (currentTime) / DAY_MS;
 	
-		for (let time = 4; time < 24; time +=8) {
-			result.set(UTCreset(time*60), "Reset+"+time+" for WB flag");
-			result.set(UTCreset((time+1)*60), "Reset+4+"+(time+1)+" for gathering flag");
+		for (const time = 4; time < 24; time +=8) {
+			let t = time;
+			const end = t+1;
+			let reason = "WB";
+			
+			if (currentDay>=5) {
+				reason = "LQ";
+				time-=1;
+			}
+			
+			result.set(UTCreset(time*60), "Reset+"+time+" for "+reason+" damage flag");
+			result.set(UTCreset(end*60), "Reset+"+end+" for gathering flag");
 		}
 		
 	
