@@ -29,26 +29,37 @@ html, body {
 <script>
 "use strict";
 /*document.getElementById('run').addEventListener('click', */(function(){
+	const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS;
+	
 	// Number between 0 and 4 in case cycle drifts due to complications
 	const RSS_OFFSET = 1;
+	// When server time reaches 00h00
+	const UTC_OFFSET = 16*HOURS_MS;
 
-	const DAY_MS = 1000*60*60*24;
-	let epoch = new Date();
-	let today = new Date(epoch.getCurrentYear()+"-"+epoch.getMonth()+"-"+epoch.getDay());
+	// 8h UTC is when my server's time in settings reach 00h00
+	let lastReset = new Date().getTime();
+
+	// Offset between your UTC time and reset time
+	let TIME_OFFSET = lastReset%DAY_MS - 16*HOURS_MS;
+	if (TIME_OFFSET < 0) TIME_OFFSET + DAY_MS;
+	
+	lastReset = lastReset - TIME_OFFSET;
+	
 	today = new Date(today.getTime()-DAY_MS*1)
 	console.log(today);
-	epoch = new Date("1970-01-01");
+	const EPOCH = new Date("1970-01-01");
 	console.log(epoch);
 	
 	const result = new Map();
 
-	for (int day = 0; day<8; day++) {
-		const currentDay = new Date(today.getTime()+ DAY_MS*day);
+	for (let day = 0; day<8; day++) {
+		const currentDay = new Date(lastReset+ DAY_MS*day);
 		const UTCreset = (minutes)=>{
 			return new Date(currentDay.getTime()+ minutes*60*1000);
 		};
-		
-		const diff = (currentDay-epoch) / DAY_MS;
+
+		// Establish an index based on number of days. Allows to establish self-sutenting cycles
+		const diff = (currentDay-EPOCH) / DAY_MS;
 	
 		const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
 		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
