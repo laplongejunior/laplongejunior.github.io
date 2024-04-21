@@ -82,7 +82,7 @@ html, body {
 	
 	let txt = "Debug example";
 	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];})))
-		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+		txt += "\n"+date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"T"+date.getHour()+"-"date.getMinute()+","+name;
 	document.getElementById('output').value = txt;
 }/*);*/)();
 </script>
