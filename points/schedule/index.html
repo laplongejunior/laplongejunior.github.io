@@ -40,15 +40,16 @@ html, body {
 	let lastReset = new Date().getTime();
 
 	// Offset between your UTC time and reset time
+	console.log(lastReset%DAY_MS);
 	let TIME_OFFSET = lastReset%DAY_MS - 16*HOURS_MS;
+	console.log(TIME_OFFSET);
 	if (TIME_OFFSET < 0) TIME_OFFSET + DAY_MS;
+	console.log(TIME_OFFSET);
 	
 	lastReset = lastReset - TIME_OFFSET;
 	
-	const today = new Date(lastReset)
+	const today = new Date(lastReset);
 	console.log(today);
-	const EPOCH = new Date("1970-01-01").getTime()/DAY_MS;
-	console.log(EPOCH);
 	
 	const result = new Map();
 
@@ -60,7 +61,7 @@ html, body {
 		};
 
 		// Establish an index based on number of days. Allows to establish self-sutenting cycles
-		const diff = (currentDay-EPOCH.getTime()) / DAY_MS;
+		const diff = (currentDay) / DAY_MS;
 	
 		const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
 		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
