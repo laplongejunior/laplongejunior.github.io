@@ -28,7 +28,7 @@ html, body {
 <textarea class="text" id="output"></textarea>
 <script>
 "use strict";
-/*document.getElementById('run').addEventListener*'click''load', */function(){
+/*document.getElementById('run').addEventListener('click', */(function(){
 	// Number between 0 and 4 in case cycle drifts due to complications
 	const RSS_OFFSET = 1;
 
@@ -71,7 +71,7 @@ html, body {
 	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];})))
 		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
 	document.getElementById('output').value = txt;
-}/*);*/();
+}/*);*/)();
 </script>
 </body>
 </html>
