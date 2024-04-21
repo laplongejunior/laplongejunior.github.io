@@ -37,9 +37,15 @@ document.getElementById('run').addEventListener('click', function(){
 	const diff = (today-new Date("1970-01-01")) / (1000 * 60 * 60 * 24);
 
 	const rssIndex = ((diff+RSS_OFFSET)%4), doubleDip = (rssIndex%2);
-	result.set(new Date(), "Insert hour of 1st rss : "+ (rssIndex<2?"Food":"Oil"));
+	result.set(new Date(), "Calculate reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
+
+	for (let time = 4; time < 24; time +=8) {
+		reset.set(new Date(), "Calculate reset+4+"+time+" for WB flag");
+		reset.set(new Date(), "Calculate reset+4+"+time+"+1 for gather flag");
+	}
+	
 	if (doubleDip === 0) {
-		result.set(new Date(), "Insert hour of 2nd rss : " + (rssIndex===2?"Food":"Oil"));
+		result.set(new Date(), "Calculate reset-1 for 2nd rss : " + (rssIndex===2?"Food":"Oil"));
 	}
 	// Food+Oil
 	// Food
