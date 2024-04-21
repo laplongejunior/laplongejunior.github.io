@@ -38,6 +38,7 @@ html, body {
 
 	// Source : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder
 	const mod = (n, d)=>{ return ((n % d) + d) % d; }
+	const pad = (obj, length)=>{ return (""+obj).padStart('0',length); }
 
 	// 8h UTC is when my server's time in settings reach 00h00
 	let lastReset = new Date().getTime();
@@ -91,8 +92,9 @@ html, body {
 	}
 	
 	let txt = "Debug example";
-	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];})))
-		txt += "\n\n"+date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+"-"+date.getMinutes()+"\n"+name;
+	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
+		txt += "\n\n"+pad(date.getFullYear(),4)+"-"+paddate.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)+"\n"+name;
+	}
 	document.getElementById('output').value = txt;
 }/*);*/)();
 </script>
