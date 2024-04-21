@@ -45,13 +45,14 @@ html, body {
 	
 	lastReset = lastReset - TIME_OFFSET;
 	
-	today = new Date(today.getTime()-DAY_MS*1)
+	const today = new Date(lastReset)
 	console.log(today);
 	const EPOCH = new Date("1970-01-01");
 	console.log(epoch);
 	
 	const result = new Map();
 
+	// Current day + 7 in the future
 	for (let day = 0; day<8; day++) {
 		const currentDay = new Date(lastReset+ DAY_MS*day);
 		const UTCreset = (minutes)=>{
