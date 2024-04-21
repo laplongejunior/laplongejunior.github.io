@@ -31,6 +31,17 @@ html, body {
 document.getElementById('run').addEventListener('click', function(){
 	const result = new Map();
 	const today = new Date();
+	const diff = today-EPOCH / (1000 * 60 * 60 * 24);
+
+	const rssIndex = (diff%4), doubleDip = (rssIndex%2);
+	result.set(new Date(), "Insert hour of 1st rss : "+ (rssIndex === 0)===(doubleDip === 0)?"Food":"Oil");
+	if (doubleDip === 0) {
+		result.set(new Date(), "Insert hour of 2nd rss : " + rssIndex%2===0?"Food":"Oil");
+	}
+	// Oil
+	// Food+Oil
+	// Food
+	// Oil+Food
 	result.set(new Date(), "Test");
 	
 	
