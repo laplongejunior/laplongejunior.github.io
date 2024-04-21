@@ -73,7 +73,7 @@ html, body {
 		console.log(doubleDip);
 		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Oil":"Food"));
 		if (doubleDip === 0) {
-			result.set(UTCreset(-1*60), "Reset-1 from 2nd rss : " + (rssIndex===2?"Oil":"Food"));
+			result.set(UTCreset(23*60), "Reset+23 from 2nd rss : " + (rssIndex===2?"Oil":"Food"));
 		}
 		
 		// 3 WB cycles
