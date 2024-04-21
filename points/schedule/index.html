@@ -65,6 +65,15 @@ html, body {
 		// Establish an index based on number of days. Allows to establish self-referencing cycles
 		const diff = currentTime / DAY_MS;
 
+		// Resources on a cycle
+		// Oil+Food, Oil, Food+Oil, Food
+		const rssIndex = mod(diff+RSS_OFFSET,4), doubleDip = mod(rssIndex,2);
+		console.log(doubleDip);
+		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Oil":"Food"));
+		if (doubleDip === 0) {
+			result.set(UTCreset(-1*60), "2nd rss : " + (rssIndex===2?"Oil":"Food"));
+		}
+		
 		// 3 WB cycles
 		for (let time = 4; time < 24; time +=8) {
 			let t = time;
@@ -79,18 +88,6 @@ html, body {
 			result.set(UTCreset(t*60), "Reset+"+t+" for "+reason+" damage flag");
 			result.set(UTCreset(end*60), "Reset+"+end+" for gathering flag");
 		}
-		
-	
-		const rssIndex = mod(diff+RSS_OFFSET,4), doubleDip = mod(rssIndex,2);
-		console.log(doubleDip);
-		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Food":"Oil"));
-		if (doubleDip === 0) {
-			result.set(UTCreset(-1*60), "2nd rss : " + (rssIndex===2?"Food":"Oil"));
-		}
-		// Food+Oil
-		// Food
-		// Oil+Food
-		// Oil
 	}
 	
 	let txt = "Debug example";
