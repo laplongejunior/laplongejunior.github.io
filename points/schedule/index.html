@@ -43,7 +43,7 @@ html, body {
 	console.log(lastReset%DAY_MS);
 	let TIME_OFFSET = lastReset%DAY_MS - 16*HOURS_MS;
 	console.log(TIME_OFFSET);
-	if (TIME_OFFSET < 0) TIME_OFFSET + DAY_MS;
+	if (TIME_OFFSET < 0) TIME_OFFSET += DAY_MS;
 	console.log(TIME_OFFSET);
 	
 	lastReset = lastReset - TIME_OFFSET;
