@@ -47,6 +47,7 @@ html, body {
 	if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
 	// lastReset now refers to the "offset reset time" : it is in UTC, but represents the same Instant as the dev reset time
 	lastReset = lastReset - TIME_OFFSET;
+	console.log(new Date(lastReset));
 	
 	const result = new Map();
 
