@@ -64,7 +64,9 @@ html, body {
 		//if (currentDay < 1) currentDay += 7;
 
 		// Establish an index based on number of days. Allows to establish self-referencing cycles
-		const diff = currentTime / DAY_MS;
+		console.log(currentTime);
+		console.log(DAY_MS);
+		const diff = Math.floor(currentTime/DAY_MS);
 
 		// Resources on a cycle
 		// Oil+Food, Oil, Food+Oil, Food
