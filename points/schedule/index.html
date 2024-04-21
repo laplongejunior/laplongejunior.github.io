@@ -23,17 +23,18 @@ html, body {
 -->
 <button id="run">Click here to generate</button>
 <br/>
-<label>Outlook code</label>
+<label>Result code</label>
 <br/>
 <textarea class="text" id="output"></textarea>
 <script>
 "use strict";
 document.getElementById('run').addEventListener('click', function(){
-	var result = new Map();
+	const result = new Map();
+	const today = new Date();
 	result.set(new Date(), "Test");
 	
 	
-	var txt = "Debug example";
+	let txt = "Debug example";
 	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];})))
 		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
 	document.getElementById('output').value = txt;
