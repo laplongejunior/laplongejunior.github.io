@@ -64,19 +64,16 @@ html, body {
 		//if (currentDay < 1) currentDay += 7;
 
 		// Establish an index based on number of days. Allows to establish self-referencing cycles
-		console.log(currentTime);
-		console.log(DAY_MS);
 		const diff = Math.floor(currentTime/DAY_MS);
 
 		// Resources on a cycle
 		// Oil+Food, Oil, Food+Oil, Food
-		console.log(diff+RSS_OFFSET);
-		console.log((diff+RSS_OFFSET)%4);
 		const rssIndex = mod(diff+RSS_OFFSET,4), doubleDip = mod(rssIndex,2);
+		console.log(rssIndex);
 		console.log(doubleDip);
 		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Oil":"Food"));
 		if (doubleDip === 0) {
-			result.set(UTCreset(-1*60), "2nd rss : " + (rssIndex===2?"Oil":"Food"));
+			result.set(UTCreset(-1*60), "Reset-1 from 2nd rss : " + (rssIndex===2?"Oil":"Food"));
 		}
 		
 		// 3 WB cycles
