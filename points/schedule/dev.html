@@ -67,7 +67,7 @@ const update = ()=>{
 	};
 	
 	// Current day + 7 in the future
-	for (let day = 0; day<8; day++) {
+	for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
 		currentTime = lastReset+ DAY_MS*day;
 		let currentDay = new Date(currentTime+UTC_OFFSET).getUTCDay();
 		// Treat Sunday as end of week
@@ -88,14 +88,14 @@ const update = ()=>{
 		addTask(droidTime+12, "Droid setup (requires officer) : ??? (alpha-5?)");
 		
 		// 3 WB cycles
-		for (let time = 4; time < 24; time +=8) {
-			let t = time;
-			const end = t+1;
+		for (let index = 0; index < 3; index++) {
+			let time = 8*index +4;
+			const end = time+1;
 			let reason = "WB";
 			
 			if (currentDay>=5) {
 				reason = "LQ";
-				t-=1;
+				time-=1;
 			}
 
 			addTask(t,reason+" damage flag");
