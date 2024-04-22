@@ -10,29 +10,36 @@ html, body {
 }
 .text {
 	width:90%;
-	height:90%;
+	height:85%;
 }
 </style>
 <meta charset="utf-8" />
 <title>Test TW schedule</title>
 </head>
 <body>
-<!--
-<input type="number" id="minYear" value="2017"></input>
-<input type="number" id="maxYear" value="2030"></input>
-<button id="run">Click here to generate</button>
--->
+<label for="minDay">Day index start</label><input type="number" id="minDay" value="0"/>
+<label for="maxDay">Day index end</label><input type="number" id="maxDay" value="7"/>
+<br/>
+<label for="tc">TC leaders (TODO)</label><input type="checkbox" id="tc"/>
+<label for="droid">Droid officer (WIP)</label><input type="checkbox" id="droid"/>
+<label for="ruin">Ruin manager</label><input type="checkbox" id="ruin" checked="checked"/>
+<br/>
+<label for="wb1">WB 1</label><input type="checkbox" id="wb1"/>
+<label for="wb2">WB 2</label><input type="checkbox" id="wb2" checked="checked"/>
+<label for="wb3">WB 3</label><input type="checkbox" id="wb3"/>
 <br/>
 <label>Result code</label>
 <br/>
 <textarea class="text" id="output"></textarea>
+<br/>
+<label for="timezone">Reset time (in your timezone)</label><input type="text" id="timezone" readonly="readonly"/>
 <script>
 "use strict";
-/*document.getElementById('run').addEventListener('click', */(function(){
+const update = ()=>{
 	const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS;
 	
 	// Number between 0 and 4 in case cycle drifts due to complications
-	const RSS_OFFSET = 0;
+	const RSS_OFFSET = 3;
 	// When server time reaches 00h00
 	const UTC_OFFSET = 8*HOURS_MS;
 
@@ -46,17 +53,22 @@ html, body {
 	if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
 	// lastReset now refers to the last encountered reset time in UTC
 	lastReset = lastReset - TIME_OFFSET;
-	console.log("Server reset time in your timezone: "+new Date(lastReset));
-	
-	const result = new Map();
+	document.getElementById('timezone').text = new Date(lastReset);
 
 	let currentTime;
 	const UTCreset = (minutes)=>{
 		return new Date(currentTime+ minutes*60*1000);
 	};
 	
+	const result = new Map();
+	const addTask = (hours, reason)=>{
+		let visual = "Reset+"+hours;
+		if (hours > 12) visual = "Reset-"+(24-hours); 
+		result.set(UTCreset(hours*60), visual+" for "+reason);
+	};
+	
 	// Current day + 7 in the future
-	for (let day = 0; day<8; day++) {
+	for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
 		currentTime = lastReset+ DAY_MS*day;
 		let currentDay = new Date(currentTime+UTC_OFFSET).getUTCDay();
 		// Treat Sunday as end of week
@@ -67,34 +79,44 @@ html, body {
 
 		// Resources on a cycle
 		// Oil+Food, Oil, Food+Oil, Food
-		const rssIndex = (diff+RSS_OFFSET)%4, doubleDip = rssIndex%2;
-		result.set(UTCreset(2*60), "Reset+2 for 1st rss : "+ (rssIndex<2?"Oil":"Food"));
-		if (doubleDip === 0) {
-			result.set(UTCreset(23*60), "Reset+23 from 2nd rss : " + (rssIndex===2?"Oil":"Food"));
+		const rssIndex = (diff+RSS_OFFSET)%4;
+		addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
+		if (rssIndex%2 === 0)
+			addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
+
+		if (document.getElementById('droid').checked) {
+			const droidTime = 3;
+			addTask(droidTime, "Droid summon (requires officer)");
+			addTask(droidTime+12, "Droid setup (requires officer) : ??? (alpha-5?)");
 		}
 		
 		// 3 WB cycles
-		for (let time = 4; time < 24; time +=8) {
-			let t = time;
-			const end = t+1;
+		for (let index = 0; index < 3; index++) {
+			if (!document.getElementById('wb'+(index+1)).checked)
+				continue;
+			let time = 8*index +4;
+			const end = time+1;
 			let reason = "WB";
 			
 			if (currentDay>=5) {
 				reason = "LQ";
-				t-=1;
+				time-=1;
 			}
-			
-			result.set(UTCreset(t*60), "Reset+"+t+" for "+reason+" damage flag");
-			result.set(UTCreset(end*60), "Reset+"+end+" for gathering flag");
+
+			addTask(time,reason+" damage flag");
+			addTask(end,"gathering flag");
 		}
 	}
 	
-	let txt = "Debug example";
+	let txt = "Here's the schedule!";
 	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 		txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)+"\n"+name;
 	}
 	document.getElementById('output').value = txt;
-}/*);*/)();
+};
+for (let item of document.getElementsByTagName("input"))
+	item.addEventListener('change',update);
+update();
 </script>
 </body>
 </html>
