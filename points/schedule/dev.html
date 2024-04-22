@@ -106,8 +106,8 @@ const update = ()=>{
 	}
 	document.getElementById('output').value = txt;
 };
-for (let id of ['minDay','maxDay'])
-	document.getElementById(id).addEventListener('change',update);
+for (let item of document.getElementsByTagName("input"))
+	item.addEventListener('change',update);
 update();
 </script>
 </body>
