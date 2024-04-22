@@ -26,6 +26,8 @@ html, body {
 <label for="wb1">WB 1</label><input type="checkbox" id="wb1" checked="true"/>
 <label for="wb2">WB 2</label><input type="checkbox" id="wb2" checked="true"/>
 <label for="wb3">WB 3</label><input type="checkbox" id="wb3" checked="true"/>
+<br/>
+Reset time (in your timezone:) <input type="text" id="timezone" disabled="true"/>
 
 <!--<button id="run">Click here to generate</button>-->
 <br/>
@@ -52,7 +54,7 @@ const update = ()=>{
 	if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
 	// lastReset now refers to the last encountered reset time in UTC
 	lastReset = lastReset - TIME_OFFSET;
-	console.log("Server reset time in your timezone: "+new Date(lastReset));
+	document.getElementById('timezone').text = new Date(lastReset);
 
 	let currentTime;
 	const UTCreset = (minutes)=>{
