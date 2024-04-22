@@ -19,6 +19,11 @@ html, body {
 <body>
 Day index start: <input type="number" id="minDay" value="0"></input><br/>
 Day index end: <input type="number" id="maxDay" value="7"></input><br/>
+<input type="checkbox" id="droid" checked="true"></input>
+<input type="checkbox" id="ruin" checked="true"></input>
+<input type="checkbox" id="wb1" checked="true"></input>
+<input type="checkbox" id="wb2" checked="true"></input>
+<input type="checkbox" id="wb2" checked="true"></input>
 <!--<button id="run">Click here to generate</button>-->
 <br/>
 <label>Result code</label>
@@ -102,7 +107,7 @@ const update = ()=>{
 	document.getElementById('output').value = txt;
 };
 for (let id of ['minDay','maxDay'])
-	document.getElementById('run').addEventListener('onvaluechange',update);
+	document.getElementById(id).addEventListener('change',update);
 update();
 </script>
 </body>
