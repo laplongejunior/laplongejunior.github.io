@@ -18,12 +18,19 @@ html, body {
 </head>
 <body>
 Day index start: <input type="number" id="minDay" value="0"></input><br/>
+<label for="minDay">Day index start</label>
 Day index end: <input type="number" id="maxDay" value="7"></input><br/>
+<label for="maxDay">Day index end</label>
 Droid officer <input type="checkbox" id="droid" checked="true"></input>
+<label for="droid">Droid officer</label>
 Ruin manager <input type="checkbox" id="ruin" checked="true"></input>
+<label for="ruin">Ruin manager</label>
 WB 1<input type="checkbox" id="wb1" checked="true"></input>
+<label for="wb1"WB 1</label>
 WB 2<input type="checkbox" id="wb2" checked="true"></input>
-WB 3<input type="checkbox" id="wb2" checked="true"></input>
+<label for="wb2">WB 2</label>
+WB 3<input type="checkbox" id="wb3" checked="true"></input>
+<label for="wb3">WB 3</label>
 <!--<button id="run">Click here to generate</button>-->
 <br/>
 <label>Result code</label>
@@ -82,7 +89,7 @@ const update = ()=>{
 
 		const droidTime = 3;
 		addTask(droidTime, "Droid summon (requires officer)");
-		addTask(droidTime+12, "Droid setup (requires officer) : alpha-5");
+		addTask(droidTime+12, "Droid setup (requires officer) : ??? (alpha-5?)");
 		
 		// 3 WB cycles
 		for (let time = 4; time < 24; time +=8) {
