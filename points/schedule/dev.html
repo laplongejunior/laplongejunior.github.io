@@ -17,20 +17,20 @@ html, body {
 <title>Test TW schedule</title>
 </head>
 <body>
-<input type="number" id="minDay" value="0"></input>
-<input type="number" id="maxDay" value="7"></input>
-<button id="run">Click here to generate</button>
+Day index start: <input type="number" id="minDay" value="0"></input><br/>
+Day index end: <input type="number" id="maxDay" value="7"></input><br/>
+<!--<button id="run">Click here to generate</button>-->
 <br/>
 <label>Result code</label>
 <br/>
 <textarea class="text" id="output"></textarea>
 <script>
 "use strict";
-/*document.getElementById('run').addEventListener('click', */(function(){
+const update = ()=>{
 	const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS;
 	
 	// Number between 0 and 4 in case cycle drifts due to complications
-	const RSS_OFFSET = 0;
+	const RSS_OFFSET = 1;
 	// When server time reaches 00h00
 	const UTC_OFFSET = 8*HOURS_MS;
 
@@ -100,7 +100,10 @@ html, body {
 		txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)+"\n"+name;
 	}
 	document.getElementById('output').value = txt;
-}/*);*/)();
+};
+for (let id of ['minDay','maxDay'])
+	document.getElementById('run').addEventListener('onvaluechange',update);
+update();
 </script>
 </body>
 </html>
