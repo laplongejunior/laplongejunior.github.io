@@ -21,7 +21,8 @@ html, body {
 <br/>
 <label for="maxDay">Day index end</label><input type="number" id="maxDay" value="7"/>
 <br/>
-<label for="droid">Droid officer</label><input type="checkbox" id="droid" checked="checked"/>
+<label for="ruin">TC leaders (TODO)</label><input type="checkbox" id="tc" checked="checked"/>
+<label for="droid">Droid officer (WIP)</label><input type="checkbox" id="droid" checked="checked"/>
 <label for="ruin">Ruin manager</label><input type="checkbox" id="ruin" checked="checked"/>
 <label for="wb1">WB 1</label><input type="checkbox" id="wb1" checked="checked"/>
 <label for="wb2">WB 2</label><input type="checkbox" id="wb2" checked="checked"/>
@@ -83,12 +84,16 @@ const update = ()=>{
 		if (rssIndex%2 === 0)
 			addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
 
-		const droidTime = 3;
-		addTask(droidTime, "Droid summon (requires officer)");
-		addTask(droidTime+12, "Droid setup (requires officer) : ??? (alpha-5?)");
+		if (document.getElementById('droid').checked) {
+			const droidTime = 3;
+			addTask(droidTime, "Droid summon (requires officer)");
+			addTask(droidTime+12, "Droid setup (requires officer) : ??? (alpha-5?)");
+		}
 		
 		// 3 WB cycles
 		for (let index = 0; index < 3; index++) {
+			if (!document.getElementById('wb'+(index+1)).checked)
+				continue;
 			let time = 8*index +4;
 			const end = time+1;
 			let reason = "WB";
