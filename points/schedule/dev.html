@@ -18,7 +18,7 @@ html, body {
 </head>
 <body>
 <label for="minDay">Day index start</label><input type="number" id="minDay" value="0"/>
-<label for="maxDay">Day index end</label><input type="number" id="maxDay" value="7"/>
+<label for="maxDay">Day index end</label><input type="number" id="maxDay" value="3"/>
 <br/>
 <label for="tc">TC leaders (TODO)</label><input type="checkbox" id="tc"/>
 <label for="droid">Droid officer (WIP)</label><input type="checkbox" id="droid"/>
@@ -27,6 +27,8 @@ html, body {
 <label for="wb1">WB 1</label><input type="checkbox" id="wb1"/>
 <label for="wb2">WB 2</label><input type="checkbox" id="wb2" checked="checked"/>
 <label for="wb3">WB 3</label><input type="checkbox" id="wb3"/>
+<br/>
+<label for="bol">BOL support (WIP)</label><input type="checkbox" id="bol" checked="checked"/>
 <br/>
 <label>Result code</label>
 <br/>
@@ -40,6 +42,8 @@ const update = ()=>{
 	
 	// Number between 0 and 4 in case cycle drifts due to complications
 	const RSS_OFFSET = 3;
+	// Between 0 and 1
+	const SVS_OFFSET = 1;
 	// When server time reaches 00h00
 	const UTC_OFFSET = 8*HOURS_MS;
 
@@ -70,19 +74,45 @@ const update = ()=>{
 	// Current day + 7 in the future
 	for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
 		currentTime = lastReset+ DAY_MS*day;
-		let currentDay = new Date(currentTime+UTC_OFFSET).getUTCDay();
+		const currentReset = currentTime+UTC_OFFSET;
+		const currentWeek = Math.floor((currentReset + 4*DAY_MS)/7*DAY_MS);
+		
+		let currentDay = new Date(currentReset).getUTCDay();
 		// Treat Sunday as end of week
 		if (currentDay < 1) currentDay += 7;
 
-		// Establish an index based on number of days. Allows to establish self-referencing cycles
-		const diff = Math.floor(currentTime/DAY_MS);
+		if (currentWeek+SVS_OFFSET%2===0) {
+			if (currentDay===6) {
+				addTask(22, "damage flag for SVS");
+				addTask(23, "gathering flag (+ alliance TP)");
+			}
+			else if (currentDay===3) {
+				// TODO:  BoL
+			}
+		}
+		else {
+			if (currentDay===6) {
+				addTask(22, "damage flag for TC-A");
+				addTask(23, "gathering flag (+ alliance TP)");
+			}
+			else if (currentDay===7) {
+				addTask(2, "damage flag for TC-B");
+				const END_HOUR = 3, END_MIN = 5;
+				result.set(UTCreset(END*60+END_MIN), "Reset+"END+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP)");
+			}
+		}
 
-		// Resources on a cycle
-		// Oil+Food, Oil, Food+Oil, Food
-		const rssIndex = (diff+RSS_OFFSET)%4;
-		addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
-		if (rssIndex%2 === 0)
-			addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
+		if (document.getElementById('ruin').checked) {
+			// Establish an index based on number of days. Allows to establish self-referencing cycles
+			const diff = Math.floor(currentTime/DAY_MS);
+	
+			// Resources on a cycle
+			// Oil+Food, Oil, Food+Oil, Food
+			const rssIndex = (diff+RSS_OFFSET)%4;
+			addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
+			if (rssIndex%2 === 0)
+				addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
+		}
 
 		if (document.getElementById('droid').checked) {
 			const droidTime = 3;
