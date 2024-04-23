@@ -53,7 +53,7 @@ const update = ()=>{
 	if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
 	// lastReset now refers to the last encountered reset time in UTC
 	lastReset = lastReset - TIME_OFFSET;
-	document.getElementById('timezone').text = new Date(lastReset);
+	document.getElementById('timezone').value = new Date(lastReset);
 
 	let currentTime;
 	const UTCreset = (minutes)=>{
