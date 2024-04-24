@@ -21,7 +21,7 @@ html, body {
 <label for="maxDay">Day index end</label><input type="number" id="maxDay" value="14"/>
 <br/>
 <label for="tc">TC leaders (TODO)</label><input type="checkbox" id="tc"/>
-<label for="droid">Droid officer (WIP)</label><input type="checkbox" id="droid"/>
+<label for="droid">Droid officer</label><input type="checkbox" id="droid"/>
 <label for="ruin">Ruin manager</label><input type="checkbox" id="ruin" checked="checked"/>
 <br/>
 <label for="wb1">WB 1</label><input type="checkbox" id="wb1"/>
@@ -45,8 +45,8 @@ const update = ()=>{
 	const RSS_OFFSET = 3;
 	// Between 0 and 1
 	const SVS_OFFSET = 1;
-	// Between -1 and 3
-	const LQ_SKIP = 2;
+	// Between -1 and 2
+	const LQ_SKIP = 1;
 	
 	// When server time reaches 00h00
 	const UTC_OFFSET = 8*HOURS_MS;
@@ -77,11 +77,13 @@ const update = ()=>{
 	};
 
 	const TCvariant = (hour, name, morale)=>{
+		/*
 		addTask(hour, "damage flag for "+name);
 		const END_HOUR = hour+1, END_MIN = 5;
 		let extra = "";
 		if (morale) extra = " and morale refill";
 		result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
+  */
 	};
 	
 	// Current day + 7 in the future
@@ -117,10 +119,10 @@ const update = ()=>{
 			}
 		}
 		else if (cross) {
-			if (currentDay===6)
+			if (currentDay===6) {
 				addTask(0, "KE help");
-			else if (currentDay===6)
 				TCvariant(22, "TC-A", false);
+			}
 			else if (currentDay===7)
 				TCvariant(2, "TC-B", false);
 		}
