@@ -53,8 +53,8 @@ const update = ()=>{
 	let lastReset = new Date().getTime();
 
 	// Offset between YOUR time, and the last reset time in server's timezone
-	let TIME_OFFSET = lastReset%DAY_MS + UTC_OFFSET;
-	if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
+	let TIME_OFFSET = (lastReset+UTC_OFFSET)%DAY_MS ;
+	//if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
 	// lastReset now refers to the last encountered reset time in UTC
 	lastReset = lastReset - TIME_OFFSET;
 	document.getElementById('timezone').value = new Date(lastReset);
