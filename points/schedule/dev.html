@@ -28,7 +28,8 @@ html, body {
 <label for="wb2">WB 2</label><input type="checkbox" id="wb2" checked="checked"/>
 <label for="wb3">WB 3</label><input type="checkbox" id="wb3"/>
 <br/>
-<label for="bol">BOL support (WIP)</label><input type="checkbox" id="bol" checked="checked"/>
+<label for="cross">Cross-server WE</label><input type="checkbox" id="cross" checked="checked"/>
+<label for="bol">BOL support</label><input type="checkbox" id="bol" checked="checked"/>
 <br/>
 <label>Result code</label>
 <br/>
@@ -87,23 +88,24 @@ const update = ()=>{
 	for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
 		currentTime = lastReset+ DAY_MS*day;
 		const currentReset = currentTime+UTC_OFFSET;
-		const currentWeek = Math.floor((currentReset + 4*DAY_MS)/7*DAY_MS);
-		alert(currentWeek);
+		const currentWeek = Math.floor((currentReset + 4*DAY_MS)/(7*DAY_MS));
+		alert(currentDay+":"+currentWeek);
 		
 		let currentDay = new Date(currentReset).getUTCDay();
 		// Treat Sunday as end of week
 		if (currentDay < 1) currentDay += 7;
 
-		
+		const cross = document.getElementById('cross').checked;
 		if ((currentWeek+SVS_OFFSET)%2===0) {
-			if (currentDay===6) {
-				addTask(22, "damage flag for SVS");
-				addTask(23, "gathering flag (+ alliance TP)");
-			}
-			else if (currentDay===7)
-				addTask(0, "post-SVS post-KE morale refill");
-			
-			if (document.getElementById('bol').checked)
+			if (cross) {
+				if (currentDay===6) {
+					addTask(22, "damage flag for SVS");
+					addTask(23, "gathering flag (+ alliance TP)");
+				}
+				else if (currentDay===7)
+					addTask(0, "post-SVS post-KE morale refill");
+			} 
+			else if (document.getElementById('bol').checked)
 			{
 				
 				if (currentDay===3)
@@ -114,12 +116,14 @@ const update = ()=>{
 				}
 			}
 		}
-		else if (currentDay===6)
-			addTask(0, "KE help");
-		else if (currentDay===6)
-			TCvariant(22, "TC-A", false);
-		else if (currentDay===7)
-			TCvariant(2, "TC-B", false);
+		else if (cross) {
+			if (currentDay===6)
+				addTask(0, "KE help");
+			else if (currentDay===6)
+				TCvariant(22, "TC-A", false);
+			else if (currentDay===7)
+				TCvariant(2, "TC-B", false);
+		}
    
 		if (document.getElementById('ruin').checked) {
 			// Establish an index based on number of days. Allows to establish self-referencing cycles
