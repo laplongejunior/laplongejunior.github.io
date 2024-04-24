@@ -90,6 +90,7 @@ const update = ()=>{
 		// Treat Sunday as end of week
 		if (currentDay < 1) currentDay += 7;
 
+		/*
 		if ((currentWeek+SVS_OFFSET)%2===0) {
 			if (currentDay===6) {
 				addTask(22, "damage flag for SVS");
@@ -111,7 +112,8 @@ const update = ()=>{
 			TCvariant(22, "TC-A", false);
 		else if (currentDay===7)
 			TCvariant(2, "TC-B", false);
-
+                */
+   
 		if (document.getElementById('ruin').checked) {
 			// Establish an index based on number of days. Allows to establish self-referencing cycles
 			const diff = Math.floor(currentTime/DAY_MS);
