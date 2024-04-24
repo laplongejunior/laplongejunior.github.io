@@ -88,6 +88,7 @@ const update = ()=>{
 		currentTime = lastReset+ DAY_MS*day;
 		const currentReset = currentTime+UTC_OFFSET;
 		const currentWeek = Math.floor((currentReset + 4*DAY_MS)/7*DAY_MS);
+		alert(currentWeek);
 		
 		let currentDay = new Date(currentReset).getUTCDay();
 		// Treat Sunday as end of week
