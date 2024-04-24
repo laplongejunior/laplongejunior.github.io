@@ -91,9 +91,10 @@ const update = ()=>{
 			}
 		}
 		else {
-			if (currentDay===6) {
+			if (currentDay===6) {		
 				addTask(22, "damage flag for TC-A");
-				addTask(23, "gathering flag (+ alliance TP)");
+				const END_HOUR = 23, END_MIN = 5;
+				result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP)");
 			}
 			else if (currentDay===7) {
 				addTask(2, "damage flag for TC-B");
