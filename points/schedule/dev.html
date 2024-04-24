@@ -96,6 +96,8 @@ const update = ()=>{
 				addTask(22, "damage flag for SVS");
 				addTask(23, "gathering flag (+ alliance TP)");
 			}
+			else if (currentDay===7)
+				addTask(0, "post-SVS post-KE morale refill");
 			
 			if (document.getElementById('bol').checked)
 			{
@@ -109,9 +111,9 @@ const update = ()=>{
     */
 			}
 		}
-			
-		else if (currentDay===0)
-			addTask(0, "post-SVS morale refill");
+			else if (currentDay===6)
+				addTask(0, "KE help");
+		
 			/*
 		else if (currentDay===6)
 			TCvariant(22, "TC-A", false);
