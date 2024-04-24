@@ -66,8 +66,9 @@ const update = ()=>{
 	
 	const result = new Map();
 	const addTask = (hours, reason)=>{
-		let visual = "Reset+"+hours;
-		if (hours > 12) visual = "Reset-"+(24-hours); 
+		let visual = "Reset"
+		if (hours > 12) visual += "-"+(24-hours);
+		else if (hours > 0) visual += "+"+hours;
 		result.set(UTCreset(hours*60), visual+" for "+reason);
 	};
 
@@ -89,7 +90,7 @@ const update = ()=>{
 		// Treat Sunday as end of week
 		if (currentDay < 1) currentDay += 7;
 
-		if (currentWeek+SVS_OFFSET%2===0) {
+		if ((currentWeek+SVS_OFFSET)%2===0) {
 			if (currentDay===6) {
 				addTask(22, "damage flag for SVS");
 				addTask(23, "gathering flag (+ alliance TP)");
@@ -104,14 +105,12 @@ const update = ()=>{
 				}
 			}
 		}
-		else {
-			if (currentDay===0)
-				addTask(0, "post-SVS morale refill");
-			else if (currentDay===6)
-				TCvariant(22, "TC-A", false);
-			else if (currentDay===7)
-				TCvariant(2, "TC-B", true);
-		}
+		else if (currentDay===0)
+			addTask(0, "post-SVS morale refill");
+		else if (currentDay===6)
+			TCvariant(22, "TC-A", false);
+		else if (currentDay===7)
+			TCvariant(2, "TC-B", false);
 
 		if (document.getElementById('ruin').checked) {
 			// Establish an index based on number of days. Allows to establish self-referencing cycles
