@@ -20,15 +20,16 @@ html, body {
 <label for="minDay">Day index start</label><input type="number" id="minDay" value="0"/>
 <label for="maxDay">Day index end</label><input type="number" id="maxDay" value="14"/>
 <br/>
-<label for="tc">TC leaders (TODO)</label><input type="checkbox" id="tc"/>
-<label for="droid">Droid officer (WIP)</label><input type="checkbox" id="droid"/>
+<label for="tc">TC leaders (TODO)</label><input type="checkbox" id="tc" disabled="disabled"/>
+<label for="droid">Droid officer</label><input type="checkbox" id="droid"/>
 <label for="ruin">Ruin manager</label><input type="checkbox" id="ruin" checked="checked"/>
 <br/>
 <label for="wb1">WB 1</label><input type="checkbox" id="wb1"/>
 <label for="wb2">WB 2</label><input type="checkbox" id="wb2" checked="checked"/>
 <label for="wb3">WB 3</label><input type="checkbox" id="wb3"/>
 <br/>
-<label for="bol">BOL support (WIP)</label><input type="checkbox" id="bol" checked="checked"/>
+<label for="cross">Cross-server WE</label><input type="checkbox" id="cross" checked="checked"/>
+<label for="bol">BOL support</label><input type="checkbox" id="bol" checked="checked"/>
 <br/>
 <label>Result code</label>
 <br/>
@@ -38,12 +39,16 @@ html, body {
 <script>
 "use strict";
 const update = ()=>{
+	console.log("Test");
 	const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS;
 	
 	// Number between 0 and 4 in case cycle drifts due to complications
 	const RSS_OFFSET = 3;
 	// Between 0 and 1
-	const SVS_OFFSET = 1;
+	const SVS_OFFSET = 0;
+	// Between -1 and 2
+	const LQ_SKIP = 1;
+	
 	// When server time reaches 00h00
 	const UTC_OFFSET = 8*HOURS_MS;
 
@@ -53,8 +58,8 @@ const update = ()=>{
 	let lastReset = new Date().getTime();
 
 	// Offset between YOUR time, and the last reset time in server's timezone
-	let TIME_OFFSET = lastReset%DAY_MS + UTC_OFFSET;
-	if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
+	let TIME_OFFSET = (lastReset+UTC_OFFSET)%DAY_MS ;
+	//if (TIME_OFFSET >= DAY_MS) TIME_OFFSET -= DAY_MS;
 	// lastReset now refers to the last encountered reset time in UTC
 	lastReset = lastReset - TIME_OFFSET;
 	document.getElementById('timezone').value = new Date(lastReset);
@@ -66,43 +71,64 @@ const update = ()=>{
 	
 	const result = new Map();
 	const addTask = (hours, reason)=>{
-		let visual = "Reset+"+hours;
-		if (hours > 12) visual = "Reset-"+(24-hours); 
+		let visual = "Reset"
+		if (hours > 12) visual += "-"+(24-hours);
+		else if (hours > 0) visual += "+"+hours;
 		result.set(UTCreset(hours*60), visual+" for "+reason);
+	};
+
+	const TCvariant = (hour, name, morale)=>{
+		/*
+		addTask(hour, "damage flag for "+name);
+		const END_HOUR = hour+1, END_MIN = 5;
+		let extra = "";
+		if (morale) extra = " and morale refill";
+		result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
+  */
 	};
 	
 	// Current day + 7 in the future
 	for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
 		currentTime = lastReset+ DAY_MS*day;
 		const currentReset = currentTime+UTC_OFFSET;
-		const currentWeek = Math.floor((currentReset + 4*DAY_MS)/7*DAY_MS);
+		// Formulas usually use a 4-day offset, but in UTC Sunday is a different week than the saturday after that
+		const currentWeek = Math.floor((currentReset + 3*DAY_MS)/(7*DAY_MS));
 		
 		let currentDay = new Date(currentReset).getUTCDay();
 		// Treat Sunday as end of week
 		if (currentDay < 1) currentDay += 7;
+		console.log(currentDay+":"+currentWeek);
 
-		if (currentWeek+SVS_OFFSET%2===0) {
+		const cross = document.getElementById('cross').checked;
+		if ((currentWeek+SVS_OFFSET)%2===0) {
+			if (cross) {
+				if (currentDay===6) {
+					addTask(22, "damage flag for SVS");
+					addTask(23, "gathering flag (+ alliance TP)");
+				}
+				else if (currentDay===7)
+					addTask(0, "post-SVS post-KE morale refill");
+			} 
+			else if (document.getElementById('bol').checked)
+			{
+				/*
+				if (currentDay===3)
+					TCvariant(21, "BoL-1", true);
+				else if (currentDay===4) {
+					TCvariant(4, "BoL-2", true);
+					TCvariant(8, "BoL-3", true);
+				}*/
+			}
+		}
+		else if (cross) {/*
 			if (currentDay===6) {
-				addTask(22, "damage flag for SVS");
-				addTask(23, "gathering flag (+ alliance TP)");
+				addTask(0, "KE help");
+				TCvariant(22, "TC-A", false);
 			}
-			else if (currentDay===3) {
-				// TODO:  BoL
-			}
+			else if (currentDay===7)
+				TCvariant(2, "TC-B", false);*/
 		}
-		else {
-			if (currentDay===6) {		
-				addTask(22, "damage flag for TC-A");
-				const END_HOUR = 23, END_MIN = 5;
-				result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP)");
-			}
-			else if (currentDay===7) {
-				addTask(2, "damage flag for TC-B");
-				const END_HOUR = 3, END_MIN = 5;
-				result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP)");
-			}
-		}
-
+   
 		if (document.getElementById('ruin').checked) {
 			// Establish an index based on number of days. Allows to establish self-referencing cycles
 			const diff = Math.floor(currentTime/DAY_MS);
@@ -129,7 +155,7 @@ const update = ()=>{
 			const end = time+1;
 			let reason = "WB";
 			
-			if (currentDay>=5) {
+			if (currentDay>=5 && index!==LQ_SKIP) {
 				reason = "LQ";
 				time-=1;
 			}
