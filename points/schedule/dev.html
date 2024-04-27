@@ -68,7 +68,7 @@ const update = ()=>{
 		const currentUTC = lastReset+ DAY_MS*day;
 
 		const UTCreset = (minutes)=>{
-			return new Date(currentTime+ minutes*60*1000);
+			return new Date(currentUTC+ minutes*60*1000);
 		};
 		const TCvariant = (hour, name, morale)=>{
 			addTask(hour, "damage flag for "+name);
