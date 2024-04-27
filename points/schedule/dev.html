@@ -120,7 +120,7 @@ const update = ()=>{
    
 		if (ruin) {
 			// Establish an index based on number of days. Allows to establish self-referencing cycles
-			const diff = Math.floor(currentTime/DAY_MS);
+			const diff = Math.floor(currentUTC/DAY_MS);
 	
 			// Resources on a cycle
 			// Oil+Food, Oil, Food+Oil, Food
