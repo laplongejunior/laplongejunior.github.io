@@ -56,7 +56,7 @@ const update = ()=>{
 
 	// 8h UTC is when my server's time in settings reach 00h00
 	let lastReset = new Date().getTime();
-	// lastReset now refers to the last encountered reset time in UTC, by removing the offset between YOUR time, and the last reset time in server's timezone
+	// lastReset now refers to the last encountered reset time in UTC, by removing the offset between current UTC time, and the last reset time in server's timezone
 	lastReset = lastReset - (lastReset+UTC_OFFSET)%DAY_MS;
 	document.getElementById('timezone').value = new Date(lastReset);
 
@@ -95,34 +95,33 @@ const update = ()=>{
 		if (currentDay < 1) currentDay += 7;
 		console.log(currentDay+":"+currentWeek);
 
+		if (currentDay===7)
+			addTask(0, "KE help");
 		const cross = document.getElementById('cross').checked;
 		if ((currentWeek+SVS_OFFSET)%2===0) {
 			if (cross) {
-				if (currentDay===6) {
+				else if (currentDay===6) {
 					addTask(22, "damage flag for SVS");
 					addTask(23, "gathering flag (+ alliance TP)");
 				}
-				else if (currentDay===7)
-					addTask(0, "post-SVS post-KE morale refill");
 			} 
-			else if (document.getElementById('bol').checked)
+			if (document.getElementById('bol').checked)
 			{
-				/*
 				if (currentDay===3)
 					TCvariant(21, "BoL-1", true);
 				else if (currentDay===4) {
 					TCvariant(4, "BoL-2", true);
 					TCvariant(8, "BoL-3", true);
-				}*/
+				}
 			}
 		}
-		else if (cross) {/*
-			if (currentDay===6) {
-				addTask(0, "KE help");
+		else if (cross) {
+			if (currentDay===0)
+				addTask(0, "post-SVS post-KE morale refill");
+			else if (currentDay===6)
 				TCvariant(22, "TC-A", false);
-			}
 			else if (currentDay===7)
-				TCvariant(2, "TC-B", false);*/
+				TCvariant(2, "TC-B", false);
 		}
    
 		if (document.getElementById('ruin').checked) {
