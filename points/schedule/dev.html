@@ -76,16 +76,16 @@ const update = ()=>{
 		result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
 	};
 	
-	const cross = document.getElementById('cross').checked, ruin = document.getElementById('ruin').checked, droid = document.getElementById('droid').checked, document.getElementById('bol').checked;
+	const cross = document.getElementById('cross').checked, ruin = document.getElementById('ruin').checked, droid = document.getElementById('droid').checked, bol = document.getElementById('bol').checked;
 	const wb = [document.getElementById('wb1').checked, document.getElementById('wb2').checked, document.getElementById('wb3').checked];
 	// Check several days one after another
 	for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
-		const currentTime = lastReset+ DAY_MS*day;
+		const currentUTC = lastReset+ DAY_MS*day;
 		const UTCreset = (minutes)=>{
 			return new Date(currentTime+ minutes*60*1000);
 		};
 		
-		const currentReset = currentTime+UTC_OFFSET;
+		const currentReset = currentUTC+UTC_OFFSET;
 		// Formulas usually use a 4-day offset, but in UTC Sunday is a different week than the saturday after that
 		const currentWeek = Math.floor((currentReset + 3*DAY_MS)/WEEK_MS);
 		
