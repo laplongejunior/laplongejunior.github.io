@@ -40,7 +40,7 @@ html, body {
 "use strict";
 const update = ()=>{
 	console.log("Test");
-	const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS;
+	const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS, WEEK_MS = 7*DAY_MS;
 	
 	// Number between 0 and 4 in case cycle drifts due to complications
 	const RSS_OFFSET = 3;
@@ -60,11 +60,6 @@ const update = ()=>{
 	lastReset = lastReset - (lastReset+UTC_OFFSET)%DAY_MS;
 	document.getElementById('timezone').value = new Date(lastReset);
 
-	let currentTime;
-	const UTCreset = (minutes)=>{
-		return new Date(currentTime+ minutes*60*1000);
-	};
-	
 	const result = new Map();
 	const addTask = (hours, reason)=>{
 		let visual = "Reset"
@@ -74,38 +69,38 @@ const update = ()=>{
 	};
 
 	const TCvariant = (hour, name, morale)=>{
-		/*
 		addTask(hour, "damage flag for "+name);
 		const END_HOUR = hour+1, END_MIN = 5;
 		let extra = "";
 		if (morale) extra = " and morale refill";
 		result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
-  */
 	};
 	
-	// Current day + 7 in the future
+	const cross = document.getElementById('cross').checked, ruin = document.getElementById('ruin').checked, droid = document.getElementById('droid').checked, document.getElementById('bol').checked;
+	const wb = [document.getElementById('wb1').checked, document.getElementById('wb2').checked, document.getElementById('wb3').checked];
+	// Check several days one after another
 	for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
-		currentTime = lastReset+ DAY_MS*day;
+		const currentTime = lastReset+ DAY_MS*day;
+		const UTCreset = (minutes)=>{
+			return new Date(currentTime+ minutes*60*1000);
+		};
+		
 		const currentReset = currentTime+UTC_OFFSET;
 		// Formulas usually use a 4-day offset, but in UTC Sunday is a different week than the saturday after that
-		const currentWeek = Math.floor((currentReset + 3*DAY_MS)/(7*DAY_MS));
+		const currentWeek = Math.floor((currentReset + 3*DAY_MS)/WEEK_MS);
 		
 		let currentDay = new Date(currentReset).getUTCDay();
 		// Treat Sunday as end of week
 		if (currentDay < 1) currentDay += 7;
-		console.log(currentDay+":"+currentWeek);
 
 		if (currentDay===7)
 			addTask(0, "KE help");
-		const cross = document.getElementById('cross').checked;
 		if ((currentWeek+SVS_OFFSET)%2===0) {
-			if (cross) {
-				else if (currentDay===6) {
-					addTask(22, "damage flag for SVS");
-					addTask(23, "gathering flag (+ alliance TP)");
-				}
+			if (cross && currentDay===6) {
+				addTask(22, "damage flag for SVS");
+				addTask(23, "gathering flag (+ alliance TP)");
 			} 
-			if (document.getElementById('bol').checked)
+			if (bol)
 			{
 				if (currentDay===3)
 					TCvariant(21, "BoL-1", true);
@@ -124,7 +119,7 @@ const update = ()=>{
 				TCvariant(2, "TC-B", false);
 		}
    
-		if (document.getElementById('ruin').checked) {
+		if (ruin) {
 			// Establish an index based on number of days. Allows to establish self-referencing cycles
 			const diff = Math.floor(currentTime/DAY_MS);
 	
@@ -136,7 +131,7 @@ const update = ()=>{
 				addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
 		}
 
-		if (document.getElementById('droid').checked) {
+		if (droid) {
 			const droidTime = 3;
 			addTask(droidTime, "Droid summon (requires officer)");
 			addTask(droidTime+12, "Droid setup (requires officer) : ??? (alpha-5?)");
@@ -144,8 +139,7 @@ const update = ()=>{
 		
 		// 3 WB cycles
 		for (let index = 0; index < 3; index++) {
-			if (!document.getElementById('wb'+(index+1)).checked)
-				continue;
+			if (!wb[index]) continue;
 			let time = 8*index +4;
 			const end = time+1;
 			let reason = "WB";
