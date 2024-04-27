@@ -60,18 +60,13 @@ const update = ()=>{
 	document.getElementById('timezone').value = new Date(lastReset);
 
 	const result = new Map();
-	const addTask = (hours, reason)=>{
-		let visual = "Reset"
-		if (hours > 12) visual += "-"+(24-hours);
-		else if (hours > 0) visual += "+"+hours;
-		result.set(UTCreset(hours*60), visual+" for "+reason);
-	};
 	
 	const cross = document.getElementById('cross').checked, ruin = document.getElementById('ruin').checked, droid = document.getElementById('droid').checked, bol = document.getElementById('bol').checked;
 	const wb = [document.getElementById('wb1').checked, document.getElementById('wb2').checked, document.getElementById('wb3').checked];
 	// Check several days one after another
 	for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
 		const currentUTC = lastReset+ DAY_MS*day;
+
 		const UTCreset = (minutes)=>{
 			return new Date(currentTime+ minutes*60*1000);
 		};
@@ -81,6 +76,12 @@ const update = ()=>{
 			let extra = "";
 			if (morale) extra = " and morale refill";
 			result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
+		};
+		const addTask = (hours, reason)=>{
+			let visual = "Reset"
+			if (hours > 12) visual += "-"+(24-hours);
+			else if (hours > 0) visual += "+"+hours;
+			result.set(UTCreset(hours*60), visual+" for "+reason);
 		};
 		
 		const currentReset = currentUTC+UTC_OFFSET;
