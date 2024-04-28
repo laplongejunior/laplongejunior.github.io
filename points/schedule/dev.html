@@ -97,13 +97,10 @@ const update = ()=>{
 		if ((currentWeek+SVS_OFFSET)%2===0) {
 			if (cross) {
 				const SVS_HOUR = 22;
-				if (currentDay===4) {
-					addTask(SVS_HOUR-2, "You have one hour left to void cap positions for SVS");
-				}
-				if (currentDay===5) {
+				if (currentDay===5)
+					addTask(SVS_HOUR-1, "You have one hour left to void cap position for SVS");
+				else if (currentDay===6) {
 					addTask(SVS_HOUR-1, "You have one hour left to attribute cap buffs for SVS");
-				}
-				if (currentDay===6) {
 				    addTask(SVS_HOUR, "damage flag for SVS");
 				    addTask(SVS_HOUR+1, "gathering flag (+ alliance TP)");
 				}
