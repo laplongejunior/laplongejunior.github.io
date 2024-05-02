@@ -73,7 +73,7 @@ html, body {
 			const currentUTC = lastReset+ DAY_MS*day;
 	
 			const UTCreset = (minutes)=>{
-				return currentUTC+ (minutes*MINS_MS);
+				return currentUTC+ (minutes/**MINS_MS*/);
 			};
 			const TCvariant = (hour, name, morale)=>{
 				addTask(hour, "damage flag for "+name);
