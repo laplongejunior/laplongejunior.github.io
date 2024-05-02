@@ -172,9 +172,9 @@ html, body {
 			}
 		}
 		
-		let txt = "Here's the schedule!";
+		let txt = "1542 shedule by laplongejr";
 		for (let [stamp,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
-			const date = new Date(stamp);
+			const date = new Date(stamp*MINS_MS);
 			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
 				+"\n"+name;
 		}
