@@ -20,7 +20,7 @@ html, body {
 <label for="minDay">Day index start</label><input type="number" id="minDay" value="0"/>
 <label for="maxDay">Day index end</label><input type="number" id="maxDay" value="14"/>
 <br/>
-<label for="tc">TC leaders (TODO)</label><input type="checkbox" id="tc" disabled="disabled"/>
+<label for="tc">TC leaders (TODO)</label><input type="checkbox" id="tc"/>
 <label for="droid">Droid officer</label><input type="checkbox" id="droid"/>
 <label for="ruin">Ruin manager</label><input type="checkbox" id="ruin" checked="checked"/>
 <br/>
@@ -37,6 +37,7 @@ html, body {
 <br/>
 <label for="timezone">Reset time (in your timezone)</label><input type="text" id="timezone" readonly="readonly"/>
 <script>
+((global)=>{
 "use strict";
 const update = ()=>{
 	const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS, WEEK_MS = 7*DAY_MS;
@@ -61,7 +62,8 @@ const update = ()=>{
 
 	const result = new Map();
 	
-	const cross = document.getElementById('cross').checked, ruin = document.getElementById('ruin').checked, droid = document.getElementById('droid').checked, bol = document.getElementById('bol').checked;
+	const cross = document.getElementById('cross').checked, ruin = document.getElementById('ruin').checked, droid = document.getElementById('droid').checked
+		, tc = document.getElementById('tc').checked, bol = document.getElementById('bol').checked;
 	const wb = [document.getElementById('wb1').checked, document.getElementById('wb2').checked, document.getElementById('wb3').checked];
 	// Check several days one after another
 	for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
@@ -94,7 +96,7 @@ const update = ()=>{
 
 		if (currentDay===7)
 			addTask(0, "KE help");
-		if ((currentWeek+SVS_OFFSET)%2===0) {
+		else if ((currentWeek+SVS_OFFSET)%2===0) {
 			if (cross) {
 				const SVS_HOUR = 22;
 				if (currentDay===5)
@@ -117,13 +119,18 @@ const update = ()=>{
 					addTask(0, "post-BoL morale refill");
 			}
 		}
-		else if (cross) {
+		else {
+		    if (currentDay===5) {
+			if (tc) addTask(11, "Leader or vice-leader can start TC registration");
+		    }
+	           else if (cross) {
 			if (currentDay===1)
-				addTask(0, "post-SVS post-KE morale refill"); 
+				addTask(0, "post-SVS post-KE morale refill");
 			else if (currentDay===6)
 				TCvariant(22, "TC-A", false);
 			else if (currentDay===7)
 				TCvariant(2, "TC-B", false);
+		   }
 		}
    
 		if (ruin) {
@@ -171,6 +178,7 @@ const update = ()=>{
 for (let item of document.getElementsByTagName("input"))
 	item.addEventListener('change',update);
 update();
+})(this);
 </script>
 </body>
 </html>
