@@ -40,7 +40,7 @@ html, body {
 ((global)=>{
 	"use strict";
 	const update = ()=>{
-		const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS, WEEK_MS = 7*DAY_MS;
+		const MINS_MS = 60*1000, HOURS_MS = 60*MINS_MS, DAY_MS = 24*HOURS_MS, WEEK_MS = 7*DAY_MS;
 		
 		// Number between 0 and 4 in case cycle drifts due to complications
 		const RSS_OFFSET = 3;
@@ -70,7 +70,7 @@ html, body {
 			const currentUTC = lastReset+ DAY_MS*day;
 	
 			const UTCreset = (minutes)=>{
-				return new Date(currentUTC+ minutes*60*1000);
+				return currentUTC+ (minutes*MINS_MS);
 			};
 			const TCvariant = (hour, name, morale)=>{
 				addTask(hour, "damage flag for "+name);
@@ -170,8 +170,10 @@ html, body {
 		}
 		
 		let txt = "Here's the schedule!";
-		for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
-			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)+"\n"+name;
+		for (var [stamp,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
+			date = new Date(stamp);
+			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
+				+"\n"+name;
 		}
 		document.getElementById('output').value = txt;
 	};
