@@ -42,6 +42,7 @@ html, body {
 	const update = ()=>{
 		// We divide values from millis to minutes, so we can skew the hour conversion
 		const MINS_MS = 60*1000, HOURS_MS = 60/**MINS_MS*/, DAY_MS = 24*HOURS_MS, WEEK_MS = 7*DAY_MS;
+		const toDate = timestamp=>{return new Date(timestamp*MINS_MS)};
 		
 		// Number between 0 and 4 in case cycle drifts due to complications
 		const RSS_OFFSET = 1;
@@ -59,7 +60,8 @@ html, body {
 		let lastReset = new Date().getTime()/MINS_MS;
 		// lastReset now refers to the last encountered reset time in UTC, by removing the offset between current UTC time, and the last reset time in server's timezone
 		lastReset -= (lastReset+UTC_OFFSET)%DAY_MS;
-		document.getElementById('timezone').value = new Date(lastReset*MINS_MS);
+		
+		document.getElementById('timezone').value = toDate(lastReset);
 	
 		const result = new Map();
 		
@@ -91,7 +93,7 @@ html, body {
 			// Formulas usually use a 4-day offset, but in UTC Sunday is a different week than the saturday after that
 			const currentWeek = Math.floor((currentReset + 3*DAY_MS)/WEEK_MS);
 			
-			let currentDay = new Date(currentReset*MINS_MS).getUTCDay();
+			let currentDay = toDate(currentReset).getUTCDay();
 			// Treat Sunday as end of week
 			if (currentDay < 1) currentDay += 7;
 	
