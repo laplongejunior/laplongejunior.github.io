@@ -68,7 +68,9 @@ html, body {
 		const wb = [document.getElementById('wb1').checked, document.getElementById('wb2').checked, document.getElementById('wb3').checked];
 		// Check several days one after another
 		for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
+			console.log(lastReset);
 			const currentUTC = lastReset+ DAY_MS*day;
+			console.log(currentUTC);
 	
 			const UTCreset = (minutes)=>{
 				return currentUTC+ (minutes/**MINS_MS*/);
@@ -88,8 +90,10 @@ html, body {
 			};
 			
 			const currentReset = currentUTC+UTC_OFFSET;
+			console.log(currentReset);
 			// Formulas usually use a 4-day offset, but in UTC Sunday is a different week than the saturday after that
 			const currentWeek = Math.floor((currentReset + 3*DAY_MS)/WEEK_MS);
+			console.log(currentWeek);
 			
 			let currentDay = new Date(currentReset).getUTCDay();
 			// Treat Sunday as end of week
