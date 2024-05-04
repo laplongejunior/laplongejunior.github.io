@@ -69,6 +69,8 @@ html, body {
 		// Check several days one after another
 		for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
 			console.log(lastReset);
+			console.log(DAY_MS);
+			console.log(DAY_MS*day);
 			const currentUTC = lastReset+ DAY_MS*day;
 			console.log(currentUTC);
 	
