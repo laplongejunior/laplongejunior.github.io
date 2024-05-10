@@ -83,10 +83,7 @@ html, body {
 				result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
 			};
 			const addTask = (hours, reason)=>{
-				let visual = "Reset"
-				if (hours > 12) visual += "-"+(24-hours);
-				else if (hours > 0) visual += "+"+hours;
-				result.set(UTCreset(hours*60), visual+" for "+reason);
+				result.set(UTCreset(hours*60),reason);
 			};
 			
 			const currentReset = currentUTC+UTC_OFFSET;
@@ -173,10 +170,17 @@ html, body {
 		}
 		
 		let txt = "1542 shedule by laplongejr";
-		for (let [stamp,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
-			const date = new Date(stamp*MINS_MS);
+		for (let [stamp,reason] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
+			const date = toDate(stamp*MINS_MS);
+			const hours = stamp%DAY_MS;
+			const minutes = stamp%HOURS_MS;
+			let visual = "Reset"
+			if (minutes === 0 && hours > 12) visual += "-"+(24-hours);
+			else if (hours > 0) visual += "+"+hours;
+			if (minutes === 0) visual += " AND "+minutes+" MINS";
+			result = visual+" for "+reason;
 			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
-				+"\n"+name;
+				+"\n"+reason;
 		}
 		document.getElementById('output').value = txt;
 	};
