@@ -77,7 +77,7 @@ html, body {
 			};
 			const TCvariant = (hour, name, morale)=>{
 				addTask(hour, "damage flag for "+name);
-				//const END_HOUR = hour+1, END_MIN = 5;
+				const END_HOUR = hour+1, END_MIN = 5;
 				let extra = "";
 				if (morale) extra = " and morale refill";
 				result.set(UTCreset(END_HOUR*60+END_MIN), "gathering flag (+ alliance TP"+extra+")");
