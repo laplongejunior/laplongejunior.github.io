@@ -41,7 +41,7 @@ html, body {
 	"use strict";
 	const update = ()=>{
 		// We divide values from millis to minutes, so we can skew the hour conversion
-		const MINS_MS = 60*1000, HOURS_MS = 60/**MINS_MS*/, HOURS_DAY = 24, DAY_MS = HOURS_DAY*HOURS_MS, WEEK_MS = 7*DAY_MS;
+		const MINS_MS = 60*1000, HOURS_MS = 60/**MINS_MS*/, DAY_MS = 24*HOURS_MS, WEEK_MS = 7*DAY_MS;
 		
 		// Number between 0 and 4 in case cycle drifts due to complications
 		const RSS_OFFSET = 1;
@@ -173,7 +173,7 @@ html, body {
 		let txt = "1542 shedule by laplongejr";
 		for (let [stamp,reason] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 			const date = toDate(stamp);
-			const hours = stamp/HOURS_DAY, minutes = stamp%HOURS_DAY;
+			const hours = stamp/HOURS_MS, minutes = stamp%HOURS_MS;
 			console.log(stamp +":"+ hours +":"+minutes);
 			
 			let visual = "Reset"
