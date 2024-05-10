@@ -173,7 +173,7 @@ html, body {
 		let txt = "1542 shedule by laplongejr";
 		for (let [stamp,reason] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 			const date = toDate(stamp);
-			const hours = stamp/HOURS_MS, minutes = stamp%HOURS_MS;
+			const minutes = stamp%HOURS_MS, hours = (stamp-minutes)/HOURS_MS;
 			console.log(stamp +":"+ hours +":"+minutes);
 			
 			let visual = "Reset"
