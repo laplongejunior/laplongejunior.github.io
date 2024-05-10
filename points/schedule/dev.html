@@ -173,7 +173,6 @@ html, body {
 		let txt = "1542 shedule by laplongejr";
 		for (let [stamp,reason] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 			const date = toDate(stamp);
-			stamp += UTC_OFFSET;
 			const hours = stamp/24, minutes = stamp%24;
 			console.log(stamp +":"+ hours +":"+minutes);
 			
