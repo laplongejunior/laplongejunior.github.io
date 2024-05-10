@@ -173,10 +173,8 @@ html, body {
 		for (let [stamp,reason] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 			const date = toDate(stamp);
 			stamp += UTC_OFFSET;
-			console.log(stamp);
-			const hours = stamp%DAY_MS;
-			console.log(stamp%DAY_MS);
-			const minutes = stamp%HOURS_MS;
+			const hours = stamp%DAY_MS, minutes = stamp%HOURS_MS;
+			console.log(stamp +":"+ hours +":"+minutes);
 			
 			let visual = "Reset"
 			if (minutes === 0 && hours > 12) visual += "-"+(24-hours);
