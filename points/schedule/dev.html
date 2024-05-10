@@ -178,9 +178,9 @@ html, body {
 			if (minutes === 0 && hours > 12) visual += "-"+(24-hours);
 			else if (hours > 0) visual += "+"+hours;
 			if (minutes === 0) visual += " AND "+minutes+" MINS";
-			result = visual+" for "+reason;
+			
 			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
-				+"\n"+reason;
+				+"\n"+visual+" for "+reason;
 		}
 		document.getElementById('output').value = txt;
 	};
