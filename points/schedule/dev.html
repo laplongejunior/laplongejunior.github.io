@@ -77,10 +77,11 @@ html, body {
 			};
 			const TCvariant = (hour, name, morale)=>{
 				addTask(hour, "damage flag for "+name);
-				const END_HOUR = hour+1, END_MIN = 5;
+				//const END_HOUR = hour+1, END_MIN = 5;
 				let extra = "";
 				if (morale) extra = " and morale refill";
-				result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
+				result.set(UTCreset(END_HOUR*60+END_MIN), "gathering flag (+ alliance TP"+extra+")");
+				// "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
 			};
 			const addTask = (hours, reason)=>{
 				result.set(UTCreset(hours*60),reason);
