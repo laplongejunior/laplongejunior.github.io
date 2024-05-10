@@ -172,12 +172,15 @@ html, body {
 		let txt = "1542 shedule by laplongejr";
 		for (let [stamp,reason] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 			const date = toDate(stamp);
+			console.log(stamp);
 			const hours = stamp%DAY_MS;
+			console.log(stamp%DAY_MS);
 			const minutes = stamp%HOURS_MS;
+			
 			let visual = "Reset"
 			if (minutes === 0 && hours > 12) visual += "-"+(24-hours);
 			else if (hours > 0) visual += "+"+hours;
-			if (minutes === 0) visual += " AND "+minutes+" MINS";
+			if (minutes !== 0) visual += " AND "+minutes+" MINS";
 			
 			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
 				+"\n"+visual+" for "+reason;
