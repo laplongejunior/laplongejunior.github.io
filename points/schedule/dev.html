@@ -95,9 +95,7 @@ html, body {
 			// Treat Sunday as end of week
 			if (currentDay < 1) currentDay += 7;
 	
-			if (currentDay===7)
-				addTask(0, "KE help");
-			else if ((currentWeek+SVS_OFFSET)%2===0) {
+			if ((currentWeek+SVS_OFFSET)%2===0) {
 				if (cross) {
 					const SVS_HOUR = 22;
 					if (currentDay===5)
@@ -133,6 +131,8 @@ html, body {
 					TCvariant(2, "TC-B", false);
 			   }
 			}
+			if (currentDay===7)
+				addTask(0, "KE help");
 	   
 			if (ruin) {
 				// Establish an index based on number of days. Allows to establish self-referencing cycles
