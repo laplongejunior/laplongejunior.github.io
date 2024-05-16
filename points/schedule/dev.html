@@ -44,20 +44,20 @@ html, body {
 		const MINS_MS = 60*1000, HOURS_MINS = 60, DAY_MINS = 24*HOURS_MINS, WEEK_MINS = 7*DAY_MINS;
 		
 		// Number between 0 and 4 in case cycle drifts due to complications
-		const RSS_MINS_OFFSET = 1;
+		const RSS_OFFSET = 1;
 		// Between 0 and 1
-		const SVS_MINS_OFFSET = 0;
+		const SVS_OFFSET = 0;
 		// Between -1 and 2
 		const LQ_SKIP = 1;
 		
 		// When server time reaches 00h00
-		const UTC_MINS_OFFSET = 8*HOURS_MINS;
+		const UTC_OFFSET = 8*HOURS_MINS;
 	
 		const pad = (obj, length)=>{ return (""+obj).padStart(length,'0'); }
 	
 		// 8h UTC is when my server's time in settings reach 00h00
 		let lastReset = new Date().getTime()/MINS_MS;
-		// lastReset now refers to the last encountered reset time in UTC, by removing the MINS_OFFSET between current UTC time, and the last reset time in server's timezone
+		// lastReset now refers to the last encountered reset time in UTC, by removing the diff between current UTC time and the last reset time in server's timezone
 		lastReset -= (lastReset+UTC_MINS_OFFSET)%DAY_MINS;
 		
 		const toDate = timestamp=>{return new Date((lastReset+timestamp)*MINS_MS)};
@@ -68,9 +68,11 @@ html, body {
 		const cross = document.getElementById('cross').checked, ruin = document.getElementById('ruin').checked, droid = document.getElementById('droid').checked
 			, tc = document.getElementById('tc').checked, bol = document.getElementById('bol').checked;
 		const wb = [document.getElementById('wb1').checked, document.getElementById('wb2').checked, document.getElementById('wb3').checked];
+
+		const maxDay = document.getElementById('maxDay').value;
 		// Check several days one after another
-		for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
-			const MINS_MINS_OFFSET = DAY_MINS*day;
+		for (let day = document.getElementById('minDay').value; day<=maxDay; day++) {
+			const MINS_OFFSET = DAY_MINS*day;
 	
 			const TCvariant = (hour, name, morale)=>{
 				addTask(hour, "damage flag for "+name);
@@ -83,15 +85,15 @@ html, body {
 				result.set(MINS_OFFSET+(hours*60),reason);
 			};
 			
-			const currentReset = MINS_OFFSET+UTC_MINS_OFFSET;
-			// Formulas usually use a 4-day MINS_OFFSET, but in UTC Sunday is a different week than the saturday after that
+			const currentReset = MINS_OFFSET+UTC_OFFSET;
+			// Formulas usually use a 4-day OFFSET, but in UTC Sunday is a different week than the saturday after that
 			const currentWeek = Math.floor((currentReset + 3*DAY_MINS)/WEEK_MINS);
 			
 			let currentDay = toDate(lastReset+currentReset).getUTCDay();
 			// Treat Sunday as end of week
 			if (currentDay < 1) currentDay += 7;
 	
-			if ((currentWeek+SVS_MINS_OFFSET)%2===0) {
+			if ((currentWeek+SVS_OFFSET)%2===0) {
 				if (cross) {
 					const SVS_HOUR = 22;
 					if (currentDay===5)
@@ -136,7 +138,7 @@ html, body {
 		
 				// Resources on a cycle
 				// Oil+Food, Oil, Food+Oil, Food
-				const rssIndex = (diff+RSS_MINS_OFFSET)%4;
+				const rssIndex = (diff+RSS_OFFSET)%4;
 				addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
 				if (rssIndex%2 === 0)
 					addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
