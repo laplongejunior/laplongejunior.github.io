@@ -44,7 +44,7 @@ html, body {
 		const MINS_MS = 60*1000, HOURS_MINS = 60, DAY_MINS = 24*HOURS_MINS, WEEK_MINS = 7*DAY_MINS;
 		
 		// Number between 0 and 4 in case cycle drifts due to complications
-		const RSS_OFFSET = 0;
+		const RSS_OFFSET = 1;
 		// Between 0 and 1
 		const SVS_OFFSET = 0;
 		// Between -1 and 2
@@ -85,8 +85,7 @@ html, body {
 				result.set(MINS_OFFSET+(hours*60),reason);
 			};
 
-			// Midnight *in the dev's timezone*, while "lastReset" is UTC
-			const currentReset = lastReset+UTC_OFFSET+MINS_OFFSET;
+			const currentReset = lastReset+MINS_OFFSET;
 			// Formulas usually use a 4-day OFFSET, but in UTC Sunday is a different week than the saturday after that
 			const currentWeek = Math.floor((currentReset + 3*DAY_MINS)/WEEK_MINS);
 
