@@ -174,12 +174,15 @@ html, body {
 			const date = toDate(stamp);
 			stamp = stamp%HOURS_DAY;
 			const minutes = stamp%HOURS_MS, hours = (stamp-minutes)/HOURS_MS;
-			console.log(stamp +":"+ hours +":"+minutes);
+			console.log(reason + " = " + stamp +":"+ hours +":"+minutes);
 			
 			let visual = "Reset"
 			if (minutes === 0 && hours > 12) visual += "-"+(24-hours);
 			else if (hours > 0) visual += "+"+hours;
 			if (minutes !== 0) visual += " AND "+minutes+" MINS";
+			
+			console.log(pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
+				+"\n"+visual+" for "+reason);
 			
 			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
 				+"\n"+visual+" for "+reason;
