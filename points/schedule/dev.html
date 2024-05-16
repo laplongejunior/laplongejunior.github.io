@@ -95,7 +95,6 @@ html, body {
 			if (currentDay < 1) currentDay += 7;
 	
 			if ((currentWeek+SVS_OFFSET)%2===0) {
-				console.log("svs");
 				if (cross) {
 					const SVS_HOUR = 22;
 					if (currentDay===5)
@@ -119,7 +118,6 @@ html, body {
 				}
 			}
 			else {
-				console.log("tc");
 			    if (currentDay===5) {
 				if (tc) addTask(11, "Leader or vice-leader can start TC registration");
 			    }
