@@ -177,7 +177,7 @@ html, body {
 			const fullHour = (minutes===0);
 			if (fullHour && hours > 12) visual += "-"+(24-hours);
 			else if (hours !== 0) visual += "+"+hours;
-			if (fullHour) visual += " AND "+minutes+" MINS";
+			if (!fullHour) visual += " AND "+minutes+" MINS";
 			
 			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
 				+"\n"+visual+" for "+reason;
