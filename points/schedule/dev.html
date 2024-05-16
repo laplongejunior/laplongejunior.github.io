@@ -136,7 +136,7 @@ html, body {
 	   
 			if (ruin) {
 				// Establish an index based on number of days. Allows to establish self-referencing cycles
-				const diff = Math.floor(offset/DAY_MS);
+				const diff = Math.floor(day + (lastReset/DAY_MS));
 		
 				// Resources on a cycle
 				// Oil+Food, Oil, Food+Oil, Food
