@@ -180,9 +180,6 @@ html, body {
 			else if (hours > 0) visual += "+"+hours;
 			if (minutes !== 0) visual += " AND "+minutes+" MINS";
 			
-			console.log(pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
-				+"\n"+visual+" for "+reason);
-			
 			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
 				+"\n"+visual+" for "+reason;
 		}
