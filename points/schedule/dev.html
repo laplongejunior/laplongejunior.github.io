@@ -85,11 +85,11 @@ html, body {
 				result.set(MINS_OFFSET+(hours*60),reason);
 			};
 			
-			const currentReset = lastReset+MINS_OFFSET+UTC_OFFSET;
+			const currentReset = lastReset+MINS_OFFSET;
 			// Formulas usually use a 4-day OFFSET, but in UTC Sunday is a different week than the saturday after that
 			const currentWeek = Math.floor((currentReset + 3*DAY_MINS)/WEEK_MINS);
 
-			let currentDay = toDate(currentReset*MINS_MS).getUTCDay();
+			let currentDay = toDate(MINS_OFFSET).getUTCDay();
 			// Treat Sunday as end of week
 			if (currentDay < 1) currentDay += 7;
 			console.log(currentDay);
