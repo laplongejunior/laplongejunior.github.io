@@ -58,7 +58,7 @@ html, body {
 		// 8h UTC is when my server's time in settings reach 00h00
 		let lastReset = new Date().getTime()/MINS_MS;
 		// lastReset now refers to the last encountered reset time in UTC, by removing the diff between current UTC time and the last reset time in server's timezone
-		lastReset -= (lastReset+UTC_MINS_OFFSET)%DAY_MINS;
+		lastReset -= (lastReset+UTC_OFFSET)%DAY_MINS;
 		
 		const toDate = timestamp=>{return new Date((lastReset+timestamp)*MINS_MS)};
 		document.getElementById('timezone').value = toDate(0);
