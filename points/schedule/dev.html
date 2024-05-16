@@ -44,21 +44,21 @@ html, body {
 		const MINS_MS = 60*1000, HOURS_MINS = 60, DAY_MINS = 24*HOURS_MINS, WEEK_MINS = 7*DAY_MINS;
 		
 		// Number between 0 and 4 in case cycle drifts due to complications
-		const RSS_OFFSET = 1;
+		const RSS_MINS_OFFSET = 1;
 		// Between 0 and 1
-		const SVS_OFFSET = 0;
+		const SVS_MINS_OFFSET = 0;
 		// Between -1 and 2
 		const LQ_SKIP = 1;
 		
 		// When server time reaches 00h00
-		const UTC_OFFSET = 8*HOURS_MINS;
+		const UTC_MINS_OFFSET = 8*HOURS_MINS;
 	
 		const pad = (obj, length)=>{ return (""+obj).padStart(length,'0'); }
 	
 		// 8h UTC is when my server's time in settings reach 00h00
 		let lastReset = new Date().getTime()/MINS_MS;
-		// lastReset now refers to the last encountered reset time in UTC, by removing the offset between current UTC time, and the last reset time in server's timezone
-		lastReset -= (lastReset+UTC_OFFSET)%DAY_MINS;
+		// lastReset now refers to the last encountered reset time in UTC, by removing the MINS_OFFSET between current UTC time, and the last reset time in server's timezone
+		lastReset -= (lastReset+UTC_MINS_OFFSET)%DAY_MINS;
 		
 		const toDate = timestamp=>{return new Date((lastReset+timestamp)*MINS_MS)};
 		document.getElementById('timezone').value = toDate(0);
@@ -70,40 +70,36 @@ html, body {
 		const wb = [document.getElementById('wb1').checked, document.getElementById('wb2').checked, document.getElementById('wb3').checked];
 		// Check several days one after another
 		for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
-			const offset = DAY_MINS*day;
+			const MINS_MINS_OFFSET = DAY_MINS*day;
 	
-			const UTCreset = (minutes)=>{
-				return offset+ (minutes/**MINS_MS*/);
-			};
 			const TCvariant = (hour, name, morale)=>{
 				addTask(hour, "damage flag for "+name);
 				const END_HOUR = hour+1, END_MIN = 5;
 				let extra = "";
 				if (morale) extra = " and morale refill";
-				result.set(UTCreset(END_HOUR*60+END_MIN), "gathering flag (+ alliance TP"+extra+")");
-				// "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
+				result.set(MINS_OFFSET+(END_HOUR*60)+END_MIN, "gathering flag (+ alliance TP"+extra+")");
 			};
 			const addTask = (hours, reason)=>{
-				result.set(UTCreset(hours*60),reason);
+				result.set(MINS_OFFSET+(hours*60),reason);
 			};
 			
-			const currentReset = offset+UTC_OFFSET;
-			// Formulas usually use a 4-day offset, but in UTC Sunday is a different week than the saturday after that
+			const currentReset = MINS_OFFSET+UTC_MINS_OFFSET;
+			// Formulas usually use a 4-day MINS_OFFSET, but in UTC Sunday is a different week than the saturday after that
 			const currentWeek = Math.floor((currentReset + 3*DAY_MINS)/WEEK_MINS);
 			
 			let currentDay = toDate(lastReset+currentReset).getUTCDay();
 			// Treat Sunday as end of week
 			if (currentDay < 1) currentDay += 7;
 	
-			if ((currentWeek+SVS_OFFSET)%2===0) {
+			if ((currentWeek+SVS_MINS_OFFSET)%2===0) {
 				if (cross) {
 					const SVS_HOUR = 22;
 					if (currentDay===5)
 						addTask(SVS_HOUR-1, "You have one hour left to void cap position for SVS");
 					else if (currentDay===6) {
 						addTask(SVS_HOUR-1, "You have one hour left to attribute cap buffs for SVS");
-					    addTask(SVS_HOUR, "damage flag for SVS");
-					    addTask(SVS_HOUR+1, "gathering flag (+ alliance TP)");
+					    	addTask(SVS_HOUR, "damage flag for SVS");
+					    	addTask(SVS_HOUR+1, "gathering flag (+ alliance TP)");
 					}
 				} 
 				if (bol)
@@ -140,7 +136,7 @@ html, body {
 		
 				// Resources on a cycle
 				// Oil+Food, Oil, Food+Oil, Food
-				const rssIndex = (diff+RSS_OFFSET)%4;
+				const rssIndex = (diff+RSS_MINS_OFFSET)%4;
 				addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
 				if (rssIndex%2 === 0)
 					addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
@@ -169,16 +165,17 @@ html, body {
 			}
 		}
 		
-		let txt = "1542 shedule by laplongejr";
+		let txt = "1542 schedule by laplongejr";
 		for (let [stamp,reason] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 			const date = toDate(stamp);
 			stamp = stamp%DAY_MINS;
 			const minutes = stamp%HOURS_MINS, hours = (stamp-minutes)/HOURS_MINS;
 			
-			let visual = "Reset"
-			if (minutes === 0 && hours > 12) visual += "-"+(24-hours);
-			else if (hours > 0) visual += "+"+hours;
-			if (minutes !== 0) visual += " AND "+minutes+" MINS";
+			let visual = "Reset";
+			const fullHour = (minutes===0);
+			if (fullHour && hours > 12) visual += "-"+(24-hours);
+			else if (hours !== 0) visual += "+"+hours;
+			if (fullHour) visual += " AND "+minutes+" MINS";
 			
 			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
 				+"\n"+visual+" for "+reason;
