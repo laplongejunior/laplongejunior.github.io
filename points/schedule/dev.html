@@ -41,7 +41,7 @@ html, body {
 	"use strict";
 	const update = ()=>{
 		// We divide values from millis to minutes, so we can skew the hour conversion
-		const MINS_MS = 60*1000, HOURS_MS = 60/**MINS_MS*/, DAY_MS = 24*HOURS_MS, WEEK_MS = 7*DAY_MS;
+		const MINS_MS = 60*1000, HOURS_MINS = 60, DAY_MINS = 24*HOURS_MINS, WEEK_MINS = 7*DAY_MINS;
 		
 		// Number between 0 and 4 in case cycle drifts due to complications
 		const RSS_OFFSET = 1;
@@ -51,14 +51,14 @@ html, body {
 		const LQ_SKIP = 1;
 		
 		// When server time reaches 00h00
-		const UTC_OFFSET = 8*HOURS_MS;
+		const UTC_OFFSET = 8*HOURS_MINS;
 	
 		const pad = (obj, length)=>{ return (""+obj).padStart(length,'0'); }
 	
 		// 8h UTC is when my server's time in settings reach 00h00
 		let lastReset = new Date().getTime()/MINS_MS;
 		// lastReset now refers to the last encountered reset time in UTC, by removing the offset between current UTC time, and the last reset time in server's timezone
-		lastReset -= (lastReset+UTC_OFFSET)%DAY_MS;
+		lastReset -= (lastReset+UTC_OFFSET)%DAY_MINS;
 		
 		const toDate = timestamp=>{return new Date((lastReset+timestamp)*MINS_MS)};
 		document.getElementById('timezone').value = toDate(0);
@@ -70,7 +70,7 @@ html, body {
 		const wb = [document.getElementById('wb1').checked, document.getElementById('wb2').checked, document.getElementById('wb3').checked];
 		// Check several days one after another
 		for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
-			const offset = DAY_MS*day;
+			const offset = DAY_MINS*day;
 	
 			const UTCreset = (minutes)=>{
 				return offset+ (minutes/**MINS_MS*/);
@@ -89,7 +89,7 @@ html, body {
 			
 			const currentReset = offset+UTC_OFFSET;
 			// Formulas usually use a 4-day offset, but in UTC Sunday is a different week than the saturday after that
-			const currentWeek = Math.floor((currentReset + 3*DAY_MS)/WEEK_MS);
+			const currentWeek = Math.floor((currentReset + 3*DAY_MINS)/WEEK_MINS);
 			
 			let currentDay = toDate(lastReset+currentReset).getUTCDay();
 			// Treat Sunday as end of week
@@ -136,7 +136,7 @@ html, body {
 	   
 			if (ruin) {
 				// Establish an index based on number of days. Allows to establish self-referencing cycles
-				const diff = Math.floor(day + (lastReset/DAY_MS));
+				const diff = Math.floor(day + (lastReset/DAY_MINS));
 		
 				// Resources on a cycle
 				// Oil+Food, Oil, Food+Oil, Food
@@ -172,8 +172,8 @@ html, body {
 		let txt = "1542 shedule by laplongejr";
 		for (let [stamp,reason] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 			const date = toDate(stamp);
-			stamp = stamp%DAY_MS;
-			const minutes = stamp%HOURS_MS, hours = (stamp-minutes)/HOURS_MS;
+			stamp = stamp%DAY_MINS;
+			const minutes = stamp%HOURS_MINS, hours = (stamp-minutes)/HOURS_MINS;
 			
 			let visual = "Reset"
 			if (minutes === 0 && hours > 12) visual += "-"+(24-hours);
