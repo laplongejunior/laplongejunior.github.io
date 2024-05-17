@@ -18,14 +18,14 @@ html, body {
 </head>
 <body>
 <label for="minDay">Day index start</label><input type="number" id="minDay" value="0"/>
-<label for="maxDay">Day index end</label><input type="number" id="maxDay" value="3"/>
+<label for="maxDay">Day index end</label><input type="number" id="maxDay" value="14"/>
 <br/>
 <label for="tc">TC leaders</label><input type="checkbox" id="tc"/>
 <label for="droid">Droid officer</label><input type="checkbox" id="droid"/>
-<label for="ruin">Ruin manager</label><input type="checkbox" id="ruin"/>
+<label for="ruin">Ruin manager</label><input type="checkbox" id="ruin" checked="checked"/>
 <br/>
 <label for="wb1">WB 1</label><input type="checkbox" id="wb1"/>
-<label for="wb2">WB 2</label><input type="checkbox" id="wb2"/>
+<label for="wb2">WB 2</label><input type="checkbox" id="wb2" checked="checked"/>
 <label for="wb3">WB 3</label><input type="checkbox" id="wb3"/>
 <br/>
 <label for="cross">Cross-server WE</label><input type="checkbox" id="cross" checked="checked"/>
@@ -40,60 +40,72 @@ html, body {
 ((global)=>{
 	"use strict";
 	const update = ()=>{
-		const HOURS_MS = 60*60*1000, DAY_MS = 24*HOURS_MS, WEEK_MS = 7*DAY_MS;
+		// We divide values from millis to minutes, so we can skew the hour conversion
+		const MINS_MS = 60*1000, HOURS_MINS = 60, DAY_MINS = 24*HOURS_MINS, WEEK_MINS = 7*DAY_MINS;
 		
 		// Number between 0 and 4 in case cycle drifts due to complications
-		const RSS_OFFSET = 1;
+		const RSS_OFFSET = 0;
 		// Between 0 and 1
 		const SVS_OFFSET = 0;
 		// Between -1 and 2
 		const LQ_SKIP = 1;
 		
 		// When server time reaches 00h00
-		const UTC_OFFSET = 8*HOURS_MS;
+		const UTC_OFFSET = 8*HOURS_MINS;
 	
 		const pad = (obj, length)=>{ return (""+obj).padStart(length,'0'); }
 	
 		// 8h UTC is when my server's time in settings reach 00h00
-		let lastReset = new Date().getTime();
-		// lastReset now refers to the last encountered reset time in UTC, by removing the offset between current UTC time, and the last reset time in server's timezone
-		lastReset = lastReset - (lastReset+UTC_OFFSET)%DAY_MS;
-		document.getElementById('timezone').value = new Date(lastReset);
+		let lastReset = new Date().getTime()/MINS_MS;
+		// lastReset now refers to the last encountered reset time in UTC, by removing the diff between current UTC time and the last reset time in server's timezone
+		lastReset -= (lastReset+UTC_OFFSET)%DAY_MINS;
+		
+		const toDate = timestamp=>{return new Date((lastReset+timestamp)*MINS_MS)};
+		document.getElementById('timezone').value = toDate(0);
 	
 		const result = new Map();
 		
 		const cross = document.getElementById('cross').checked, ruin = document.getElementById('ruin').checked, droid = document.getElementById('droid').checked
 			, tc = document.getElementById('tc').checked, bol = document.getElementById('bol').checked;
 		const wb = [document.getElementById('wb1').checked, document.getElementById('wb2').checked, document.getElementById('wb3').checked];
+
+		const maxDay = document.getElementById('maxDay').value;
 		// Check several days one after another
-		for (let day = document.getElementById('minDay').value; day<=document.getElementById('maxDay').value; day++) {
-			const currentUTC = lastReset+ DAY_MS*day;
+		for (let day = document.getElementById('minDay').value; day<=maxDay; day++) {
+			const MINS_OFFSET = DAY_MINS*day;
 	
-			const UTCreset = (minutes)=>{
-				return new Date(currentUTC+ minutes*60*1000);
+			const addTaskMins = (mins, reason)=>{
+				const key = MINS_OFFSET+mins;
+				let list = result.get(key);
+				if (!list) {
+					list = [];
+					result.set(key,list);
+				}
+				list.push(reason);
+			};
+			const addTask = (hours, reason)=>{
+				addTaskMins(hours*HOURS_MINS,reason);
 			};
 			const TCvariant = (hour, name, morale)=>{
 				addTask(hour, "damage flag for "+name);
 				const END_HOUR = hour+1, END_MIN = 5;
 				let extra = "";
 				if (morale) extra = " and morale refill";
-				result.set(UTCreset(END_HOUR*60+END_MIN), "Reset+"+END_HOUR+" AND "+END_MIN+" MINS for gathering flag (+ alliance TP"+extra+")");
+				addTaskMins(END_HOUR*HOURS_MINS + END_MIN, "gathering flag (+ alliance TP"+extra+")");
 			};
-			const addTask = (hours, reason)=>{
-				let visual = "Reset"
-				if (hours > 12) visual += "-"+(24-hours);
-				else if (hours > 0) visual += "+"+hours;
-				result.set(UTCreset(hours*60), visual+" for "+reason);
-			};
+
+			const currentReset = lastReset+MINS_OFFSET+UTC_OFFSET;
+			// Formulas usually use a 4-day OFFSET, but in UTC Sunday is a different week than the saturday after that
+			const currentWeek = Math.floor((currentReset + 3*DAY_MINS)/WEEK_MINS);
+
+	                // Establish an index based on number of days. Allows to establish self-referencing cycles
+	                const dayIndex = currentReset/DAY_MINS;
 			
-			const currentReset = currentUTC+UTC_OFFSET;
-			// Formulas usually use a 4-day offset, but in UTC Sunday is a different week than the saturday after that
-			const currentWeek = Math.floor((currentReset + 3*DAY_MS)/WEEK_MS);
-			
-			let currentDay = new Date(currentReset).getUTCDay();
-			// Treat Sunday as end of week
-			if (currentDay < 1) currentDay += 7;
-			
+			// 1st january 1970 was a Thursday, so day 0 is 4th day of the week			
+			// Instead of adding 4 then dividing, we add one to all indexes
+			// That way day 1-to-6 follow UTC standard, but Sunday is day 7 instead of 0
+			const currentDay = 1 + (dayIndex+3)%7;
+	
 			if ((currentWeek+SVS_OFFSET)%2===0) {
 				if (cross) {
 					const SVS_HOUR = 22;
@@ -101,8 +113,8 @@ html, body {
 						addTask(SVS_HOUR-1, "You have one hour left to void cap position for SVS");
 					else if (currentDay===6) {
 						addTask(SVS_HOUR-1, "You have one hour left to attribute cap buffs for SVS");
-					    addTask(SVS_HOUR, "damage flag for SVS");
-					    addTask(SVS_HOUR+1, "gathering flag (+ alliance TP)");
+					    	addTask(SVS_HOUR, "damage flag for SVS");
+					    	addTask(SVS_HOUR+1, "gathering flag (+ alliance TP)");
 					}
 				} 
 				if (bol)
@@ -134,12 +146,9 @@ html, body {
 				addTask(0, "KE help");
 	   
 			if (ruin) {
-				// Establish an index based on number of days. Allows to establish self-referencing cycles
-				const diff = Math.floor(currentUTC/DAY_MS);
-		
 				// Resources on a cycle
 				// Oil+Food, Oil, Food+Oil, Food
-				const rssIndex = (diff+RSS_OFFSET)%4;
+				const rssIndex = (dayIndex+RSS_OFFSET)%4;
 				addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
 				if (rssIndex%2 === 0)
 					addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
@@ -168,9 +177,23 @@ html, body {
 			}
 		}
 		
-		let txt = "Here's the schedule!";
-		for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
-			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)+"\n"+name;
+		let txt = "1542 schedule by laplongejr";
+		for (let [stamp,reasons] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
+			const date = toDate(stamp);
+			stamp = stamp%DAY_MINS;
+			const minutes = stamp%HOURS_MINS, hours = (stamp-minutes)/HOURS_MINS;
+
+			txt+="\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2);
+			for (let reason of reasons)
+			{
+			let visual = "Reset";
+			const fullHour = (minutes===0);
+			if (fullHour && hours > 12) visual += "-"+(24-hours);
+			else if (hours !== 0) visual += "+"+hours;
+			if (!fullHour) visual += " AND "+minutes+" MINS";
+			
+			txt += "\n"+visual+" for "+reason;
+			}
 		}
 		document.getElementById('output').value = txt;
 	};
