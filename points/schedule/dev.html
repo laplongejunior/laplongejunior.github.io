@@ -144,8 +144,7 @@ html, body {
 			if (ruin) {
 				// Establish an index based on number of days. Allows to establish self-referencing cycles
 				const diff = currentReset/DAY_MINS;
-				console.log(diff);
-		
+				
 				// Resources on a cycle
 				// Oil+Food, Oil, Food+Oil, Food
 				const rssIndex = (diff+RSS_OFFSET)%4;
