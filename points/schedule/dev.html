@@ -104,7 +104,7 @@ html, body {
 				
 
 			let currentDay = new Date(currentReset*MINS_MS).getUTCDay();
-                        console.log(currentDay + ":" + dayIndex + ":" + dayIndex%7); 
+                        console.log(currentDay + ":" + dayIndex + ":" + ((dayIndex+3)%7)+1); 
 	
 			// Treat Sunday as end of week
 			if (currentDay < 1) currentDay += 7;
