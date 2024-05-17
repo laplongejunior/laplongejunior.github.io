@@ -98,7 +98,14 @@ html, body {
 			// Formulas usually use a 4-day OFFSET, but in UTC Sunday is a different week than the saturday after that
 			const currentWeek = Math.floor((currentReset + 3*DAY_MINS)/WEEK_MINS);
 
+	                // Establish an index based on number of days. Allows to establish self-referencing cycles
+	                const dayIndex = currentReset/DAY_MINS;
+				
+				
+
 			let currentDay = new Date(currentReset*MINS_MS).getUTCDay();
+                        console.log(currentDay + ":" + dayIndex + ":" + dayIndex%7); 
+	
 			// Treat Sunday as end of week
 			if (currentDay < 1) currentDay += 7;
 	
@@ -142,12 +149,9 @@ html, body {
 				addTask(0, "KE help");
 	   
 			if (ruin) {
-				// Establish an index based on number of days. Allows to establish self-referencing cycles
-				const diff = currentReset/DAY_MINS;
-				
 				// Resources on a cycle
 				// Oil+Food, Oil, Food+Oil, Food
-				const rssIndex = (diff+RSS_OFFSET)%4;
+				const rssIndex = (dayIndex+RSS_OFFSET)%4;
 				addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
 				if (rssIndex%2 === 0)
 					addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
