@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+9<!DOCTYPE html>
 <html lang="fr">
 <head>
 <style>
@@ -183,7 +183,7 @@ html, body {
 			stamp = stamp%DAY_MINS;
 			const minutes = stamp%HOURS_MINS, hours = (stamp-minutes)/HOURS_MINS;
 
-			txt+="/n/n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2);
+			txt+="\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2);
 			for (let reason of reasons)
 			{
 			let visual = "Reset";
