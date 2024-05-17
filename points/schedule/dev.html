@@ -74,15 +74,24 @@ html, body {
 		for (let day = document.getElementById('minDay').value; day<=maxDay; day++) {
 			const MINS_OFFSET = DAY_MINS*day;
 	
+			const addTaskMins = (mins, reason)=>{
+				const key = MINS_OFFSET+min;
+				let list = result.get(key);
+				if (!list) {
+					list = [];
+					result.set(key,list);
+				}
+				list.push(reason);
+			};
+			const addTask = (hours, reason)=>{
+				addTaskMins(hours*HOURS_MINS,reason);
+			};
 			const TCvariant = (hour, name, morale)=>{
 				addTask(hour, "damage flag for "+name);
 				const END_HOUR = hour+1, END_MIN = 5;
 				let extra = "";
 				if (morale) extra = " and morale refill";
-				result.set(MINS_OFFSET+(END_HOUR*60)+END_MIN, "gathering flag (+ alliance TP"+extra+")");
-			};
-			const addTask = (hours, reason)=>{
-				result.set(MINS_OFFSET+(hours*60),reason);
+				addTaskMins(END_HOUR*HOURS_MINS + END_MIN, "gathering flag (+ alliance TP"+extra+")");
 			};
 
 			const currentReset = lastReset+MINS_OFFSET+UTC_OFFSET;
@@ -168,19 +177,22 @@ html, body {
 		}
 		
 		let txt = "1542 schedule by laplongejr";
-		for (let [stamp,reason] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
+		for (let [stamp,reasons] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];}))) {
 			const date = toDate(stamp);
 			stamp = stamp%DAY_MINS;
 			const minutes = stamp%HOURS_MINS, hours = (stamp-minutes)/HOURS_MINS;
-			
+
+			text+="/n/n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2);
+			for (let reason of reasons)
+			{
 			let visual = "Reset";
 			const fullHour = (minutes===0);
 			if (fullHour && hours > 12) visual += "-"+(24-hours);
 			else if (hours !== 0) visual += "+"+hours;
 			if (!fullHour) visual += " AND "+minutes+" MINS";
 			
-			txt += "\n\n"+pad(date.getFullYear(),4)+"-"+pad(date.getMonth()+1,2)+"-"+pad(date.getDate(),2)+" "+pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)
-				+"\n"+visual+" for "+reason;
+			txt += "\n"+visual+" for "+reason;
+			}
 		}
 		document.getElementById('output').value = txt;
 	};
