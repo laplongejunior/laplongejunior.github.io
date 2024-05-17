@@ -100,14 +100,11 @@ html, body {
 
 	                // Establish an index based on number of days. Allows to establish self-referencing cycles
 	                const dayIndex = currentReset/DAY_MINS;
-				
-				
-
-			let currentDay = new Date(currentReset*MINS_MS).getUTCDay();
-                        console.log(currentDay + ":" + dayIndex + ":" + ((dayIndex+3)%7)+1); 
-	
-			// Treat Sunday as end of week
-			if (currentDay < 1) currentDay += 7;
+			
+			// 1st january 1970 was a Thursday, so day 0 is 4th day of the week			
+			// Instead of adding 4 then dividing, we add one to all indexes
+			// That way day 1-to-6 follow UTC standard, but Sunday is day 7 instead of 0
+			const currentDay = 1 + (dayIndex+3)%7;
 	
 			if ((currentWeek+SVS_OFFSET)%2===0) {
 				if (cross) {
