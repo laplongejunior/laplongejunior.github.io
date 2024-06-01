@@ -44,7 +44,7 @@ html, body {
 		const MINS_MS = 60*1000, HOURS_MINS = 60, DAY_MINS = 24*HOURS_MINS, WEEK_MINS = 7*DAY_MINS;
 		
 		// Number between 0 and 4 in case cycle drifts due to complications
-		const RSS_OFFSET = 0;
+		const RSS_OFFSET_N = 0, RSS_OFFSET_S = 2;
 		// Between 0 and 1
 		const SVS_OFFSET = 0;
 		// Between -1 and 2
@@ -148,10 +148,14 @@ html, body {
 			if (ruin) {
 				// Resources on a cycle
 				// Oil+Food, Oil, Food+Oil, Food
-				const rssIndex = (dayIndex+RSS_OFFSET)%4;
-				addTask(2, "1st rss : "+ (rssIndex<2?"Oil":"Food"));
+				let rssIndex = (dayIndex+RSS_OFFSET_N)%4;
+				addTask(2, "1st rss North : "+ (rssIndex<2?"Oil":"Food"));
 				if (rssIndex%2 === 0)
-					addTask(23, "2nd rss : " + (rssIndex===2?"Oil":"Food"));
+					addTask(23, "2nd rss North : " + (rssIndex===2?"Oil":"Food"));
+				rssIndex = (dayIndex+RSS_OFFSET_S)%4;
+				addTask(3, "1st rss South : "+ (rssIndex<2?"Oil":"Food"));
+				if (rssIndex%2 === 0)
+					addTask(23, "2nd rss South : " + (rssIndex===2?"Oil":"Food"));
 			}
 	
 			if (droid) {
