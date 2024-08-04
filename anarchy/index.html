@@ -1,4 +1,4 @@
-1<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <style>
@@ -140,7 +140,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 			return 0;
 		bonus *= 3; // Three medals per game
 
-		// If number of wins is already beyond max, compute oncz 
+		// If number of wins is already beyond max, compute once
 		let index = VICTORIES+1;
 		do {
 		     extra += index*(WIN+WIN_BONUS) + bonus;
@@ -156,7 +156,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 		innerHTML += NF_CR+"Score before next rankup battle: "+(RANKUP-score)+"p";
 	
 	innerHTML += NF_CR+"Current total: "+score+"p";
-	
+
 	if (target() > 0)
 		innerHTML += NF_CR+"Score before next rank: "+target()+"p";
 	else {
