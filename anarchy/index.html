@@ -139,7 +139,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 	const target = ()=>NEXT-score;	
 	const analysis = function(bonus) {
 		let _target = target();
-		bonus == WIN+3*bonus; // Three medals per game
+		bonus = WIN+3*bonus; // Three medals per game
 
 		// If number of wins is already beyond max, compute once
 		let index = VICTORIES;
@@ -152,13 +152,12 @@ doc.getElementById('submit').addEventListener('click', function(){
 	};
 
 	const breakEven = function() {
-		let _target = FEE - increase;
 		const medals = 3*(3-DEFEATS);
 		let index = VICTORIES;
 		do {
 		    const diff = _target / GOLD_BONUS;
 			if (diff <= medals)
-				return { breakWins:index-VICTORIES, breakGolds:Math.max(0,diff)};
+				return { breakWins:index-VICTORIES, breakGolds:diff>0?Math.ceil(diff):0};
 			_target -= WIN + (index++)*WIN_BONUS;
 		} while (index <= 5)
 		return null; 
