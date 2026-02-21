@@ -200,7 +200,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 		innerHTML += NF_CR+"Due to a non-rankup battle on the way, next tier prediction is impossible.";
 
 	const {breakWins, breakGolds} = breakEven();
-	console.log(breakEvent);
+	console.log(breakEven());
 	innerHTML += NF_CR+NF_CR+"Break-even point: "+breakWins+" victories with "+breakGolds+" gold medals";
 		
 	output.innerHTML = innerHTML;
