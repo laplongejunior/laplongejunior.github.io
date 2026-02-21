@@ -155,8 +155,8 @@ doc.getElementById('submit').addEventListener('click', function(){
 		const _target = FEE - increase;
 		let index = VICTORIES;
 		do {
-		    const diff = _target / 3;
-			if (diff < 3-LOSE)
+		    const diff = _target / GOLD_BONUS;
+			if (diff < 3*(3-LOSE))
 				return {index-VICTORIES,Math.max(0,diff)};
 			_target -= WIN + (++index)*WIN_BONUS;
 		} while (index <= 5)
