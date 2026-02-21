@@ -146,7 +146,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 		do {
 			if (_target < 0)
 		         return index-VICTORIES;
-		    _target -= bonus + (++index)*WIN_BONUS;        
+		    _target -= bonus + (index++)*WIN_BONUS;        
 		} while (index <= 5);
 		return -1;
 	};
@@ -159,7 +159,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 		    const diff = _target / GOLD_BONUS;
 			if (diff < medals)
 				return { breakWins:index-VICTORIES, breakGolds:Math.max(0,diff)};
-			_target -= WIN + (++index)*WIN_BONUS;
+			_target -= WIN + (index++)*WIN_BONUS;
 		} while (index <= 5)
 		return null; 
 	};
