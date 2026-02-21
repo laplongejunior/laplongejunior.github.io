@@ -24,6 +24,7 @@ Deduce an entry fee to the score? <input type="checkbox" id="fee" checked="true"
 Wins: <input type="number" id="win" value="0"></input><br/>
 Gold medals: <input type="number" id="gold" value="0"></input><br/>
 Silver medals: <input type="number" id="silver" value="0"></input><br/>
+Defeats: <input type="number" id="lose" value="0"></input><br/>
 <button id="submit">Click here to generate</button>
 <br/>
 <label>Anarchy result</label>
@@ -102,6 +103,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 	const GOLD = parseInt(doc.getElementById('gold').value);
 	const SILVER = parseInt(doc.getElementById('silver').value);
 	const VICTORIES = parseInt(doc.getElementById('win').value);
+	const DEFEATS = parseInt(doc.getElementById('losz').value);
 	
 	const RANK = doc.getElementById('rank').value;
 	const RANK_DATA = RANKS.get(RANK);
@@ -131,23 +133,35 @@ doc.getElementById('submit').addEventListener('click', function(){
 	let innerHTML = "Starting score: "+score+"p"
 		+NF_CR+"Current reward: "+increase+"p";
 	score += increase;
-	
+	// score is now what is already won  
+
+	// NEXT is dynamically set  
 	const target = ()=>NEXT-score;	
 	const analysis = function(bonus) {
-		const _target = target();
-		let extra = 0;
-		if (_target < extra)
-			return 0;
+		let _target = target();
 		bonus *= 3; // Three medals per game
 
 		// If number of wins is already beyond max, compute once
-		let index = VICTORIES+1;
+		let index = VICTORIES;
 		do {
-		     extra += WIN+bonus + index*WIN_BONUS;
-	             if (_target < extra)
+			if (_target < 0)
 		         return index-VICTORIES;
-		} while (++index <= 5);
+		    _target -= WIN+bonus + (++index)*WIN_BONUS;        
+		} while (index <= 5);
 		return -1;
+	};
+
+	const breakEven = function() {
+		const _target = FEE - increase;
+		let index = VICTORIES;
+		do {
+			if (_target < 0) _target = 0;
+		    const diff = _target / 3;
+			if (diff < 0)
+				return {index-VICTORIES,diff};
+			_target -= WIN + (++index)*WIN_BONUS;
+		} while (index <= 5)
+		return {-1,-1}; // Should never happen  
 	};
 	
 	if (IS_RANKUP)
@@ -184,6 +198,9 @@ doc.getElementById('submit').addEventListener('click', function(){
 	innerHTML += NF_CR+"Victories without medals: "+pureAnalysis;
 	if (!IS_RANKUP)
 		innerHTML += NF_CR+"Due to a non-rankup battle on the way, next tier prediction is impossible.";
+
+	const breakeven = breakEven()
+	innerHTML += NF_CR+NF_CR+"Break-even point: "+breakeven[0]+" victories with "+breakeven[1]+" gold medals";
 		
 	output.innerHTML = innerHTML;
 });
