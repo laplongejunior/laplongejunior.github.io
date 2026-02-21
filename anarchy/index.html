@@ -199,7 +199,8 @@ doc.getElementById('submit').addEventListener('click', function(){
 	if (!IS_RANKUP)
 		innerHTML += NF_CR+"Due to a non-rankup battle on the way, next tier prediction is impossible.";
 
-	const {breakWins, breakGolds} = breakEven()
+	const {breakWins, breakGolds} = breakEven();
+	console.log(breakEvent);
 	innerHTML += NF_CR+NF_CR+"Break-even point: "+breakWins+" victories with "+breakGolds+" gold medals";
 		
 	output.innerHTML = innerHTML;
