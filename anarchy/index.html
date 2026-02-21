@@ -32,6 +32,8 @@ Defeats: <input type="number" id="lose" value="0"></input><br/>
 <textarea class="text" id="output"></textarea>
 <script>
 "use strict";
+const DEFAULT_RANK = 'A'; // Abitrary but convenient for me! :P
+
 // Same for all ranks
 const WIN_BONUS = 5;
 const GOLD_BONUS = 5;
@@ -92,7 +94,7 @@ const rankElement = doc.getElementById('rank');
 for (let [key, value] of RANKS.entries()) {	
 	let option = doc.createElement('option');
 	option.value = option.text = key;
-	if (key === 'B+')
+	if (key === DEFAULT_RANK)
 		option.selected = true;
 	rankElement.appendChild(option);
 }
