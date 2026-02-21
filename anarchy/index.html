@@ -157,7 +157,7 @@ doc.getElementById('submit').addEventListener('click', function(){
 		let index = VICTORIES;
 		do {
 		    const diff = _target / GOLD_BONUS;
-			if (diff < medals)
+			if (diff <= medals)
 				return { breakWins:index-VICTORIES, breakGolds:Math.max(0,diff)};
 			_target -= WIN + (index++)*WIN_BONUS;
 		} while (index <= 5)
