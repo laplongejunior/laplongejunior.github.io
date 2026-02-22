@@ -153,13 +153,12 @@ doc.getElementById('submit').addEventListener('click', function(){
 	};
 
 	const breakEven = function() {
-		const medals = 3-DEFEATS;
+		const breakLose = 3-DEFEATS;
 		let _target = FEE-increase, index = VICTORIES;
 		do {
 			const breakWins = index-VICTORIES;
-		    let breakGolds = _target / GOLD_BONUS;
-			breakGolds = breakGolds>0?Math.ceil(breakGolds):0;
-			if (breakGolds <= 3*(medals+breakWins))
+		    const breakGolds = Math.max(0,Math.ceil( _target/GOLD_BONUS ));
+			if (breakGolds <= 3*(breakLose+breakWins))
 				return {breakWins, breakGolds};
 			_target -= WIN + (index++)*WIN_BONUS;
 		} while (index <= 5);
