@@ -137,10 +137,9 @@ doc.getElementById('submit').addEventListener('click', function(){
 	score += increase;
 	// score is now what is already won  
 
-	// NEXT is dynamically set  
-	const target = ()=>NEXT-score;	
 	const analysis = function(bonus) {
-		let _target = target();
+		// NEXT is dynamically set  
+		let _target = NEXT-score;
 		bonus = WIN+3*bonus; // Three medals per game
 
 		// If number of wins is already beyond max, compute once
@@ -154,15 +153,16 @@ doc.getElementById('submit').addEventListener('click', function(){
 	};
 
 	const breakEven = function() {
-		let _target = FEE-increase;
-		const medals = 3*(3-DEFEATS);
-		let index = VICTORIES;
+		const medals = 3-DEFEATS;
+		let _target = FEE-increase, index = VICTORIES;
 		do {
-		    const diff = _target / GOLD_BONUS;
-			if (diff <= medals)
-				return { breakWins:index-VICTORIES, breakGolds:diff>0?Math.ceil(diff):0};
+			const breakWins = index-VICTORIES;
+		    let breakGolds = _target / GOLD_BONUS;
+			breakGolds = breakGolds>0?Math.ceil(breakGolds):0;
+			if (breakGolds <= 3*(medals+breakWins))
+				return {breakWins, breakGolds};
 			_target -= WIN + (index++)*WIN_BONUS;
-		} while (index <= 5)
+		} while (index <= 5);
 		return null; 
 	};
 	
