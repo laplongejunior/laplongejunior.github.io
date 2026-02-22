@@ -137,9 +137,10 @@ doc.getElementById('submit').addEventListener('click', function(){
 	score += increase;
 	// score is now what is already won  
 
+	// NEXT is dynamically set  
+	const target()->NEXT-score;
 	const analysis = function(bonus) {
-		// NEXT is dynamically set  
-		let _target = NEXT-score;
+		let _target = target();
 		bonus = WIN+3*bonus; // Three medals per game
 
 		// If number of wins is already beyond max, compute once
