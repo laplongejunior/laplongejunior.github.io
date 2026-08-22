@@ -117,15 +117,6 @@ iframe {
 	
 <script>
 "use strict";
-var IGload = true;
-var function addIG() {
-	if (IGload) {
-		IGload = false;
-		var addon = document.createElement('script');
-		addon.setAttribute('src','//www.instagram.com/embed.js');
-		document.head.appendChild(addon);
-	}
-};
 addEventListener('load', ()=>{
 	// FB parameter
 	// Minification is going to optimize away the concatenation statement 
