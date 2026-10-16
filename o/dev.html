@@ -95,7 +95,7 @@ document.getElementById('outlook').addEventListener('click', function(){
 			else continue;
 
 			if (bridgeDay === holiDate) bridgeDay = holiDate;
-			else bridgeDay = null;
+			else bridgeDay = null; // Only one bridge day on top of Ascension since the year 2027
 		}
 		result.set(_addDays(easter,39),"?Pont");
 		if (bridgeDay) result.set(bridgeDay,"?Pont");
