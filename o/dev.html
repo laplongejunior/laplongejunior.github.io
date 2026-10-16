@@ -71,7 +71,14 @@ document.getElementById('outlook').addEventListener('click', function(){
 		date.setDate(date.getDate() + days);
 		return date;
 	};
-		
+	
+	var _detectEqualDate = function(date,map) {
+		for (var key of map.keys())
+			if (holiDate-key === 0)
+				return true;
+		return false;
+	};
+	
 	var result = new Map();
 	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {
 		var easter = getEaster(year);
@@ -85,7 +92,6 @@ document.getElementById('outlook').addEventListener('click', function(){
 			result.set(new Date(year, data[1]-1, data[2]), "*"+data[0]);
 
 		var bridgeDay = undefined;
-		var uniqueBridge = true;
 		for (var data of holiday) {
 			var holiDate = new Date(year, data[1]-1, data[2]);
 			result.set(holiDate, data[0]);
@@ -94,11 +100,16 @@ document.getElementById('outlook').addEventListener('click', function(){
 			if (dayOfWeek == 4) holiDate = _addDays(holiDate, 1);
 			else if (dayOfWeek == 2) holiDate = _addDays(holiDate, -1);
 			else continue;
+			
+			// Not explicitely listed in instructions, but a bridge day must land on a working day
+			if (_detectEqualDate(holiDate,result)) continue;
 
 			if (bridgeDay === undefined) {
 				bridgeDay = holiDate;
 				continue;
 			}
+			
+			var length = result.length;
 			result.set(holiDate,"?Pont PROVISOIRE");
 			// Only one extra bridge day along the one of Ascension since the year 2027
 			if (bridgeDay) {
@@ -107,7 +118,7 @@ document.getElementById('outlook').addEventListener('click', function(){
 			}
 		}
 		if (bridgeDay)
-			result.set(bridgeDay,"?Pont");
+			result.set(bridgeDay,"?Pont auto-validé");
 	}
 
 	var txt = "[Belgique] 212";
