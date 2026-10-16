@@ -44,7 +44,7 @@ document.getElementById('outlook').addEventListener('click', function(){
 		month = 3 + f((L + 40)/44),
 		day = L + 28 - 31 * f(month / 4);
 
-		return new Date(year, month, day+1); // Monday
+		return new Date(year, month-1, day); // Monday
 	};
 	
 	var MIN_YEAR = document.getElementById('minYear').value;
