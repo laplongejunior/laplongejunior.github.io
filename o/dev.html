@@ -77,9 +77,9 @@ document.getElementById('outlook').addEventListener('click', function(){
 		var easter = getEaster(year);
 		// Holy friday is included in Outlook, but is not a legal holiday
 		result.set(easter,"Lundi de Pâques");
-		result.set(_addDays(easter,49),"Lundi de Pentecôte");
-		
+		result.set(_addDays(easter,49),"Lundi de Pentecôte");		
 		result.set(_addDays(easter,38),"Ascension");
+		result.set(_addDays(easter,39),"?Pont");
 		
 		for (var data of regulatory)
 			result.set(new Date(year, data[1]-1, data[2]), "*"+data[0]);
@@ -94,14 +94,12 @@ document.getElementById('outlook').addEventListener('click', function(){
 			else if (dayOfWeek == 3) holiDate = _addDays(holiDate, -1);
 			else continue;
 
-			if (bridgeDay === holiDate) bridgeDay = holiDate;
-			else bridgeDay = null; // Only one bridge day on top of Ascension since the year 2027
+			if (bridgeDay === undefined) bridgeDay = holiDate;
+			else bridgeDay = null; // Only one extra bridge day along the one of Ascension since the year 2027
 		}
-		result.set(_addDays(easter,39),"?Pont");
 		if (bridgeDay) result.set(bridgeDay,"?Pont");
 	}
 
-	console.log(result);
 	var txt = "[Belgique] 212";
 	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];})))
 		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
