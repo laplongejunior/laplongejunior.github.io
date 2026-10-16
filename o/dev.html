@@ -95,11 +95,19 @@ document.getElementById('outlook').addEventListener('click', function(){
 			else if (dayOfWeek == 2) holiDate = _addDays(holiDate, -1);
 			else continue;
 
-			if (bridgeDay === undefined) bridgeDay = holiDate;
-			else uniqueBridge = false; // Only one extra bridge day along the one of Ascension since the year 2027
+			if (bridgeDay === undefined) {
+				bridgeDay = holiDate;
+				continue;
+			}
+			result.set(holiDate,"?Pont PROVISOIRE");
+			// Only one extra bridge day along the one of Ascension since the year 2027
+			if (bridgeDay) {
+				result.set(bridgeDay,"?Pont PROVISOIRE");
+				bridgeDay = null;
+			}
 		}
 		if (bridgeDay)
-			result.set(bridgeDay,"?Pont" + (uniqueBridge?" PROVISOIRE":""));
+			result.set(bridgeDay,"?Pont");
 	}
 
 	var txt = "[Belgique] 212";
