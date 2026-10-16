@@ -79,12 +79,13 @@ document.getElementById('outlook').addEventListener('click', function(){
 		result.set(easter,"Lundi de Pâques");
 		result.set(_addDays(easter,49),"Lundi de Pentecôte");		
 		result.set(_addDays(easter,38),"Ascension");
-		result.set(_addDays(easter,39),"?Pont");
+		result.set(_addDays(easter,39),"?Pont de l'Ascension");
 		
 		for (var data of regulatory)
 			result.set(new Date(year, data[1]-1, data[2]), "*"+data[0]);
 
 		var bridgeDay = undefined;
+		var uniqueBridge = true;
 		for (var data of holiday) {
 			var holiDate = new Date(year, data[1]-1, data[2]);
 			result.set(holiDate, data[0]);
@@ -95,9 +96,10 @@ document.getElementById('outlook').addEventListener('click', function(){
 			else continue;
 
 			if (bridgeDay === undefined) bridgeDay = holiDate;
-			else bridgeDay = null; // Only one extra bridge day along the one of Ascension since the year 2027
+			else uniqueBridge = false; // Only one extra bridge day along the one of Ascension since the year 2027
 		}
-		if (bridgeDay) result.set(bridgeDay,"?Pont");
+		if (bridgeDay)
+			result.set(bridgeDay,"?Pont" + (uniqueBridge?" PROVISOIRE":""));
 	}
 
 	var txt = "[Belgique] 212";
