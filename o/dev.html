@@ -82,11 +82,11 @@ document.getElementById('outlook').addEventListener('click', function(){
 		result.set(_addDays(easter,38),"Ascension");
 		
 		for (var data of regulatory)
-			result.set(new Date(year, data[1], data[2]), "*"+data[0]);
+			result.set(new Date(year, data[1]-1, data[2]), "*"+data[0]);
 
 		var bridgeDay = undefined;
 		for (var data of holiday) {
-			var holidate = new Date(year, data[1], data[2]);
+			var holidate = new Date(year, data[1]-1, data[2]);
 			result.set(holidate, data[0]);
 			
 			var dayOfWeek = holidate.getDay();
