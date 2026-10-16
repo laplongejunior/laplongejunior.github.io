@@ -50,19 +50,19 @@ document.getElementById('outlook').addEventListener('click', function(){
 	var MIN_YEAR = document.getElementById('minYear').value;
 	var MAX_YEAR = document.getElementById('maxYear').value;
 	
-	var map = new Map();
-	map.set("Jour de l'an",[1,1,true]);
-	map.set("Fête du travail",[5,1,true]);
-	map.set("Fête nationale",[7,21,true]);
-	map.set("Assomption",[8,15,true]);
-	map.set("Toussaint",[11,1,true]);
-	map.set("*Jour des morts",[11,2,false]);
-	map.set("Armistice 1918",[11,11,true]);
-	map.set("*Fête du roi",[11,15,false]);
-	map.set("Noël",[12,25,true]);
-	map.set("*Après-noël",[12,26,false]);
+	var list = new Array();
+	list.push(["Jour de l'an",1,1,true]);
+	list.push(["Fête du travail",5,1,true]);
+	list.push(["Fête nationale",7,21,true]);
+	list.push(["Assomption",8,15,true]);
+	list.push(["Toussaint",11,1,true]);
+	list.push(["Jour des morts",11,2,false]);
+	list.push(["Armistice 1918",11,11,true]);
+	list.push(["Fête du roi",11,15,false]);
+	list.push(["Noël",12,25,true]);
+	list.push(["Après-noël",12,26,false]);
 	for (var day = 27; day <= 31; day++)
-		map.set("Comp. fin d'année",[12,day,false]);
+		list.push(["Comp. fin d'année",12,day,false]);
 	
 	var _addDays = function(date,days) {
 		var date = new Date(date.valueOf());
@@ -72,8 +72,11 @@ document.getElementById('outlook').addEventListener('click', function(){
 		
 	var result = new Map();
 	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {	
-		for (var [name,data] of map)
-			result.set(new Date(year, data[0], data[1]), name);		
+		for (var data of list) {
+			var name = data[0];
+			if (!data[3]) name = "*"+name;
+			result.set(new Date(year, data[1], data[2]), name);
+		}
 		var easter = getEaster(year);
 		// Holy friday is included in Outlook, but is not a legal holiday
 		result.set(easter,"Lundi de Pâques");
