@@ -80,16 +80,25 @@ document.getElementById('outlook').addEventListener('click', function(){
 		result.set(_addDays(easter,49),"Lundi de Pentecôte");
 		
 		result.set(_addDays(easter,38),"Ascension");
-		result.set(_addDays(easter,39),"?Pont de Ascension");
 		
 		for (var data of regulatory)
 			result.set(new Date(year, data[1], data[2]), "*"+data[0]);
-		
+
+		var bridgeDay = undefined;
 		for (var data of holiday) {
-			var name = data[0];
-			if (!data[3]) name = "*"+name;
-			result.set(new Date(year, data[1], data[2]), name);
+			var holidate = new Date(year, data[1], data[2]);
+			result.set(holidate, data[0]);
+			
+			var dayOfWeek = holidate.getDay();
+			if (dayOfWeek == 5) holidate = _addDays(holidate, 1);
+			else if (dayOfWeek == 3) holidate = _addDays(holidate, -1);
+			else continue;
+
+			if (bridgeDay === undefined) bridgeDay = holidate;
+			else bridgeDay = null;
 		}
+		result.set(_addDays(easter,39),"?Pont");
+		result.set(bridgeDay,"?Pont");
 	}
 	
 	var txt = "[Belgique] 212";
