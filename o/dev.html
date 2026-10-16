@@ -50,19 +50,21 @@ document.getElementById('outlook').addEventListener('click', function(){
 	var MIN_YEAR = document.getElementById('minYear').value;
 	var MAX_YEAR = document.getElementById('maxYear').value;
 	
-	var list = new Array();
-	list.push(["Jour de l'an",1,1,true]);
-	list.push(["Fête du travail",5,1,true]);
-	list.push(["Fête nationale",7,21,true]);
-	list.push(["Assomption",8,15,true]);
-	list.push(["Toussaint",11,1,true]);
-	list.push(["Jour des morts",11,2,false]);
-	list.push(["Armistice 1918",11,11,true]);
-	list.push(["Fête du roi",11,15,false]);
-	list.push(["Noël",12,25,true]);
-	list.push(["Après-noël",12,26,false]);
+	var holiday = new Array();
+	holiday.push(["Jour de l'an",1,1]);
+	holiday.push(["Fête du travail",5,1]);
+	holiday.push(["Fête nationale",7,21]);
+	holiday.push(["Assomption",8,15]);
+	holiday.push(["Toussaint",11,1]);
+	holiday.push(["Armistice 1918",11,11]);
+	holiday.push(["Noël",12,25]);
+	
+	var regulatory = new Array();
+	regulatory.push(["Jour des morts",11,2]);
+	regulatory.push(["Fête du roi",11,15]);
+	regulatory.push(["Après-noël",12,26]);
 	for (var day = 27; day <= 31; day++)
-		list.push(["Comp. fin d'année",12,day,false]);
+		regulatory.push(["Comp. fin d'année",12,day]);
 	
 	var _addDays = function(date,days) {
 		var date = new Date(date.valueOf());
@@ -71,17 +73,23 @@ document.getElementById('outlook').addEventListener('click', function(){
 	};
 		
 	var result = new Map();
-	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {	
-		for (var data of list) {
+	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {
+		var easter = getEaster(year);
+		// Holy friday is included in Outlook, but is not a legal holiday
+		result.set(easter,"Lundi de Pâques");
+		result.set(_addDays(easter,49),"Lundi de Pentecôte");
+		
+		result.set(_addDays(easter,38),"Ascension");
+		result.set(_addDays(easter,39),"?Pont de Ascension");
+		
+		for (var data of regulatory)
+			result.set(new Date(year, data[1], data[2]), "*"+data[0]);
+		
+		for (var data of holiday) {
 			var name = data[0];
 			if (!data[3]) name = "*"+name;
 			result.set(new Date(year, data[1], data[2]), name);
 		}
-		var easter = getEaster(year);
-		// Holy friday is included in Outlook, but is not a legal holiday
-		result.set(easter,"Lundi de Pâques");
-		result.set(_addDays(easter,39-1),"Ascension");
-		result.set(_addDays(easter,49),"Lundi de Pentecôte");
 	}
 	
 	var txt = "[Belgique] 212";
