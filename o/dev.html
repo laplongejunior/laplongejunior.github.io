@@ -26,7 +26,8 @@ html, body {
 <textarea class="text" id="output"></textarea>
 <script>
 "use strict";
-document.getElementById('outlook').addEventListener('click', function(){
+const D = document; // Minifier misassumes the global name is relevant
+D.getElementById('outlook').addEventListener('click', function(){
 	// Source: https://gist.github.com/johndyer/0dffbdd98c2046f41180c051f378f343
 	var getEaster = function(year) {
 		var f = Math.floor,
@@ -47,8 +48,8 @@ document.getElementById('outlook').addEventListener('click', function(){
 		return new Date(year, month-1, day+1); // Monday rather than Sunday
 	};
 	
-	var MIN_YEAR = Number(document.getElementById('minYear').value);
-	var MAX_YEAR = Number(document.getElementById('maxYear').value);
+	var MIN_YEAR = Number(D.getElementById('minYear').value);
+	var MAX_YEAR = Number(D.getElementById('maxYear').value);
 	
 	var holiday = new Array();
 	holiday.push(["Jour de l'an",1,1]);
@@ -124,7 +125,7 @@ document.getElementById('outlook').addEventListener('click', function(){
 	var txt = "[Belgique] 212";
 	for (var [date,name] of new Map([...result.entries()].sort(function(a,b){return a[0]-b[0];})))
 		txt += "\n"+name+","+date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
-	document.getElementById('output').value = txt;
+	D.getElementById('output').value = txt;
 });
 </script>
 </body>
