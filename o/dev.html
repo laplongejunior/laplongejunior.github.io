@@ -44,11 +44,11 @@ document.getElementById('outlook').addEventListener('click', function(){
 		month = 3 + f((L + 40)/44),
 		day = L + 28 - 31 * f(month / 4);
 
-		return new Date(year, month-1, day); // Monday
+		return new Date(year, month-1, day+1); // Monday rather than Sunday
 	};
 	
-	var MIN_YEAR = document.getElementById('minYear').value;
-	var MAX_YEAR = document.getElementById('maxYear').value;
+	var MIN_YEAR = Number(document.getElementById('minYear').value);
+	var MAX_YEAR = Number(document.getElementById('maxYear').value);
 	
 	var holiday = new Array();
 	holiday.push(["Jour de l'an",1,1]);
@@ -81,12 +81,12 @@ document.getElementById('outlook').addEventListener('click', function(){
 	
 	var result = new Map();
 	for (var year = MIN_YEAR; year <= MAX_YEAR; year++) {
-		var easter = getEaster(year);
+		var easterMonday = getEaster(year);
 		// Holy friday is included in Outlook, but is not a legal holiday
-		result.set(easter,"Lundi de Pâques");
-		result.set(_addDays(easter,49),"Lundi de Pentecôte");		
-		result.set(_addDays(easter,38),"Ascension");
-		result.set(_addDays(easter,39),"?Pont de l'Ascension");
+		result.set(easterMonday,"Lundi de Pâques");
+		result.set(_addDays(easterMonday,49),"Lundi de Pentecôte");		
+		result.set(_addDays(easterMonday,38),"Ascension");
+		result.set(_addDays(easterMonday,39),"?Pont de l'Ascension");
 		
 		for (var data of regulatory)
 			result.set(new Date(year, data[1]-1, data[2]), "*"+data[0]);
